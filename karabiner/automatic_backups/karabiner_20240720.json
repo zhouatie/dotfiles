@@ -1,0 +1,44 @@
+{
+    "global": { "show_profile_name_in_menu_bar": true },
+    "profiles": [
+        {
+            "complex_modifications": {
+                "rules": [
+                    {
+                        "description": "单击触发 esc 并切换英文",
+                        "manipulators": [
+                            {
+                                "from": { "key_code": "escape" },
+                                "to": [
+                                    { "key_code": "escape" },
+                                    { "select_input_source": { "language": "en" } }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "devices": [
+                {
+                    "identifiers": {
+                        "is_game_pad": false,
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 835,
+                        "vendor_id": 1452
+                    },
+                    "simple_modifications": [
+                        {
+                            "from": { "key_code": "caps_lock" },
+                            "to": [{ "key_code": "left_control" }]
+                        }
+                    ]
+                }
+            ],
+            "name": "atie",
+            "selected": true
+        },
+        { "name": "empty" }
+    ]
+}
