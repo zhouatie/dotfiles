@@ -1,0 +1,33 @@
+{
+  "title": "Double Tap Tab to Caps Lock",
+  "rules": [
+    {
+      "description": "Change Tab to Option+Tab",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "tab",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "tab",
+              "modifiers": ["option"]
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "caps_lock"
+            }
+          ],
+          "parameters": {
+            "basic.to_if_alone_timeout_milliseconds": 300
+          }
+        }
+      ]
+    }
+  ]
+}
