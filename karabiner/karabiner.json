@@ -42,7 +42,24 @@
                 "to": [
                   {
                     "mouse_key": {
-                      "x": -1536
+                      "x": -4000
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "modifiers": {
+                    "mandatory": ["left_command"],
+                    "optional": ["left_control"]
+                  },
+                  "key_code": "h"
+                },
+                "to": [
+                  {
+                    "mouse_key": {
+                      "x": -800
                     }
                   }
                 ]
@@ -58,7 +75,24 @@
                 "to": [
                   {
                     "mouse_key": {
-                      "y": 1536
+                      "y": 4000
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "modifiers": {
+                    "mandatory": ["left_command"],
+                    "optional": ["left_control"]
+                  },
+                  "key_code": "j"
+                },
+                "to": [
+                  {
+                    "mouse_key": {
+                      "y": 800
                     }
                   }
                 ]
@@ -74,7 +108,24 @@
                 "to": [
                   {
                     "mouse_key": {
-                      "y": -1536
+                      "y": -4000
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "modifiers": {
+                    "mandatory": ["left_command"],
+                    "optional": ["left_control"]
+                  },
+                  "key_code": "k"
+                },
+                "to": [
+                  {
+                    "mouse_key": {
+                      "y": -800
                     }
                   }
                 ]
@@ -90,7 +141,24 @@
                 "to": [
                   {
                     "mouse_key": {
-                      "x": 1536
+                      "x": 4000
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "modifiers": {
+                    "mandatory": ["left_command"],
+                    "optional": ["left_control"]
+                  },
+                  "key_code": "l"
+                },
+                "to": [
+                  {
+                    "mouse_key": {
+                      "x": 800
                     }
                   }
                 ]
