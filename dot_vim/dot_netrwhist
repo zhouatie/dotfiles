@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/Users/zhoushitie/Desktop/heatup/ip-info-check/src'
+let g:netrw_dirhist_7='/Users/zhoushitie/Desktop/heatup/ip-info-check'
+let g:netrw_dirhist_6='/Users/zhoushitie/Desktop/heatup/ip-info-check/src'
+let g:netrw_dirhist_5='/Users/zhoushitie/Desktop/heatup/ip-info-check'
+let g:netrw_dirhist_4='/Users/zhoushitie/Desktop/heatup/ip-info-check/src'
+let g:netrw_dirhist_3='/Users/zhoushitie/Desktop/heatup/ip-info-check'
+let g:netrw_dirhist_2='/Users/zhoushitie/Desktop/heatup/ip-info-check/src'
+let g:netrw_dirhist_1='/Users/zhoushitie/Desktop/heatup/ip-info-check'
+let g:netrw_dirhist_0='/Users/zhoushitie/Desktop/heatup/ip-info-check/src'
+let g:netrw_dirhist_9='/Users/zhoushitie/Desktop/heatup/ip-info-check'
