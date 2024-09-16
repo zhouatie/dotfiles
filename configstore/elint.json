@@ -1,8 +1,0 @@
-{
-	"notifier": {
-		"@music/elint-preset-base": 1719840408212,
-		"@music/elint-preset-react-typescript": 1690769225681,
-		"@music/elint-preset-react": 1671010097187,
-		"@music/elint-preset-social": 1697597742076
-	}
-}
