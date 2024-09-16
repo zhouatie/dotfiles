@@ -119,7 +119,8 @@ alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
 alias cdd='/Users/zhoushitie/Desktop'
-alias cdw='/Users/zhoushitie/Desktop/heatup'
+alias cddown='/Users/zhoushitie/Downloads'
+alias cdw='/Users/zhoushitie/Desktop/work'
 alias cdp='/Users/zhoushitie/Desktop/projects'
 alias tma='tmux attach -t '
 alias tmk='tmux kill-session -t '
@@ -135,7 +136,7 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export ANDROID_SDK_ROOT=/Users/zhoushitie/Library/Android/sdk
-export WORK=/Users/zhoushitie/Desktop/heatup
+export WORK=/Users/zhoushitie/Desktop/work
 export DESKTOP=/Users/zhoushitie/Desktop
 
 # 自动补全
