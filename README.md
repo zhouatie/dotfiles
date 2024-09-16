@@ -19,3 +19,7 @@
 ### 应用
 
 `chezmoi apply`
+
+## 其他
+
+其中 `proxy.pac`,`tvbox.json` 放在这里只是利用了 `github pages` 的功能，作为远程服务器，提供 `http` 访问的能力。
