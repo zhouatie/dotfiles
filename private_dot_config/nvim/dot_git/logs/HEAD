@@ -119,3 +119,4 @@ f8efbe7e5767929bd29f368df92abc0cac759251 8d86d97f1971c4cee26210532d530d217614a41
 8d86d97f1971c4cee26210532d530d217614a41d c6dd7700598a0969c36fb22318a0ef32d7721837 zhoushitie <zhoushitie@corp.netease.com> 1723027859 +0800	merge main: Merge made by the 'ort' strategy.
 c6dd7700598a0969c36fb22318a0ef32d7721837 c70bcf95148019d5bffbf95d9b16c0ae9e56c4d5 zhoushitie <zhoushitie@corp.netease.com> 1724055204 +0800	commit: fix: 更新插件、修改主题色
 c70bcf95148019d5bffbf95d9b16c0ae9e56c4d5 ba3f9bd93163e2450e714bed0f9bde81739a168a zhoushitie <zhoushitie@corp.netease.com> 1726124882 +0800	commit: feat: update plugin
+ba3f9bd93163e2450e714bed0f9bde81739a168a be3f4f3bb08b0a4804689e44bf2c3f1395931982 zhoushitie <zhoushitie@corp.netease.com> 1727338796 +0800	commit: fix: 修改主题
