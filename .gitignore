@@ -2,3 +2,7 @@
 verdaccio/
 yarn/
 github-copilot/
+.git/
+dot_git/
+node_modules/
+dot_vscode/

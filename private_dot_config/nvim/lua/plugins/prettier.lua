@@ -9,7 +9,7 @@ return {
         ["javascriptreact"] = { "eslint_d" },
         ["typescript"] = { "eslint_d" },
         ["typescriptreact"] = { "eslint_d" },
-        ["vue"] = { "prettier" },
+        ["vue"] = { "eslint_d" },
         ["css"] = { "prettier", "stylelint" },
         ["scss"] = { "prettier", "stylelint" },
         ["less"] = { "prettier", "stylelint" },
