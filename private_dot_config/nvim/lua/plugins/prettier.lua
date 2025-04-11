@@ -1,27 +1,34 @@
 return {
-  {
-    "stevearc/conform.nvim",
-    optional = true,
-    opts = {
-
-      formatters_by_ft = {
-        ["javascript"] = { "eslint_d", "prettier" },
-        ["javascriptreact"] = { "eslint_d" },
-        ["typescript"] = { "eslint_d" },
-        ["typescriptreact"] = { "eslint_d" },
-        ["vue"] = { "eslint_d" },
-        ["css"] = { "prettier", "stylelint" },
-        ["scss"] = { "prettier", "stylelint" },
-        ["less"] = { "prettier", "stylelint" },
-        ["html"] = { "prettier" },
-        ["json"] = { "prettier" },
-        ["jsonc"] = { "prettier" },
-        ["yaml"] = { "prettier" },
-        -- ["markdown"] = { "prettier" },
-        -- ["markdown.mdx"] = { "prettier" },
-        ["graphql"] = { "prettier" },
-        ["handlebars"] = { "prettier" },
-      },
-    },
-  },
+  -- {
+  --   "stevearc/conform.nvim",
+  --   optional = true,
+  --   opts = {
+  --     formatters = {
+  --       prettierd = {
+  --         -- prepend_args = { "--config", vim.fn.expand("~/.config/nvim/.prettierrc.json") },
+  --       },
+  --       prettier = {
+  --         -- prepend_args = { "--config", vim.fn.expand("~/.config/nvim/.prettierrc.json") },
+  --       },
+  --     },
+  --     formatters_by_ft = {
+  --       -- javascript = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
+  --       -- ["javascriptreact"] = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
+  --       -- ["typescript"] = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
+  --       -- ["typescriptreact"] = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
+  --       -- ["vue"] = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
+  --       -- ["css"] = { "prettierd", "prettier", stop_after_first = true },
+  --       -- ["scss"] = { "prettierd", "prettier", stop_after_first = true },
+  --       -- ["less"] = { "prettierd", "prettier", stop_after_first = true },
+  --       -- ["html"] = { "prettierd", "prettier", stop_after_first = true },
+  --       -- ["json"] = { "prettierd", "prettier", stop_after_first = true },
+  --       -- ["jsonc"] = { "prettierd", "prettier", stop_after_first = true },
+  --       -- ["yaml"] = { "prettierd", "prettier", stop_after_first = true },
+  --       -- -- ["markdown"] = { "prettier" },
+  --       -- -- ["markdown.mdx"] = { "prettier" },
+  --       -- ["graphql"] = { "prettierd", "prettier", stop_after_first = true },
+  --       -- ["handlebars"] = { "prettierd", "prettier", stop_after_first = true },
+  --     },
+  --   },
+  -- },
 }
