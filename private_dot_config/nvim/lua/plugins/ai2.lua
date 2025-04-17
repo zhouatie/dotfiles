@@ -1,0 +1,31 @@
+return {
+  -- {
+  --   "yetone/avante.nvim",
+  --   opts = {
+  --     provider = "claude",
+  --     auto_suggestions_provider = "claude",
+  --     vendors = {
+  --       claude = {
+  --         __inherited_from = "openai",
+  --         api_key_name = "OPENAI_API_KEY",
+  --         endpoint = "https://aihubmix.com/v1",
+  --         -- model = "DeepSeek-R1",
+  --         model = "claude-3-7-sonnet-20250219",
+  --         timeout = 30000, -- timeout in milliseconds
+  --         temperature = 0, -- adjust if needed
+  --         max_tokens = 4096,
+  --       },
+  --       deepseek_3 = {
+  --         __inherited_from = "openai",
+  --         endpoint = "https://api.deepseek.com",
+  --         model = "deepseek-coder",
+  --         api_key_name = "DEEPSEEK_API_KEY",
+  --         max_tokens = 4096,
+  --       },
+  --     },
+  --     behaviour = {
+  --       auto_suggestions = false,
+  --     },
+  --   },
+  -- },
+}
