@@ -1,54 +1,11 @@
 return {
-  -- vim 中操作文件
-  -- {
-  --   "stevearc/oil.nvim",
-  --   ---@module 'oil'
-  --   ---@type oil.SetupOpts
-  --   opts = {},
-  --   -- Optional dependencies
-  --   dependencies = { { "echasnovski/mini.icons", opts = {} } },
-  --   -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
-  --   -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
-  --   lazy = false,
-  -- },
-  {
-    "epwalsh/obsidian.nvim",
-    version = "*", -- recommended, use latest release instead of latest commit
-    lazy = true,
-    ft = "markdown",
-    -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-    -- event = {
-    --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-    --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
-    --   -- refer to `:h file-pattern` for more examples
-    --   "BufReadPre path/to/my-vault/*.md",
-    --   "BufNewFile path/to/my-vault/*.md",
-    -- },
-    dependencies = {
-      -- Required.
-      "nvim-lua/plenary.nvim",
-
-      -- see below for full list of optional dependencies 👇
-    },
-    opts = {
-      workspaces = {
-        {
-          name = "personal",
-          path = "/Users/zhoushitie/Desktop/user/atiedoc",
-        },
-      },
-
-      -- see below for full list of options 👇
-    },
-  },
-
   --- git-blame
   {
     "f-person/git-blame.nvim",
     event = "VeryLazy",
     opts = {
       enabled = true,
-      message_template = " <summary> • <date> • <author>", -- <summary> • <date> • <author> • <<sha>>
+      message_template = "<author> • <summary> • <date>", -- <summary> • <date> • <author> • <<sha>>
       date_format = "%Y-%m-%d %H:%M:%S",
       virtual_text_column = 1,
     },
@@ -103,6 +60,15 @@ return {
     end,
   },
 
+  {
+    "b0o/incline.nvim",
+    config = function()
+      require("incline").setup()
+    end,
+    -- Optional: Lazy load Incline
+    event = "VeryLazy",
+  },
+
   -- neogit
   -- {
   --   "NeogitOrg/neogit",
@@ -117,12 +83,31 @@ return {
   --   },
   -- },
 
-  {
-    "b0o/incline.nvim",
-    config = function()
-      require("incline").setup()
-    end,
-    -- Optional: Lazy load Incline
-    event = "VeryLazy",
-  },
+  -- {
+  --   "ravitemer/mcphub.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim", -- Required for Job and HTTP requests
+  --   },
+  --   -- comment the following line to ensure hub will be ready at the earliest
+  --   cmd = "MCPHub", -- lazy load by default
+  --   build = "cnpm install -g mcp-hub@latest", -- Installs required mcp-hub npm module
+  --   -- uncomment this if you don't want mcp-hub to be available globally or can't use -g
+  --   -- build = "bundled_build.lua",  -- Use this and set use_bundled_binary = true in opts  (see Advanced configuration)
+  --   config = function()
+  --     require("mcphub").setup()
+  --   end,
+  -- },
+
+  -- vim 中操作文件
+  -- {
+  --   "stevearc/oil.nvim",
+  --   ---@module 'oil'
+  --   ---@type oil.SetupOpts
+  --   opts = {},
+  --   -- Optional dependencies
+  --   dependencies = { { "echasnovski/mini.icons", opts = {} } },
+  --   -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+  --   -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+  --   lazy = false,
+  -- },
 }

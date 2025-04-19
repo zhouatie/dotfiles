@@ -4,6 +4,7 @@ return {
     opts = function(_, opts)
       opts.filetypes = {
         ["*"] = true,
+        ["markdown"] = false,
       }
 
       opts.suggestion = {
