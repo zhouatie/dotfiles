@@ -1,5 +1,30 @@
 return {
   {
+    "mfussenegger/nvim-dap",
+    config = function()
+      local dap = require("dap")
+      dap.defaults.fallback.external_terminal = {
+        command = "/usr/bin/alacritty",
+        args = { "-e" },
+      }
+    end,
+  },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    cmd = { "RenderMarkdown" },
+    dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" },
+    config = function()
+      require("obsidian").get_client().opts.ui.enable = false
+      local ns = vim.api.nvim_get_namespaces()["ObsidianUI"]
+      if ns then
+        vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
+      end
+      require("render-markdown").setup({})
+    end,
+  },
+
+  -- 酷炫光标
+  {
     "sphamba/smear-cursor.nvim",
     opts = {
       stiffness = 0.8,
@@ -11,7 +36,8 @@ return {
       legacy_computing_symbols_support = true,
     },
   },
-  --- git-blame
+
+  --- git-blame git 行 提交信息
   {
     "f-person/git-blame.nvim",
     event = "VeryLazy",
@@ -27,7 +53,7 @@ return {
     end,
   },
 
-  ---@type LazySpec
+  -- yazi
   {
     "mikavilpas/yazi.nvim",
     event = "VeryLazy",
@@ -72,6 +98,7 @@ return {
     end,
   },
 
+  -- 右上角文件标签
   {
     "b0o/incline.nvim",
     config = function()

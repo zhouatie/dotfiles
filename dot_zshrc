@@ -2,39 +2,34 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export ZSH="$HOME/.oh-my-zsh"
-
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# export ZSH="$HOME/.oh-my-zsh"
+#
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # 添加自动补全
 plugins=(git zsh-autosuggestions)
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 source ~/powerlevel10k/powerlevel10k.zsh-theme
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 alias v='nvim'
-alias vi='nvim'
 
-alias cdd='/Users/zhoushitie/Desktop'
-alias cddown='/Users/zhoushitie/Downloads'
-alias cdw='/Users/zhoushitie/Desktop/work'
-alias cdp='/Users/zhoushitie/Desktop/projects'
+alias cdd='cd /Users/zhoushitie/Desktop'
+alias cdw='cd /Users/zhoushitie/Desktop/work'
+alias cdp='cd /Users/zhoushitie/Desktop/projects'
+alias cdnote='cd /Users/zhoushitie/vaults/personal'
 
 alias tma='tmux attach -t '
 alias tmk='tmux kill-session -t '
 
-alias vdoc='cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/atiedoc && nvim'
-alias vconfig='cd ~/.config/nvim && nvim'
-
 alias g='gptme -m local/claude-3-7-sonnet-20250219 '
 alias gd='gptme -m local/DeepSeek-R1 '
 alias gc='gptme -m local/claude-3-7-sonnet-20250219 '
-
-
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
@@ -77,7 +72,60 @@ export EDITOR="nvim"
 eval $(thefuck --alias)
 
 # fzf
+# Set up fzf key bindings and fuzzy completion
 eval "$(fzf --zsh)"
+
+# --- setup fzf theme ---
+fg="#CBE0F0"
+bg="#011628"
+bg_highlight="#143652"
+purple="#B388FF"
+blue="#06BCE4"
+cyan="#2CF9ED"
+
+export FZF_DEFAULT_OPTS="--color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
+
+# -- Use fd instead of fzf --
+
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+
+# Use fd (https://github.com/sharkdp/fd) for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+  fd --hidden --exclude .git . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type=d --hidden --exclude .git . "$1"
+}
+
+source ~/fzf-git.sh/fzf-git.sh
+
+show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
+
+export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+
+# Advanced customization of fzf options via _fzf_comprun function
+# - The first argument to the function is the name of the command.
+# - You should make sure to pass the rest of the arguments to fzf.
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+    export|unset) fzf --preview "eval 'echo \${}'"         "$@" ;;
+    ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    *)            fzf --preview "$show_file_or_dir_preview" "$@" ;;
+  esac
+}
+
+# zoxide
 eval "$(zoxide init zsh)"
 
 # ----- Bat (better cat) -----
@@ -89,3 +137,133 @@ export BAT_THEME=tokyonight_night
 alias ls="eza --icons=always"
 
 alias cd="z"
+export PATH="$HOME/.cargo/bin:$PATH"
+# alias python="/opt/homebrew/bin/python3"
+# alias pip="/opt/homebrew/bin/pip3"
+
+# Created by `pipx` on 2025-04-22 13:24:04
+export PATH="$PATH:/Users/zhoushitie/.local/bin"
+
+# Shell function 'cao' to wrap command execution
+# Usage: cao <your_command> [args...]
+# Example: cao ls /nonexistent_directory
+# cao() {
+#   # 检查是否提供了命令
+#   if [ $# -eq 0 ]; then
+#     # 如果没有提供命令，可以打印帮助信息或直接调用 zhouatie_cao（如果它支持无参数运行）
+#     # 这里我们选择打印用法信息
+#     echo "Usage: cao <command> [args...]" >&2
+#     echo "Example: cao ls /nonexistent_directory" >&2
+#     # 或者，如果你想在只输入 'cao' 时执行某个默认行为，取消下一行的注释
+#     command zhouatie_cao # 假设 zhouatie_cao 可以无参数运行
+#     return 1
+#   fi
+#
+#   # 创建临时文件来存储 stdout 和 stderr
+#   local tmp_stdout=$(mktemp)
+#   local tmp_stderr=$(mktemp)
+#   # 设置 trap，确保在函数退出或被中断时删除临时文件
+#   # 对于 zsh，可以使用 trap 'rm -f "$tmp_stdout" "$tmp_stderr"' EXIT INT TERM
+#   # 对于 bash，trap 'rm -f "$tmp_stdout" "$tmp_stderr"' RETURN INT TERM EXIT 更可靠些
+#   trap 'rm -f "$tmp_stdout" "$tmp_stderr"; trap - RETURN INT TERM EXIT' RETURN INT TERM EXIT # Bash/Zsh compatible
+#
+#   local exit_code
+#   local command_str
+#
+#   # 安全地重建命令字符串以供显示或传递
+#   command_str=$(printf '%q ' "$@")
+#
+#   # 执行用户传入的命令，并将 stdout 和 stderr 重定向到临时文件
+#   "$@" > "$tmp_stdout" 2> "$tmp_stderr"
+#   exit_code=$?
+#
+#   # 检查命令是否失败（退出码非零）
+#   if [[ $exit_code -ne 0 ]]; then
+#     # 读取捕获的 stderr
+#     local error_output
+#     error_output=$(cat "$tmp_stderr")
+#
+#     # 查找核心 cao 程序 (zhouatie_cao)
+#     local real_cao_path
+#     if ! real_cao_path=$(command -v zhouatie_cao); then
+#       # 如果找不到 zhouatie_cao，打印错误并显示原始命令的输出
+#       echo "cao: Error: 'zhouatie_cao' executable not found in your PATH." >&2
+#       echo "--- Original Command Output ---" >&2
+#       # 同时显示 stdout 和 stderr 可能有助于调试
+#       cat "$tmp_stdout" >&2
+#       cat "$tmp_stderr" >&2
+#       # 清理并返回原始退出码
+#       rm -f "$tmp_stdout" "$tmp_stderr"
+#       trap - RETURN INT TERM EXIT
+#       return $exit_code
+#     fi
+#
+#     # 打印一些上下文信息
+#     echo "--- Command Failed (Exit Code: $exit_code) ---" >&2
+#     echo "Command: $command_str" >&2
+#     echo "Error Output (stderr):" >&2
+#     echo "$error_output" >&2
+#     echo "--- AI Analysis (zhouatie_cao) ---" >&2
+#
+#     # 调用 zhouatie_cao，将 stderr 通过 stdin 传入
+#     # 将命令本身和退出码通过环境变量传递
+#     # 你可以调整 zhouatie_cao 来读取这些信息
+#     CAO_COMMAND="$command_str" CAO_EXIT_CODE="$exit_code" "$real_cao_path" < "$tmp_stderr"
+#     # zhouatie_cao 的输出会直接显示在终端
+#
+#   else
+#     # 命令成功执行，打印其原始 stdout
+#     cat "$tmp_stdout"
+#   fi
+#
+#   # 清理临时文件并移除 trap
+#   rm -f "$tmp_stdout" "$tmp_stderr"
+#   trap - RETURN INT TERM EXIT
+#
+#   # 返回原始命令的退出码
+#   return $exit_code
+# }
+
+# 本地 cao 方法封装
+# function cao() {
+#   local last_cmd=$(fc -ln -1 | sed -e 's/^ *//')
+#   local last_code=$?
+#   local project_path="/Users/zhoushitie/My/codes/cao"
+#
+#   # Check if we're running the local development version
+#   if [[ "$1" == "--local" || "${CAO_DEV_MODE}" == "1" ]]; then
+#     # Remove --local from arguments if present
+#     if [[ "$1" == "--local" ]]; then
+#       shift
+#     fi
+#
+#     # Use PYTHONPATH to ensure Python can find your local package
+#     PYTHONPATH="$project_path" CAO_LAST_COMMAND="$last_cmd" CAO_RETURN_CODE="$last_code" python3 -m zhouatie_cao "$@"
+#   else
+#     # Try to use the installed version
+#     if command -v /Users/zhoushitie/.local/bin/cao >/dev/null 2>&1; then
+#       CAO_LAST_COMMAND="$last_cmd" CAO_RETURN_CODE="$last_code" /Users/zhoushitie/.local/bin/cao "$@"
+#     elif command -v /usr/local/bin/cao >/dev/null 2>&1; then
+#       CAO_LAST_COMMAND="$last_cmd" CAO_RETURN_CODE="$last_code" /usr/local/bin/cao "$@"
+#     else
+#       # Fall back to development version if installed version not found
+#       echo "Installed cao executable not found, using development version..."
+#       PYTHONPATH="$project_path" CAO_LAST_COMMAND="$last_cmd" CAO_RETURN_CODE="$last_code" python3 -m zhouatie_cao "$@"
+#     fi
+#   fi
+# }
+
+function cao() {
+  local last_cmd=$(fc -ln -1 | sed -e 's/^ *//')
+  local last_code=$?
+  local cao_path=$(which zhouatie_cao)
+
+  if [ -n "$cao_path" ]
+  then
+    CAO_LAST_COMMAND="$last_cmd" CAO_RETURN_CODE="$last_code" "$cao_path" "$@"
+  else
+    echo "cao 命令未找到，请确保已正确安装"
+    return 1
+  fi
+}
+

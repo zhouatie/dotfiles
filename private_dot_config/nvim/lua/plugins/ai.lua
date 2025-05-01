@@ -8,6 +8,7 @@ return {
 
       copilot = {
         model = "claude-3.7-sonnet",
+        -- model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
         endpoint = "https://api.githubcopilot.com",
         allow_insecure = false,
         timeout = 10 * 60 * 1000,
@@ -19,6 +20,10 @@ return {
       behaviour = {
         enable_cursor_planning_mode = true, -- Whether to enable Cursor Planning Mode. Default to false.
         enable_claude_text_editor_tool_mode = true, -- Whether to enable Claude Text Editor Tool Mode.
+      },
+
+      windows = {
+        width = 40,
       },
 
       -- ollama = {

@@ -4,6 +4,63 @@
 
 [manager]
 
+
+[[manager.prepend_keymap]]
+on = ["c", "r"]
+run = "plugin path-from-root"
+desc = "Copies path from git root"
+
+[[manager.prepend_keymap]]
+on = ["g", "r"]
+run = "plugin git-cd-root-dir"
+desc = "Goto git root directory"
+
+[[manager.prepend_keymap]]
+on = "<C-y>"
+run = ["plugin system-clipboard"]
+
+# bookmarks
+# [[manager.prepend_keymap]]
+# on = ["m"]
+# run = "plugin bookmarks save"
+# desc = "Save current position as a bookmark"
+#
+# [[manager.prepend_keymap]]
+# on = [";"]
+# run = "plugin bookmarks jump"
+# desc = "Jump to a bookmark"
+#
+# [[manager.prepend_keymap]]
+# on = ["b", "d"]
+# run = "plugin bookmarks delete"
+# desc = "Delete a bookmark"
+#
+# [[manager.prepend_keymap]]
+# on = ["b", "D"]
+# run = "plugin bookmarks delete_all"
+# desc = "Delete all bookmarks"
+
+# prepend_keymap = [
+#     { on = [
+#         "g",
+#         "w",
+#     ], run = "cd /Users/zhoushitie/Desktop/work", desc = "Go work" },
+#     { on = [
+#         "g",
+#         "n",
+#     ], run = "cd ~/vaults/personal", desc = "Go ~/vaults/personal" },
+# ]
+
+[[manager.prepend_keymap]]
+on = ["g", "w"]
+run = "cd /Users/zhoushitie/Desktop/work/"
+desc = "go work"
+
+[[manager.prepend_keymap]]
+on = ["g", "m"]
+run = "cd ~/My/"
+desc = "go My"
+
 keymap = [
     { on = "<Esc>", run = "escape", desc = "Exit visual mode, clear selection, or cancel search" },
     { on = "<C-[>", run = "escape", desc = "Exit visual mode, clear selection, or cancel search" },
@@ -223,12 +280,12 @@ keymap = [
     ], run = "cd ~", desc = "Go home" },
     { on = [
         "g",
-        "w",
-    ], run = "cd /Users/zhoushitie/Desktop/work", desc = "Go work" },
-    { on = [
-        "g",
         "c",
     ], run = "cd ~/.config", desc = "Go ~/.config" },
+    { on = [
+        "g",
+        "y",
+    ], run = "cd ~/.config/yazi", desc = "Go ~/.config/yazi" },
     { on = [
         "g",
         "d",

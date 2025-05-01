@@ -6,11 +6,11 @@
 ratio = [3, 3, 4]
 sort_by = "mtime"
 sort_sensitive = false
-sort_reverse = false
-sort_dir_first = true
+sort_reverse = true
+sort_dir_first = false
 sort_translit = false
 linemode = "none"
-show_hidden = true
+show_hidden = false
 show_symlink = true
 scrolloff = 5
 mouse_events = ["click", "scroll"]
@@ -31,12 +31,10 @@ ueberzug_offset = [0, 0, 0, 0]
 
 [opener]
 edit = [
+    { run = 'nvim "$@"', desc = "neovim", block = true, for = "macos" },
     { run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
     { run = 'code %*', orphan = true, desc = "code", for = "windows" },
     { run = 'code -w %*', block = true, desc = "code (block)", for = "windows" },
-]
-edit_dir = [
-    { run = 'nvim "$1"', desc = "Open dir in Neovim", block = true, for = "unix" },
 ]
 open = [
     { run = 'xdg-open "$1"', desc = "Open", for = "linux" },
@@ -65,7 +63,6 @@ play = [
 rules = [
     # Folder
     { name = "*/", use = [
-        "edit_dir",
         "edit",
         "open",
         "reveal",
@@ -120,6 +117,30 @@ image_bound = [0, 0]
 suppress_preload = false
 
 [plugin]
+
+prepend_preloaders = [
+    # Office Documents
+    # { mime = "application/openxmlformats-officedocument.*", run = "office" },
+    # { mime = "application/oasis.opendocument.*", run = "office" },
+    # { mime = "application/ms-*", run = "office" },
+    # { mime = "application/msword", run = "office" },
+    # { mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", run = "office" },
+    # { name = "*.docx", run = "office" },
+]
+
+prepend_previewers = [
+    { name = "*.md", run = "glow" },
+    # { name = "*.csv", run = "rich-preview"}, # for csv files
+    # { name = "*.rst", run = "rich-preview"}, # for restructured text (.rst) files
+    # { name = "*.ipynb", run = "rich-preview"}, # for jupyter notebooks (.ipynb)
+    # { name = "*.json", run = "rich-preview"}, # for json (.json) files
+    # # Office Documents
+    # { mime = "application/openxmlformats-officedocument.*", run = "office" },
+    # { mime = "application/oasis.opendocument.*", run = "office" },
+    # { mime = "application/ms-*", run = "office" },
+    # { mime = "application/msword", run = "office" },
+    # { name = "*.docx", run = "office" },
+]
 fetchers = [
     # Mimetype
     { id = "mime", name = "*", run = "mime", prio = "high" },
@@ -254,5 +275,3 @@ sort_by = "none"
 sort_sensitive = false
 sort_reverse = false
 sort_translit = false
-[filter]
-find = { name = "*.meta", exec = "hide" }
