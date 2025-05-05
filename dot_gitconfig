@@ -1,0 +1,12 @@
+[user]
+    name = zhoushitie 
+    email = zhoushitie@corp.netease.com
+
+[includeIf "hasconfig:remote.*.url:https://github.com/**"]
+    path = ~/.gitconfig-github
+
+[includeIf "hasconfig:remote.*.url:git@github.com:*/**"]
+    path = ~/.gitconfig-github
+
+[http]
+    proxy = 127.0.0.1:7890
