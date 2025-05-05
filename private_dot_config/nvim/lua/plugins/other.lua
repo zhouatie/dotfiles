@@ -1,13 +1,29 @@
 return {
   {
-    "mfussenegger/nvim-dap",
+    "sontungexpt/url-open",
+    event = "VeryLazy",
+    cmd = "URLOpenUnderCursor",
     config = function()
-      local dap = require("dap")
-      dap.defaults.fallback.external_terminal = {
-        command = "/usr/bin/alacritty",
-        args = { "-e" },
-      }
+      local status_ok, url_open = pcall(require, "url-open")
+      if not status_ok then
+        return
+      end
+      url_open.setup({})
     end,
+  },
+  -- gb 打开当前所有标签页
+  {
+    "leath-dub/snipe.nvim",
+    keys = {
+      {
+        "gb",
+        function()
+          require("snipe").open_buffer_menu()
+        end,
+        desc = "Open Snipe buffer menu",
+      },
+    },
+    opts = {},
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",

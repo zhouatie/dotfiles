@@ -17,7 +17,46 @@ config.colors = {
 	selection_fg = "#CBE4F0",
 	ansi = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#0FC5ED", "#a277ff", "#24EAF7", "#24EAF7" },
 	brights = { "#666666", "#E52E2E", "#44FFB1", "#FFE073", "#A277FF", "#a277ff", "#24EAF7", "#24EAF7" },
+	tab_bar = {
+		-- The active tab is the one that has focus in the window
+		active_tab = {
+			-- The color of the background area for the tab
+			bg_color = "#a277ff",
+			-- The color of the text for the tab
+			fg_color = "#214969",
+
+			-- Specify whether you want "Half", "Normal" or "Bold" intensity for the
+			-- label shown for this tab.
+			-- The default is "Normal"
+			intensity = "Normal",
+
+			-- Specify whether you want "None", "Single" or "Double" underline for
+			-- label shown for this tab.
+			-- The default is "None"
+			underline = "None",
+
+			-- Specify whether you want the text to be italic (true) or not (false)
+			-- for this tab.  The default is false.
+			italic = false,
+
+			-- Specify whether you want the text to be rendered with strikethrough (true)
+			-- or not for this tab.  The default is false.
+			strikethrough = false,
+		},
+
+		-- Inactive tabs are the tabs that do not have focus
+		inactive_tab = {
+			bg_color = "#1b1032",
+			fg_color = "#808080",
+
+			-- The same options that were listed under the `active_tab` section above
+			-- can also be used for `inactive_tab`.
+		},
+	},
 }
+
+config.show_tab_index_in_tab_bar = false
+config.show_new_tab_button_in_tab_bar = false
 
 config.leader = { key = "a", mods = "SUPER", timeout_millithirds = 1000 }
 config.keys = {
@@ -70,7 +109,7 @@ config.keys = {
 -- ctrl + shift + alt + 左右箭头移动面板宽度
 
 config.font = wezterm.font("MesloLGS Nerd Font Mono", { weight = "Bold" })
-config.font_size = 16
+config.font_size = 18
 
 config.initial_rows = 45
 config.initial_cols = 140

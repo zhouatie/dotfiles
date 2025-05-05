@@ -177,7 +177,7 @@ run = "move-node-to-workspace W"
 
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
-run = "move-node-to-workspace W"
+run = "move-node-to-workspace Q"
 
 [[on-window-detected]]
 if.app-id = 'com.cocos.creator'
