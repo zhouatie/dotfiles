@@ -1,7 +1,8 @@
 return {
   {
     "obsidian-nvim/obsidian.nvim",
-    version = "*", -- recommended, use latest release instead of latest commit
+    -- version = "*", -- recommended, use latest release instead of latest commit
+    version = false,
     lazy = true,
     ft = "markdown",
     dependencies = {
@@ -277,29 +278,41 @@ return {
         -- Priority settings
         priorities = {
           {
+            name = "urgent",
+            weight = 8,
+          },
+          {
             name = "important",
             weight = 4,
           },
           {
-            name = "urgent",
+            name = "trivial",
             weight = 2,
+          },
+          {
+            name = "future",
+            weight = -1,
           },
         },
         priority_groups = {
           high = {
-            members = { "important", "urgent" },
-            color = nil,
+            members = { "urgent" },
+            color = nil, -- 红色
             hl_group = "DiagnosticError",
           },
           medium = {
             members = { "important" },
-            color = nil,
+            color = nil, -- 橙色
             hl_group = "DiagnosticWarn",
           },
-          low = {
-            members = { "urgent" },
-            color = nil,
+          trivial = {
+            members = { "trivial" },
+            color = nil, -- 蓝色
             hl_group = "DiagnosticInfo",
+          },
+          low = {
+            members = { "future" },
+            color = "#89CFF0",
           },
         },
         hour_score_value = 1 / 8,

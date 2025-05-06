@@ -173,7 +173,7 @@ alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
-run = "move-node-to-workspace W"
+run = ["layout floating", "move-node-to-workspace W"]
 
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
