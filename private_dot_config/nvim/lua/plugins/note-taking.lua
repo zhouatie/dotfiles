@@ -101,7 +101,15 @@ return {
         substitutions = {},
       },
 
-      open_app_foreground = false,
+      -- open_app_foreground = false,
+
+      {
+        open = {
+          func = function(uri)
+            -- vim.ui.open(uri, { cmd = { "open", "-a", "/Applications/Obsidian.app" } })
+          end,
+        },
+      },
 
       ui = {
         enable = false, -- set to false to disable all additional syntax features
@@ -339,6 +347,7 @@ return {
     ft = "markdown",
   },
 
+  -- 画图
   {
     "jbyuki/venn.nvim",
   },

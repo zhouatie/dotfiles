@@ -8,31 +8,77 @@ local function tokens(num)
 end
 
 return {
-  { "augmentcode/augment.vim" },
-
   {
     -- dir = "~/.config/nvim/clone/avante.nvim",
     "yetone/avante.nvim",
     event = "VeryLazy",
-    -- version = false,
-    commit = "f9aa75459d403d9e963ef2647c9791e0dfc9e5f9",
+    version = false,
+    -- commit = "f9aa75459d403d9e963ef2647c9791e0dfc9e5f9",
     -- version = "*", -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
     opts = {
       provider = "copilot",
 
-      copilot = {
-        model = "claude-3.7-sonnet",
-        -- model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
-        -- model = "o3-mini",
-        endpoint = "https://api.githubcopilot.com",
-        proxy = nil,
-        allow_insecure = false,
-        timeout = 10 * 60 * 1000,
-        temperature = 0,
-        -- 8192
-        max_completion_tokens = 20480,
-        max_tokens = 20480,
-        -- reasoning_effort = "high",
+      providers = {
+        copilot = {
+          model = "claude-3.7-sonnet",
+          -- model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
+          -- model = "o3-mini",
+          endpoint = "https://api.githubcopilot.com",
+          proxy = nil,
+          allow_insecure = false,
+          timeout = 10 * 60 * 1000,
+          -- 8192
+          max_completion_tokens = 20480,
+          extra_request_body = {
+            temperature = 0,
+            max_tokens = 20480,
+          },
+          -- reasoning_effort = "high",
+        },
+        ["copilot:3.7"] = {
+          __inherited_from = "copilot",
+          model = "claude-3.7-sonnet",
+          extra_request_body = {
+            max_tokens = tokens(64),
+          },
+        },
+        ["copilot:o3"] = {
+          __inherited_from = "copilot",
+          model = "o3-mini",
+          extra_request_body = {
+            max_tokens = tokens(64),
+          },
+        },
+        deepseek = {
+          __inherited_from = "openai",
+          api_key_name = "DEEPSEEK_API_KEY",
+          endpoint = "https://api.deepseek.com",
+          model = "deepseek-coder",
+        },
+        qianwen = {
+          __inherited_from = "openai",
+          api_key_name = "DASHSCOPE_API_KEY",
+          endpoint = "https://dashscope.aliyuncs.com/compatible-mode/v1",
+          model = "qwen-coder-plus-latest",
+        },
+
+        ollama = {
+          model = "qwen2.5-coder:14b",
+        },
+
+        -- 可以用
+        aihubmix = {
+          endpoint = "https://aihubmix.com/v1",
+          model = "claude-3-7-sonnet-20250219",
+          -- model = "Qwen/QwQ-32B",
+          -- stream = true,
+          -- model = "llama-3.3-70b-versatile",
+          -- model = "claude-3-5-sonnet-20240620",
+          -- model = "aihubmix-DeepSeek-R1",
+          timeout = 30000, -- timeout in milliseconds
+          temperature = 0, -- adjust if needed
+          max_tokens = 8192,
+        },
       },
 
       behaviour = {
@@ -49,56 +95,14 @@ return {
         },
       },
 
-      ollama = {
-        model = "qwen2.5-coder:14b",
-      },
-
-      -- 可以用
-      aihubmix = {
-        endpoint = "https://aihubmix.com/v1",
-        model = "claude-3-7-sonnet-20250219",
-        -- model = "Qwen/QwQ-32B",
-        -- stream = true,
-        -- model = "llama-3.3-70b-versatile",
-        -- model = "claude-3-5-sonnet-20240620",
-        -- model = "aihubmix-DeepSeek-R1",
-        timeout = 30000, -- timeout in milliseconds
-        temperature = 0, -- adjust if needed
-        max_tokens = 8192,
-      },
-      vendors = {
-        ["copilot:3.7"] = {
-          __inherited_from = "copilot",
-          model = "claude-3.7-sonnet",
-          max_tokens = tokens(64),
-        },
-        ["copilot:o3"] = {
-          __inherited_from = "copilot",
-          model = "o3-mini",
-          max_tokens = tokens(64),
-        },
-        deepseek = {
-          __inherited_from = "openai",
-          api_key_name = "DEEPSEEK_API_KEY",
-          endpoint = "https://api.deepseek.com",
-          model = "deepseek-coder",
-        },
-        qianwen = {
-          __inherited_from = "openai",
-          api_key_name = "DASHSCOPE_API_KEY",
-          endpoint = "https://dashscope.aliyuncs.com/compatible-mode/v1",
-          model = "qwen-coder-plus-latest",
-        },
-      },
-
-      rag_service = {
-        enabled = true, -- Enables the RAG service
-        host_mount = os.getenv("HOME"), -- Host mount path for the rag service
-        provider = "ollama", -- The provider to use for RAG service (e.g. openai or ollama)
-        llm_model = "qwen2.5-coder:14b", -- The LLM model to use for RAG service
-        embed_model = "nomic-embed-text", -- The embedding model to use for RAG service
-        endpoint = "http://localhost:11434", -- The API endpoint for RAG service
-      },
+      -- rag_service = {
+      --   enabled = true, -- Enables the RAG service
+      --   host_mount = os.getenv("HOME"), -- Host mount path for the rag service
+      --   provider = "ollama", -- The provider to use for RAG service (e.g. openai or ollama)
+      --   llm_model = "qwen2.5-coder:14b", -- The LLM model to use for RAG service
+      --   embed_model = "nomic-embed-text", -- The embedding model to use for RAG service
+      --   endpoint = "http://localhost:11434", -- The API endpoint for RAG service
+      -- },
     },
     build = "make",
     dependencies = {

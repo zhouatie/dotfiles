@@ -162,7 +162,7 @@ esc = 'mode main'
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
-#s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
+# s = ['layout floating', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
 f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
@@ -171,9 +171,12 @@ alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
+# [[on-window-closed]]
+# run = "balance-sizes"
+
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
-run = ["layout floating", "move-node-to-workspace W"]
+run = ["move-node-to-workspace W"]
 
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
@@ -181,7 +184,11 @@ run = "move-node-to-workspace Q"
 
 [[on-window-detected]]
 if.app-id = 'com.cocos.creator'
-run = "move-node-to-workspace C"
+run = "move-node-to-workspace E"
+
+[[on-window-detected]]
+if.app-id = 'com.cocos.dashboard'
+run = "move-node-to-workspace E"
 
 [[on-window-detected]]
 if.app-id = 'com.tencent.xinWeChat'
@@ -189,9 +196,27 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.iCal'
-run = 'layout floating'
+run = ["layout floating", "move-node-to-workspace 1"]
+
+[[on-window-detected]]
+if.app-id = 'com.soda.music'
+run = ["move-node-to-workspace 2"]
 
 [[on-window-detected]]
 if.app-id = 'com.netease.163music'
-run = 'layout floating'
+run = ["layout floating", "move-node-to-workspace 3"]
 
+[[on-window-detected]]
+if.app-id = 'com.netease.game.popo'
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
+if.app-id = 'com.google.android.studio'
+run = "move-node-to-workspace 3"
+
+[[on-window-detected]]
+if.app-id = 'NULL-APP-BUNDLE-ID'
+run = "move-node-to-workspace 3"
+# [[on-window-detected]]
+# if.app-id = 'com.netease.game.popo'
+# run = ["layout floating", "move-node-to-workspace 1"]

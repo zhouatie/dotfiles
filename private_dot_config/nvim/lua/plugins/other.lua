@@ -1,11 +1,4 @@
 return {
-  -- 告别不良的vim操作习惯
-  {
-    "m4xshen/hardtime.nvim",
-    dependencies = { "MunifTanjim/nui.nvim" },
-    opts = {},
-  },
-
   {
     "sontungexpt/url-open",
     event = "VeryLazy",
@@ -47,18 +40,18 @@ return {
   },
 
   -- 酷炫光标
-  {
-    "sphamba/smear-cursor.nvim",
-    opts = {
-      stiffness = 0.8,
-      trailing_stiffness = 0.5,
-      stiffness_insert_mode = 0.6,
-      trailing_stiffness_insert_mode = 0.6,
-      distance_stop_animating = 0.5,
-      cursor_color = "#47FF9C",
-      legacy_computing_symbols_support = true,
-    },
-  },
+  -- {
+  --   "sphamba/smear-cursor.nvim",
+  --   opts = {
+  --     stiffness = 0.8,
+  --     trailing_stiffness = 0.5,
+  --     stiffness_insert_mode = 0.6,
+  --     trailing_stiffness_insert_mode = 0.6,
+  --     distance_stop_animating = 0.5,
+  --     cursor_color = "#47FF9C",
+  --     legacy_computing_symbols_support = true,
+  --   },
+  -- },
 
   --- git-blame git 行 提交信息
   {

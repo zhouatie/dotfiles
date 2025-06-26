@@ -161,3 +161,12 @@ export PATH="$PATH:/Users/zhoushitie/.local/bin"
 
 # export HTTP_PROXY=http://127.0.0.1:8899
 # export HTTPS_PROXY=http://127.0.0.1:8899
+
+# pnpm
+export PNPM_HOME="/Users/zhoushitie/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
