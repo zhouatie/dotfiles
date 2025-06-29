@@ -10,6 +10,7 @@ return {
       opts.suggestion = {
         enabled = true,
         auto_trigger = true,
+        copilot_suggestion_hidden = true,
         hide_during_completion = true,
         debounce = 75, -- 增加防抖时间，减少过于频繁的触发
         trigger_on_accept = false, -- 修改为 false，避免连续自动完成可能带来的干扰
@@ -34,7 +35,7 @@ return {
           open = "<M-CR>",
         },
         layout = {
-          position = "bottom", -- | top | left | right | horizontal | vertical
+          position = "right", -- | top | left | right | horizontal | vertical
           ratio = 0.4,
         },
       }

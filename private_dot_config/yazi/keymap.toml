@@ -2,20 +2,20 @@
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
 "$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
 
-[manager]
+[mgr]
 
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["c", "r"]
 run = "plugin path-from-root"
 desc = "Copies path from git root"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["g", "r"]
 run = "plugin git-cd-root-dir"
 desc = "Goto git root directory"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = "<C-y>"
 run = ["plugin system-clipboard"]
 
@@ -51,12 +51,12 @@ run = ["plugin system-clipboard"]
 #     ], run = "cd ~/vaults/personal", desc = "Go ~/vaults/personal" },
 # ]
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["g", "w"]
 run = "cd /Users/zhoushitie/Desktop/work/"
 desc = "go work"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["g", "m"]
 run = "cd ~/My/"
 desc = "go My"

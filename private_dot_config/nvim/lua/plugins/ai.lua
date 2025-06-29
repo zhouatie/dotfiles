@@ -91,7 +91,7 @@ return {
         width = 40,
         input = {
           prefix = "",
-          height = 12, -- Height of the input window in vertical layout
+          height = 22, -- Height of the input window in vertical layout
         },
       },
 

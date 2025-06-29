@@ -59,11 +59,6 @@ rev = "efb8f03"
 hash = "9b8f2573da54334b04747e51556040cc"
 
 [[plugin.deps]]
-use = "ayvi-0001/git-cd-root-dir"
-rev = "115e8ad"
-hash = "440e17505c71b8eafa114fc71ce67e7a"
-
-[[plugin.deps]]
 use = "aresler/path-from-root"
 rev = "7d05b87"
 hash = "46977a29d4349d11465af1817f17d414"
@@ -73,7 +68,17 @@ use = "llanosrocas/githead"
 rev = "7104df2"
 hash = "407bdfbed7b052dad108eeac88270f25"
 
+[[plugin.deps]]
+use = "ayvi-0001/git-cd-root-dir"
+rev = "78860da"
+hash = "91555948d626c1bd8dc698915ac9c5d9"
+
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
-rev = "68326b4"
-hash = "2ac87e1b3a61f5887472899e86535d29"
+rev = "d04a298"
+hash = "288a0dedd5d13b28605cf82c05326dcd"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-macchiato"
+rev = "d04a298"
+hash = "e6c5beeb1da3199355734273ee452a7f"

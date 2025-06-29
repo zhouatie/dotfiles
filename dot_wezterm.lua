@@ -105,6 +105,11 @@ config.keys = {
 		mods = "CMD",
 		action = wezterm.action.CloseCurrentTab({ confirm = false }),
 	},
+	-- {
+	-- 	key = "Enter",
+	-- 	mods = "ALT",
+	-- 	action = wezterm.action.Nop,
+	-- },
 }
 -- ctrl + shift + alt + 左右箭头移动面板宽度
 config.font = wezterm.font("MesloLGS Nerd Font Mono")
