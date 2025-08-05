@@ -121,6 +121,10 @@ config.hide_tab_bar_if_only_one_tab = true
 config.initial_rows = 40
 config.initial_cols = 120
 
+-- Set the default directory for new tabs
+-- You can change the path to your desired directory
+config.default_cwd = "/Users/zhoushitie/Desktop/work/"
+
 config.enable_tab_bar = true
 
 config.window_decorations = "RESIZE"

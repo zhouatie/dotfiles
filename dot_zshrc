@@ -19,6 +19,8 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 alias v='nvim'
 
+alias cc='claude'
+
 alias cdd='cd /Users/zhoushitie/Desktop'
 alias cdw='cd /Users/zhoushitie/Desktop/work'
 alias cdp='cd /Users/zhoushitie/Desktop/projects'
@@ -170,3 +172,15 @@ esac
 # pnpm end
 
 export GOOGLE_CLOUD_PROJECT="atie-457613"
+export https_proxy=http://127.0.0.1:7890
+export http_proxy=http://127.0.0.1:7890
+export all_proxy=socks5://127.0.0.1:7890
+
+# export http_proxy=http://127.0.0.1:8080
+# export https_proxy=http://127.0.0.1:8080
+# export HTTP_PROXY=http://127.0.0.1:8080
+# export HTTPS_PROXY=http://127.0.0.1:8080
+
+export ANTHROPIC_BASE_URL=https://gaccode.com/claudecode
+
+export PATH="/Applications/WezTerm.app/Contents/MacOS:$PATH"

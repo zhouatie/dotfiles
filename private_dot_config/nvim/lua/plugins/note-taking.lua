@@ -111,47 +111,12 @@ return {
         },
       },
 
-      ui = {
-        enable = false, -- set to false to disable all additional syntax features
-        -- update_debounce = 200, -- update delay after a text change (in milliseconds)
-        -- max_file_length = 5000, -- disable UI features for files with more than this many lines
-        -- Define how various check-boxes are displayed
-        checkboxes = {
-          -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
-          -- [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
-          -- ["x"] = { char = "", hl_group = "ObsidianDone" },
-          -- [">"] = { char = "", hl_group = "ObsidianRightArrow" },
-          -- ["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
-          -- ["!"] = { char = "", hl_group = "ObsidianImportant" },
-          -- Replace the above with this if you don't have a patched font:
-          [" "] = { char = "☐", hl_group = "ObsidianTodo" },
-          ["x"] = { char = "✔", hl_group = "ObsidianDone" },
+      checkbox = {
+        order = { " ", "x" },
+      },
 
-          -- You can also add more custom ones...
-        },
-        -- -- Use bullet marks for non-checkbox lists.
-        -- bullets = { char = "•", hl_group = "ObsidianBullet" },
-        -- external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
-        -- -- Replace the above with this if you don't have a patched font:
-        -- -- external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
-        -- reference_text = { hl_group = "ObsidianRefText" },
-        -- highlight_text = { hl_group = "ObsidianHighlightText" },
-        -- tags = { hl_group = "ObsidianTag" },
-        -- block_ids = { hl_group = "ObsidianBlockID" },
-        -- hl_groups = {
-        --   -- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
-        --   ObsidianTodo = { bold = true, fg = "#f78c6c" },
-        --   ObsidianDone = { bold = true, fg = "#89ddff" },
-        --   ObsidianRightArrow = { bold = true, fg = "#f78c6c" },
-        --   ObsidianTilde = { bold = true, fg = "#ff5370" },
-        --   ObsidianImportant = { bold = true, fg = "#d73128" },
-        --   ObsidianBullet = { bold = true, fg = "#89ddff" },
-        --   ObsidianRefText = { underline = true, fg = "#c792ea" },
-        --   ObsidianExtLinkIcon = { fg = "#c792ea" },
-        --   ObsidianTag = { italic = true, fg = "#89ddff" },
-        --   ObsidianBlockID = { italic = true, fg = "#89ddff" },
-        --   ObsidianHighlightText = { bg = "#75662e" },
-        -- },
+      ui = {
+        enable = false, -- 因为已经用上了 `render-markdown.nvim`，所以不需要再启用 Obsidian 的 UI
       },
 
       -- Specify how to handle attachments.
@@ -182,151 +147,151 @@ return {
     },
   },
 
-  {
-    -- "atiladefreitas/dooing",
-    dir = "~/.config/nvim/clone/dooing",
-    config = function()
-      require("dooing").setup({
-        -- your custom config here (optional)
-        save_path = "/Users/zhoushitie/vaults/personal/.todos.json",
-        -- save_path = "/Users/zhoushitie/.config/nvim/todos.json",
-
-        -- Timestamp settings
-        timestamp = {
-          enabled = true, -- Show relative timestamps (e.g., @5m ago, @2h ago)
-        },
-
-        -- Window settings
-        window = {
-          width = 100, -- Width of the floating window
-          height = 15, -- Height of the floating window
-          border = "rounded", -- Border style
-          position = "center", -- Window position: 'right', 'left', 'top', 'bottom', 'center',
-          -- 'top-right', 'top-left', 'bottom-right', 'bottom-left'
-          padding = {
-            top = 1,
-            bottom = 1,
-            left = 2,
-            right = 2,
-          },
-        },
-
-        done_sort_by_completed_time = true,
-
-        -- To-do formatting
-        formatting = {
-          pending = {
-            icon = "○",
-            format = { "icon", "notes_icon", "text", "due_date", "ect" },
-          },
-          in_progress = {
-            icon = "◐",
-            format = { "icon", "text", "due_date", "ect" },
-          },
-          done = {
-            icon = "✓",
-            format = { "icon", "notes_icon", "text", "due_date", "ect" },
-          },
-        },
-
-        quick_keys = true, -- Quick keys window
-
-        notes = {
-          icon = "📓",
-        },
-
-        scratchpad = {
-          syntax_highlight = "markdown",
-        },
-
-        -- Keymaps
-        keymaps = {
-          toggle_window = "<leader>td",
-          new_todo = "i",
-          toggle_todo = "x",
-          delete_todo = "d",
-          delete_completed = "D",
-          close_window = "q",
-          undo_delete = "u",
-          add_due_date = "H",
-          remove_due_date = "r",
-          toggle_help = "?",
-          toggle_tags = "t",
-          toggle_priority = "<Space>",
-          clear_filter = "c",
-          edit_todo = "e",
-          edit_tag = "e",
-          edit_priorities = "p",
-          delete_tag = "d",
-          search_todos = "/",
-          add_time_estimation = "T",
-          remove_time_estimation = "R",
-          import_todos = "I",
-          export_todos = "E",
-          remove_duplicates = "<leader>D",
-          open_todo_scratchpad = "<leader>p",
-          refresh_todos = "F",
-        },
-
-        calendar = {
-          language = "en",
-          icon = "",
-          keymaps = {
-            previous_day = "h",
-            next_day = "l",
-            previous_week = "k",
-            next_week = "j",
-            previous_month = "H",
-            next_month = "L",
-            select_day = "<CR>",
-            close_calendar = "q",
-          },
-        },
-
-        -- Priority settings
-        priorities = {
-          {
-            name = "urgent",
-            weight = 8,
-          },
-          {
-            name = "important",
-            weight = 4,
-          },
-          {
-            name = "trivial",
-            weight = 2,
-          },
-          {
-            name = "future",
-            weight = -1,
-          },
-        },
-        priority_groups = {
-          high = {
-            members = { "urgent" },
-            color = nil, -- 红色
-            hl_group = "DiagnosticError",
-          },
-          medium = {
-            members = { "important" },
-            color = nil, -- 橙色
-            hl_group = "DiagnosticWarn",
-          },
-          trivial = {
-            members = { "trivial" },
-            color = nil, -- 蓝色
-            hl_group = "DiagnosticInfo",
-          },
-          low = {
-            members = { "future" },
-            color = "#89CFF0",
-          },
-        },
-        hour_score_value = 1 / 8,
-      })
-    end,
-  },
+  -- {
+  --   -- "atiladefreitas/dooing",
+  --   dir = "~/.config/nvim/clone/dooing",
+  --   config = function()
+  --     require("dooing").setup({
+  --       -- your custom config here (optional)
+  --       save_path = "/Users/zhoushitie/vaults/personal/.todos.json",
+  --       -- save_path = "/Users/zhoushitie/.config/nvim/todos.json",
+  --
+  --       -- Timestamp settings
+  --       timestamp = {
+  --         enabled = true, -- Show relative timestamps (e.g., @5m ago, @2h ago)
+  --       },
+  --
+  --       -- Window settings
+  --       window = {
+  --         width = 100, -- Width of the floating window
+  --         height = 15, -- Height of the floating window
+  --         border = "rounded", -- Border style
+  --         position = "center", -- Window position: 'right', 'left', 'top', 'bottom', 'center',
+  --         -- 'top-right', 'top-left', 'bottom-right', 'bottom-left'
+  --         padding = {
+  --           top = 1,
+  --           bottom = 1,
+  --           left = 2,
+  --           right = 2,
+  --         },
+  --       },
+  --
+  --       done_sort_by_completed_time = true,
+  --
+  --       -- To-do formatting
+  --       formatting = {
+  --         pending = {
+  --           icon = "○",
+  --           format = { "icon", "notes_icon", "text", "due_date", "ect" },
+  --         },
+  --         in_progress = {
+  --           icon = "◐",
+  --           format = { "icon", "text", "due_date", "ect" },
+  --         },
+  --         done = {
+  --           icon = "✓",
+  --           format = { "icon", "notes_icon", "text", "due_date", "ect" },
+  --         },
+  --       },
+  --
+  --       quick_keys = true, -- Quick keys window
+  --
+  --       notes = {
+  --         icon = "📓",
+  --       },
+  --
+  --       scratchpad = {
+  --         syntax_highlight = "markdown",
+  --       },
+  --
+  --       -- Keymaps
+  --       keymaps = {
+  --         toggle_window = "<leader>td",
+  --         new_todo = "i",
+  --         toggle_todo = "x",
+  --         delete_todo = "d",
+  --         delete_completed = "D",
+  --         close_window = "q",
+  --         undo_delete = "u",
+  --         add_due_date = "H",
+  --         remove_due_date = "r",
+  --         toggle_help = "?",
+  --         toggle_tags = "t",
+  --         toggle_priority = "<Space>",
+  --         clear_filter = "c",
+  --         edit_todo = "e",
+  --         edit_tag = "e",
+  --         edit_priorities = "p",
+  --         delete_tag = "d",
+  --         search_todos = "/",
+  --         add_time_estimation = "T",
+  --         remove_time_estimation = "R",
+  --         import_todos = "I",
+  --         export_todos = "E",
+  --         remove_duplicates = "<leader>D",
+  --         open_todo_scratchpad = "<leader>p",
+  --         refresh_todos = "F",
+  --       },
+  --
+  --       calendar = {
+  --         language = "en",
+  --         icon = "",
+  --         keymaps = {
+  --           previous_day = "h",
+  --           next_day = "l",
+  --           previous_week = "k",
+  --           next_week = "j",
+  --           previous_month = "H",
+  --           next_month = "L",
+  --           select_day = "<CR>",
+  --           close_calendar = "q",
+  --         },
+  --       },
+  --
+  --       -- Priority settings
+  --       priorities = {
+  --         {
+  --           name = "urgent",
+  --           weight = 8,
+  --         },
+  --         {
+  --           name = "important",
+  --           weight = 4,
+  --         },
+  --         {
+  --           name = "trivial",
+  --           weight = 2,
+  --         },
+  --         {
+  --           name = "future",
+  --           weight = -1,
+  --         },
+  --       },
+  --       priority_groups = {
+  --         high = {
+  --           members = { "urgent" },
+  --           color = nil, -- 红色
+  --           hl_group = "DiagnosticError",
+  --         },
+  --         medium = {
+  --           members = { "important" },
+  --           color = nil, -- 橙色
+  --           hl_group = "DiagnosticWarn",
+  --         },
+  --         trivial = {
+  --           members = { "trivial" },
+  --           color = nil, -- 蓝色
+  --           hl_group = "DiagnosticInfo",
+  --         },
+  --         low = {
+  --           members = { "future" },
+  --           color = "#89CFF0",
+  --         },
+  --       },
+  --       hour_score_value = 1 / 8,
+  --     })
+  --   end,
+  -- },
 
   {
     "lfilho/note2cal.nvim",

@@ -1,4 +1,79 @@
 return {
+
+  -- { "folke/neodev.nvim", enabled = false }, -- make sure to uninstall or disable neodev.nvim
+
+  -- {
+  --   "NeogitOrg/neogit",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim", -- required
+  --     "sindrets/diffview.nvim", -- optional - Diff integration
+  --
+  --     -- Only one of these is needed.
+  --     "nvim-telescope/telescope.nvim", -- optional
+  --     "ibhagwan/fzf-lua", -- optional
+  --     "echasnovski/mini.pick", -- optional
+  --     "folke/snacks.nvim", -- optional
+  --   },
+  --   keys = {
+  --     {
+  --       "<leader>gg",
+  --       function()
+  --         require("neogit").open()
+  --       end,
+  --       desc = "Open Neogit",
+  --     },
+  --   },
+  --   config = function()
+  --     require("neogit").setup()
+  --   end,
+  -- },
+  {
+    "aserowy/tmux.nvim",
+    keys = {
+      {
+        "<C-h>",
+        function()
+          require("tmux").move_left()
+        end,
+        desc = "Move to left pane",
+      },
+      {
+        "<C-j>",
+        function()
+          require("tmux").move_bottom()
+        end,
+        desc = "Move to bottom pane",
+      },
+      {
+        "<C-k>",
+        function()
+          require("tmux").move_top()
+        end,
+        desc = "Move to top pane",
+      },
+      {
+        "<C-l>",
+        function()
+          require("tmux").move_right()
+        end,
+        desc = "Move to right pane",
+      },
+    },
+    config = function()
+      require("tmux").setup({
+        copy_sync = {
+          enable = true,
+        },
+        navigation = {
+          enable_default_keybindings = false, -- 禁用默认键绑定，使用我们自定义的
+        },
+        resize = {
+          enable_default_keybindings = true,
+        },
+      })
+    end,
+  },
+
   {
     "sontungexpt/url-open",
     event = "VeryLazy",
@@ -30,7 +105,6 @@ return {
     cmd = { "RenderMarkdown" },
     dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" },
     config = function()
-      require("obsidian").get_client().opts.ui.enable = false
       local ns = vim.api.nvim_get_namespaces()["ObsidianUI"]
       if ns then
         vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)

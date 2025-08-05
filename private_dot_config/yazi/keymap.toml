@@ -57,6 +57,11 @@ run = "cd /Users/zhoushitie/Desktop/work/"
 desc = "go work"
 
 [[mgr.prepend_keymap]]
+on = ["g", "n"]
+run = "cd /Users/zhoushitie/vaults/personal/"
+desc = "go note"
+
+[[mgr.prepend_keymap]]
 on = ["g", "m"]
 run = "cd ~/My/"
 desc = "go My"

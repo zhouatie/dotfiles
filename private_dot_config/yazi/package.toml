@@ -1,22 +1,22 @@
 [[plugin.deps]]
 use = "macydnah/office"
-rev = "bcd9e9e"
-hash = "51ad32b80bc4cd496c55cd82fbfd238a"
+rev = "4002d36"
+hash = "9c68763dd4f2799f7cfee1e9c3e819a9"
 
 [[plugin.deps]]
 use = "Reledia/glow"
-rev = "2da96e3"
-hash = "f9ee1436e3b853508d87f7d49dce56e6"
+rev = "bd3eaa5"
+hash = "92b5c58159a51c567f82b618cee2b78"
 
 [[plugin.deps]]
 use = "AnirudhG07/rich-preview"
-rev = "2559e5f"
-hash = "c9a3d0731e7d7340e2c6d6126b1f3aa3"
+rev = "843c3fa"
+hash = "b4040931f0d2f9670ddb4923e55cd881"
 
 [[plugin.deps]]
 use = "stelcodes/bunny"
-rev = "a64f32a"
-hash = "22d9e6f72230be88ab322040626623a"
+rev = "bd8a767"
+hash = "5dded0f0f40142f99dda23aedd76b2bf"
 
 [[plugin.deps]]
 use = "Lil-Dank/lazygit"
@@ -25,23 +25,23 @@ hash = "a1fa2b3e1826c3a34804ea8c548e9f80"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-filter"
-rev = "b12a9ab"
-hash = "f0c4b41b5d19a3144958383333eff6e7"
+rev = "b886025"
+hash = "a9d553bd19a3cd7f4eab3abaac5d67ff"
 
 [[plugin.deps]]
 use = "dedukun/bookmarks"
-rev = "a70648a"
-hash = "b836fb264381f35dec79930438a906d5"
+rev = "9ef1254"
+hash = "92fbb5483657fa7976cdf4e0104e18e0"
 
 [[plugin.deps]]
 use = "MasouShizuka/projects"
-rev = "4f11ecc"
-hash = "17fa17295d27864f62875f06a77f72e7"
+rev = "a5e33db"
+hash = "3de26efded35814ba3e55e28f1c389a4"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "b12a9ab"
-hash = "e0ada736ea676c2bbb3ec705a49526ef"
+rev = "b886025"
+hash = "63b6c222bf2103b3023389dde5e2ecfe"
 
 [[plugin.deps]]
 use = "josephschmitt/auto-layout"
@@ -50,8 +50,8 @@ hash = "747a700c90fffc5b187a6094fd0661b0"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "b12a9ab"
-hash = "1f3dad061209081a6b04dd6ff2cb06c7"
+rev = "b886025"
+hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
 use = "orhnk/system-clipboard"
@@ -60,13 +60,13 @@ hash = "9b8f2573da54334b04747e51556040cc"
 
 [[plugin.deps]]
 use = "aresler/path-from-root"
-rev = "7d05b87"
-hash = "46977a29d4349d11465af1817f17d414"
+rev = "22b6fb5"
+hash = "98cdb2e889b73c4d4a8945f166486605"
 
 [[plugin.deps]]
 use = "llanosrocas/githead"
-rev = "7104df2"
-hash = "407bdfbed7b052dad108eeac88270f25"
+rev = "230dc7f"
+hash = "d8c2bf67a4da2a2af89f981ce2f7ba22"
 
 [[plugin.deps]]
 use = "ayvi-0001/git-cd-root-dir"
@@ -75,10 +75,10 @@ hash = "91555948d626c1bd8dc698915ac9c5d9"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
-rev = "d04a298"
+rev = "d3fd3a5"
 hash = "288a0dedd5d13b28605cf82c05326dcd"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-macchiato"
-rev = "d04a298"
+rev = "d3fd3a5"
 hash = "e6c5beeb1da3199355734273ee452a7f"

@@ -107,12 +107,8 @@ alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
 alt-5 = 'workspace 5'
-alt-c = 'workspace C'
 alt-e = 'workspace E'
-alt-m = 'workspace M'
-alt-p = 'workspace P'
 alt-q = 'workspace Q'
-alt-t = 'workspace T'
 alt-w = 'workspace W'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
@@ -121,12 +117,8 @@ alt-shift-2 = 'move-node-to-workspace 2 --focus-follows-window'
 alt-shift-3 = 'move-node-to-workspace 3 --focus-follows-window'
 alt-shift-4 = 'move-node-to-workspace 4 --focus-follows-window'
 alt-shift-5 = 'move-node-to-workspace 5 --focus-follows-window'
-alt-shift-c = 'move-node-to-workspace C --focus-follows-window'
 alt-shift-e = 'move-node-to-workspace E --focus-follows-window'
-alt-shift-m = 'move-node-to-workspace M --focus-follows-window'
-alt-shift-p = 'move-node-to-workspace P --focus-follows-window'
 alt-shift-q = 'move-node-to-workspace Q --focus-follows-window'
-alt-shift-t = 'move-node-to-workspace T --focus-follows-window'
 alt-shift-w = 'move-node-to-workspace W --focus-follows-window'
 
 alt-shift-d = 'fullscreen'
@@ -217,6 +209,11 @@ run = "move-node-to-workspace 3"
 [[on-window-detected]]
 if.app-id = 'NULL-APP-BUNDLE-ID'
 run = "move-node-to-workspace 3"
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.VSCode'
+run = "move-node-to-workspace 4"
+
 # [[on-window-detected]]
 # if.app-id = 'com.netease.game.popo'
 # run = ["layout floating", "move-node-to-workspace 1"]
