@@ -128,8 +128,13 @@ config.default_cwd = "/Users/zhoushitie/Desktop/work/"
 config.enable_tab_bar = true
 
 config.window_decorations = "RESIZE"
-config.window_background_opacity = 0.9
-config.macos_window_background_blur = 15
+config.window_background_opacity = 1
+-- config.macos_window_background_blur = 15
+
+-- config.window_background_image = "/Users/zhoushitie/.config/wezterm-bg.jpeg"
+config.window_background_image_hsb = {
+	brightness = 0.06,
+}
 
 config.max_fps = 120
 -- config.confirm_close_tab = false
