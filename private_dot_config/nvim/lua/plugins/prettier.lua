@@ -7,7 +7,7 @@ return {
       opts.formatters_by_ft = opts.formatters_by_ft or {}
       -- 定义我们要自定义的文件类型格式化器
       local custom_formatters_by_ft = {
-        ["toml"] = { "prettier" },
+        ["toml"] = { "taplo" },
         ["lua"] = { "stylua" },
         python = { "isort", "black" },
       }
