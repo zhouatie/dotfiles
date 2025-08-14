@@ -37,20 +37,20 @@ return {
         end,
         desc = "Move to left pane",
       },
-      {
-        "<C-j>",
-        function()
-          require("tmux").move_bottom()
-        end,
-        desc = "Move to bottom pane",
-      },
-      {
-        "<C-k>",
-        function()
-          require("tmux").move_top()
-        end,
-        desc = "Move to top pane",
-      },
+      -- {
+      --   "<C-j>",
+      --   function()
+      --     require("tmux").move_bottom()
+      --   end,
+      --   desc = "Move to bottom pane",
+      -- },
+      -- {
+      --   "<C-k>",
+      --   function()
+      --     require("tmux").move_top()
+      --   end,
+      --   desc = "Move to top pane",
+      -- },
       {
         "<C-l>",
         function()
