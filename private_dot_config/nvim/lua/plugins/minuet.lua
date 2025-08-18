@@ -1,7 +1,6 @@
 return {
   {
     "milanglacier/minuet-ai.nvim",
-    enabled = false,
     config = function()
       require("minuet").setup({
         -- provider = "openai_compatible",
@@ -16,7 +15,7 @@ return {
         --   },
         -- },
 
-        provider = "claude",
+        provider = "openai_fim_compatible",
         n_completions = 1,
         context_window = 512,
         provider_options = {
@@ -38,7 +37,7 @@ return {
             -- few_shots = "see [Prompt] section for the default value",
             -- chat_input = "See [Prompt Section for default value]",
             stream = true,
-            api_key = "sk-ant-oat01-a27b5131469999b3317e44f07cd5494caca12ff351849dbc030e4d4e800fba3d",
+            api_key = "ANTHROPIC_API_KEY",
             end_point = "https://gaccode.com/claudecode/v1/messages",
             optional = {
               -- pass any additional parameters you want to send to claude request,
@@ -50,8 +49,8 @@ return {
         virtualtext = {
           auto_trigger_ft = { "*" },
           keymap = {
-            accept = "<A-A>",
-            accept_line = "<A-a>",
+            accept = "<Tab>",
+            accept_line = "<D-a>",
             accept_n_lines = "<A-z>",
             prev = "<A-[>",
             next = "<A-]>",
