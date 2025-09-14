@@ -31,8 +31,29 @@ return {
         "handlebars",
       }
 
+      -- 配置只使用 eslint_d 的工程名称（可以添加多个）
+      local eslint_only_projects = {
+        "pc%-html", -- 使用 Lua 模式匹配，- 需要转义为 %-
+        -- "other%-project",  -- 可以添加其他需要限制的工程
+      }
+
       for _, filetype in ipairs(prettier_eslint_filetypes) do
-        custom_formatters_by_ft[filetype] = { "prettier", "eslint_d" }
+        local cwd = vim.fn.getcwd()
+        local use_eslint_only = false
+
+        -- 检查当前目录是否匹配配置的工程名
+        for _, project_pattern in ipairs(eslint_only_projects) do
+          if string.match(cwd, project_pattern) then
+            use_eslint_only = true
+            break
+          end
+        end
+
+        if use_eslint_only then
+          custom_formatters_by_ft[filetype] = { "eslint_d" }
+        else
+          custom_formatters_by_ft[filetype] = { "prettier", "eslint_d" }
+        end
       end
 
       -- 合并我们的自定义配置与现有配置

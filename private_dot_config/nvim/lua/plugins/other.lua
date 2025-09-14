@@ -1,5 +1,4 @@
 return {
-
   -- { "folke/neodev.nvim", enabled = false }, -- make sure to uninstall or disable neodev.nvim
 
   -- {
@@ -27,6 +26,38 @@ return {
   --     require("neogit").setup()
   --   end,
   -- },
+
+  -- 单行导航
+  -- {
+  --   "tris203/precognition.nvim",
+  --   --event = "VeryLazy",
+  --   opts = {
+  --     -- startVisible = true,
+  --     -- showBlankVirtLine = true,
+  --     -- highlightColor = { link = "Comment" },
+  --     -- hints = {
+  --     --      Caret = { text = "^", prio = 2 },
+  --     --      Dollar = { text = "$", prio = 1 },
+  --     --      MatchingPair = { text = "%", prio = 5 },
+  --     --      Zero = { text = "0", prio = 1 },
+  --     --      w = { text = "w", prio = 10 },
+  --     --      b = { text = "b", prio = 9 },
+  --     --      e = { text = "e", prio = 8 },
+  --     --      W = { text = "W", prio = 7 },
+  --     --      B = { text = "B", prio = 6 },
+  --     --      E = { text = "E", prio = 5 },
+  --     -- },
+  --     -- gutterHints = {
+  --     --     G = { text = "G", prio = 10 },
+  --     --     gg = { text = "gg", prio = 9 },
+  --     --     PrevParagraph = { text = "{", prio = 8 },
+  --     --     NextParagraph = { text = "}", prio = 8 },
+  --     -- },
+  --     -- disabled_fts = {
+  --     --     "startify",
+  --     -- },
+  --   },
+  -- },
   {
     "aserowy/tmux.nvim",
     keys = {
@@ -37,20 +68,20 @@ return {
         end,
         desc = "Move to left pane",
       },
-      -- {
-      --   "<C-j>",
-      --   function()
-      --     require("tmux").move_bottom()
-      --   end,
-      --   desc = "Move to bottom pane",
-      -- },
-      -- {
-      --   "<C-k>",
-      --   function()
-      --     require("tmux").move_top()
-      --   end,
-      --   desc = "Move to top pane",
-      -- },
+      {
+        "<C-j>",
+        function()
+          require("tmux").move_bottom()
+        end,
+        desc = "Move to bottom pane",
+      },
+      {
+        "<C-k>",
+        function()
+          require("tmux").move_top()
+        end,
+        desc = "Move to top pane",
+      },
       {
         "<C-l>",
         function()
@@ -68,7 +99,7 @@ return {
           enable_default_keybindings = false, -- 禁用默认键绑定，使用我们自定义的
         },
         resize = {
-          enable_default_keybindings = true,
+          enable_default_keybindings = false,
         },
       })
     end,
@@ -197,20 +228,6 @@ return {
     -- Optional: Lazy load Incline
     event = "VeryLazy",
   },
-
-  -- neogit
-  -- {
-  --   "NeogitOrg/neogit",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim", -- required
-  --     "sindrets/diffview.nvim", -- optional - Diff integration
-  --
-  --     -- Only one of these is needed.
-  --     "nvim-telescope/telescope.nvim", -- optional
-  --     "ibhagwan/fzf-lua", -- optional
-  --     "echasnovski/mini.pick", -- optional
-  --   },
-  -- },
 
   -- {
   --   "ravitemer/mcphub.nvim",

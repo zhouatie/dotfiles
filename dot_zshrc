@@ -1,3 +1,6 @@
+# Suppress Powerlevel10k instant prompt console output warning
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -12,14 +15,14 @@ plugins=(git zsh-autosuggestions)
 # source $ZSH/oh-my-zsh.sh
 
 source ~/powerlevel10k/powerlevel10k.zsh-theme
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 alias v='nvim'
 
-alias cc='claude'
+alias cc='ccr code'
 
 alias cdd='cd /Users/zhoushitie/Desktop'
 alias cdw='cd /Users/zhoushitie/Desktop/work'
@@ -47,7 +50,7 @@ export DESKTOP=/Users/zhoushitie/Desktop
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # 跳转 autojump
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+[[ -s /opt/homebrew/etc/profile.d/autojump.sh ]] && . /opt/homebrew/etc/profile.d/autojump.sh
 
 # java环境
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home
@@ -181,6 +184,14 @@ export all_proxy=socks5://127.0.0.1:7890
 # export HTTP_PROXY=http://127.0.0.1:8080
 # export HTTPS_PROXY=http://127.0.0.1:8080
 
-export ANTHROPIC_BASE_URL=https://gaccode.com/claudecode
 
 export PATH="/Applications/WezTerm.app/Contents/MacOS:$PATH"
+
+# 提供 qwen3-coder 使用
+export OPENAI_BASE_URL="https://dashscope.aliyuncs.com/compatible-mode/v1"
+export OPENAI_MODEL="qwen3-coder-plus"
+
+# 提供 claude 包直接使用 gaccode
+export ANTHROPIC_BASE_URL=https://gaccode.com/claudecode
+
+export PATH=~/.npm-global/bin:$PATH
