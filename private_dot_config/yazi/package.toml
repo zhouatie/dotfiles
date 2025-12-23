@@ -1,7 +1,7 @@
 [[plugin.deps]]
 use = "macydnah/office"
-rev = "4002d36"
-hash = "9c68763dd4f2799f7cfee1e9c3e819a9"
+rev = "41ebef8"
+hash = "5805affd3ae8adcb3c72b6997d21c0a6"
 
 [[plugin.deps]]
 use = "Reledia/glow"
@@ -82,6 +82,11 @@ hash = "1adc12c2b2b025411ab61eb8f0879574"
 use = "wylie102/duckdb"
 rev = "3f8c863"
 hash = "87b9233a74325e95011670ed20bbd0d4"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:piper"
+rev = "19dc890"
+hash = "b26d542e75151835d7bc885f6dda74cb"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"

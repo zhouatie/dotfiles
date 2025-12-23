@@ -106,6 +106,11 @@ config.keys = {
 		action = wezterm.action.CloseCurrentTab({ confirm = false }),
 	},
 	-- {
+	-- 	key = "0",
+	-- 	mods = "CMD",
+	-- 	action = wezterm.action.ResizeWindow({ width = 120, height = 40 }),
+	-- },
+	-- {
 	-- 	key = "Enter",
 	-- 	mods = "ALT",
 	-- 	action = wezterm.action.Nop,
@@ -128,8 +133,8 @@ config.default_cwd = "/Users/zhoushitie/Desktop/work/"
 config.enable_tab_bar = true
 
 config.window_decorations = "RESIZE"
-config.window_background_opacity = 1
--- config.macos_window_background_blur = 15
+config.window_background_opacity = 0.85
+config.macos_window_background_blur = 25
 
 -- config.window_background_image = "/Users/zhoushitie/.config/wezterm-bg.jpeg"
 config.window_background_image_hsb = {

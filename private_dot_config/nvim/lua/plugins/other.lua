@@ -1,4 +1,10 @@
 return {
+  {
+    "nvim-zh/colorful-winsep.nvim",
+    config = true,
+    event = { "WinLeave" },
+  },
+
   -- { "folke/neodev.nvim", enabled = false }, -- make sure to uninstall or disable neodev.nvim
 
   -- {
@@ -10,7 +16,7 @@ return {
   --     -- Only one of these is needed.
   --     "nvim-telescope/telescope.nvim", -- optional
   --     "ibhagwan/fzf-lua", -- optional
-  --     "echasnovski/mini.pick", -- optional
+  --     "nvim-mini/mini.pick", -- optional
   --     "folke/snacks.nvim", -- optional
   --   },
   --   keys = {
@@ -134,7 +140,7 @@ return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
     cmd = { "RenderMarkdown" },
-    dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" },
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" },
     config = function()
       local ns = vim.api.nvim_get_namespaces()["ObsidianUI"]
       if ns then
@@ -251,7 +257,7 @@ return {
   --   ---@type oil.SetupOpts
   --   opts = {},
   --   -- Optional dependencies
-  --   dependencies = { { "echasnovski/mini.icons", opts = {} } },
+  --   dependencies = { { "nvim-mini/mini.icons", opts = {} } },
   --   -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
   --   -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
   --   lazy = false,

@@ -1,5 +1,29 @@
 return {
   {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "VeryLazy",
+    priority = 1000,
+    opts = {
+      options = {
+        multilines = {
+          enabled = true,
+        },
+        show_source = {
+          enabled = true,
+        },
+        add_messages = {
+          display_count = true,
+        },
+        set_arrow_to_diag_color = true,
+      },
+    },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = { diagnostics = { virtual_text = false } },
+  },
+
+  {
     "stevearc/conform.nvim",
     lazy = true,
     optional = true,
@@ -33,7 +57,8 @@ return {
 
       -- 配置只使用 eslint_d 的工程名称（可以添加多个）
       local eslint_only_projects = {
-        "pc%-html", -- 使用 Lua 模式匹配，- 需要转义为 %-
+        "work",
+        -- "pc%-html", -- 使用 Lua 模式匹配，- 需要转义为 %-
         -- "other%-project",  -- 可以添加其他需要限制的工程
       }
 
