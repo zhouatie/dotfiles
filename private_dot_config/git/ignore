@@ -1,0 +1,7 @@
+.DS_Store
+*.tmp
+.vscode/
+CLAUDE.md
+.husky
+.claude/
+.huskyrc.js

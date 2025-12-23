@@ -118,7 +118,6 @@ suppress_preload = false
 [plugin]
 
 prepend_previewers = [
-  { name = "*.md", run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark \"$1\"" },
   { name = "*.csv", run = "duckdb" },
   { name = "*.xlsx", run = "duckdb" },
   { name = "*.db", run = "duckdb" },
@@ -169,6 +168,9 @@ preloaders = [
 ]
 previewers = [
   { name = "*/", run = "folder" },
+  { name = "*.md", run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark \"$1\"" },
+
+  # { mime = "*.md", run = "code" },
   # Code
   { mime = "text/*", run = "code" },
   { mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
