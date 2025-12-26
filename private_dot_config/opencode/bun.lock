@@ -4,14 +4,14 @@
   "workspaces": {
     "": {
       "dependencies": {
-        "@opencode-ai/plugin": "1.0.175",
+        "@opencode-ai/plugin": "1.0.200",
       },
     },
   },
   "packages": {
-    "@opencode-ai/plugin": ["@opencode-ai/plugin@1.0.175", "", { "dependencies": { "@opencode-ai/sdk": "1.0.175", "zod": "4.1.8" } }, "sha512-RSeyDnfFkQ6TXkSzEtruVxgPAsMTAOTnJsyUtUgp7/na7uH5tcYb4cL6i/yHvgU6HCWDmpmLUgeZs1sGOpAxMA=="],
+    "@opencode-ai/plugin": ["@opencode-ai/plugin@1.0.200", "https://registry.npmmirror.com/@opencode-ai/plugin/-/plugin-1.0.200.tgz", { "dependencies": { "@opencode-ai/sdk": "1.0.200", "zod": "4.1.8" } }, "sha512-1qVeR6II8/DJI/Xp01TW59YjANyPf74//V2+kHUThQ7fIRVVTZJRDj82HjFyjUSOEA1FRcQ7tCGl1zD5X2P/aQ=="],
 
-    "@opencode-ai/sdk": ["@opencode-ai/sdk@1.0.175", "", {}, "sha512-n0RtVBfU4j/nCEAr/s//jVRSFaZRS6DZZTzEOqwQce4C7957HnuMH674NeruHltl2AiXn/LNUkWa/7c/R4a3bA=="],
+    "@opencode-ai/sdk": ["@opencode-ai/sdk@1.0.200", "https://registry.npmmirror.com/@opencode-ai/sdk/-/sdk-1.0.200.tgz", {}, "sha512-dwGsm0V7cJpYglcn6ChrcftCHzDBq/TZFC1qne4zym9jy5r4I1osCjlmZf5935ZriOQtUAdCP3s+wVcOERHBdA=="],
 
     "zod": ["zod@4.1.8", "", {}, "sha512-5R1P+WwQqmmMIEACyzSvo4JXHY5WiAFHRMg+zBZKgKS+Q1viRa0C1hmUKtHltoIFKtIdki3pRxkmpP74jnNYHQ=="],
   }

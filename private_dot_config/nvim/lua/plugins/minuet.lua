@@ -10,19 +10,13 @@ return {
   {
     "milanglacier/minuet-ai.nvim",
     ft = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
-    enabled = false,
     config = function()
       -- codemaker.proxy = codemaker.proxy or "http://127.0.0.1:8899"
 
       if not codemaker.ensure_curl() then
         -- vim.notify("CodeMaker token refresh skipped: plenary.curl not available", vim.log.levels.WARN)
       else
-        local token, err = codemaker.refresh()
-        if token then
-          -- vim.notify("CodeMaker token refresh succeeded", vim.log.levels.INFO)
-        elseif err then
-          -- vim.notify("CodeMaker token refresh failed: " .. err, vim.log.levels.WARN)
-        end
+        codemaker.refresh()
       end
 
       require("minuet").setup({
@@ -30,7 +24,7 @@ return {
         -- provider = "openai_compatible",
 
         -- proxy = "http://127.0.0.1:8899",
-        notify = false,
+        -- notify = "debug",
         n_completions = 1,
         -- context_window = 512,
         context_window = tokens(64),
@@ -44,7 +38,9 @@ return {
           --   end,
           --   stream = false,
           --   end_point = "https://aihubmix.com/v1/completions",
-          --   model = "gpt-4o-mini",
+          --   -- model = "glm-4.7",
+          --   -- model = "QwQ-32B",
+          --   model = "coding-glm-4.7-free",
           --   name = "AIHubMix",
           --   optional = {
           --     max_tokens = 128,

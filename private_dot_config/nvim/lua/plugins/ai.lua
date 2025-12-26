@@ -1,211 +1,97 @@
-local function tokens(num)
-  return num * 1024
-end
-
 return {
-  -- {
-  --   "coder/claudecode.nvim",
-  --   dependencies = { "folke/snacks.nvim" },
-  --   config = true,
-  --   keys = {
-  --     { "<leader>a", nil, desc = "AI/Claude Code" },
-  --     { "<leader>aa", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
-  --     { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
-  --     { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
-  --     { "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
-  --     { "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
-  --     { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
-  --     { "<leader>as", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
-  --     {
-  --       "<leader>as",
-  --       "<cmd>ClaudeCodeTreeAdd<cr>",
-  --       desc = "Add file",
-  --       ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw" },
-  --     },
-  --     -- Diff management
-  --     { "<leader>ac", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
-  --     { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
-  --   },
-  --   opts = {
-  --     focus_after_send = true,
-  --     terminal = {
-  --       split_width_percentage = 0.4,
-  --     },
-  --     diff_opts = {
-  --       keep_terminal_focus = true,
-  --     },
-  --   },
-  -- },
-
-  -- {
-  --   -- dir = "~/.config/nvim/clone/avante.nvim",
-  --   "yetone/avante.nvim",
-  --   enabled = false,
-  --   event = "VeryLazy",
-  --   -- version = false,
-  --   commit = "f9aa75459d403d9e963ef2647c9791e0dfc9e5f9",
-  --   -- version = "*", -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
-  --   opts = {
-  --     provider = "copilot",
-  --
-  --     copilot = {
-  --       model = "claude-3.7-sonnet",
-  --       -- model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
-  --       -- model = "o3-mini",
-  --       endpoint = "https://api.githubcopilot.com",
-  --       proxy = nil,
-  --       allow_insecure = false,
-  --       timeout = 10 * 60 * 1000,
-  --       temperature = 0,
-  --       -- 8192
-  --       max_completion_tokens = 20480,
-  --       max_tokens = 20480,
-  --       -- reasoning_effort = "high",
-  --     },
-  --
-  --     behaviour = {
-  --       enable_cursor_planning_mode = true, -- Whether to enable Cursor Planning Mode. Default to false.
-  --       enable_claude_text_editor_tool_mode = true, -- Whether to enable Claude Text Editor Tool Mode.
-  --       enable_token_counting = false,
-  --     },
-  --
-  --     windows = {
-  --       width = 40,
-  --       input = {
-  --         prefix = "",
-  --         height = 12, -- Height of the input window in vertical layout
-  --       },
-  --     },
-  --
-  --     ollama = {
-  --       model = "qwen2.5-coder:14b",
-  --     },
-  --
-  --     -- 可以用
-  --     aihubmix = {
-  --       endpoint = "https://aihubmix.com/v1",
-  --       model = "claude-3-7-sonnet-20250219",
-  --       -- model = "Qwen/QwQ-32B",
-  --       -- stream = true,
-  --       -- model = "llama-3.3-70b-versatile",
-  --       -- model = "claude-3-5-sonnet-20240620",
-  --       -- model = "aihubmix-DeepSeek-R1",
-  --       timeout = 30000, -- timeout in milliseconds
-  --       temperature = 0, -- adjust if needed
-  --       max_tokens = 8192,
-  --     },
-  --     vendors = {
-  --       ["copilot:3.7"] = {
-  --         __inherited_from = "copilot",
-  --         model = "claude-3.7-sonnet",
-  --         max_tokens = tokens(64),
-  --       },
-  --       ["copilot:o3"] = {
-  --         __inherited_from = "copilot",
-  --         model = "o3-mini",
-  --         max_tokens = tokens(64),
-  --       },
-  --       deepseek = {
-  --         __inherited_from = "openai",
-  --         api_key_name = "DEEPSEEK_API_KEY",
-  --         endpoint = "https://api.deepseek.com",
-  --         model = "deepseek-coder",
-  --       },
-  --       qianwen = {
-  --         __inherited_from = "openai",
-  --         api_key_name = "DASHSCOPE_API_KEY",
-  --         endpoint = "https://dashscope.aliyuncs.com/compatible-mode/v1",
-  --         model = "qwen-coder-plus-latest",
-  --       },
-  --     },
-  --
-  --     -- rag_service = {
-  --     --   enabled = true, -- Enables the RAG service
-  --     --   host_mount = os.getenv("HOME"), -- Host mount path for the rag service
-  --     --   provider = "ollama", -- The provider to use for RAG service (e.g. openai or ollama)
-  --     --   llm_model = "qwen2.5-coder:14b", -- The LLM model to use for RAG service
-  --     --   embed_model = "nomic-embed-text", -- The embedding model to use for RAG service
-  --     --   endpoint = "http://localhost:11434", -- The API endpoint for RAG service
-  --     -- },
-  --   },
-  --   build = "make",
-  --   dependencies = {
-  --     "nvim-treesitter/nvim-treesitter",
-  --     "stevearc/dressing.nvim",
-  --     "nvim-lua/plenary.nvim",
-  --     "MunifTanjim/nui.nvim",
-  --     "echasnovski/mini.pick", -- for file_selector provider mini.pick
-  --     "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-  --     "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-  --     "ibhagwan/fzf-lua", -- for file_selector provider fzf
-  --     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-  --     "zbirenbaum/copilot.lua", -- for providers='copilot'
-  --     {
-  --       "MeanderingProgrammer/render-markdown.nvim",
-  --       opts = {
-  --         file_types = { "markdown", "Avante" },
-  --       },
-  --       ft = { "markdown", "Avante" },
-  --     },
-  --   },
-  -- },
-  --
-  -- {
-  --   "saghen/blink.cmp",
-  --   --optional = true,
-  --   opts = {
-  --     completion = {
-  --       menu = {
-  --         draw = {
-  --           columns = {
-  --             { "label", "label_description", gap = 1 },
-  --             { "kind_icon", "source_name" },
-  --           },
-  --           treesitter = { "lsp" },
-  --         },
-  --       },
-  --     },
-  --
-  --     sources = {
-  --       default = { "avante_commands", "avante_mentions", "avante_files" },
-  --       compat = {
-  --         "avante_commands",
-  --         "avante_mentions",
-  --         "avante_files",
-  --       },
-  --       -- LSP score_offset is typically 60
-  --       providers = {
-  --         avante_commands = {
-  --           name = "avante_commands",
-  --           module = "blink.compat.source",
-  --           score_offset = 90,
-  --           opts = {},
-  --         },
-  --         avante_files = {
-  --           name = "avante_files",
-  --           module = "blink.compat.source",
-  --           score_offset = 100,
-  --           opts = {},
-  --         },
-  --         avante_mentions = {
-  --           name = "avante_mentions",
-  --           module = "blink.compat.source",
-  --           score_offset = 1000,
-  --           opts = {},
-  --         },
-  --       },
-  --     },
-  --
-  --     keymap = {
-  --       preset = "enter",
-  --       ["<C-y>"] = { "select_and_accept" },
-  --       ["<C-o>"] = { "show" },
-  --       ["<Tab>"] = {
-  --         LazyVim.cmp.map({ "snippet_forward", "ai_accept" }),
-  --         "fallback",
-  --       },
-  --     },
-  --   },
-  --   dependencies = { "saghen/blink.compat" },
-  -- },
+  {
+    -- commit = "476f342fe6bc1e120ba3e334b5d9cf3ef66de56a"
+    "yetone/avante.nvim",
+    build = vim.fn.has("win32") ~= 0 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+      or "make",
+    event = "VeryLazy",
+    version = false, -- Never set this value to "*"! Never!
+    opts = {
+      instructions_file = "avante.md",
+      provider = "aihubmix",
+      acp_providers = {
+        ["claude-code"] = {
+          command = "npx",
+          args = { "@zed-industries/claude-code-acp" },
+          env = {
+            NODE_NO_WARNINGS = "1",
+            ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_AUTH_TOKEN"),
+          },
+        },
+      },
+      providers = {
+        aihubmix = {
+          model = "coding-glm-4.7-free",
+          -- model = "glm-4.7",
+          -- model = "gemini-3-flash-preview",
+          -- model = "gemini-3-pro-preview",
+        },
+      },
+      windows = {
+        wrap = true, -- 类似于 vim.o.wrap
+        width = 40, -- 默认基于可用宽度的百分比
+        input = {
+          prefix = "> ",
+          height = 12, -- 垂直布局中输入窗口的高度
+        },
+      },
+      behaviour = {
+        auto_set_keymaps = false,
+        support_paste_from_clipboard = true,
+        enable_cursor_planning_mode = true,
+        enable_claude_text_editor_tool_mode = true,
+      },
+      selection = {
+        hint_display = "none",
+      },
+      sidebar = {
+        apply_all = "A",
+        apply_cursor = "a",
+        retry_user_request = "r",
+        edit_user_request = "e",
+        switch_windows = "<Tab>",
+        reverse_switch_windows = "<S-Tab>",
+        remove_file = "d",
+        add_file = "@",
+        close = { "<Esc>", "q" },
+        close_from_input = nil, -- 例如，{ normal = "<Esc>", insert = "<C-d>" }
+      },
+    },
+  },
+  {
+    "HakonHarnes/img-clip.nvim",
+    event = "VeryLazy",
+    optional = true,
+    opts = {
+      -- recommended settings
+      default = {
+        embed_image_as_base64 = false,
+        prompt_for_file_name = false,
+        drag_and_drop = {
+          insert_mode = true,
+        },
+        -- required for Windows users
+        use_absolute_path = true,
+      },
+    },
+  },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    optional = true,
+    opts = {
+      file_types = { "markdown", "Avante" },
+    },
+    ft = { "markdown", "Avante" },
+  },
+  {
+    "saghen/blink.cmp",
+    optional = true,
+    specs = { "Kaiser-Yang/blink-cmp-avante" },
+    opts = {
+      sources = {
+        default = { "avante" },
+        providers = { avante = { module = "blink-cmp-avante", name = "Avante" } },
+      },
+    },
+  },
 }
