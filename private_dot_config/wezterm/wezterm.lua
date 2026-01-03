@@ -62,13 +62,13 @@ config.keys = {
 	-- },
 }
 
--- config.font = wezterm.font_with_fallback({
--- 	"JetBrainsMono Nerd Font",
--- 	"MesloLGS Nerd Font Mono",
--- 	"Monaspace Neon",
--- 	"Cascadia Code",
--- 	"MesloLGS Nerd Font Mono",
--- })
+config.font = wezterm.font_with_fallback({
+	-- "JetBrainsMono Nerd Font",
+	-- "MesloLGS Nerd Font Mono",
+	-- "Monaspace Neon",
+	-- "Cascadia Code",
+	"MesloLGS Nerd Font Mono",
+})
 
 config.font_size = 17
 config.tab_max_width = 100
