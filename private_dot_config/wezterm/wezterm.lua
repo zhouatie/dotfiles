@@ -1,59 +1,6 @@
--- Pull in the wezterm API
 local wezterm = require("wezterm")
 
--- This will hold the configuration.
 local config = wezterm.config_builder()
-
--- This is where you actually apply your config choices
-
--- my coolnight colorscheme
--- config.colors = {
--- 	foreground = "#CBE0F0",
--- 	background = "#011423",
--- 	cursor_bg = "#47FF9C", -- 光标背景色
--- 	cursor_border = "#47FF9C", -- 光标边框色
--- 	cursor_fg = "#011423", -- 光标文字色
--- 	selection_bg = "#033259",
--- 	selection_fg = "#CBE4F0",
--- 	ansi = { "#214969", "#E52E2E", "#44FFB1", "#FFE073", "#0FC5ED", "#a277ff", "#24EAF7", "#24EAF7" },
--- 	brights = { "#666666", "#E52E2E", "#44FFB1", "#FFE073", "#A277FF", "#a277ff", "#24EAF7", "#24EAF7" },
--- 	tab_bar = {
--- 		-- The active tab is the one that has focus in the window
--- 		active_tab = {
--- 			-- The color of the background area for the tab
--- 			bg_color = "#a277ff",
--- 			-- The color of the text for the tab
--- 			fg_color = "#214969",
---
--- 			-- Specify whether you want "Half", "Normal" or "Bold" intensity for the
--- 			-- label shown for this tab.
--- 			-- The default is "Normal"
--- 			intensity = "Normal",
---
--- 			-- Specify whether you want "None", "Single" or "Double" underline for
--- 			-- label shown for this tab.
--- 			-- The default is "None"
--- 			underline = "None",
---
--- 			-- Specify whether you want the text to be italic (true) or not (false)
--- 			-- for this tab.  The default is false.
--- 			italic = false,
---
--- 			-- Specify whether you want the text to be rendered with strikethrough (true)
--- 			-- or not for this tab.  The default is false.
--- 			strikethrough = false,
--- 		},
---
--- 		-- Inactive tabs are the tabs that do not have focus
--- 		inactive_tab = {
--- 			bg_color = "#1b1032",
--- 			fg_color = "#808080",
---
--- 			-- The same options that were listed under the `active_tab` section above
--- 			-- can also be used for `inactive_tab`.
--- 		},
--- 	},
--- }
 
 config.show_tab_index_in_tab_bar = false
 config.show_new_tab_button_in_tab_bar = false
@@ -114,11 +61,17 @@ config.keys = {
 	-- 	action = wezterm.action.Nop,
 	-- },
 }
--- ctrl + shift + alt + 左右箭头移动面板宽度
-config.font = wezterm.font("MesloLGS Nerd Font Mono")
--- , { weight = "Bold" }
+
+-- config.font = wezterm.font_with_fallback({
+-- 	"JetBrainsMono Nerd Font",
+-- 	"MesloLGS Nerd Font Mono",
+-- 	"Monaspace Neon",
+-- 	"Cascadia Code",
+-- 	"MesloLGS Nerd Font Mono",
+-- })
 
 config.font_size = 17
+config.tab_max_width = 100
 config.hide_tab_bar_if_only_one_tab = true
 
 config.initial_rows = 40
@@ -131,12 +84,25 @@ config.default_cwd = "/Users/zhoushitie/Desktop/work/"
 config.enable_tab_bar = true
 
 config.window_decorations = "RESIZE"
--- config.window_background_opacity = 0.6
--- config.macos_window_background_blur = 2
+-- config.window_background_opacity = 0.8
+-- config.macos_window_background_blur = 20
 
 -- config.window_background_image = "/Users/zhoushitie/.config/wezterm-bg.jpeg"
 config.window_background_image_hsb = {
 	brightness = 0.06,
+}
+
+local tab_bar_bg = "rgba(0, 0, 0, 0)" -- 这里修改整栏的背景颜色
+
+config.window_frame = {
+	active_titlebar_bg = tab_bar_bg,
+	inactive_titlebar_bg = tab_bar_bg,
+}
+
+config.colors = {
+	tab_bar = {
+		background = tab_bar_bg,
+	},
 }
 
 config.max_fps = 120
@@ -147,7 +113,59 @@ config.cursor_blink_ease_out = "Constant"
 config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_rate = 0
 -- 抹茶主题
-config.color_scheme = "Catppuccin Mocha" -- Mocha or Macchiato, Frappe, Latte
+config.color_scheme = "Catppuccin Mocha"
+config.use_fancy_tab_bar = false
 
--- and finally, return the configuration to wezterm
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+	local background = "#1b1032"
+	local foreground = "#808080"
+
+	if tab.is_active then
+		background = "#a277ff"
+		foreground = "#214969"
+	elseif hover then
+		background = "#3b3052"
+		foreground = "#909090"
+	end
+
+	local edge_background = tab_bar_bg
+	local edge_foreground = background
+
+	local title = tab.tab_title
+	if not (title and #title > 0) then
+		local cwd = tab.active_pane.current_working_dir
+		if cwd then
+			title = cwd.file_path
+			title = string.match(title, "([^/]+)/?$") or title
+		else
+			title = tab.active_pane.title
+		end
+	end
+	title = " " .. (tab.tab_index + 1) .. "." .. title .. " "
+
+	local has_unseen_output = false
+	if not tab.is_active then
+		for _, pane in ipairs(tab.panes) do
+			if pane.has_unseen_output then
+				has_unseen_output = true
+				break
+			end
+		end
+	end
+
+	local unseen = has_unseen_output and "" or ""
+
+	return {
+		{ Background = { Color = edge_background } },
+		{ Foreground = { Color = edge_foreground } },
+		{ Text = wezterm.nerdfonts.ple_lower_right_triangle },
+		{ Background = { Color = background } },
+		{ Foreground = { Color = foreground } },
+		{ Text = title .. unseen },
+		{ Background = { Color = edge_background } },
+		{ Foreground = { Color = background } },
+		{ Text = wezterm.nerdfonts.ple_upper_left_triangle },
+	}
+end)
+
 return config
