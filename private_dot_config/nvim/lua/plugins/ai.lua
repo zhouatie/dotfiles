@@ -1,97 +1,97 @@
 return {
-  {
-    -- commit = "476f342fe6bc1e120ba3e334b5d9cf3ef66de56a"
-    "yetone/avante.nvim",
-    build = vim.fn.has("win32") ~= 0 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
-      or "make",
-    event = "VeryLazy",
-    version = false, -- Never set this value to "*"! Never!
-    opts = {
-      instructions_file = "avante.md",
-      provider = "aihubmix",
-      acp_providers = {
-        ["claude-code"] = {
-          command = "npx",
-          args = { "@zed-industries/claude-code-acp" },
-          env = {
-            NODE_NO_WARNINGS = "1",
-            ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_AUTH_TOKEN"),
-          },
-        },
-      },
-      providers = {
-        aihubmix = {
-          model = "coding-glm-4.7-free",
-          -- model = "glm-4.7",
-          -- model = "gemini-3-flash-preview",
-          -- model = "gemini-3-pro-preview",
-        },
-      },
-      windows = {
-        wrap = true, -- 类似于 vim.o.wrap
-        width = 40, -- 默认基于可用宽度的百分比
-        input = {
-          prefix = "> ",
-          height = 12, -- 垂直布局中输入窗口的高度
-        },
-      },
-      behaviour = {
-        auto_set_keymaps = false,
-        support_paste_from_clipboard = true,
-        enable_cursor_planning_mode = true,
-        enable_claude_text_editor_tool_mode = true,
-      },
-      selection = {
-        hint_display = "none",
-      },
-      sidebar = {
-        apply_all = "A",
-        apply_cursor = "a",
-        retry_user_request = "r",
-        edit_user_request = "e",
-        switch_windows = "<Tab>",
-        reverse_switch_windows = "<S-Tab>",
-        remove_file = "d",
-        add_file = "@",
-        close = { "<Esc>", "q" },
-        close_from_input = nil, -- 例如，{ normal = "<Esc>", insert = "<C-d>" }
-      },
-    },
-  },
-  {
-    "HakonHarnes/img-clip.nvim",
-    event = "VeryLazy",
-    optional = true,
-    opts = {
-      -- recommended settings
-      default = {
-        embed_image_as_base64 = false,
-        prompt_for_file_name = false,
-        drag_and_drop = {
-          insert_mode = true,
-        },
-        -- required for Windows users
-        use_absolute_path = true,
-      },
-    },
-  },
-  {
-    "MeanderingProgrammer/render-markdown.nvim",
-    optional = true,
-    opts = {
-      file_types = { "markdown", "Avante" },
-    },
-    ft = { "markdown", "Avante" },
-  },
-  {
-    "saghen/blink.cmp",
-    optional = true,
-    specs = { "Kaiser-Yang/blink-cmp-avante" },
-    opts = {
-      sources = {
-        default = { "avante" },
-        providers = { avante = { module = "blink-cmp-avante", name = "Avante" } },
-      },
-    },
-  },
+  -- {
+  --   -- commit = "476f342fe6bc1e120ba3e334b5d9cf3ef66de56a"
+  --   "yetone/avante.nvim",
+  --   build = vim.fn.has("win32") ~= 0 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+  --     or "make",
+  --   event = "VeryLazy",
+  --   version = false, -- Never set this value to "*"! Never!
+  --   opts = {
+  --     instructions_file = "avante.md",
+  --     provider = "aihubmix",
+  --     acp_providers = {
+  --       ["claude-code"] = {
+  --         command = "npx",
+  --         args = { "@zed-industries/claude-code-acp" },
+  --         env = {
+  --           NODE_NO_WARNINGS = "1",
+  --           ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_AUTH_TOKEN"),
+  --         },
+  --       },
+  --     },
+  --     providers = {
+  --       aihubmix = {
+  --         -- model = "coding-glm-4.7-free",
+  --         -- model = "glm-4.7",
+  --         model = "gemini-3-flash-preview",
+  --         -- model = "gemini-3-pro-preview",
+  --       },
+  --     },
+  --     windows = {
+  --       wrap = true, -- 类似于 vim.o.wrap
+  --       width = 40, -- 默认基于可用宽度的百分比
+  --       input = {
+  --         prefix = "> ",
+  --         height = 12, -- 垂直布局中输入窗口的高度
+  --       },
+  --     },
+  --     behaviour = {
+  --       auto_set_keymaps = false,
+  --       support_paste_from_clipboard = true,
+  --       enable_cursor_planning_mode = true,
+  --       enable_claude_text_editor_tool_mode = true,
+  --     },
+  --     selection = {
+  --       hint_display = "none",
+  --     },
+  --     sidebar = {
+  --       apply_all = "A",
+  --       apply_cursor = "a",
+  --       retry_user_request = "r",
+  --       edit_user_request = "e",
+  --       switch_windows = "<Tab>",
+  --       reverse_switch_windows = "<S-Tab>",
+  --       remove_file = "d",
+  --       add_file = "@",
+  --       close = { "<Esc>", "q" },
+  --       close_from_input = nil, -- 例如，{ normal = "<Esc>", insert = "<C-d>" }
+  --     },
+  --   },
+  -- },
+  -- {
+  --   "HakonHarnes/img-clip.nvim",
+  --   event = "VeryLazy",
+  --   optional = true,
+  --   opts = {
+  --     -- recommended settings
+  --     default = {
+  --       embed_image_as_base64 = false,
+  --       prompt_for_file_name = false,
+  --       drag_and_drop = {
+  --         insert_mode = true,
+  --       },
+  --       -- required for Windows users
+  --       use_absolute_path = true,
+  --     },
+  --   },
+  -- },
+  -- {
+  --   "MeanderingProgrammer/render-markdown.nvim",
+  --   optional = true,
+  --   opts = {
+  --     file_types = { "markdown", "Avante" },
+  --   },
+  --   ft = { "markdown", "Avante" },
+  -- },
+  -- {
+  --   "saghen/blink.cmp",
+  --   optional = true,
+  --   specs = { "Kaiser-Yang/blink-cmp-avante" },
+  --   opts = {
+  --     sources = {
+  --       default = { "avante" },
+  --       providers = { avante = { module = "blink-cmp-avante", name = "Avante" } },
+  --     },
+  --   },
+  -- },
 }

@@ -25,6 +25,7 @@ return {
 
         -- proxy = "http://127.0.0.1:8899",
         -- notify = "debug",
+        notify = false,
         n_completions = 1,
         -- context_window = 512,
         context_window = tokens(64),
