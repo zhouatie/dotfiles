@@ -131,8 +131,8 @@ config.default_cwd = "/Users/zhoushitie/Desktop/work/"
 config.enable_tab_bar = true
 
 config.window_decorations = "RESIZE"
--- config.window_background_opacity = 0.85
--- config.macos_window_background_blur = 25
+-- config.window_background_opacity = 0.6
+-- config.macos_window_background_blur = 2
 
 -- config.window_background_image = "/Users/zhoushitie/.config/wezterm-bg.jpeg"
 config.window_background_image_hsb = {
@@ -148,5 +148,6 @@ config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_rate = 0
 -- 抹茶主题
 config.color_scheme = "Catppuccin Mocha" -- Mocha or Macchiato, Frappe, Latte
+
 -- and finally, return the configuration to wezterm
 return config
