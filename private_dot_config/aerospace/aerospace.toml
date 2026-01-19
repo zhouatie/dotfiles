@@ -102,22 +102,26 @@ alt-shift-l = 'move right'
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
+alt-0 = 'workspace 0'
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
 alt-5 = 'workspace 5'
+alt-a = 'workspace A'
 alt-e = 'workspace E'
 alt-m = 'workspace M'
 alt-q = 'workspace Q'
 alt-w = 'workspace W'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
+alt-shift-0 = 'move-node-to-workspace 0 --focus-follows-window'
 alt-shift-1 = 'move-node-to-workspace 1 --focus-follows-window'
 alt-shift-2 = 'move-node-to-workspace 2 --focus-follows-window'
 alt-shift-3 = 'move-node-to-workspace 3 --focus-follows-window'
 alt-shift-4 = 'move-node-to-workspace 4 --focus-follows-window'
 alt-shift-5 = 'move-node-to-workspace 6 --focus-follows-window'
+alt-shift-a = 'move-node-to-workspace A --focus-follows-window'
 alt-shift-e = 'move-node-to-workspace E --focus-follows-window'
 alt-shift-m = 'move-node-to-workspace M --focus-follows-window'
 alt-shift-q = 'move-node-to-workspace Q --focus-follows-window'
@@ -181,7 +185,7 @@ run = ["layout floating", "move-node-to-workspace W"]
 
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
-run = "move-node-to-workspace Q"
+run = ["layout floating", "move-node-to-workspace Q"]
 
 [[on-window-detected]]
 if.app-id = 'com.cocos.creator'
@@ -225,6 +229,10 @@ if.app-id = 'com.netease.163music'
 run = ["layout floating", "move-node-to-workspace 3"]
 
 [[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = ["layout floating", "move-node-to-workspace A"]
+
+[[on-window-detected]]
 if.app-id = 'com.netease.game.popo'
 run = "move-node-to-workspace 1"
 
@@ -240,6 +248,6 @@ run = "move-node-to-workspace 3"
 if.app-id = 'com.microsoft.VSCode'
 run = "move-node-to-workspace 4"
 
-# [[on-window-detected]]
-# if.app-id = 'com.netease.game.popo'
-# run = ["layout floating", "move-node-to-workspace 1"]
+[[on-window-detected]]
+if.app-id = 'com.kangfenmao.CherryStudio'
+run = ["layout floating", "move-node-to-workspace A"]

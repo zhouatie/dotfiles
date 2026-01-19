@@ -66,6 +66,7 @@ return {
   -- },
   {
     "aserowy/tmux.nvim",
+    event = "VeryLazy",
     keys = {
       {
         "<C-h>",
@@ -126,6 +127,7 @@ return {
   -- gb 打开当前所有标签页
   {
     "leath-dub/snipe.nvim",
+    event = "VeryLazy",
     keys = {
       {
         "gb",
@@ -140,6 +142,7 @@ return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
     cmd = { "RenderMarkdown" },
+    ft = "markdown",
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" },
     config = function()
       local ns = vim.api.nvim_get_namespaces()["ObsidianUI"]

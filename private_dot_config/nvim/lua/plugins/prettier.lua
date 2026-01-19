@@ -34,6 +34,7 @@ return {
         ["toml"] = { "taplo" },
         ["lua"] = { "stylua" },
         python = { "isort", "black" },
+        ["org"] = { "textlsp" },
       }
 
       -- 为支持 prettier + eslint_d 的文件类型统一设置

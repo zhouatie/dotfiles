@@ -72,8 +72,8 @@ case ":$PATH:" in
   *) PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-export HTTP_PROXY=http://127.0.0.1:7890
-export HTTPS_PROXY=http://127.0.0.1:7890
+# export HTTP_PROXY=http://127.0.0.1:7890
+# export HTTPS_PROXY=http://127.0.0.1:7890
 # export HTTP_PROXY=http://127.0.0.1:8899
 # export HTTPS_PROXY=http://127.0.0.1:8899
 
@@ -103,6 +103,7 @@ alias cdd='cd /Users/zhoushitie/Desktop'
 alias cdw='cd /Users/zhoushitie/Desktop/work'
 alias cdp='cd /Users/zhoushitie/Desktop/projects'
 alias cdnote='cd /Users/zhoushitie/vaults/personal'
+alias cdorg='cd /Users/zhoushitie/org'
 alias tma='tmux attach'
 alias tmk='tmux kill-session -t '
 alias ls="eza --icons=always"
@@ -224,3 +225,7 @@ fi
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"

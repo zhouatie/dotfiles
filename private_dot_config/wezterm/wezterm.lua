@@ -71,6 +71,7 @@ config.font = wezterm.font_with_fallback({
 })
 
 config.font_size = 17
+config.line_height = 1.1
 config.tab_max_width = 100
 config.hide_tab_bar_if_only_one_tab = true
 
