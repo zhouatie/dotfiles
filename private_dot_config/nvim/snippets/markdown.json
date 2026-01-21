@@ -1,0 +1,101 @@
+{
+    "Heading 1": {
+        "prefix": "h1",
+        "body": "# ${1:Heading}",
+        "desc": "一级标题"
+    },
+    "Heading 2": {
+        "prefix": "h2",
+        "body": "## ${1:Heading}",
+        "desc": "二级标题"
+    },
+    "Heading 3": {
+        "prefix": "h3",
+        "body": "### ${1:Heading}",
+        "desc": "三级标题"
+    },
+    "Bold": {
+        "prefix": "b",
+        "body": "**${1:text}**",
+        "desc": "粗体文本"
+    },
+    "Italic": {
+        "prefix": "i",
+        "body": "*${1:text}*",
+        "desc": "斜体文本"
+    },
+    "Link": {
+        "prefix": "link",
+        "body": "[${1:text}](${2:url})",
+        "desc": "链接"
+    },
+    "Code Inline": {
+        "prefix": "code",
+        "body": "`${1:code}`",
+        "desc": "行内代码"
+    },
+    "Code Block": {
+        "prefix": "codeblock",
+        "body": [
+            "```${1:language}",
+            "$2",
+            "```"
+        ],
+        "desc": "代码块"
+    },
+    "List Item": {
+        "prefix": "li",
+        "body": "- ${1:item}",
+        "desc": "列表项"
+    },
+    "Ordered List": {
+        "prefix": "ol",
+        "body": [
+            "1. ${1:item}",
+            "2. ${2:item}",
+            "3. ${3:item}"
+        ],
+        "desc": "有序列表"
+    },
+    "Quote": {
+        "prefix": "quote",
+        "body": "> ${1:quote}",
+        "desc": "引用块"
+    },
+    "Image": {
+        "prefix": "img",
+        "body": "![${1:alt}](${2:url})",
+        "desc": "图片"
+    },
+    "Horizontal Rule": {
+        "prefix": "hr",
+        "body": "---",
+        "desc": "水平线"
+    },
+    "Table": {
+        "prefix": "table",
+        "body": [
+            "| ${1:Header 1} | ${2:Header 2} |",
+            "|---|---|",
+            "| ${3:Cell} | ${4:Cell} |"
+        ],
+        "desc": "Markdown 表格"
+    },
+    "Strikethrough": {
+        "prefix": "strike",
+        "body": "~~${1:text}~~",
+        "desc": "删除线"
+    },
+    "Task List": {
+        "prefix": "task",
+        "body": [
+            "- [ ] ${1:task 1}"
+        ],
+        "desc": "任务列表"
+    },
+    "Work Hours": {
+        "prefix": "work",
+        "body": "[≈ ${1:time}]",
+        "desc": "工时记录"
+    }
+}

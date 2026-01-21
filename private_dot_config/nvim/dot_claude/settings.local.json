@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(tmux show-environment:*)",
+      "Bash(tmux show-options:*)",
+      "Bash(rm:*)",
+      "Bash(tmux list-keys:*)",
+      "Read(//Users/zhoushitie/Desktop/work/rn-fansgroup/**)",
+      "WebSearch",
+      "WebFetch(domain:www.lazyvim.org)",
+      "Bash(grep:*)",
+      "mcp__plugin_context7_context7__resolve-library-id"
+    ],
+    "deny": []
+  }
+}

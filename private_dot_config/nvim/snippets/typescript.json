@@ -1,0 +1,143 @@
+{
+    "Interface": {
+        "prefix": "tsintf",
+        "body": [
+            "interface ${1:InterfaceName} {",
+            "\t${2:property}: ${3:type};",
+            "\t$4",
+            "}"
+        ],
+        "desc": "TypeScript 接口定义"
+    },
+    "Type": {
+        "prefix": "tstype",
+        "body": [
+            "type ${1:TypeName} = {",
+            "\t${2:property}: ${3:type};",
+            "\t$4",
+            "};"
+        ],
+        "desc": "TypeScript 类型别名"
+    },
+    "Enum": {
+        "prefix": "tsenum",
+        "body": [
+            "enum ${1:EnumName} {",
+            "\t${2:OPTION1} = '${3:option1}',",
+            "\t${4:OPTION2} = '${5:option2}',",
+            "}"
+        ],
+        "desc": "TypeScript 枚举定义"
+    },
+    "Class": {
+        "prefix": "tsclass",
+        "body": [
+            "class ${1:ClassName} {",
+            "\tprivate ${2:property}: ${3:type};",
+            "",
+            "\tconstructor(${4:param}: ${5:type}) {",
+            "\t\tthis.${2:property} = ${4:param};",
+            "\t}",
+            "",
+            "\tpublic ${6:method}(): ${7:type} {",
+            "\t\t$8",
+            "\t}",
+            "}"
+        ],
+        "desc": "TypeScript 类定义"
+    },
+    "Generic Function": {
+        "prefix": "tsgenfn",
+        "body": [
+            "function ${1:functionName}<T>(${2:param}: T): T {",
+            "\t$3",
+            "}"
+        ],
+        "desc": "泛型函数"
+    },
+    "Generic Type": {
+        "prefix": "tsgent",
+        "body": [
+            "type ${1:TypeName}<T> = {",
+            "\tdata: T;",
+            "\t$2",
+            "};"
+        ],
+        "desc": "泛型类型别名"
+    },
+    "Async Function": {
+        "prefix": "tsasync",
+        "body": [
+            "async function ${1:functionName}(): Promise<${2:type}> {",
+            "\t$3",
+            "}"
+        ],
+        "desc": "异步函数"
+    },
+    "Try Catch": {
+        "prefix": "tstry",
+        "body": [
+            "try {",
+            "\t$1",
+            "} catch (error) {",
+            "\tconsole.error(error);",
+            "\t$2",
+            "}"
+        ],
+        "desc": "Try-Catch 块"
+    },
+    "Promise": {
+        "prefix": "tsprom",
+        "body": [
+            "new Promise<${1:type}>((resolve, reject) => {",
+            "\t$2",
+            "})"
+        ],
+        "desc": "Promise 包装"
+    },
+    "Arrow Function": {
+        "prefix": "tsarrow",
+        "body": "const ${1:functionName} = (${2:params}): ${3:type} => { $4 };",
+        "desc": "箭头函数"
+    },
+    "Object Destructure": {
+        "prefix": "tsdobj",
+        "body": "const { ${1:property1}, ${2:property2} } = ${3:object};",
+        "desc": "对象解构"
+    },
+    "Array Destructure": {
+        "prefix": "tsdarray",
+        "body": "const [${1:item1}, ${2:item2}] = ${3:array};",
+        "desc": "数组解构"
+    },
+    "Spread Operator": {
+        "prefix": "tsspread",
+        "body": "{ ...${1:object}, ${2:newProperty}: ${3:value} }",
+        "desc": "扩展运算符"
+    },
+    "Optional Property": {
+        "prefix": "tsopt",
+        "body": "${1:property}?: ${2:type};",
+        "desc": "?:可选属性"
+    },
+    "Null Coalescing": {
+        "prefix": "tsnc",
+        "body": "${1:value} ?? ${2:defaultValue}",
+        "desc": "??空值合并操作符"
+    },
+    "Optional Chaining": {
+        "prefix": "tsoc",
+        "body": "${1:object}?.${2:property}",
+        "desc": "?.可选链操作符"
+    },
+    "Union Type": {
+        "prefix": "tsunion",
+        "body": "type ${1:UnionName} = ${2:Type1} | ${3:Type2};",
+        "desc": "联合类型"
+    },
+    "Intersection Type": {
+        "prefix": "tsinter",
+        "body": "type ${1:IntersectionName} = ${2:Type1} & ${3:Type2};",
+        "desc": "交叉类型"
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "Org Overmind Task": {
+        "prefix": "orgtask",
+        "body": [
+            "** TODO $1",
+            "   DEADLINE: <2026-01-16 Fri>",
+            "   :PROPERTIES:",
+            "   :END:",
+            "*** LINK",
+            "",
+            "*** DEV",
+            "",
+            "*** TEST",
+            ""
+        ],
+        "desc": "org 任务模板"
+    },
+    "Org Overmind Sprint": {
+        "prefix": "orgsprint",
+        "body": [
+            "* Sprint $1",
+            "  :PROPERTIES:",
+            "  :END:",
+            "",
+            "** 抢单",
+            "  :PROPERTIES:",
+            "  :CATEGORY: Seckill",
+            "  :END:",
+            "",
+            "** 杂活",
+            ""
+        ],
+        "desc": "org 迭代模板"
+    }
+}

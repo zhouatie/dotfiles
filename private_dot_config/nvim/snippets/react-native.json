@@ -1,0 +1,164 @@
+{
+    "React Native Screen": {
+        "prefix": "rnscr",
+        "body": [
+            "import React, { FC } from 'react';",
+            "import { View, Text, StyleSheet } from 'react-native';",
+            "",
+            "interface ${1:ScreenName}Props {",
+            "\t$2",
+            "}",
+            "",
+            "const styles = StyleSheet.create({",
+            "\tcontainer: {",
+            "\t},",
+            "});",
+            "",
+            "const ${1:ScreenName}: FC<${1:ScreenName}Props> = (props) => {",
+            "\treturn (",
+            "\t\t<View style={styles.container}>",
+            "\t\t\t<Text>$3</Text>",
+            "\t\t</View>",
+            "\t);",
+            "};",
+            "",
+            "export default ${1:ScreenName};"
+        ],
+        "desc": "react native 页面组件模板"
+    },
+    "React Native View": {
+        "prefix": "rnv",
+        "body": [
+            "<View style={styles.${1:container}}>",
+            "\t$2",
+            "</View>"
+        ],
+        "desc": "react native View 组件"
+    },
+    "React Native Text": {
+        "prefix": "rnt",
+        "body": "<Text style={styles.${1:text}}>$2</Text>",
+        "desc": "react native text 组件"
+    },
+    "React Native TouchableOpacity": {
+        "prefix": "rntouch",
+        "body": [
+            "<TouchableOpacity",
+            "\tstyle={styles.${1:button}}",
+            "\tonPress={() => {",
+            "\t\t$2",
+            "\t}}",
+            ">",
+            "\t<Text>${3:Press me}</Text>",
+            "</TouchableOpacity>"
+        ],
+        "desc": "react native touch组件"
+    },
+    "React Native FlatList": {
+        "prefix": "rnlist",
+        "body": [
+            "<FlatList",
+            "\tdata={${1:data}}",
+            "\tkeyExtractor={(${2:item}) => ${2:item}.id}",
+            "\trenderItem={({ item }) => (",
+            "\t\t<View>",
+            "\t\t\t$3",
+            "\t\t</View>",
+            "\t)}",
+            "/>"
+        ],
+        "desc": "react native FlatList 列表组件"
+    },
+    "React Native ScrollView": {
+        "prefix": "rnscroll",
+        "body": [
+            "<ScrollView style={styles.${1:container}}>",
+            "\t$2",
+            "</ScrollView>"
+        ],
+        "desc": "React Native ScrollView 组件"
+    },
+    "React Native TextInput": {
+        "prefix": "rnin",
+        "body": [
+            "<TextInput",
+            "\tstyle={styles.${1:input}}",
+            "\tplaceholder=\"${2:Enter text}\"",
+            "\tvalue={${3:value}}}",
+            "\tonChangeText={(${4:text}) => {",
+            "\t\t$5",
+            "\t}}",
+            "/>"
+        ],
+        "desc": "React Native TextInput 输入框"
+    },
+    "React Native StyleSheet": {
+        "prefix": "rnstyle",
+        "body": [
+            "const styles = StyleSheet.create({",
+            "\t${1:container}: {",
+            "\t\tflex: 1,",
+            "\t\t$2",
+            "\t},",
+            "});"
+        ],
+        "desc": "React Native StyleSheet 样式定义"
+    },
+    "React Native useState Hook": {
+        "prefix": "rnst",
+        "body": "const [${1:state}, set${1/(.)/\\u$1/}] = useState<${2:any}>(${3:null});",
+        "desc": "React Native useState 钩子"
+    },
+    "React Native Image": {
+        "prefix": "rnimg",
+        "body": [
+            "<Image",
+            "\tsource={require('${1:./assets/image.png}')}",
+            "\tstyle={styles.${2:image}}",
+            "/>"
+        ],
+        "desc": "React Native Image 组件"
+    },
+    "React Native ActivityIndicator": {
+        "prefix": "rnload",
+        "body": [
+            "<ActivityIndicator",
+            "\tsize=\"${1:large}}\"",
+            "\tcolor=\"${2:#0000ff}}\"",
+            "\tanimating={${3:isLoading}}}",
+            "/>"
+        ],
+        "desc": "React Native 加载指示器"
+    },
+    "React Native Modal": {
+        "prefix": "rnmod",
+        "body": [
+            "<Modal",
+            "\tvisible={${1:isVisible}}}",
+            "\ttransparent={true}",
+            "\tonRequestClose={() => {",
+            "\t\t$2",
+            "\t}}",
+            ">",
+            "\t<View style={styles.${3:modalContainer}}>",
+            "\t\t<View style={styles.${4:modalContent}}>",
+            "\t\t\t$5",
+            "\t\t\t<TouchableOpacity onPress={() => $6}>",
+            "\t\t\t\t<Text>关闭</Text>",
+            "\t\t\t</TouchableOpacity>",
+            "\t\t</View>",
+            "\t</View>",
+            "</Modal>"
+        ],
+        "desc": "React Native Modal 模态框"
+    },
+    "React Native Navigation Push": {
+        "prefix": "rnnav",
+        "body": [
+            "navigation.navigate('${1:ScreenName}', {",
+            "\t${2:param}: ${3:value},",
+            "});"
+        ],
+        "desc": "React Navigation 导航到屏幕"
+    }
+}

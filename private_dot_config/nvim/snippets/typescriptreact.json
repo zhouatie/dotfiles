@@ -1,0 +1,92 @@
+{
+    "React FC Component": {
+        "prefix": "trfc",
+        "body": [
+            "import React, { FC } from 'react';",
+            "",
+            "interface ${1:Component}Props {",
+            "\t$2",
+            "}",
+            "",
+            "const ${1:Component}: FC<${1:Component}Props> = ({ $3 }) => {",
+            "\treturn (",
+            "\t\t<div>",
+            "\t\t\t$4",
+            "\t\t</div>",
+            "\t);",
+            "};",
+            "",
+            "export default ${1:Component};"
+        ],
+        "desc": "React 函数组件（带 TypeScript）"
+    },
+    "React FC Component Simple": {
+        "prefix": "trfcs",
+        "body": [
+            "import { FC } from 'react';",
+            "",
+            "interface ${1:Component}Props {",
+            "\t$2",
+            "}",
+            "",
+            "const ${1:Component}: FC<${1:Component}Props> = (props) => {",
+            "\treturn <div>$3</div>;",
+            "};",
+            "",
+            "export default ${1:Component};"
+        ],
+        "desc": "React 函数组件（简化版 - TypeScript）"
+    },
+    "React Component with Props": {
+        "prefix": "trcp",
+        "body": [
+            "interface ${1:Component}Props {",
+            "\t${2:prop1}?: ${3:string};",
+            "\t${4:prop2}?: ${5:number};",
+            "}",
+            "",
+            "const ${1:Component}: FC<${1:Component}Props> = ({ $6 }) => {",
+            "\treturn (",
+            "\t\t<div>",
+            "\t\t\t$7",
+            "\t\t</div>",
+            "\t);",
+            "};",
+            "",
+            "export default ${1:Component};"
+        ],
+        "desc": "React 组件（带 Props 接口 - TypeScript）"
+    },
+    "useState Hook TypeScript": {
+        "prefix": "trust",
+        "body": "const [${1:state}, set${1/(.)/\\u$1/}] = useState<${2:any}>(${3:null});",
+        "desc": "useState 钩子（带 TypeScript 类型）"
+    },
+    "useRef Hook TypeScript": {
+        "prefix": "trur",
+        "body": "const ${1:ref} = useRef<${2:any}>(${3:null});",
+        "desc": "useRef 钩子（带 TypeScript 类型）"
+    },
+    "Generic Component": {
+        "prefix": "trcg",
+        "body": [
+            "import { FC, PropsWithChildren } from 'react';",
+            "",
+            "interface ${1:Component}Props<T> {",
+            "\tdata: T;",
+            "\t$2",
+            "}",
+            "",
+            "const ${1:Component} = <T,>({ data, ...props }: PropsWithChildren<${1:Component}Props<T>>) => {",
+            "\treturn (",
+            "\t\t<div>",
+            "\t\t\t$3",
+            "\t\t</div>",
+            "\t);",
+            "};",
+            "",
+            "export default ${1:Component};"
+        ],
+        "desc": "泛型 React 组件（TypeScript）"
+    }
+}

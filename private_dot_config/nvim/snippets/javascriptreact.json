@@ -1,0 +1,129 @@
+{
+    "useEffect Hook": {
+        "prefix": "ruse",
+        "body": [
+            "useEffect(() => {",
+            "\t$1",
+            "}, [$2]);"
+        ],
+        "desc": "useEffect（带依赖数组）"
+    },
+    "useEffect Empty Deps": {
+        "prefix": "ruee",
+        "body": [
+            "useEffect(() => {",
+            "\t$1",
+            "}, []);"
+        ],
+        "desc": "useEffect（空依赖数组）"
+    },
+    "useState Hook": {
+        "prefix": "rust",
+        "body": "const [${1:state}, set${1/(.)/\\u$1/}] = useState(${2:null});",
+        "desc": "useState 钩子"
+    },
+    "useCallback Hook": {
+        "prefix": "rucb",
+        "body": [
+            "const ${1:callback} = useCallback(() => {",
+            "\t$2",
+            "}, [$3]);"
+        ],
+        "desc": "useCallback 钩子"
+    },
+    "useMemo Hook": {
+        "prefix": "rum",
+        "body": [
+            "const ${1:memoized} = useMemo(() => {",
+            "\t$2",
+            "}, [$3]);"
+        ],
+        "desc": "useMemo 钩子"
+    },
+    "useRef Hook": {
+        "prefix": "rur",
+        "body": "const ${1:ref} = useRef(${2:null});",
+        "desc": "useRef 钩子"
+    },
+    "useContext Hook": {
+        "prefix": "ructx",
+        "body": "const ${1:context} = useContext(${2:MyContext});",
+        "desc": "useContext 钩子"
+    },
+    "Custom Hook": {
+        "prefix": "rch",
+        "body": [
+            "import { useCallback, useState } from 'react';",
+            "",
+            "export const use${1:Hook} = () => {",
+            "\tconst [${2:state}, set${2/(.)/\\u$1/}] = useState(${3:null});",
+            "",
+            "\tconst ${4:handler} = useCallback(() => {",
+            "\t\t$5",
+            "\t}, []);",
+            "",
+            "\treturn { ${2:state}, ${4:handler} };",
+            "};"
+        ],
+        "desc": "自定义 React 钩子模板"
+    },
+    "Conditional Render": {
+        "prefix": "rcond",
+        "body": [
+            "{${1:condition} && (",
+            "\t<${2:Component} />",
+            ")}"
+        ],
+        "desc": "条件渲染"
+    },
+    "Ternary Render": {
+        "prefix": "rtern",
+        "body": [
+            "{${1:condition} ? (",
+            "\t<${2:ComponentA} />",
+            ") : (",
+            "\t<${3:ComponentB} />",
+            ")}"
+        ],
+        "desc": "三元运算符条件渲染"
+    },
+    "Array Map": {
+        "prefix": "rmap",
+        "body": [
+            "{${1:items}}.map((${2:item}, ${3:index}) => (",
+            "\t<${4:Component}",
+            "\t\tkey={${3:index}}",
+            "\t\t${5:prop}={${2:item}${6:.property}}",
+            "\t/>",
+            "))}"
+        ],
+        "desc": "数组 map 渲染"
+    },
+    "JSX Snippet": {
+        "prefix": "jsx",
+        "body": [
+            "<${1:div}>",
+            "\t$2",
+            "</${1:div}>"
+        ],
+        "desc": "JSX 元素"
+    },
+    "Self-closing JSX": {
+        "prefix": "jsxc",
+        "body": "<${1:Component} ${2:prop}=\"${3:value}\" />",
+        "desc": "自闭合 JSX 组件"
+    },
+    "Export Component": {
+        "prefix": "rexp",
+        "body": [
+            "export const ${1:Component} = () => {",
+            "\treturn (",
+            "\t\t<div>",
+            "\t\t\t$2",
+            "\t\t</div>",
+            "\t);",
+            "};"
+        ],
+        "desc": "直接导出 React 组件"
+    }
+}
