@@ -65,6 +65,7 @@ outer.right = 10
 # 'main' binding mode must be always presented
 [mode.main.binding]
 
+alt-shift-p = 'mode passthrough'
 # All possible keys:
 # - Letters.        a, b, c, ..., z
 # - Numbers.        0, 1, 2, ..., 9
@@ -174,6 +175,9 @@ alt-shift-l = ['join-with right', 'mode main']
 
 # [[on-window-closed]]
 # run = "balance-sizes"
+[mode.passthrough.binding]
+# 在这个模式下，只保留一个“退出模式”的快捷键
+alt-shift-p = 'mode main'
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'

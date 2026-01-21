@@ -85,7 +85,6 @@ export API_TIMEOUT_MS="30000"
 # export ANTHROPIC_BASE_URL=https://gaccode.com/claudecode
 #
 # 公司可用配置
-export ANTHROPIC_BASE_URL=https://aigc-api.fuxi.netease.com
 # export ANTHROPIC_MODEL="claude-haiku-4-5-20251001"
 
 # aihubmix 配置
