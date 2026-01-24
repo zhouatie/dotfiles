@@ -1,122 +1,118 @@
 local wezterm = require("wezterm")
-
 local config = wezterm.config_builder()
 
-config.show_tab_index_in_tab_bar = false
-config.show_new_tab_button_in_tab_bar = false
+-- ============================================================================
+-- 基础配置
+-- ============================================================================
+
+-- 字体配置
+config.font = wezterm.font_with_fallback({
+	{ family = "JetBrainsMono Nerd Font" },
+	{ family = "Noto Sans CJK SC" },
+})
+config.font_size = 17
+config.line_height = 1.1
+
+-- 窗口尺寸
+config.initial_rows = 40
+config.initial_cols = 120
+config.adjust_window_size_when_changing_font_size = false
+
+-- 默认工作目录
+config.default_cwd = "/Users/zhoushitie/Desktop/work/"
+config.window_close_confirmation = "NeverPrompt"
+
+-- ============================================================================
+-- 键位绑定
+-- ============================================================================
 
 config.leader = { key = "a", mods = "SUPER", timeout_millithirds = 1000 }
 config.keys = {
-	{
-		key = "-",
-		mods = "LEADER",
-		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
-	},
-	{
-		key = "_",
-		mods = "LEADER",
-		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
-	},
-	{
-		key = "j",
-		mods = "LEADER",
-		action = wezterm.action.ActivatePaneDirection("Down"),
-	},
-	{
-		key = "k",
-		mods = "LEADER",
-		action = wezterm.action.ActivatePaneDirection("Up"),
-	},
-	{
-		key = "h",
-		mods = "LEADER",
-		action = wezterm.action.ActivatePaneDirection("Left"),
-	},
-	{
-		key = "l",
-		mods = "LEADER",
-		action = wezterm.action.ActivatePaneDirection("Right"),
-	},
-	{
-		key = "x",
-		mods = "LEADER",
-		action = wezterm.action.CloseCurrentPane({ confirm = true }),
-	},
+	-- 分屏操作
+	{ key = "-", mods = "LEADER", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+	{ key = "_", mods = "LEADER", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
 
-	-- 放大/隐藏其他窗格 (类似 tmux prefix+z)
+	-- 窗格导航 (vim 风格)
+	{ key = "h", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Left") },
+	{ key = "j", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Down") },
+	{ key = "k", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Up") },
+	{ key = "l", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Right") },
+
+	-- 窗格管理
+	{ key = "x", mods = "LEADER", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
 	{ key = "z", mods = "LEADER", action = wezterm.action.TogglePaneZoomState },
-	{
-		key = "w",
-		mods = "CMD",
-		action = wezterm.action.CloseCurrentTab({ confirm = true }),
-	},
-	-- {
-	-- 	key = "0",
-	-- 	mods = "CMD",
-	-- 	action = wezterm.action.ResizeWindow({ width = 120, height = 40 }),
-	-- },
-	-- {
-	-- 	key = "Enter",
-	-- 	mods = "ALT",
-	-- 	action = wezterm.action.Nop,
-	-- },
+
+	-- 标签管理
+	{ key = "w", mods = "CMD", action = wezterm.action.CloseCurrentTab({ confirm = true }) },
 }
 
-config.font = wezterm.font_with_fallback({
-	-- "JetBrainsMono Nerd Font",
-	-- "MesloLGS Nerd Font Mono",
-	-- "Monaspace Neon",
-	-- "Cascadia Code",
-	"MesloLGS Nerd Font Mono",
-})
+-- ============================================================================
+-- 外观主题
+-- ============================================================================
 
-config.font_size = 17
-config.line_height = 1.1
-config.tab_max_width = 100
-config.hide_tab_bar_if_only_one_tab = true
+-- 颜色主题
+config.color_scheme = "Catppuccin Mocha"
 
-config.initial_rows = 40
-config.initial_cols = 120
+-- 光标配置
+config.default_cursor_style = "SteadyBlock"
+config.cursor_blink_ease_out = "Constant"
+config.cursor_blink_ease_in = "Constant"
+config.cursor_blink_rate = 0
 
--- Set the default directory for new tabs
--- You can change the path to your desired directory
-config.default_cwd = "/Users/zhoushitie/Desktop/work/"
+-- 性能
+config.max_fps = 120
 
-config.enable_tab_bar = true
-
-config.window_decorations = "RESIZE"
--- config.window_background_opacity = 0.8
--- config.macos_window_background_blur = 20
-
--- config.window_background_image = "/Users/zhoushitie/.config/wezterm-bg.jpeg"
+-- 背景配置
 config.window_background_image_hsb = {
 	brightness = 0.06,
 }
 
-local tab_bar_bg = "rgba(0, 0, 0, 0)" -- 这里修改整栏的背景颜色
+-- 非活动窗格外观
+config.inactive_pane_hsb = {
+	saturation = 1,
+	brightness = 0.6,
+}
 
+-- ============================================================================
+-- 窗口装饰
+-- ============================================================================
+
+local border_color = "#F0F8FF"
+local tab_bar_bg = "rgba(0, 0, 0, 0)"
+
+config.window_decorations = "RESIZE"
 config.window_frame = {
 	active_titlebar_bg = tab_bar_bg,
 	inactive_titlebar_bg = tab_bar_bg,
+	border_left_width = "0.25cell",
+	border_right_width = "0.25cell",
+	border_bottom_height = "0.125cell",
+	border_top_height = "0.125cell",
+	border_left_color = border_color,
+	border_right_color = border_color,
+	border_bottom_color = border_color,
+	border_top_color = border_color,
 }
 
 config.colors = {
+	split = border_color,
 	tab_bar = {
 		background = tab_bar_bg,
 	},
 }
 
-config.max_fps = 120
--- config.confirm_close_tab = false
--- config.window_close_confirmation = false
-config.default_cursor_style = "SteadyBlock"
-config.cursor_blink_ease_out = "Constant"
-config.cursor_blink_ease_in = "Constant"
-config.cursor_blink_rate = 0
--- 抹茶主题
-config.color_scheme = "Catppuccin Mocha"
-config.use_fancy_tab_bar = false
+-- ============================================================================
+-- 标签栏配置
+-- ============================================================================
 
+config.enable_tab_bar = true
+config.use_fancy_tab_bar = false
+config.hide_tab_bar_if_only_one_tab = true
+config.show_tab_index_in_tab_bar = false
+config.show_new_tab_button_in_tab_bar = false
+config.tab_max_width = 100
+
+-- 自定义标签标题格式
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
 	local background = "#1b1032"
 	local foreground = "#808080"

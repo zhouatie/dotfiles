@@ -21,8 +21,8 @@
                             {
                                 "from": { "key_code": "escape" },
                                 "to": [
-                                    { "key_code": "escape" },
-                                    { "select_input_source": { "language": "en" } }
+                                    { "select_input_source": { "language": "en" } },
+                                    { "key_code": "escape" }
                                 ],
                                 "type": "basic"
                             }
