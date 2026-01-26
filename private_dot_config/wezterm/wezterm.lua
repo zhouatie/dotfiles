@@ -62,11 +62,18 @@ config.cursor_blink_rate = 0
 -- 性能
 config.max_fps = 120
 
+-- 移除窗口内边距（去掉底部空行）
+config.window_padding = {
+	-- left = 0,
+	-- right = 0,
+	-- top = 0,
+	bottom = 0,
+}
+
 -- 背景配置
 config.window_background_image_hsb = {
 	brightness = 0.06,
 }
-
 -- 非活动窗格外观
 config.inactive_pane_hsb = {
 	saturation = 1,
