@@ -15,6 +15,27 @@ dot_codex/
 **/dot_claude/
 **/dot_codex/
 
+# Raven/Git-AI monitor state and hooks captured by chezmoi naming
+dot_git-ai/
+dot_raven/
+dot_raven-monitor-home/
+dot_raven-privacy-trash/
+dot_github/hooks/
+dot_cursor/hooks.json
+private_dot_config/opencode/plugins/git-ai.ts
+
+# Local-only shell/git overlays captured by chezmoi naming
+dot_zshrc.local
+dot_zshrc.local.pre
+dot_zshrc.local.*
+dot_gitconfig.local
+private_dot_config/git/config.local
+
+# Local-only Neovim AI/provider config
+private_dot_config/nvim/lua/codemaker.lua
+private_dot_config/nvim/lua/plugins/minuet/codemaker.lua
+private_dot_config/nvim/lua/plugins/local/
+
 # Generated plugin/vendor directories captured by chezmoi
 private_dot_config/private_tmux/plugins/
 private_dot_config/tmux/plugins/

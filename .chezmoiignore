@@ -17,6 +17,31 @@ node_modules/**
 .config/**/.claude/**
 .config/**/.codex/
 .config/**/.codex/**
+.git-ai/
+.git-ai/**
+.raven/
+.raven/**
+.raven-monitor-home/
+.raven-monitor-home/**
+.raven-privacy-trash/
+.raven-privacy-trash/**
+.github/hooks/
+.github/hooks/**
+.cursor/hooks.json
+.config/opencode/plugins/git-ai.ts
+
+# Local-only shell/git overlays
+.zshrc.local
+.zshrc.local.pre
+.zshrc.local.*
+.gitconfig.local
+.config/git/config.local
+
+# Local-only Neovim AI/provider config
+.config/nvim/lua/codemaker.lua
+.config/nvim/lua/plugins/minuet/codemaker.lua
+.config/nvim/lua/plugins/local/
+.config/nvim/lua/plugins/local/**
 
 # Generated plugin/vendor directories
 .config/tmux/plugins/

@@ -1,4 +1,6 @@
 # ----- Prompt & Completion ----------------------------------------------------
+[[ -f ~/.zshrc.local.pre ]] && source ~/.zshrc.local.pre
+
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -82,14 +84,6 @@ export GOOGLE_CLOUD_PROJECT="atie-457613"
 # export PORT="3456"
 # export LOG="true"
 export API_TIMEOUT_MS="30000"
-# export ANTHROPIC_BASE_URL=https://gaccode.com/claudecode
-#
-# 公司可用配置
-# export ANTHROPIC_MODEL="claude-haiku-4-5-20251001"
-
-# aihubmix 配置
-# export ANTHROPIC_BASE_URL=https://aihubmix.com
-# export ANTHROPIC_MODEL="gemini-3-flash-preview"
 
 [[ -f ~/.api_keys ]] && source ~/.api_keys
 
@@ -97,7 +91,6 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 # ----- Aliases ----------------------------------------------------------------
 alias v='nvim'
-alias cc='ccr code'
 alias cdd='cd /Users/zhoushitie/Desktop'
 alias cdw='cd /Users/zhoushitie/Desktop/work'
 alias cdp='cd /Users/zhoushitie/Desktop/projects'
@@ -228,3 +221,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 . "$HOME/.atuin/bin/env"
 
 eval "$(atuin init zsh)"
+
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local

@@ -14,17 +14,14 @@
 [merge]
 	conflictStyle = zdiff3
 
-[user]
-    name = zhoushitie 
-    email = zhoushitie@corp.netease.com
-
 [includeIf "hasconfig:remote.*.url:https://github.com/**"]
     path = ~/.config/git/config.github
 
 [includeIf "hasconfig:remote.*.url:git@github.com:*/**"]
     path = ~/.config/git/config.github
 
-[http]
-    proxy = 127.0.0.1:7890
 [diff "xlsx"]
 	textconv = xlsx2csv
+
+[include]
+    path = ~/.config/git/config.local
