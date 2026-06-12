@@ -16,8 +16,12 @@ fi
 
 plugins=(git zsh-autosuggestions)
 
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+p10k_theme="$HOME/powerlevel10k/powerlevel10k.zsh-theme"
+if [[ -r "$p10k_theme" ]]; then
+  source "$p10k_theme"
+  [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+fi
+unset p10k_theme
 
 # ----- Path Helpers -----------------------------------------------------------
 path_prepend() {
@@ -218,8 +222,12 @@ fi
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-. "$HOME/.atuin/bin/env"
+if [[ -r "$HOME/.atuin/bin/env" ]]; then
+  . "$HOME/.atuin/bin/env"
+fi
 
-eval "$(atuin init zsh)"
+if command -v atuin >/dev/null 2>&1; then
+  eval "$(atuin init zsh)"
+fi
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
