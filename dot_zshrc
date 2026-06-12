@@ -1,12 +1,6 @@
 # ----- Prompt & Completion ----------------------------------------------------
 [[ -f ~/.zshrc.local.pre ]] && source ~/.zshrc.local.pre
 
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 autoload -Uz compinit
 if [[ -f ${ZDOTDIR:-$HOME}/.zcompdump ]]; then
   compinit -C
@@ -16,12 +10,9 @@ fi
 
 plugins=(git zsh-autosuggestions)
 
-p10k_theme="$HOME/powerlevel10k/powerlevel10k.zsh-theme"
-if [[ -r "$p10k_theme" ]]; then
-  source "$p10k_theme"
-  [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
 fi
-unset p10k_theme
 
 # ----- Path Helpers -----------------------------------------------------------
 path_prepend() {
