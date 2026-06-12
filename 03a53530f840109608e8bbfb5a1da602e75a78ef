@@ -1,0 +1,76 @@
+.chezmoiignore
+  8857a1b37df1bd7b 20-44
+private_dot_config/nvim/lua/plugins/minuet.lua
+  8857a1b37df1bd7b 2-3
+dot_gitconfig
+  8857a1b37df1bd7b 25-27
+README.md
+  8857a1b37df1bd7b 1,3,5,7,9,11-15,17,19-22,24,26,28-33,35,37,39,41,43-115
+.gitignore
+  8857a1b37df1bd7b 18-38
+private_dot_config/git/config
+  8857a1b37df1bd7b 25-27
+dot_zshrc
+  8857a1b37df1bd7b 2-3,223-225
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8-ntes.8",
+  "base_commit_sha": "03a53530f840109608e8bbfb5a1da602e75a78ef",
+  "prompts": {
+    "8857a1b37df1bd7b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019eb9d3-90c1-7663-b85b-83af1ad9f7ed",
+        "model": "gpt-5.5"
+      },
+      "human_author": "zhouatie",
+      "messages": [],
+      "total_additions": 159,
+      "total_deletions": 435,
+      "accepted_lines": 159,
+      "overriden_lines": 0,
+      "per_file_stats": {
+        ".gitignore": {
+          "additions": 21,
+          "accepted_lines": 21
+        },
+        "private_dot_config/nvim/lua/plugins/minuet.lua": {
+          "additions": 2,
+          "deletions": 87,
+          "accepted_lines": 2
+        },
+        "dot_gitconfig": {
+          "additions": 3,
+          "deletions": 6,
+          "accepted_lines": 3
+        },
+        "dot_zshrc": {
+          "additions": 5,
+          "deletions": 10,
+          "accepted_lines": 5
+        },
+        "private_dot_config/git/config": {
+          "additions": 3,
+          "deletions": 6,
+          "accepted_lines": 3
+        },
+        "private_dot_config/nvim/lua/codemaker.lua": {
+          "deletions": 234
+        },
+        "private_dot_config/nvim/lua/plugins/minuet/codemaker.lua": {
+          "deletions": 76
+        },
+        ".chezmoiignore": {
+          "additions": 25,
+          "accepted_lines": 25
+        },
+        "README.md": {
+          "additions": 100,
+          "deletions": 16,
+          "accepted_lines": 100
+        }
+      }
+    }
+  }
+}
