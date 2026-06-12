@@ -6,8 +6,8 @@ return {
   --   config = function()
   --     require("dooing").setup({
   --       -- your custom config here (optional)
-  --       save_path = "/Users/zhoushitie/vaults/personal/.todos.json",
-  --       -- save_path = "/Users/zhoushitie/.config/nvim/todos.json",
+  --       save_path = "~/vaults/personal/.todos.json",
+  --       -- save_path = "~/.config/nvim/todos.json",
   --
   --       -- Timestamp settings
   --       timestamp = {

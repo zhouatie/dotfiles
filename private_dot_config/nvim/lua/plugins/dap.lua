@@ -152,7 +152,7 @@ return {
           sourceMaps = true,
           -- userDataDir = false,
           userDataDir = function()
-            return "/Users/zhoushitie/Desktop/work/.chrome-debug-userData"
+            return vim.fn.expand("~/Desktop/work/.chrome-debug-userData")
           end,
           runtimeExecutable = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
           -- runtimeArgs = { "--incognito" }, -- 启动无痕模式

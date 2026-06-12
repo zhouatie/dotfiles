@@ -22,6 +22,8 @@ dot_raven-monitor-home/
 dot_raven-privacy-trash/
 dot_github/hooks/
 dot_cursor/hooks.json
+private_dot_config/opencode/opencode.json
+private_dot_config/opencode/opencode.jsonc
 private_dot_config/opencode/plugins/git-ai.ts
 
 # Local-only shell/git overlays captured by chezmoi naming

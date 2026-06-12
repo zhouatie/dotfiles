@@ -1,5 +1,6 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
+local home = wezterm.home_dir
 
 -- ============================================================================
 -- 基础配置
@@ -19,7 +20,7 @@ config.initial_cols = 120
 config.adjust_window_size_when_changing_font_size = false
 
 -- 默认工作目录
-config.default_cwd = "/Users/zhoushitie/Desktop/work/"
+config.default_cwd = home .. "/Desktop/work/"
 config.window_close_confirmation = "NeverPrompt"
 
 -- ============================================================================

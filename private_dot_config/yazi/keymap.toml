@@ -68,7 +68,7 @@ run = ["plugin system-clipboard"]
 #     { on = [
 #         "g",
 #         "w",
-#     ], run = "cd /Users/zhoushitie/Desktop/work", desc = "Go work" },
+#     ], run = "cd ~/Desktop/work", desc = "Go work" },
 #     { on = [
 #         "g",
 #         "n",
@@ -77,12 +77,12 @@ run = ["plugin system-clipboard"]
 
 [[mgr.prepend_keymap]]
 on = ["g", "w"]
-run = "cd /Users/zhoushitie/Desktop/work/"
+run = "cd ~/Desktop/work/"
 desc = "go work"
 
 [[mgr.prepend_keymap]]
 on = ["g", "n"]
-run = "cd /Users/zhoushitie/vaults/personal/"
+run = "cd ~/vaults/personal/"
 desc = "go note"
 
 [[mgr.prepend_keymap]]

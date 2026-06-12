@@ -39,8 +39,8 @@ path_append() {
 }
 
 # ----- Core Environment -------------------------------------------------------
-export WORK=/Users/zhoushitie/Desktop/work
-export DESKTOP=/Users/zhoushitie/Desktop
+export WORK="$HOME/Desktop/work"
+export DESKTOP="$HOME/Desktop"
 export EDITOR="nvim"
 
 export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
@@ -64,11 +64,11 @@ path_append "$JAVA_HOME/bin"
 
 path_prepend "/usr/local/mysql/bin"
 path_append "$HOME/.cargo/bin"
-path_append "/Users/zhoushitie/.local/bin"
+path_append "$HOME/.local/bin"
 path_append "$HOME/.npm-global/bin"
 path_prepend "/Applications/WezTerm.app/Contents/MacOS"
 
-export PNPM_HOME="/Users/zhoushitie/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) PATH="$PNPM_HOME:$PATH" ;;
@@ -91,11 +91,11 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 # ----- Aliases ----------------------------------------------------------------
 alias v='nvim'
-alias cdd='cd /Users/zhoushitie/Desktop'
-alias cdw='cd /Users/zhoushitie/Desktop/work'
-alias cdp='cd /Users/zhoushitie/Desktop/projects'
-alias cdnote='cd /Users/zhoushitie/vaults/personal'
-alias cdorg='cd /Users/zhoushitie/org'
+alias cdd='cd "$HOME/Desktop"'
+alias cdw='cd "$HOME/Desktop/work"'
+alias cdp='cd "$HOME/Desktop/projects"'
+alias cdnote='cd "$HOME/vaults/personal"'
+alias cdorg='cd "$HOME/org"'
 alias tma='tmux attach'
 alias tmk='tmux kill-session -t '
 alias ls="eza --icons=always"
@@ -212,7 +212,7 @@ if [[ -r /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 # bun completions
-[ -s "/Users/zhoushitie/.bun/_bun" ] && source "/Users/zhoushitie/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
