@@ -20,8 +20,14 @@
 [includeIf "hasconfig:remote.*.url:git@github.com:*/**"]
     path = ~/.config/git/config.github
 
+[includeIf "hasconfig:remote.*.url:ssh://git@g.hz.netease.com:22222/**"]
+    path = ~/.config/git/config.netease.local
+
+[includeIf "hasconfig:remote.*.url:git@g.hz.netease.com:*/**"]
+    path = ~/.config/git/config.netease.local
+
+[includeIf "hasconfig:remote.*.url:https://g.hz.netease.com/**"]
+    path = ~/.config/git/config.netease.local
+
 [diff "xlsx"]
 	textconv = xlsx2csv
-
-[include]
-    path = ~/.config/git/config.local

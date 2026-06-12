@@ -2,7 +2,7 @@
 
 这是个人 dotfiles 仓库，使用 `chezmoi` 管理跨机器通用配置。
 
-仓库只应该保存可公开同步的个人通用配置。机器私有配置、公司环境配置、AI 工具 token/hook/监控相关配置必须放在本机 local 文件中，不提交到远程。
+仓库只应该保存可公开同步的个人通用配置。机器私有配置、公司环境配置、AI 工具 token/hook/监控相关配置必须放在本机 local 文件中，不提交到远程；Git 身份按 remote 条件加载，不设置 local 兜底身份。
 
 ## 管理范围
 
@@ -29,7 +29,7 @@
 
 - `~/.zshrc.local.pre`
 - `~/.zshrc.local`
-- `~/.config/git/config.local`
+- `~/.config/git/config.netease.local`
 - 所有 `*.local`、`*.local.*`
 - `~/.config/opencode/**`
 - `~/.config/nvim/lua/plugins/local/**`
@@ -40,7 +40,7 @@
 
 `~/.zshrc.local` 用于本机命令、代理函数、公司工具 alias、CodeMaker/Claude/Raven/Git-AI 相关命令等。
 
-`~/.config/git/config.local` 用于 Git 身份、公司邮箱、credential、lfs、proxy 等本机配置。不要把 `trace2.*`、`notes.*`、Git-AI socket 或 Raven/Git-AI hook 写回通用配置。
+`~/.config/git/config.netease.local` 只在 Git remote 命中公司仓库时加载，用于公司 Git 身份、credential、lfs、proxy 等本机配置。GitHub remote 使用 `~/.config/git/config.github` 中的个人身份；不要配置无条件 local 兜底身份。不要把 `trace2.*`、`notes.*`、Git-AI socket 或 Raven/Git-AI hook 写回通用配置。
 
 所有以 `.local` 或 `.local.*` 结尾的文件默认视为本机覆盖文件，不进入 chezmoi。例如 `~/.config/tmux/tmux.conf.local` 应只保留在宿主。
 
@@ -91,13 +91,13 @@ brew install chezmoi
 touch ~/.zshrc.local.pre
 touch ~/.zshrc.local
 mkdir -p ~/.config/git
-touch ~/.config/git/config.local
+touch ~/.config/git/config.netease.local
 mkdir -p ~/.config/nvim/lua/plugins/local
 ```
 
 `~/.gitconfig` 由 chezmoi 管理为相对软链，指向 `.config/git/config`。新设备执行 `chezmoi apply` 后不需要手动创建这个软链。
 
-如果某台设备需要公司邮箱、credential、proxy、AI provider、MCP server、Raven/Git-AI/CodeMaker 等配置，只写入 local 文件或工具自己的本机配置，不写入本仓库。
+如果某台设备需要公司邮箱、credential、proxy、AI provider、MCP server、Raven/Git-AI/CodeMaker 等配置，只写入按条件加载的 local 文件或工具自己的本机配置，不写入本仓库。Git 身份不要放在无条件加载的 local 兜底里。
 
 ## 修改规则
 
