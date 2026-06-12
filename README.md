@@ -18,6 +18,8 @@
 
 - `.git`、`node_modules`、`.vscode`
 - tmux/Neovim/opencode 等插件或依赖产物
+- legacy tmux 路径：`~/.tmux`、`~/.tmux.conf`、`~/.config/.tmux.conf`
+- OpenCode 本机目录：`~/.config/opencode/**`
 - Claude/Codex/OpenCode/Cursor/Raven/Git-AI 的会话、hooks、日志、监控状态
 - 本机私有 shell/git/AI provider 配置
 
@@ -28,8 +30,8 @@
 - `~/.zshrc.local.pre`
 - `~/.zshrc.local`
 - `~/.config/git/config.local`
-- `~/.config/opencode/opencode.json`
-- `~/.config/opencode/opencode.jsonc`
+- 所有 `*.local`、`*.local.*`
+- `~/.config/opencode/**`
 - `~/.config/nvim/lua/plugins/local/**`
 - `~/.config/nvim/lua/codemaker.lua`
 - `~/.config/nvim/lua/plugins/minuet/codemaker.lua`
@@ -40,13 +42,15 @@
 
 `~/.config/git/config.local` 用于 Git 身份、公司邮箱、credential、lfs、proxy 等本机配置。不要把 `trace2.*`、`notes.*`、Git-AI socket 或 Raven/Git-AI hook 写回通用配置。
 
+所有以 `.local` 或 `.local.*` 结尾的文件默认视为本机覆盖文件，不进入 chezmoi。例如 `~/.config/tmux/tmux.conf.local` 应只保留在宿主。
+
 Neovim 的 AI provider、公司 endpoint、token 获取逻辑应放到 ignored local plugin 中，例如：
 
 ```text
 ~/.config/nvim/lua/plugins/local/minuet.lua
 ```
 
-OpenCode 的 provider、API key、本机 MCP 命令路径应放在 `~/.config/opencode/opencode.json` 或 `opencode.jsonc`，不进入 chezmoi。插件安装产生的 `~/.config/opencode/plugins/git-ai.ts` 也不进入 chezmoi。
+OpenCode 的 provider、API key、本机 MCP 命令路径、插件依赖和运行缓存都放在 `~/.config/opencode/**`，不进入 chezmoi。
 
 ## 隐私边界
 
@@ -60,9 +64,7 @@ OpenCode 的 provider、API key、本机 MCP 命令路径应放在 `~/.config/op
 - `~/.raven-privacy-trash/**`
 - `~/.github/hooks/**`
 - `~/.cursor/hooks.json`
-- `~/.config/opencode/opencode.json`
-- `~/.config/opencode/opencode.jsonc`
-- `~/.config/opencode/plugins/git-ai.ts`
+- `~/.config/opencode/**`
 - 包含 `ANTHROPIC_*`、`OPENAI_*`、`CODEMAKER_*`、access token、auth key、公司 endpoint 的文件
 
 如果误提交过 token/auth key，删除当前文件不等于清除 Git 历史，需要轮换密钥，并视情况重写远程历史。
