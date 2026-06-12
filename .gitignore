@@ -4,5 +4,18 @@ yarn/
 github-copilot/
 .git/
 dot_git/
+**/dot_git/
 node_modules/
+**/node_modules/
 dot_vscode/
+
+# Local AI tool configs captured by chezmoi naming
+dot_claude/
+dot_codex/
+**/dot_claude/
+**/dot_codex/
+
+# Generated plugin/vendor directories captured by chezmoi
+private_dot_config/private_tmux/plugins/
+private_dot_config/tmux/plugins/
+dot_tmux/plugins/

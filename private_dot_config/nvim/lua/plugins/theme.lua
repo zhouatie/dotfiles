@@ -15,6 +15,11 @@ return {
     opts = {
       flavour = "mocha", -- latte, frappe, macchiato, mocha
       transparent_background = true,
+      show_end_of_buffer = true,
+      float = {
+        transparent = true, -- enable transparent floating windows
+        solid = true, -- use solid styling for floating windows, see |winborder|
+      },
     },
     config = function(_, opts)
       require("catppuccin").setup(opts)

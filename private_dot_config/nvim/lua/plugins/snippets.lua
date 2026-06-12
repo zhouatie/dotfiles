@@ -45,32 +45,32 @@ local lang_patterns = {
 }
 
 return {
-  {
-    "nvim-mini/mini.snippets",
-    opts = {
-      snippets = {
-        -- 全局 snippets（所有文件类型都加载）
-        gen_loader.from_file(vim.fn.stdpath("config") .. "/snippets/global.json"),
-
-        -- 根据文件类型加载对应的配置文件组合
-        gen_loader.from_lang({
-          lang_patterns = lang_patterns,
-        }),
-      },
-
-      mappings = {
-        expand = "<C-j>",
-        jump_next = "<C-l>",
-        jump_prev = "<C-h>",
-        stop = "<Esc>",
-      },
-
-      expand = {
-        prepare = nil,
-        match = nil,
-        select = nil,
-        insert = nil,
-      },
-    },
-  },
+  -- {
+  --   "nvim-mini/mini.snippets",
+  --   opts = {
+  --     snippets = {
+  --       -- 全局 snippets（所有文件类型都加载）
+  --       gen_loader.from_file(vim.fn.stdpath("config") .. "/snippets/global.json"),
+  --
+  --       -- 根据文件类型加载对应的配置文件组合
+  --       gen_loader.from_lang({
+  --         lang_patterns = lang_patterns,
+  --       }),
+  --     },
+  --
+  --     mappings = {
+  --       expand = "<C-j>",
+  --       jump_next = "<C-l>",
+  --       jump_prev = "<C-h>",
+  --       stop = "<Esc>",
+  --     },
+  --
+  --     expand = {
+  --       prepare = nil,
+  --       match = nil,
+  --       select = nil,
+  --       insert = nil,
+  --     },
+  --   },
+  -- },
 }

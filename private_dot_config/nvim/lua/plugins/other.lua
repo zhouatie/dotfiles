@@ -125,20 +125,20 @@ return {
     end,
   },
   -- gb 打开当前所有标签页
-  {
-    "leath-dub/snipe.nvim",
-    event = "VeryLazy",
-    keys = {
-      {
-        "gb",
-        function()
-          require("snipe").open_buffer_menu()
-        end,
-        desc = "Open Snipe buffer menu",
-      },
-    },
-    opts = {},
-  },
+  -- {
+  --   "leath-dub/snipe.nvim",
+  --   event = "VeryLazy",
+  --   keys = {
+  --     {
+  --       "gb",
+  --       function()
+  --         require("snipe").open_buffer_menu()
+  --       end,
+  --       desc = "Open Snipe buffer menu",
+  --     },
+  --   },
+  --   opts = {},
+  -- },
   {
     "MeanderingProgrammer/render-markdown.nvim",
     cmd = { "RenderMarkdown" },

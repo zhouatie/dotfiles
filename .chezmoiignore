@@ -1,1 +1,25 @@
 .git/
+**/.git/
+**/.git/**
+node_modules/
+node_modules/**
+**/node_modules/
+**/node_modules/**
+**/.vscode/
+**/.vscode/**
+
+# Local AI tool configs
+.claude/
+.claude/**
+.codex/
+.codex/**
+.config/**/.claude/
+.config/**/.claude/**
+.config/**/.codex/
+.config/**/.codex/**
+
+# Generated plugin/vendor directories
+.config/tmux/plugins/
+.config/tmux/plugins/**
+.tmux/plugins/
+.tmux/plugins/**
