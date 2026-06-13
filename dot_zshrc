@@ -213,6 +213,12 @@ fi
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# ----- Ruby -------------------------------------------------------------------
+export RBENV_ROOT="$HOME/.rbenv"
+if command -v rbenv >/dev/null 2>&1; then
+  eval "$(rbenv init - zsh)"
+fi
+
 if [[ -r "$HOME/.atuin/bin/env" ]]; then
   . "$HOME/.atuin/bin/env"
 fi
