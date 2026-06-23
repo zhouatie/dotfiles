@@ -228,3 +228,12 @@ if command -v atuin >/dev/null 2>&1; then
 fi
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+# OpenSpec init with Chinese spec config
+specinit() {
+  local target="${1:-.}"
+
+  openspec init "$target"
+  mkdir -p "$target/openspec"
+  cp "$HOME/.config/openspec/config.yaml" "$target/openspec/config.yaml"
+}
