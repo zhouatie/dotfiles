@@ -12,6 +12,7 @@
 - Git 通用配置：`~/.gitconfig`、`~/.config/git/config`、`~/.config/git/ignore`
 - Neovim 通用配置：`~/.config/nvim`
 - 终端与工具配置：WezTerm、tmux、Yazi、AeroSpace、Karabiner 等
+- Pi 通用配置：模型/UI 偏好、包清单、自定义主题、通用扩展与通用 skills
 - 部分静态文件：`proxy.pac`、`tvbox.json`
 
 不管理：
@@ -21,6 +22,8 @@
 - legacy tmux 路径：`~/.tmux`、`~/.tmux.conf`、`~/.config/.tmux.conf`
 - OpenCode 本机目录：`~/.config/opencode/**`
 - Claude/Codex/OpenCode/Cursor/Raven/Git-AI 的会话、hooks、日志、监控状态
+- Pi 的 auth、provider 私密配置、项目 trust、session/history、memory、日志、缓存和数据库
+- Pi 自动生成的 `npm/`、`git/` 包安装目录，以及公司环境专用 skill selectors
 - 本机私有 shell/git/AI provider 配置
 
 ## Local 配置
@@ -29,6 +32,7 @@
 
 - `~/.zshrc.local.pre`
 - `~/.zshrc.local`
+- `~/.config/chezmoi/chezmoi.toml` 中的机器专用 data
 - `~/.config/git/config.netease.local`
 - 所有 `*.local`、`*.local.*`
 - `~/.config/opencode/**`
@@ -52,6 +56,8 @@ Neovim 的 AI provider、公司 endpoint、token 获取逻辑应放到 ignored l
 
 OpenCode 的 provider、API key、本机 MCP 命令路径、插件依赖和运行缓存都放在 `~/.config/opencode/**`，不进入 chezmoi。
 
+Pi 只同步 `~/.pi/agent/settings.json` 中不含密钥的通用偏好和包清单，以及通用扩展、skills、主题和相关测试。`settings.json` 通过 chezmoi 模板把 HOME 路径渲染为当前机器的目录。跨机器默认使用安全策略 `defaultProjectTrust: "ask"` 和 `yoloMode: false`；当前机器如需覆盖，只写入本机 `~/.config/chezmoi/chezmoi.toml` 的 `[data]`，不提交远程。`auth.json`、`models.json`、`trust.json`、会话、memory、日志、数据库和自动安装的包目录始终留在本机；公司环境专用的 skill selectors 也不进入远程。
+
 ## 隐私边界
 
 不要提交以下内容：
@@ -65,6 +71,10 @@ OpenCode 的 provider、API key、本机 MCP 命令路径、插件依赖和运�
 - `~/.github/hooks/**`
 - `~/.cursor/hooks.json`
 - `~/.config/opencode/**`
+- `~/.config/chezmoi/chezmoi.toml`
+- `~/.pi/agent/auth.json`、`~/.pi/agent/models.json`、`~/.pi/agent/trust.json`
+- `~/.pi/agent/{sessions,npm,git,tmp,pi-hermes-memory,projects-memory}/**`
+- `~/.pi/agent/extensions/**/logs/**`
 - 包含 `ANTHROPIC_*`、`OPENAI_*`、`CODEMAKER_*`、access token、auth key、公司 endpoint 的文件
 
 如果误提交过 token/auth key，删除当前文件不等于清除 Git 历史，需要轮换密钥，并视情况重写远程历史。
@@ -97,6 +107,8 @@ mkdir -p ~/.config/nvim/lua/plugins/local
 
 `~/.gitconfig` 由 chezmoi 管理为相对软链，指向 `.config/git/config`。新设备执行 `chezmoi apply` 后不需要手动创建这个软链。
 
+Pi 会根据同步后的 `~/.pi/agent/settings.json` 自动安装缺失 packages，因此不需要同步 `~/.pi/agent/npm`。同步的通用 skill selector 依赖新设备已在 `~/.agents/skills` 安装对应 skill；公司环境专用 selectors 仍需在本机按需创建。新设备未设置本机 chezmoi data 时会保留 `ask`/非 YOLO 的安全默认值。
+
 如果某台设备需要公司邮箱、credential、proxy、AI provider、MCP server、Raven/Git-AI/CodeMaker 等配置，只写入按条件加载的 local 文件或工具自己的本机配置，不写入本仓库。Git 身份不要放在无条件加载的 local 兜底里。
 
 ## 修改规则
@@ -118,6 +130,7 @@ mkdir -p ~/.config/nvim/lua/plugins/local
 - Neovim Lua 使用 `vim.fn.expand("~/...")`
 - WezTerm 使用 `wezterm.home_dir`
 - Yazi 配置中使用 `~`
+- Pi JSON 中的 HOME 路径使用 chezmoi 的 `{{ .chezmoi.homeDir }}` 模板
 
 ## 常用命令
 

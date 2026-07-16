@@ -1,4 +1,5 @@
 .DS_Store
+.pi-subagents/
 verdaccio/
 yarn/
 github-copilot/
@@ -8,6 +9,27 @@ dot_git/
 node_modules/
 **/node_modules/
 dot_vscode/
+
+# Pi local-only secrets, state, generated packages, and company skill selectors
+dot_pi/agent/auth.json*
+dot_pi/agent/models.json*
+dot_pi/agent/trust.json*
+dot_pi/agent/run-history.jsonl*
+dot_pi/agent/*.sqlite*
+dot_pi/agent/npm/
+dot_pi/agent/git/
+dot_pi/agent/sessions/
+dot_pi/agent/tmp/
+dot_pi/agent/pi-hermes-memory/
+dot_pi/agent/projects-memory/
+dot_pi/agent/extensions/**/logs/
+dot_pi/agent/skills/symlink_febase-update-code-review-status*
+dot_pi/agent/skills/symlink_km-ask*
+dot_pi/agent/skills/symlink_popo-doc*
+dot_pi/agent/skills/symlink_popo-doc-read*
+dot_pi/agent/skills/symlink_raven-explore-knowledge*
+dot_pi/agent/skills/symlink_raven-instinct-evolve*
+dot_pi/agent/skills/symlink_xiaoer-knowledge*
 
 # Local AI tool configs captured by chezmoi naming
 dot_claude/
@@ -26,6 +48,10 @@ dot_cursor/hooks.json
 private_dot_config/opencode/opencode.json
 private_dot_config/opencode/opencode.jsonc
 private_dot_config/opencode/plugins/git-ai.ts
+
+# Local chezmoi data captured by chezmoi naming
+private_dot_config/chezmoi/
+dot_config/chezmoi/
 
 # Local-only shell/git overlays captured by chezmoi naming
 *.local

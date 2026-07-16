@@ -1,11 +1,42 @@
 .git/
 README.md
+.pi-subagents/
+.pi-subagents/**
 **/.git/
 **/.git/**
 node_modules/
 node_modules/**
 **/node_modules/
 **/node_modules/**
+
+# Pi local-only secrets, state, generated packages, and company skill selectors
+.pi/agent/auth.json
+.pi/agent/models.json
+.pi/agent/trust.json
+.pi/agent/run-history.jsonl
+.pi/agent/*.sqlite*
+.pi/agent/npm/
+.pi/agent/npm/**
+.pi/agent/git/
+.pi/agent/git/**
+.pi/agent/sessions/
+.pi/agent/sessions/**
+.pi/agent/tmp/
+.pi/agent/tmp/**
+.pi/agent/pi-hermes-memory/
+.pi/agent/pi-hermes-memory/**
+.pi/agent/projects-memory/
+.pi/agent/projects-memory/**
+.pi/agent/extensions/**/logs/
+.pi/agent/extensions/**/logs/**
+.pi/agent/skills/febase-update-code-review-status
+.pi/agent/skills/km-ask
+.pi/agent/skills/popo-doc
+.pi/agent/skills/popo-doc-read
+.pi/agent/skills/raven-explore-knowledge
+.pi/agent/skills/raven-instinct-evolve
+.pi/agent/skills/xiaoer-knowledge
+
 **/.vscode/
 **/.vscode/**
 
@@ -34,6 +65,10 @@ node_modules/**
 .config/opencode/opencode.json
 .config/opencode/opencode.jsonc
 .config/opencode/plugins/git-ai.ts
+
+# Local chezmoi data (machine-specific security opt-ins)
+.config/chezmoi/
+.config/chezmoi/**
 
 # Local-only shell/git overlays
 *.local

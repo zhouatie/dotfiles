@@ -1,0 +1,34 @@
+{
+  "lastChangelogVersion": "0.80.7",
+  "theme": "slop",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.6-sol",
+  "defaultThinkingLevel": "xhigh",
+  "enabledModels": [
+    "openai-codex/gpt-5.5",
+    "openai-codex/gpt-5.6-sol",
+    "openai-codex/gpt-5.3-codex-spark"
+  ],
+  "packages": [
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:@juicesharp/rpiv-todo",
+    "npm:pi-web-access",
+    "npm:@gotgenes/pi-permission-system",
+    "npm:pi-codex-goal",
+    "npm:@hypabolic/pi-hypa",
+    "npm:pi-subagents",
+    "npm:@carlosgtrz/pi-run-timer",
+    "npm:pi-openai-service-tier@0.1.4"
+  ],
+  "defaultProjectTrust": "{{ get . "piDefaultProjectTrust" | default "ask" }}",
+  "treeFilterMode": "default",
+  "skills": [
+    "!{{ .chezmoi.homeDir }}/.agents/skills/**"
+  ],
+  "showCacheMissNotices": false,
+  "terminal": {
+    "showTerminalProgress": false
+  },
+  "transport": "auto",
+  "hideThinkingBlock": false
+}
