@@ -5,7 +5,6 @@ CLAUDE.md
 .husky
 .claude/
 .huskyrc.js
-AGENTS.md
 .opencode/
 .codemaker/
 .codemaker.json
@@ -13,6 +12,12 @@ codemaker.json
 .aiwork/
 .sisyphus/
 .obsidian/
+.pi/
 .codegraph/
 .understand-anything/
 .aiterm/
+/.codexpotter
+
+**/.claude/settings.local.json
+
+.pi-subagents/

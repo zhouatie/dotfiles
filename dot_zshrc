@@ -83,9 +83,11 @@ export API_TIMEOUT_MS="30000"
 [[ -f ~/.api_keys ]] && source ~/.api_keys
 
 export XDG_CONFIG_HOME="$HOME/.config"
+export PI_CODING_AGENT_DIR="$XDG_CONFIG_HOME/pi"
 
 # ----- Aliases ----------------------------------------------------------------
 alias v='nvim'
+alias cat='bat'
 alias cdd='cd "$HOME/Desktop"'
 alias cdw='cd "$HOME/Desktop/work"'
 alias cdp='cd "$HOME/Desktop/projects"'
@@ -237,3 +239,12 @@ specinit() {
   mkdir -p "$target/openspec"
   cp "$HOME/.config/openspec/config.yaml" "$target/openspec/config.yaml"
 }
+
+# Hermes Agent — ensure ~/.local/bin is on PATH
+export PATH="$HOME/.local/bin:$PATH"
+
+# >>> grok installer >>>
+export PATH="$HOME/.grok/bin:$PATH"
+fpath=(~/.grok/completions/zsh $fpath)
+autoload -Uz compinit && compinit -C
+# <<< grok installer <<<

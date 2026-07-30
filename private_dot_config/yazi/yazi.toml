@@ -31,8 +31,13 @@ ueberzug_offset = [0, 0, 0, 0]
 [opener]
 edit = [
   { run = 'nvim %s', desc = "neovim", block = true, for = "macos" },
-  { run = '${EDITOR:-vi} %s', desc = "$EDITOR", block = true, for = "unix" },
   { run = 'code %*', orphan = true, desc = "code", for = "windows" },
+]
+arc = [
+  { run = 'open -a "Arc" %s', desc = "Arc", orphan = true, for = "macos" },
+]
+editor = [
+  { run = '${EDITOR:-vi} %s', desc = "$EDITOR", block = true, for = "unix" },
   { run = 'code -w %*', block = true, desc = "code (block)", for = "windows" },
 ]
 open = [
@@ -40,6 +45,9 @@ open = [
   { run = 'open %s', desc = "Open", for = "macos" },
   { run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
   { run = 'termux-open %s1', desc = "Open", for = "android" },
+]
+browser = [
+  { run = 'open -a "Google Chrome" %s', desc = "Google Chrome", orphan = true, for = "macos" },
 ]
 reveal = [
   { run = 'xdg-open %d1', desc = "Reveal", for = "linux" },
@@ -63,12 +71,22 @@ rules = [
   # Folder
   { url = "*/", use = [
     "edit",
+    "editor",
     "open",
+    "reveal",
+  ] },
+  # Markdown
+  { url = "*.md", use = [
+    "edit",
+    "arc",
+    "editor",
+    "browser",
     "reveal",
   ] },
   # Text
   { mime = "text/*", use = [
     "edit",
+    "editor",
     "reveal",
   ] },
   # Image
@@ -89,15 +107,18 @@ rules = [
   # JSON
   { mime = "application/{json,ndjson}", use = [
     "edit",
+    "editor",
     "reveal",
   ] },
   { mime = "*/javascript", use = [
     "edit",
+    "editor",
     "reveal",
   ] },
   # Empty file
   { mime = "inode/empty", use = [
     "edit",
+    "editor",
     "reveal",
   ] },
   # Fallback

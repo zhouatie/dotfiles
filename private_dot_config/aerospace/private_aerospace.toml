@@ -65,7 +65,8 @@ outer.right = 10
 # 'main' binding mode must be always presented
 [mode.main.binding]
 
-alt-shift-p = 'mode passthrough'
+alt-shift-backtick = 'mode passthrough'
+
 # All possible keys:
 # - Letters.        a, b, c, ..., z
 # - Numbers.        0, 1, 2, ..., 9
@@ -88,6 +89,7 @@ alt-shift-p = 'mode passthrough'
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
+alt-shift-space = 'layout floating tiling'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 alt-h = 'focus left'
@@ -182,12 +184,16 @@ alt-shift-l = ['join-with right', 'mode main']
 # run = "balance-sizes"
 [mode.passthrough.binding]
 # 在这个模式下，只保留一个“退出模式”的快捷键
-alt-shift-p = 'mode main'
+alt-shift-backtick = 'mode main'
+
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
 run = ["move-node-to-workspace W"]
 
+[[on-window-detected]]
+if.app-id = 'net.kovidgoyal.kitty'
+run = ["move-node-to-workspace W"]
 
 [[on-window-detected]]
 if.app-id = 'com.cmuxterm.app'
@@ -199,7 +205,12 @@ run = ["move-node-to-workspace W"]
 
 [[on-window-detected]]
 if.app-id = 'com.apple.iphonesimulator'
-run = ["layout floating", "move-node-to-workspace E"]
+run = ["layout tiling", "move-node-to-workspace E"]
+
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = "move-node-to-workspace Q"
 
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
@@ -214,12 +225,8 @@ if.app-id = 'com.cocos.dashboard'
 run = "move-node-to-workspace E"
 
 [[on-window-detected]]
-if.app-id = 'com.google.Chrome'
-run = "move-node-to-workspace E"
-
-[[on-window-detected]]
 if.app-id = 'com.figma.Desktop'
-run = "move-node-to-workspace E"
+run = "move-node-to-workspace 2"
 
 [[on-window-detected]]
 if.app-id = 'com.netease.Talon'
@@ -228,10 +235,6 @@ run = ["move-node-to-workspace E"]
 [[on-window-detected]]
 if.app-id = 'com.macpaw.CleanMyMac4.Menu'
 run = ["layout floating"]
-
-[[on-window-detected]]
-if.app-id = 'com.tencent.xinWeChat'
-run = ["move-node-to-workspace R"]
 
 [[on-window-detected]]
 if.app-id = 'com.apple.iCal'
@@ -245,6 +248,18 @@ run = ["move-node-to-workspace 1"]
 [[on-window-detected]]
 if.app-id = 'com.soda.music'
 run = ["move-node-to-workspace 2"]
+
+[[on-window-detected]]
+if.app-id = 'com.tencent.xinWeChat'
+run = ["move-node-to-workspace 4"]
+
+[[on-window-detected]]
+if.app-id = 'com.hackingwithswift.ControlRoom'
+run = ["move-node-to-workspace 5"]
+
+[[on-window-detected]]
+if.app-id = 'com.apple.ScreenSharing'
+run = ["move-node-to-workspace R"]
 
 [[on-window-detected]]
 if.app-id = 'com.figma.Desktop'
@@ -281,6 +296,10 @@ run = "move-node-to-workspace 4"
 [[on-window-detected]]
 if.app-id = 'com.apple.ScreenSharing'
 run = "move-node-to-workspace 4"
+
+[[on-window-detected]]
+if.app-id = 'com.hackingwithswift.ControlRoom'
+run = "move-node-to-workspace 5"
 
 [[on-window-detected]]
 if.app-id = 'com.kangfenmao.CherryStudio'

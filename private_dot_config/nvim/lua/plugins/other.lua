@@ -141,16 +141,38 @@ return {
   -- },
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    cmd = { "RenderMarkdown" },
-    ft = "markdown",
-    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" },
-    config = function()
-      local ns = vim.api.nvim_get_namespaces()["ObsidianUI"]
-      if ns then
-        vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
-      end
-      require("render-markdown").setup({})
-    end,
+    opts = {
+      heading = {
+        sign = false,
+        position = "inline",
+        icons = { "▌ ", "▎ ", "▎ ", "▏ ", "▏ ", "▏ " },
+        width = "block",
+        backgrounds = {},
+      },
+      code = {
+        sign = false,
+        width = "block",
+        right_pad = 1,
+        border = "thin",
+        highlight_inline = "@markup.raw",
+      },
+      checkbox = {
+        enabled = true,
+      },
+      bullet = {
+        icons = { "●", "○" },
+      },
+      quote = {
+        icon = "▎",
+      },
+      pipe_table = {
+        preset = "round",
+        cell = "trimmed",
+      },
+      sign = {
+        enabled = false,
+      },
+    },
   },
 
   -- 酷炫光标

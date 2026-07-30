@@ -31,3 +31,19 @@
 
 [diff "xlsx"]
 	textconv = xlsx2csv
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[notes]
+	rewriteRef = refs/notes/ai
+[notes "rewrite"]
+	rebase = true
+	amend = true
+[user]
+	name = zhouatie
+	email = zhouatie@gmail.com
+[trace2]
+	eventTarget = af_unix:stream:/Users/zhoushitie/.git-ai/internal/daemon/trace2.sock
+	eventNesting = 10

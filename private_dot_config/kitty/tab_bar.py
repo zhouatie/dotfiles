@@ -3,7 +3,6 @@ from kitty.tab_bar import DrawData, ExtraData, TabBarData, as_rgb, draw_tab_with
 
 
 RUNNING_BACKGROUND = 0xF9E2AF
-THINKING_BACKGROUND = 0xCBA6F7
 ACTION_REQUIRED_BACKGROUND = 0xF38BA8
 READY_BACKGROUND = 0xA6E3A1
 STATUS_FOREGROUND = 0x21192E
@@ -40,13 +39,13 @@ def status_background(tab: TabBarData) -> int | None:
     normalized_title = stripped_title.casefold()
     if ACTION_REQUIRED_TITLE in normalized_title:
         _ACKNOWLEDGED_READY_TABS.discard(tab.tab_id)
-        return ACTION_REQUIRED_BACKGROUND
+        return None if tab.is_active else ACTION_REQUIRED_BACKGROUND
     if THINKING_TITLE in normalized_title:
         _ACKNOWLEDGED_READY_TABS.discard(tab.tab_id)
-        return THINKING_BACKGROUND
+        return None if tab.is_active else RUNNING_BACKGROUND
     if WORKING_TITLE in normalized_title:
         _ACKNOWLEDGED_READY_TABS.discard(tab.tab_id)
-        return RUNNING_BACKGROUND
+        return None if tab.is_active else RUNNING_BACKGROUND
     if READY_TITLE in normalized_title:
         if tab.is_active:
             _ACKNOWLEDGED_READY_TABS.add(tab.tab_id)
@@ -56,7 +55,7 @@ def status_background(tab: TabBarData) -> int | None:
         return None
     if stripped_title and stripped_title[0] in SPINNER_FRAMES:
         _ACKNOWLEDGED_READY_TABS.discard(tab.tab_id)
-        return RUNNING_BACKGROUND
+        return None if tab.is_active else RUNNING_BACKGROUND
     return None
 
 
