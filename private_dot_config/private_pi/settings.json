@@ -1,0 +1,72 @@
+{
+  "lastChangelogVersion": "0.82.1",
+  "defaultProvider": "grok-chat",
+  "defaultModel": "grok-4.5-build-free",
+  "defaultThinkingLevel": "medium",
+  "enabledModels": [
+    "openai-codex/gpt-5.6-sol",
+    "openai-codex/gpt-5.6-terra"
+  ],
+  "packages": [
+    "../../My/pi-base",
+    "npm:pi-subagents",
+    "npm:pi-web-access",
+    "npm:pi-mcp-adapter",
+    "npm:@diegopetrucci/pi-openai-fast@0.1.11",
+    "npm:pi-playwright",
+    "npm:pi-visualize-code-changes",
+    "npm:@tmustier/pi-usage-extension"
+  ],
+  "defaultProjectTrust": "always",
+  "treeFilterMode": "no-tools",
+  "skills": [
+    "!/Users/zhoushitie/.agents/skills/**"
+  ],
+  "showCacheMissNotices": false,
+  "subagents": {
+    "agentOverrides": {
+      "scout": {
+        "model": "openai-codex/gpt-5.6-sol",
+        "thinking": "high"
+      },
+      "delegate": {
+        "model": "openai-codex/gpt-5.6-terra"
+      },
+      "researcher": {
+        "model": "openai-codex/gpt-5.6-terra",
+        "thinking": "high"
+      },
+      "context-builder": {
+        "model": "openai-codex/gpt-5.6-terra",
+        "thinking": "high"
+      },
+      "planner": {
+        "model": "openai-codex/gpt-5.6-sol",
+        "thinking": "xhigh"
+      },
+      "worker": {
+        "model": "openai-codex/gpt-5.6-sol",
+        "thinking": "high",
+        "fallbackModels": [
+          "openai-codex/gpt-5.6-terra"
+        ]
+      },
+      "reviewer": {
+        "model": "openai-codex/gpt-5.6-sol",
+        "thinking": "xhigh"
+      },
+      "oracle": {
+        "model": "openai-codex/gpt-5.6-sol",
+        "thinking": "max"
+      }
+    }
+  },
+  "terminal": {
+    "showTerminalProgress": false
+  },
+  "transport": "auto",
+  "hideThinkingBlock": false,
+  "theme": "omp-titanium",
+  "doubleEscapeAction": "tree",
+  "showHardwareCursor": false
+}
