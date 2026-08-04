@@ -1,0 +1,25 @@
+# 本机凭据与机器相关配置
+auth.json
+mcp.json
+settings.json
+trust.json
+APPEND_SYSTEM.md
+
+# Pi 运行状态、缓存与会话记录
+.pi-hermes-locks.sqlite
+.pi-subagents/
+mcp-cache.json
+mcp-onboarding.json
+models-store.json
+pi-cache-optimizer-stats.json
+run-history.jsonl
+sessions/
+tmp/
+
+# 本地备份与系统文件
+_bak/
+.DS_Store
+
+# 日志与临时文件
+*.log
+*.tmp
