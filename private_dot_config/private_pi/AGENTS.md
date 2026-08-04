@@ -1,5 +1,5 @@
--   未经明确要求，不运行 lint、类型检查，也不创建 commit。
--   默认使用中文回复。
--   遇到不确定的代码设计，先询问确认，不直接行动。
--   未经明确要求，不编写兼容性代码。
--   用户要求读取 Figma 时，不臆想或自行绘制 UI。
+-   Unless explicitly requested, do not run linting or type checks, and do not create commits.
+-   When a code design decision is uncertain, ask for confirmation before taking action.
+-   Unless explicitly requested, do not write compatibility code.
+-   Do not read the Figma selection or call Figma tools proactively. Only inspect Figma when the user explicitly asks to inspect the design.
+-   When the user asks to inspect Figma, do not hallucinate or draw the UI yourself.

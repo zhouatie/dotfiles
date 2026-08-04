@@ -1,11 +1,18 @@
 {
-  "lastChangelogVersion": "0.82.1",
-  "defaultProvider": "grok-chat",
-  "defaultModel": "grok-4.5-build-free",
-  "defaultThinkingLevel": "medium",
+  "lastChangelogVersion": "0.83.0",
+  "defaultProvider": "deepseek",
+  "defaultModel": "deepseek-v4-flash",
+  "defaultThinkingLevel": "high",
   "enabledModels": [
-    "openai-codex/gpt-5.6-sol",
-    "openai-codex/gpt-5.6-terra"
+    "xmirai-openai/gpt-5.6-luna",
+    "deepseek/deepseek-v4-flash",
+    "xmirai/grok-4.5",
+    "langbase/claude-opus-4-8",
+    "langbase/gpt-5.5-2026-04-24",
+    "deepseek/deepseek-v4-pro",
+    "langbase/deepseek-v4-flash",
+    "langbase/deepseek-v4-pro",
+    "xmirai-openai/gpt-5.6-sol"
   ],
   "packages": [
     "../../My/pi-base",
@@ -26,38 +33,35 @@
   "subagents": {
     "agentOverrides": {
       "scout": {
-        "model": "openai-codex/gpt-5.6-sol",
+        "model": "deepseek/deepseek-v4-flash",
         "thinking": "high"
       },
       "delegate": {
-        "model": "openai-codex/gpt-5.6-terra"
+        "model": "deepseek/deepseek-v4-flash"
       },
       "researcher": {
-        "model": "openai-codex/gpt-5.6-terra",
+        "model": "deepseek/deepseek-v4-flash",
         "thinking": "high"
       },
       "context-builder": {
-        "model": "openai-codex/gpt-5.6-terra",
+        "model": "deepseek/deepseek-v4-flash",
         "thinking": "high"
       },
       "planner": {
-        "model": "openai-codex/gpt-5.6-sol",
+        "model": "deepseek/deepseek-v4-flash",
         "thinking": "xhigh"
       },
       "worker": {
-        "model": "openai-codex/gpt-5.6-sol",
-        "thinking": "high",
-        "fallbackModels": [
-          "openai-codex/gpt-5.6-terra"
-        ]
+        "model": "deepseek/deepseek-v4-flash",
+        "thinking": "max"
       },
       "reviewer": {
-        "model": "openai-codex/gpt-5.6-sol",
+        "model": "deepseek/deepseek-v4-flash",
         "thinking": "xhigh"
       },
       "oracle": {
-        "model": "openai-codex/gpt-5.6-sol",
-        "thinking": "max"
+        "model": "deepseek/deepseek-v4-flash",
+        "thinking": "xhigh"
       }
     }
   },
