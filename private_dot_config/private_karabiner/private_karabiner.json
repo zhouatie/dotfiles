@@ -11,7 +11,10 @@
                         "description": "[长按]capslock = left_control, 单击 = caps_lock",
                         "manipulators": [
                             {
-                                "from": { "key_code": "caps_lock" },
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "modifiers": { "optional": ["any"] }
+                                },
                                 "to": [{ "key_code": "left_control" }],
                                 "to_if_alone": [{ "key_code": "caps_lock" }],
                                 "type": "basic"
@@ -182,7 +185,10 @@
                         "description": "[长按]capslock = left_control, 单击 = caps_lock",
                         "manipulators": [
                             {
-                                "from": { "key_code": "caps_lock" },
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "modifiers": { "optional": ["any"] }
+                                },
                                 "to": [{ "key_code": "left_control" }],
                                 "to_if_alone": [{ "key_code": "caps_lock" }],
                                 "type": "basic"
