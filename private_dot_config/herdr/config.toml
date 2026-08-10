@@ -1,0 +1,25 @@
+[ui]
+agent_panel_sort = "priority"
+
+show_agent_labels_on_pane_borders = true
+[keys]
+prefix = "ctrl+a"
+
+# Switch tabs with Ctrl+[ (previous) and Ctrl+] (next)
+previous_tab = "ctrl+["
+next_tab = "ctrl+]"
+
+# Switch agents with cmd+ctrl+[ / ]
+previous_agent = "cmd+ctrl+["
+next_agent = "cmd+ctrl+]"
+
+# Switch workspaces with cmd+shift+ctrl+[ / ]
+previous_workspace = "cmd+shift+ctrl+["
+next_workspace = "cmd+shift+ctrl+]"
+[[keys.command]]
+key = "cmd+r"
+type = "plugin_action"
+command = "persiyanov.reviewr.toggle" # <plugin_id>.<action_id> — note the id, not the name
+
+[ui.toast]
+delivery = "herdr"
