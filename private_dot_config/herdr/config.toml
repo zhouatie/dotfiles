@@ -16,10 +16,42 @@ next_agent = "cmd+ctrl+]"
 # Switch workspaces with cmd+shift+ctrl+[ / ]
 previous_workspace = "cmd+shift+ctrl+["
 next_workspace = "cmd+shift+ctrl+]"
-[[keys.command]]
-key = "cmd+r"
+
+# [[keys.command]] # lazygit：分屏打开
+# key = "prefix+g"
+# type = "plugin_action"
+# command = "herdr-lazygit.open"
+
+[[keys.command]] # lazygit：独立 tab 打开
+key = "prefix+g"
 type = "plugin_action"
-command = "persiyanov.reviewr.toggle" # <plugin_id>.<action_id> — note the id, not the name
+command = "herdr-lazygit.open-tab"
+
+# Optional: Focus Tabs/Panes/Agents when open navigator
+[[keys.command]]
+key = "cmd+i"
+type = "plugin_action"
+command = "beyondlex.herdr-recent-navigator.focus-tabs"
+description = "Open Navigator: Tab"
+
+[[keys.command]] # open in a split pane
+key = "prefix+y"
+type = "plugin_action"
+command = "ray.file-explorer.open"
+description = "open file explorer"
+
+[[keys.command]] # open in a new tab
+key = "prefix+Y"
+type = "plugin_action"
+command = "ray.file-explorer.open-tab"
+description = "open file explorer in a new tab"
+
+# 显式声明深色主题
+[theme]
+name = "catppuccin"
 
 [ui.toast]
 delivery = "herdr"
+
+[experimental]
+kitty_graphics = true
