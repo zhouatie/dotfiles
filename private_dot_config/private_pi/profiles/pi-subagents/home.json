@@ -1,0 +1,43 @@
+{
+  "main": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-flash",
+    "thinking": "high"
+  },
+  "enabledModels": [
+    "deepseek/deepseek-v4-flash"
+  ],
+  "subagents": {
+    "agentOverrides": {
+      "scout": {
+        "model": "deepseek/deepseek-v4-flash",
+        "thinking": "high"
+      },
+      "delegate": {
+        "model": "deepseek/deepseek-v4-flash"
+      },
+      "researcher": {
+        "model": "deepseek/deepseek-v4-flash",
+        "thinking": "high"
+      },
+      "context-builder": {
+        "model": "deepseek/deepseek-v4-flash",
+        "thinking": "high"
+      },
+      "planner": {
+        "model": "deepseek/deepseek-v4-flash"
+      },
+      "worker": {
+        "model": "deepseek/deepseek-v4-flash",
+        "thinking": "max"
+      },
+      "reviewer": {
+        "model": "deepseek/deepseek-v4-flash",
+        "thinking": "xhigh"
+      },
+      "oracle": {
+        "model": "deepseek/deepseek-v4-flash"
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "enabled": true,
+  "visionModel": "langbase/gpt-5.5-2026-04-24",
+  "autoHandoff": true,
+  "handoffModels": [],
+  "prewarmPastedImages": false,
+  "asyncClipboardHandoff": false,
+  "cacheMax": 50,
+  "maxDescriptionLines": 0,
+  "thinking": false,
+  "thinkingLevel": "medium"
+}

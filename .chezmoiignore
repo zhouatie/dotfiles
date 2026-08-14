@@ -67,6 +67,12 @@ node_modules/**
 .config/pi/pi-cache-optimizer-stats.json
 .config/pi/run-history.jsonl
 .config/pi/usage-extension-cache.json
+.config/pi/logs/
+.config/pi/logs/**
+.config/pi/*.log
+.config/pi/*.tmp
+.config/pi/missions/
+.config/pi/missions/**
 
 # Local-only shell/git overlays
 *.local

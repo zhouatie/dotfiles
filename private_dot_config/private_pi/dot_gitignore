@@ -1,7 +1,6 @@
 # 本机凭据与机器相关配置
 auth.json
 mcp.json
-settings.json
 trust.json
 APPEND_SYSTEM.md
 

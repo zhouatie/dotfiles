@@ -1,8 +1,9 @@
 {
-  "lastChangelogVersion": "0.84.2",
-  "defaultProvider": "langbase",
-  "defaultModel": "deepseek-v4-flash",
-  "defaultThinkingLevel": "high",
+  "main": {
+    "provider": "langbase",
+    "model": "kimi-k3",
+    "thinking": "high"
+  },
   "enabledModels": [
     "langbase/deepseek-v4-flash",
     "langbase/gpt-5.5-2026-04-24",
@@ -13,24 +14,6 @@
     "netease-codemaker/claude-opus-5",
     "netease-codemaker/claude-opus-4-8"
   ],
-  "packages": [
-    "../../My/pi-base",
-    "npm:pi-subagents",
-    "npm:pi-web-access",
-    "npm:pi-mcp-adapter",
-    "npm:@diegopetrucci/pi-openai-fast@0.1.11",
-    "npm:pi-playwright",
-    "npm:pi-visualize-code-changes",
-    "npm:@tmustier/pi-usage-extension",
-    "npm:pi-vision-handoff",
-    "npm:pi-token-speed"
-  ],
-  "defaultProjectTrust": "always",
-  "treeFilterMode": "no-tools",
-  "skills": [
-    "!/Users/zhoushitie/.agents/skills/**"
-  ],
-  "showCacheMissNotices": false,
   "subagents": {
     "agentOverrides": {
       "scout": {
@@ -57,21 +40,11 @@
       },
       "reviewer": {
         "model": "langbase/claude-opus-4-8",
-        "thinking": "high"
+        "thinking": "xhigh"
       },
       "oracle": {
         "model": "netease-codemaker/claude-opus-5"
       }
     }
-  },
-  "terminal": {
-    "showTerminalProgress": false
-  },
-  "transport": "auto",
-  "hideThinkingBlock": true,
-  "theme": "omp-titanium",
-  "doubleEscapeAction": "tree",
-  "showHardwareCursor": false,
-  "fullscreenScrollbar": "always",
-  "tuiMode": "fullscreen"
+  }
 }

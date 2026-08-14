@@ -29,6 +29,33 @@
                     "compat": {
                         "supportsLongCacheRetention": false
                     }
+                },
+                {
+                    "id": "deepseek-v4-pro",
+                    "name": "DeepSeek V4 Pro",
+                    "api": "openai-responses",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "minimal": null,
+                        "low": null,
+                        "medium": null,
+                        "high": "high",
+                        "max": "max"
+                    },
+                    "input": [
+                        "text"
+                    ],
+                    "cost": {
+                        "input": 0.435,
+                        "output": 0.87,
+                        "cacheRead": 0.003625,
+                        "cacheWrite": 0
+                    },
+                    "contextWindow": 1000000,
+                    "maxTokens": 384000,
+                    "compat": {
+                        "supportsLongCacheRetention": false
+                    }
                 }
             ]
         },
@@ -290,10 +317,40 @@
                     "maxTokens": 128000
                 },
                 {
+                    "id": "deepseek-pro-latest",
+                    "name": "DeepSeek Pro Latest via Langbase",
+                    "api": "openai-responses"
+                },
+                {
                     "id": "deepseek-v4-flash",
                     "name": "DeepSeek V4 Flash via Langbase",
                     "api": "openai-responses",
                     "reasoning": true,
+                    "thinkingLevelMap": {
+                        "minimal": null,
+                        "low": null,
+                        "medium": null,
+                        "high": "high",
+                        "max": "max"
+                    },
+                    "input": [
+                        "text"
+                    ],
+                    "contextWindow": 1000000,
+                    "maxTokens": 384000
+                },
+                {
+                    "id": "deepseek-v4-pro",
+                    "name": "DeepSeek V4 Pro via Langbase",
+                    "api": "openai-responses",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "minimal": null,
+                        "low": null,
+                        "medium": null,
+                        "high": "high",
+                        "max": "max"
+                    },
                     "input": [
                         "text"
                     ],
@@ -310,6 +367,188 @@
                         "image"
                     ],
                     "contextWindow": 272000,
+                    "maxTokens": 128000
+                },
+                {
+                    "id": "glm-5.2",
+                    "name": "GLM-5.2 via Langbase",
+                    "reasoning": true,
+                    "input": [
+                        "text"
+                    ],
+                    "contextWindow": 1000000,
+                    "maxTokens": 64000
+                },
+                {
+                    "id": "kimi-k2.7-code",
+                    "name": "Kimi K2.7 Code via Langbase",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "off": null
+                    },
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "contextWindow": 262144,
+                    "maxTokens": 64000,
+                    "compat": {
+                        "deferredToolsMode": "kimi"
+                    }
+                },
+                {
+                    "id": "kimi-k3",
+                    "name": "Kimi K3 via Langbase",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "off": null
+                    },
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "contextWindow": 262144,
+                    "maxTokens": 64000,
+                    "compat": {
+                        "deferredToolsMode": "kimi"
+                    }
+                },
+                {
+                    "id": "claude-haiku-4-5-20251001",
+                    "name": "Claude Haiku 4.5 via Langbase",
+                    "reasoning": true,
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "contextWindow": 200000,
+                    "maxTokens": 64000
+                }
+            ]
+        },
+        "netease-codemaker": {
+            "name": "CodeMaker",
+            "baseUrl": "https://api-code-maker.nie.netease.com/openai/v1",
+            "api": "openai-completions",
+            "apiKey": "!node /Users/zhoushitie/.config/pi/scripts/cm-token.js",
+            "headers": {
+                "client": "codemaker-cli",
+                "ide": "cli",
+                "codemaker-version": "1.18.9-prod-0.3.68-26.8.5"
+            },
+            "compat": {
+                "supportsStore": false,
+                "supportsDeveloperRole": false,
+                "supportsReasoningEffort": true,
+                "maxTokensField": "max_tokens"
+            },
+            "models": [
+                {
+                    "id": "kimi-k3",
+                    "name": "Kimi K3",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "off": null
+                    },
+                    "input": [
+                        "text"
+                    ],
+                    "cost": {
+                        "input": 0,
+                        "output": 0,
+                        "cacheRead": 0,
+                        "cacheWrite": 0
+                    },
+                    "contextWindow": 262144,
+                    "maxTokens": 64000,
+                    "compat": {
+                        "deferredToolsMode": "kimi"
+                    }
+                },
+                {
+                    "id": "gpt-5.6-terra",
+                    "name": "GPT-5.6 Terra (CodeMaker)",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "off": "none",
+                        "minimal": null,
+                        "low": "low",
+                        "medium": "medium",
+                        "high": "high",
+                        "xhigh": "xhigh",
+                        "max": "max"
+                    },
+                    "input": [
+                        "text"
+                    ],
+                    "cost": {
+                        "input": 0,
+                        "output": 0,
+                        "cacheRead": 0,
+                        "cacheWrite": 0
+                    },
+                    "contextWindow": 272000,
+                    "maxTokens": 128000,
+                    "api": "openai-responses"
+                },
+                {
+                    "id": "gpt-5.6-luna",
+                    "name": "GPT-5.6 Luna (CodeMaker)",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "off": "none",
+                        "minimal": null,
+                        "low": "low",
+                        "medium": "medium",
+                        "high": "high",
+                        "xhigh": "xhigh",
+                        "max": "max"
+                    },
+                    "input": [
+                        "text"
+                    ],
+                    "cost": {
+                        "input": 0,
+                        "output": 0,
+                        "cacheRead": 0,
+                        "cacheWrite": 0
+                    },
+                    "contextWindow": 272000,
+                    "maxTokens": 128000,
+                    "api": "openai-responses"
+                },
+                {
+                    "id": "claude-opus-5",
+                    "name": "Claude Opus 5 (CodeMaker)",
+                    "reasoning": true,
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "cost": {
+                        "input": 0,
+                        "output": 0,
+                        "cacheRead": 0,
+                        "cacheWrite": 0
+                    },
+                    "contextWindow": 200000,
+                    "maxTokens": 128000
+                },
+                {
+                    "id": "claude-opus-4-8",
+                    "name": "Claude Opus 4.8 (CodeMaker)",
+                    "reasoning": true,
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "cost": {
+                        "input": 0,
+                        "output": 0,
+                        "cacheRead": 0,
+                        "cacheWrite": 0
+                    },
+                    "contextWindow": 200000,
                     "maxTokens": 128000
                 }
             ]
