@@ -14,11 +14,15 @@ pi-cache-optimizer-stats.json
 run-history.jsonl
 sessions/
 tmp/
+missions/
+web-search-cache/
+mcp-npx-cache.json
 
 # 本地备份与系统文件
 _bak/
 .DS_Store
 
 # 日志与临时文件
+logs/
 *.log
 *.tmp

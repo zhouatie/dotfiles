@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.84.2",
-  "defaultProvider": "langbase",
-  "defaultModel": "deepseek-v4-flash",
+  "defaultProvider": "kimi",
+  "defaultModel": "kimi-k3",
   "defaultThinkingLevel": "high",
   "enabledModels": [
     "langbase/deepseek-v4-flash",
@@ -14,16 +14,37 @@
     "netease-codemaker/claude-opus-4-8"
   ],
   "packages": [
-    "../../My/pi-base",
-    "npm:pi-subagents",
+    {
+      "source": "../../My/pi-base",
+      "extensions": [
+        "-extensions/agent-duration/index.ts",
+        "-extensions/kitty-tab-status/index.ts"
+      ]
+    },
+    "npm:pi-subagents@0.49.0",
     "npm:pi-web-access",
     "npm:pi-mcp-adapter",
-    "npm:@diegopetrucci/pi-openai-fast@0.1.11",
+    {
+      "source": "npm:@diegopetrucci/pi-openai-fast@0.1.11",
+      "extensions": [
+        "-index.ts"
+      ]
+    },
     "npm:pi-playwright",
     "npm:pi-visualize-code-changes",
     "npm:@tmustier/pi-usage-extension",
     "npm:pi-vision-handoff",
-    "npm:pi-token-speed"
+    {
+      "source": "npm:pi-token-speed",
+      "extensions": [
+        "-index.ts"
+      ]
+    },
+    "npm:pi-extmgr",
+    "npm:pi-open-tui",
+    "npm:pi-side-chat",
+    "npm:pi-prompt-template-model",
+    "npm:@nicknisi/pi-btw"
   ],
   "defaultProjectTrust": "always",
   "treeFilterMode": "no-tools",
