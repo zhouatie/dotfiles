@@ -12,38 +12,39 @@
     "langbase/kimi-k3",
     "langbase/claude-opus-4-8",
     "netease-codemaker/claude-opus-5",
-    "netease-codemaker/claude-opus-4-8"
+    "netease-codemaker/claude-opus-4-8",
+    "langbase/glm-5.3"
   ],
   "subagents": {
     "agentOverrides": {
       "scout": {
-        "model": "langbase/deepseek-v4-flash",
+        "model": "langbase/glm-5.3",
         "thinking": "high"
       },
       "delegate": {
-        "model": "langbase/deepseek-v4-flash"
+        "model": "langbase/glm-5.3"
       },
       "researcher": {
-        "model": "langbase/deepseek-v4-flash",
+        "model": "langbase/glm-5.3",
         "thinking": "high"
       },
       "context-builder": {
-        "model": "langbase/deepseek-v4-flash",
+        "model": "langbase/glm-5.3",
         "thinking": "high"
       },
       "planner": {
-        "model": "langbase/kimi-k3"
+        "model": "langbase/glm-5.3"
       },
       "worker": {
-        "model": "langbase/deepseek-v4-flash",
+        "model": "langbase/glm-5.3",
         "thinking": "max"
       },
       "reviewer": {
-        "model": "langbase/claude-opus-4-8",
+        "model": "langbase/glm-5.3",
         "thinking": "xhigh"
       },
       "oracle": {
-        "model": "netease-codemaker/claude-opus-5"
+        "model": "langbase/glm-5.3"
       }
     }
   }

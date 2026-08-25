@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.84.2",
-  "defaultProvider": "kimi",
-  "defaultModel": "kimi-k3",
+  "defaultProvider": "antigravity",
+  "defaultModel": "gemini-3.7-flash",
   "defaultThinkingLevel": "high",
   "enabledModels": [
     "langbase/deepseek-v4-flash",
@@ -11,7 +11,11 @@
     "langbase/kimi-k3",
     "langbase/claude-opus-4-8",
     "netease-codemaker/claude-opus-5",
-    "netease-codemaker/claude-opus-4-8"
+    "netease-codemaker/claude-opus-4-8",
+    "langbase/glm-5.3",
+    "google/gemini-3.7-flash",
+    "antigravity/gemini-3.1-pro",
+    "antigravity/gemini-3.7-flash"
   ],
   "packages": [
     {
@@ -34,17 +38,12 @@
     "npm:pi-visualize-code-changes",
     "npm:@tmustier/pi-usage-extension",
     "npm:pi-vision-handoff",
-    {
-      "source": "npm:pi-token-speed",
-      "extensions": [
-        "-index.ts"
-      ]
-    },
+    "npm:pi-token-speed",
     "npm:pi-extmgr",
     "npm:pi-open-tui",
     "npm:pi-side-chat",
     "npm:pi-prompt-template-model",
-    "npm:@nicknisi/pi-btw"
+    "npm:pi-antigravity"
   ],
   "defaultProjectTrust": "always",
   "treeFilterMode": "no-tools",
@@ -55,33 +54,33 @@
   "subagents": {
     "agentOverrides": {
       "scout": {
-        "model": "langbase/deepseek-v4-flash",
+        "model": "langbase/glm-5.3",
         "thinking": "high"
       },
       "delegate": {
-        "model": "langbase/deepseek-v4-flash"
+        "model": "langbase/glm-5.3"
       },
       "researcher": {
-        "model": "langbase/deepseek-v4-flash",
+        "model": "langbase/glm-5.3",
         "thinking": "high"
       },
       "context-builder": {
-        "model": "langbase/deepseek-v4-flash",
+        "model": "langbase/glm-5.3",
         "thinking": "high"
       },
       "planner": {
-        "model": "langbase/kimi-k3"
+        "model": "langbase/glm-5.3"
       },
       "worker": {
-        "model": "langbase/deepseek-v4-flash",
+        "model": "langbase/glm-5.3",
         "thinking": "max"
       },
       "reviewer": {
-        "model": "langbase/claude-opus-4-8",
-        "thinking": "high"
+        "model": "langbase/glm-5.3",
+        "thinking": "xhigh"
       },
       "oracle": {
-        "model": "netease-codemaker/claude-opus-5"
+        "model": "langbase/glm-5.3"
       }
     }
   },
@@ -92,7 +91,7 @@
   "hideThinkingBlock": true,
   "theme": "omp-titanium",
   "doubleEscapeAction": "tree",
-  "showHardwareCursor": false,
+  "showHardwareCursor": true,
   "fullscreenScrollbar": "always",
   "tuiMode": "fullscreen"
 }

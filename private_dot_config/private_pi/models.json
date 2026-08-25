@@ -493,6 +493,16 @@
                     "maxTokens": 64000
                 },
                 {
+                    "id": "glm-5.3",
+                    "name": "GLM-5.3 via Langbase",
+                    "reasoning": true,
+                    "input": [
+                        "text"
+                    ],
+                    "contextWindow": 1000000,
+                    "maxTokens": 64000
+                },
+                {
                     "id": "kimi-k2.7-code",
                     "name": "Kimi K2.7 Code via Langbase",
                     "reasoning": true,

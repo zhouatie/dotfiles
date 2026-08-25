@@ -1,4 +1,4 @@
--   Unless explicitly requested, do not run linting or type checks, and do not create commits.
+-   Unless explicitly requested, do not run linting, type checks, or jest tests, and do not create commits.
 -   When a code design decision is uncertain, ask for confirmation before taking action.
 -   Unless explicitly requested, do not write compatibility code.
 -   Do not read the Figma selection or call Figma tools proactively. Only inspect Figma when the user explicitly asks to inspect the design.

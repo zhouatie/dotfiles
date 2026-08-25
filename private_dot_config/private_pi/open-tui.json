@@ -1,6 +1,10 @@
 {
   "enabled": true,
   "settingsLanguage": "zh",
+  "cursorStyle": "bar",
+  "fullscreen": {
+    "wheelScrollLines": 10
+  },
   "icons": {
     "mode": "auto"
   },
@@ -12,7 +16,7 @@
     "gitCommit": true,
     "runtime": false,
     "context": true,
-    "tokens": true,
+    "tokens": false,
     "cost": false,
     "extensionStatuses": true
   },
