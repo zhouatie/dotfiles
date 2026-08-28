@@ -1,0 +1,29 @@
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8-ntes.9",
+  "base_commit_sha": "7ea2dfd637f9c7c9e4e5e3687f09bc3242d7848c",
+  "prompts": {
+    "7d5697d389ff2959": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_fb738d4feffetvcEddGW3IQk6c",
+        "model": "antigravity-manager/gemini-3.7-flash"
+      },
+      "human_author": "zhouatie",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 9,
+      "accepted_lines": 0,
+      "overriden_lines": 0,
+      "per_file_stats": {
+        ".chezmoiignore": {
+          "deletions": 5
+        },
+        ".gitignore": {
+          "deletions": 4
+        }
+      }
+    }
+  }
+}
