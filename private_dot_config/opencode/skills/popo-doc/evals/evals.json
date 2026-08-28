@@ -1,0 +1,77 @@
+{
+    "skill_name":  "popo-doc",
+    "evals":  [
+                  {
+                      "id":  1,
+                      "prompt":  "帮我创建一个项目周报文档",
+                      "expected_output":  "应调用popo_doc_create_doc(docType=1, title=项目周报)创建POPO文档。创建成功后若环境有save_artifact工具则保存产物链接。返回文档URL给用户",
+                      "files":  [
+
+                                ]
+                  },
+                  {
+                      "id":  2,
+                      "prompt":  "搜索一下最近的季度总结报告",
+                      "expected_output":  "应调用popo_doc_search_doc(query=季度总结报告)进行语义搜索，直接传原始query不做改写。返回匹配的文档列表（标题、URL、类型）",
+                      "files":  [
+
+                                ]
+                  },
+                  {
+                      "id":  3,
+                      "prompt":  "帮我建一个多维表来管理项目任务，需要任务名称、状态和截止日期字段",
+                      "expected_output":  "应执行工作流6：(1)popo_doc_create_doc(docType=9)创建多维表 (2)popo_doc_datasheet_create创建数据表（含3个字段：任务名称type=1、状态type=3含选项、截止日期type=5） (3)确认创建成功后查出并删除默认数据表和默认仪表盘 (4)popo_doc_field_list获取fieldId。写入记录时key必须用fieldId不用字段名",
+                      "files":  [
+
+                                ]
+                  },
+                  {
+                      "id":  4,
+                      "prompt":  "看看这个链接里写了什么 https://docs.popo.netease.com/doc/abc123",
+                      "expected_output":  "应识别docs.popo.netease.com域名触发此skill。云空间链接可调用popo_doc_get_doc_detail(docIdOrUrl=https://docs.popo.netease.com/doc/abc123)获取文档内容和详情；若为/team/pc/团队空间链接，必须先popo_doc_get_folder_path取teamSpaceId，再popo_doc_get_doc_detail(docId=\u003cpageDetailId\u003e, teamSpaceId=\u003cteamSpaceId\u003e)。返回的content是自定义HTML格式",
+                      "files":  [
+
+                                ]
+                  },
+                  {
+                      "id":  5,
+                      "prompt":  "在表格A1到B3写入销售数据",
+                      "expected_output":  "应使用popo_doc_execute_table工具：(1)先用workbook.getFullData获取sheetId (2)再用sheet.batchSetCells批量写入单元格数据。不应使用popo_doc_update_doc（那是POPO文档的操作）",
+                      "files":  [
+
+                                ]
+                  },
+                  {
+                      "id":  6,
+                      "prompt":  "帮我在多维表里找所有状态为已完成的任务",
+                      "expected_output":  "应执行工作流7的筛选路径：(1)popo_doc_datasheet_list获取datasheetId (2)popo_doc_field_list获取fieldId (3)popo_doc_record_filter用filterInfo按条件筛选，不应使用popo_doc_record_page（那是无条件浏览）",
+                      "files":  [
+
+                                ]
+                  },
+                  {
+                      "id":  7,
+                      "prompt":  "看看这个团队空间链接里写了什么 https://docs.popo.netease.com/team/pc/technology_center/pageDetail/7a37bf7f39494258884cefb164e49cef",
+                      "expected_output":  "应识别为团队空间链接。必须先调用popo_doc_get_folder_path(url=原始URL)获取teamSpaceId，再调用popo_doc_get_doc_detail(docId=7a37bf7f39494258884cefb164e49cef, teamSpaceId=\u003c解析值\u003e)。禁止只传docId或把团队空间URL当普通云空间URL读取。",
+                      "files":  [
+
+                                ]
+                  },
+                  {
+                      "id":  8,
+                      "prompt":  "帮我下载这个多维表里附件字段的文件",
+                      "expected_output":  "应先确认目标为docType=9多维表，然后走popo_doc_datasheet_list获取datasheetId、popo_doc_field_list找到type=6附件fieldId、popo_doc_record_page或popo_doc_record_filter获取recordId和fileId，最后调用doc_file_batch_get获取下载URL（禁止写成popo_doc_file_batch_get）。禁止使用popo_doc_get_file_download_url反复重试。",
+                      "files":  [
+
+                                ]
+                  },
+                  {
+                      "id":  9,
+                      "prompt":  "获取这个云空间多维表格内图片 https://docs.popo.netease.com/pages/70fc600994f049298484a7f66e18fe5d?nodeId=node00dccf03-7e5e-4ec6-b806-9b072072021a\u0026viwId=viw78E4iJSzOSFG5Zx4o",
+                      "expected_output":  "应识别为云空间多维表/pages链接，不调用popo_doc_get_folder_path、不获取teamSpaceId。直接解析documentId=70fc600994f049298484a7f66e18fe5d、datasheetId=node00dccf03-7e5e-4ec6-b806-9b072072021a，使用locationType=cloudspace，随后popo_doc_field_list找附件字段、popo_doc_record_page/filter取recordId和fileId、doc_file_batch_get获取图片下载URL（禁止写成popo_doc_file_batch_get）。",
+                      "files":  [
+
+                                ]
+                  }
+              ]
+}

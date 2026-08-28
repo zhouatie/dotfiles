@@ -1,0 +1,83 @@
+{
+  "skill_name": "popo-notebook",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我有哪些知识本",
+      "expected_output": "调用前先读 references/tool-reference.md（铁律 1/2）。直接调 popo-cli popo notebook_readable_list 获取当前用户所有有权限读取的知识本。返回 data 为数组，用 jq '.data[] | {id, name, description, role}' 逐条展示知识本（名称、ID、描述、角色），禁止原样倾倒 JSON。未传 keyword。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "帮我把 https://example.com/article/123 这篇链接存进'项目资料'知识本",
+      "expected_output": "写操作流程：(1) 用户未给 knowledgeBaseId，先用 popo-cli popo notebook_writable_list 搜索/筛选'项目资料'知识本获取 knowledgeBaseId（铁律 3，写操作必须基于可写知识本）；(2) 调用 popo-cli popo notebook_add_article knowledgeBaseId=<id> url=\"https://example.com/article/123\"（铁律 2，先读 tool-reference）；(3) 报告结果（articleId/title/url），status=1 才成功。macOS/Linux 下 url 含特殊字符用双引号包裹；Windows 下 url 走 @text: 临时文件。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "在'服务发布'知识本里搜一下发布流程",
+      "expected_output": "先 popo-cli popo notebook_readable_list 定位'服务发布'知识本的 knowledgeBaseId（铁律 3）；然后调用 popo-cli popo notebook_search knowledgeBaseId=<id> query=\"发布流程\"（query 是自然语言，不是 slug，铁律 4）；返回 data 为数组，用 jq '.data[] | {slug, title, content}' 逐条展示。若用户后续要求展开阅读某 slug，再用 notebook_list。Windows 下 query 含中文走 @text: 临时文件。",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "读取知识本 123456 里 service-release-guide 这篇的正文",
+      "expected_output": "用户直接给出 slug → 用 popo-cli popo notebook_list（不是 notebook_search，铁律 4）。macOS/Linux：slugs=\"[\\\"service-release-guide\\\"]\"（双引号包裹 + 内部 \\\" 转义）；Windows：slugs 是 Array 参数，必须走 @file: 临时文件（ConvertTo-Json -Compress → WriteAllText UTF-8 无 BOM → slugs=\"@file:$tmp\"，铁律 6），禁止 \\\" 转义直传。返回 data 为数组，逐条展示 slug/title/content。",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "知识本 123456 里有哪些文章",
+      "expected_output": "调用 popo-cli popo notebook_article_list knowledgeBaseId=123456。返回 data.records 是数组字段，用 jq '.data.records[] | {articleId, title, url}' 逐条展示（铁律 2），检查 data.hasMore 决定是否提示翻页；有下一页时用返回的 pageNo+1 作为 pageNo 继续拉取。该工具返回文章来源列表而非 Wiki 正文。",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "新建一个知识本叫'项目资料'，描述写'沉淀项目设计和会议纪要'",
+      "expected_output": "调用 popo-cli popo notebook_create name=\"项目资料\" description=\"沉淀项目设计和会议纪要\"（铁律 2，先读 tool-reference）。macOS/Linux 含中文用双引号包裹；Windows 下 name/description 各走 @text: 临时文件（铁律 6）。报告返回的 id/name/description。",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "把'项目资料'知识本导出",
+      "expected_output": "用户未给 knowledgeBaseId，先用 popo-cli popo notebook_readable_list 定位'项目资料'知识本 ID（铁律 3）；然后 popo-cli popo notebook_export knowledgeBaseId=<id>，返回 data.downloadUrl/fileName/expiresSeconds，告知用户导出文件与下载链接（临时链接有效期 expiresSeconds 秒）。",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "删除知识本 123456",
+      "expected_output": "破坏性操作（铁律 5）：用户给了具体 ID，仍应先确认目标。用 popo-cli popo notebook_readable_list 查知识本 123456 的名称与描述，向用户回显'将删除知识本【名称】(id=123456)，不可恢复'并等待显式确认；确认后才调用 popo-cli popo notebook_delete knowledgeBaseId=123456。禁止跳过确认直接删除。",
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "从知识本 123456 里删掉 articleId=987654 这篇文章",
+      "expected_output": "破坏性操作（铁律 5）：用户给了具体 ID，先确认目标。可先用 popo-cli popo notebook_article_list knowledgeBaseId=123456 核对文章 987654 的 title，向用户回显'将删除文章【title】(articleId=987654)'并等待显式确认；确认后调用 popo-cli popo notebook_delete_article knowledgeBaseId=123456 articleId=987654。",
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "我能往哪些知识本里添加文章",
+      "expected_output": "调用 popo-cli popo notebook_writable_list 获取当前用户所有可写知识本（铁律 3，创建文章前用 writable 而非 readable）。返回 data 为数组，用 jq '.data[] | {id, name, description, role}' 逐条展示。",
+      "files": []
+    },
+    {
+      "id": 11,
+      "prompt": "把 D:\\docs\\需求设计文档.pdf 这个文件加到'项目资料'知识本",
+      "expected_output": "本地文件调用 popo-cli popo notebook_add_file knowledgeBaseId=<id> files=\"@file:<tmp>\" 加载对应 Skill MD（铁律 7），禁止把本地路径当 url 传给 notebook_add_article。Skill 加载后：(1) 如果未给 knowledgeBaseId，先 popo-cli popo notebook_writable_list 定位'项目资料'的 knowledgeBaseId（铁律 3）；(2) 由 Skill 将 files 参数转换为 python scripts/add_file_to_notebook.py --kb-id <id> --file \"D:\\docs\\需求设计文档.pdf\"；(3) 脚本内部通过 popo-cli 调用已注册的 notebook_file_upload_url、notebook_file_confirm、notebook_add_attachment 三个子工具，仅对外部存储 PUT 直接 HTTP；(4) 输出 status=1 才成功，data 是数组，逐条展示 articleId/title/url。若申请上传地址失败，按外部服务约定直接告诉用户该文件类型不支持，不直接展示服务端原始 message。",
+      "files": []
+    },
+    {
+      "id": 12,
+      "prompt": "把这几个文件都传到知识本 123456：a.pdf、b.docx、c.md",
+      "expected_output": "先执行 popo-cli popo notebook_add_file knowledgeBaseId=123456 files=\"@file:<tmp>\" 加载 Skill MD，其中 files=[{path:a.pdf},{path:b.docx},{path:c.md}]；然后由 Skill 引导执行 python scripts/add_file_to_notebook.py --kb-id 123456 --file a.pdf --file b.docx --file c.md。脚本不在本地限制数量、类型或大小，逐个通过 popo-cli 调用 notebook_file_upload_url、PUT 外部存储、notebook_file_confirm，全部完成后再调用 notebook_add_attachment 一次性入库；任一文件失败则输出 stage/message/rawError，由模型解释实际原因后反馈用户。",
+      "files": []
+    },
+    {
+      "id": 13,
+      "prompt": "把 D:\\docs\\归档.zip 加到知识本 123456",
+      "expected_output": "先执行 popo-cli popo notebook_add_file knowledgeBaseId=123456 files=\"@file:<tmp>\" 加载 Skill MD，再由 Skill 引导执行 python scripts/add_file_to_notebook.py --kb-id 123456 --file \"D:\\docs\\归档.zip\"。脚本不预判 zip 是否支持，而是按服务端实际执行；若服务端拒绝，则输出 stage/message/rawError，由模型理解为文件类型不支持并向用户解释，禁止直接倾倒原始错误或改用 notebook_add_article 传本地路径（铁律 7）。",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "skill_name": "popo-calendar",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我和张三明天下午开个会",
+      "expected_output": "应执行工作流1预约会议：(1)popo_calendar_user_search搜索张三获取uid (2)popo_calendar_user_info获取当前用户uid (3)popo_calendar_freebusy查忙闲（包含当前用户和张三） (4)popo_calendar_room_search搜索会议室（不可跳过） (5)展示确认信息等用户确认后才创建 (6)popo_calendar_schedule_create。时间映射：下午=13:30-18:30，默认时长1小时",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "查一下张三明天有什么安排",
+      "expected_output": "应先popo_calendar_user_search搜索张三获取uid，再popo_calendar_schedule_list传targetUid和date查询张三的日程列表。不能省略targetUid（铁律2）",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "取消今天下午3点的技术评审会议",
+      "expected_output": "应执行工作流4：(1)popo_calendar_schedule_list定位目标会议 (2)popo_calendar_schedule_detail确认详情 (3)判断当前用户是否为创建者 (4)展示确认信息等用户确认后才执行popo_calendar_schedule_cancel。不可跳过确认步骤（铁律3）",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "明天和李四碰一下",
+      "expected_output": "应识别隐式触发（'碰一下'=预约会议意图），触发工作流1预约会议流程。先popo_calendar_user_search搜索李四，再走完整预约流程",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "五一放几天假",
+      "expected_output": "应调用popo_calendar_holiday_freebusy(beginDate=2026-05-01, endDate=2026-05-05, areas=China)查询节假日信息",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "帮我订一个杭州二园区的会议室，明天上午用",
+      "expected_output": "应执行工作流2：(1)时间映射上午=09:30-12:00 (2)popo_calendar_location_search查询园区列表获取杭州二园区的locationId (3)popo_calendar_room_search传locationId和时间搜索可用会议室 (4)展示确认信息等用户确认后popo_calendar_schedule_create预订",
+      "files": []
+    }
+  ]
+}

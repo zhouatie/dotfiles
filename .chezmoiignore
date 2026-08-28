@@ -15,8 +15,6 @@ node_modules/**
 .claude/**
 .codex/
 .codex/**
-.config/opencode/
-.config/opencode/**
 .config/**/.claude/
 .config/**/.claude/**
 .config/**/.codex/
@@ -32,9 +30,6 @@ node_modules/**
 .github/hooks/
 .github/hooks/**
 .cursor/hooks.json
-.config/opencode/opencode.json
-.config/opencode/opencode.jsonc
-.config/opencode/plugins/git-ai.ts
 
 # Local chezmoi data (machine-specific security opt-ins)
 .config/chezmoi/

@@ -1,0 +1,255 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "cocos-mcp": {
+      "type": "remote",
+      "enabled": false,
+      "url": "http://127.0.0.1:3200/mcp"
+    },
+    "figma-npm": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@music/aiwork-mcp",
+        "--registry",
+        "http://npm.hz.netease.com"
+      ]
+    },
+    "figma-local": {
+      "enabled": false,
+      "command": [
+        "sh",
+        "-lc",
+        "exec node \"$HOME/My/figma-tool/mcp-server/dist/index.js\""
+      ],
+      "type": "local"
+    },
+    "sourcegraph": {
+      "command": [
+        "npx",
+        "-y",
+        "@music/sourcegraph-mcp-server",
+        "--registry",
+        "http://npm.hz.netease.com"
+      ],
+      "enabled": false,
+      "environment": {
+        "USERID": "zhoushitie@corp.netease.com"
+      },
+      "type": "local"
+    },
+    "codegraph": {
+      "type": "local",
+      "command": [
+        "codegraph",
+        "serve",
+        "--mcp"
+      ],
+      "enabled": true
+    }
+  },
+  "agent": {
+    "scout": {
+      "description": "代码库快速探索与侦察：定位相关文件、关键路径、依赖关系与潜在风险（只读）",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      },
+      "prompt": "你是一个专业的代码库探索专家（Scout）。你的目标是快速理清代码结构、定位核心业务入口、分析调用链与数据流向，并指出潜在风险。你只负责探索和分析，严禁修改任何代码文件。"
+    },
+    "worker": {
+      "description": "代码编写与落地实现：负责修改代码、修复 Bug 并运行测试验证",
+      "mode": "subagent",
+      "prompt": "你是一个专注于代码实现的工程师（Worker）。你的目标是严格根据给定的任务或架构方案编写/修改代码，确保代码规范，并通过测试验证修改结果。遇到未明确的需求决策时，应主动上报而非盲目猜测。"
+    },
+    "reviewer": {
+      "description": "代码审查专家：针对修改/Diff 进行质量、安全、性能与边界测试检查（只读）",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      },
+      "prompt": "你是一个严格的代码审查员（Reviewer）。你的目标是检查代码的正确性、可维护性、边界异常处理、潜在性能与安全隐患。请给出具体、结构化的审查意见和改进建议，不要直接修改代码。"
+    },
+    "oracle": {
+      "description": "架构师与方案顾问：评估技术方案、挑战设计假设、识别架构风险与盲区（只读顾问）",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny",
+        "bash": "deny"
+      },
+      "prompt": "你是一个经验丰富的资深架构师和技术顾问（Oracle）。你的目标是在编码前提供第二意见（Second Opinion）：挑战方案中的潜在假设、指出设计缺陷或边界盲区，并给出更优的架构建议。你不负责具体代码实现。"
+    }
+  },
+  "command": {
+    "scout": {
+      "description": "调用 scout 进行代码探索",
+      "template": "让 scout 帮我分析以下内容：$ARGUMENTS"
+    },
+    "worker": {
+      "description": "调用 worker 实现代码",
+      "template": "让 worker 按照以下要求进行代码实现：$ARGUMENTS"
+    },
+    "reviewer": {
+      "description": "调用 reviewer 审查代码",
+      "template": "让 reviewer 审查以下代码/改动：$ARGUMENTS"
+    },
+    "oracle": {
+      "description": "调用 oracle 进行方案评估与架构审查",
+      "template": "请咨询 oracle，评估以下方案并提出风险与改进建议：$ARGUMENTS"
+    }
+  },
+  "plugin": [],
+  "provider": {
+    "langbase": {
+      "models": {
+        "claude-sonnet-4-6": {
+          "name": "claude-sonnet-4-6"
+        },
+        "claude-haiku-4-5-20251001": {
+          "name": "claude-haiku-4-5-20251001"
+        },
+        "gpt-5.4-2026-03-05": {
+          "name": "gpt-5.4-2026-03-05"
+        },
+        "claude-opus-4-8[1m]": {
+          "name": "claude-opus-4-8[1m]"
+        },
+        "claude-opus-4-8": {
+          "name": "claude-opus-4-8"
+        },
+        "deepseek-v4-pro": {
+          "name": "deepseek-v4-pro"
+        },
+        "gpt-5.5-2026-04-24": {
+          "name": "gpt-5.5-2026-04-24"
+        },
+        "glm-5.2": {
+          "name": "glm-5.2"
+        },
+        "glm-5.2[1m]": {
+          "name": "glm-5.2[1m]"
+        },
+        "kimi-k2.7-code": {
+          "name": "kimi-k2.7-code"
+        }
+      },
+      "name": "Langbase Claude",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "apiKey": "",
+        "baseURL": "https://langbase.netease.com/langbase/v1",
+        "maxRetries": 5
+      }
+    },
+    "self-grok": {
+      "models": {
+        "grok-chat-fast": {
+          "limit": {
+            "context": 500000,
+            "output": 128000
+          },
+          "name": "grok-chat-fast"
+        }
+      },
+      "options": {
+        "apiKey": "g2a_b308ee5225d5_f1Eust7JCcTUqIZWzsmBbh_9L4WrSQ76",
+        "baseURL": "https://grok2api.zhouatie.com/v1"
+      }
+    },
+    "openai": {
+      "models": {
+        "gpt-5.3-codex": {
+          "limit": {
+            "context": 400000,
+            "output": 128000
+          },
+          "name": "gpt-5.3-codex"
+        },
+        "gpt-5.4": {
+          "limit": {
+            "context": 400000,
+            "output": 128000
+          },
+          "name": "gpt-5.4"
+        }
+      },
+      "options": {
+        "apiKey": "sk-1DhXrYhcrHJqt5lWR",
+        "baseURL": "http://127.0.0.1:8317/v1"
+      }
+    },
+    "packycode": {
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      },
+      "name": "PackyCode",
+      "npm": "@ai-sdk/openai",
+      "options": {
+        "apiKey": "sk-A0bKE0rFOHnM4f2rfnRd6hAADXMY6hCJvYlqVc0QAvuybel0",
+        "baseURL": "https://www.packyapi.com/v1"
+      }
+    },
+    "antigravity-manager": {
+      "npm": "@ai-sdk/anthropic",
+      "name": "Antigravity Manager",
+      "options": {
+        "baseURL": "http://127.0.0.1:8045/v1",
+        "apiKey": "sk-0cea4a9e77fa4bbda6dbf831eef30c30"
+      },
+      "models": {
+        "gemini-3.7-flash": {
+          "name": "Gemini 3.7 Flash",
+          "limit": {
+            "context": 1000000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "audio",
+              "video",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "reasoning": true,
+          "variants": {
+            "low": {
+              "effort": "low"
+            },
+            "medium": {
+              "effort": "medium"
+            },
+            "high": {
+              "effort": "high"
+            }
+          }
+        },
+        "gemini-3-pro-image": {
+          "name": "Gemini 3 Pro Image",
+          "limit": {
+            "context": 1048576,
+            "output": 65535
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text",
+              "image"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "skill_name": "popo-task",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我建个任务：周报，给张三，明天下午 5 点截止",
+      "expected_output": "应进入创建任务工作流：(1) 用 popo_userinfo_search 解析'张三'拿 uid（多匹配处理：唯一/完全相等/候选/零匹配）；(2) 解析'明天下午 5 点'为本地时区秒级时间戳，deadlineFormat=2；(3) 回显完整摘要（标题=周报、执行人=张三、截止=明天 17:00、优先级=无）并等用户确认；(4) 用户确认后调 task_create title=\"周报\" assignees=[<uid>] deadline=<秒> deadlineFormat=2；(5) 报告 taskId。整个流程不得跳过确认（铁律 2）。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "记一条待办：周五前看完云协作 UX 计划表",
+      "expected_output": "未指定执行人 → 走默认创建人本人路径：(1) 调 task_user_info 拿当前用户 uid；(2) 解析'周五'为本地时区本周五 00:00 秒级时间戳，deadlineFormat=1；(3) 回显摘要中明示'执行人：当前用户（自动）'，不向用户反问'执行人是谁'；(4) 用户确认后调 task_create title=\"看完云协作 UX 计划表\" assignees=[<当前用户 uid>] deadline=<秒> deadlineFormat=1。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "看下分配给我的任务",
+      "expected_output": "走 task_list 四大快捷方式入口：调用前必须先读 task-list-workflow.md（铁律 6）。直接调 popo-cli popo task_list navigatorId=assignee quickConditions=[\"unfinished\"]（服务端按当前用户翻译，无需先 task_user_info 拿 uid）。用户未提及完成状态 → 默认必须追加 quickConditions=[\"unfinished\"] 隐藏已完成（铁律 6 第 1 档，作为实现细节不向用户展示）。不附加 keyword（关键词才走 task_search）。返回 hasMore=true 时提示用户'回复加载更多'，用返回的 nextPageToken 作为 pageToken 续拉。⚠️ task_list 是纯浏览无关键词，不适用 task_search 的自动续拉兜底（§8.2），走 §8.1 手动加载更多模式。",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "按执行人分组看本周要做的任务",
+      "expected_output": "(1) 调 task_list quickConditions=[\"unfinished\",\"this_week_deadline\"] 拿全量分页结果（分页用 nextPageToken 续拉）；(2) 在 Agent 端按 McpTaskItem.assignees[] 展开聚合 —— 一条任务在多个执行人桶下各出现一次，assignees 为空的归入'未分配'桶；(3) 严禁使用 assigner（分配人/创建人单值）作为分组维度；(4) 服务端无 groupBy 参数，分组完全在本地完成。",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "搜一下标题带'周报'的任务",
+      "expected_output": "有关键词/模糊标题匹配 → 走 task_search（不是 task_list）：调用前必须先读 task-list-workflow.md（铁律 6）。调 popo-cli popo task_search keyword=周报 quickConditions=[\"unfinished\"] pageSize=50。keyword 必填，pageSize 主动传 50 拉满（服务端默认 20，skill 必须主动传 50 减少分页次数）。用户未提及完成状态 → 默认必须追加 quickConditions=[\"unfinished\"] 隐藏已完成（铁律 6 第 1 档，task_search 与 task_list 共用规则）。可按需叠加 navigatorId/conditions/querySort（AND）。分页用返回的 **scrollId**（区别于 task_list 的 nextPageToken），翻页时作为 pageToken 回传。⛔ 自动续拉兜底（§8.2）：服务端 ES match 查询分词 OR 匹配 + 按 createTime 倒序（非相关度），首页易全是部分匹配。skill 必须：(1) 对 keyword 分词，计算每条 title 命中 token 数，完整匹配（全 token 命中）置顶、部分匹配在后（本地重排）；(2) 首页无完整匹配且 hasMore=true 时自动用 scrollId 续拉（上限 3 页/150 条），新页同样重排后合并；(3) 3 页拉完仍无完整匹配时停止自动续拉，明示'未找到完整含关键词的任务，以下为部分匹配'并转手动加载更多。task_list 无关键词不适用此兜底，走 §8.1 手动模式。",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "删除任务 t_12345",
+      "expected_output": "(1) **先**调 task_detail taskId=t_12345 拿 title/projectName/assigner/subTasks.length；(2) 回显'将删除任务【<title>】（项目 <projectName>），不可恢复'；若 subTasks.length > 0，回显文案必须含'将一并删除其下 N 个子任务'（铁律 3 + PRD §7.2）；(3) 等用户显式确认；(4) 用户确认后调 task_delete taskId=t_12345。",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "把任务 t_12345 的截止时间改到周五",
+      "expected_output": "单字段更新：(1) 先 task_detail taskId=t_12345 拿当前 deadline 作为 old 值；(2) 解析'周五'为本地周五 00:00 秒级时间戳，deadlineFormat=1；(3) 回显 diff：'deadline: <old YYYY-MM-DD HH:mm> → <new YYYY-MM-DD>'；(4) 等用户确认；(5) 调 task_update taskId=t_12345 deadline=<秒> deadlineFormat=1，**仅传变化字段**，不传 title/priority/assignees 等未变字段。",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "给任务 t_12345 加一份附件 C:\\report.pdf",
+      "expected_output": "type=2 文件附件完整链路：(1) 计算 fsize/fhash(MD5)/fname/fext（Windows 用 PowerShell + fname 写入 UTF-8 无 BOM 临时文件）；(2) popo-cli popo message_s3_ufile_upload fsize=X fhash=Y → url/objectKey/bucketName；(3) curl.exe -T 上传到预签名 url（必须 -T 不是 --data-binary，无需 Authorization header）；(4) popo-cli popo message_s3_ufile_upload_complete → ufid/ftype；(5) **回显附件摘要 + 等用户显式确认**（铁律 2，写操作）；(6) popo-cli popo task_attachment_add taskId=t_12345 attachments='[{type:2,url:\"\"(必须空字符串),name,size,format,md5,fileId,infoType:3,objectKey}]'。",
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "和张三明天下午开个会",
+      "expected_output": "边界用例：此 prompt 应路由到 popo-calendar skill 走预约会议工作流（含'开会'强会议日程关键词），**不**进入 popo-task。popo-task 触发词与 popo-calendar 通过 description 显式区分：task=执行人/进度/截止/子任务/项目/附件；calendar=开会/会议/会议室/参会人/忙闲/时间段/日程。",
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "帮我新建一个项目叫 XX",
+      "expected_output": "拒绝并引导：'本期暂不支持通过 popo-cli 新建任务项目（POPO 任务），请到 POPO 客户端任务面板新建后重试'（铁律 5）。不调用任何 popo-cli 接口，不尝试任何兜底创建方式。",
+      "files": []
+    },
+    {
+      "id": 11,
+      "prompt": "把任务 t_12345 标记完成",
+      "expected_output": "走完成任务工作流（task_finish 已放开支持）：(1) 先调 task_detail taskId=t_12345 拿 title/participants/subTasks/completeCondition；(2) 状态预检——若已全部完成则告知不重复调 finish；若 completeCondition=all 且有未完成执行人，提示'还有 N 个执行人未完成'；若有未完成子任务，提示'还有 N 个子任务未完成'；(3) 回显摘要'将完成任务【<title>】，当前完成进度 X/Y，此操作不可撤销（可重开）'；(4) ask_user_question 选项'确认完成/取消'（铁律 2，禁止手动输入）；(5) 用户确认后调 task_finish taskId=t_12345；(6) 报告'任务【<title>】已标记完成'。",
+      "files": []
+    },
+    {
+      "id": 12,
+      "prompt": "看下我已完成的任务",
+      "expected_output": "调用前必须先读 task-list-workflow.md（铁律 6）。用户主动表达完成状态「我已完成的」→ 走铁律 6 第 2 档（仅已完成）：调 popo-cli popo task_list navigatorId=assignee quickConditions=[\"finished\"]。**移除 unfinished**，quickConditions 中只含 finished。不传 finished+unfinished 的组合（那是第 3 档语义）。服务端按当前用户翻译 navigatorId，无需先 task_user_info。",
+      "files": []
+    },
+    {
+      "id": 13,
+      "prompt": "看下分配给我的全部任务，包含已完成的",
+      "expected_output": "调用前必须先读 task-list-workflow.md（铁律 6）。用户主动表达「包含已完成的」→ 走铁律 6 第 3 档（两者都展示）：调 popo-cli popo task_list navigatorId=assignee。quickConditions **既不含 finished 也不含 unfinished**（不传完成状态过滤）。注意区分：用户说「全部都看/包含已完成」是第 3 档（不传），用户说「看已完成/我已经完成的」是第 2 档（传 finished）。",
+      "files": []
+    },
+    {
+      "id": 14,
+      "prompt": "看下我的所有任务",
+      "expected_output": "调用前必须先读 task-list-workflow.md（铁律 6）。用户未提及完成状态 → 走铁律 6 第 1 档（默认隐藏已完成）：调 popo-cli popo task_list navigatorId=all quickConditions=[\"unfinished\"]。⚠️「所有任务」此处指 navigatorId=all（全部任务的快捷方式），不是「包含已完成」语义；用户未明确说「已完成/包含已完成」就必须默认追加 unfinished 隐藏已完成。判定要点：仅当出现「已完成/历史/我已经完成的」字样才进入第 2/3 档。",
+      "files": []
+    },
+    {
+      "id": 15,
+      "prompt": "重开任务 t_12345",
+      "expected_output": "走重开任务工作流（task_rebuild 已放开支持）：(1) 先调 task_detail taskId=t_12345 拿 title/participants；(2) 状态预检——若当前未完成则告知'任务当前未完成，无需重开'，不调 rebuild；(3) 回显摘要'将重开任务【<title>】，当前状态：已完成，重开后状态变更为未完成，执行人完成记录将被清除'；(4) ask_user_question 选项'确认重开/取消'（铁律 2）；(5) 用户确认后调 task_rebuild taskId=t_12345；(6) 报告'任务【<title>】已重开（恢复为未完成）'。",
+      "files": []
+    },
+    {
+      "id": 16,
+      "prompt": "把任务 t_12345 标记完成",
+      "expected_output": "完成任务工作流的边界用例（状态预检）：先调 task_detail 拿状态，若发现任务所有 participants.finished=true 已是全部完成状态 → 告知用户'任务【<title>】已是完成状态，无需重复标记完成'，**不**调 task_finish（避免无谓调用）。不进入二次确认流程。若用户仍坚持要'重新完成'，引导用 task_rebuild 重开后再 finish。",
+      "files": []
+    }
+  ]
+}

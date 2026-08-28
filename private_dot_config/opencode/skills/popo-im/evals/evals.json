@@ -1,0 +1,149 @@
+{
+  "skill_name": "popo-im",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我查下张三在项目讨论群里说过的关于进度更新的消息",
+      "expected_output": "应同时解析群名'项目讨论群'(popo_team_search)和人名'张三'(popo_userinfo_search)，然后用popo_message_search搜索'进度更新'，获取上下文，最终按会话分组、时间倒序展示，发送方/接收方显示为人名而非邮箱",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "最近一周有没有人在群里讨论过发布计划？",
+      "expected_output": "应解析时间范围为'最近一周'(当前时间往前7天的毫秒时间戳)，搜索关键词为'发布计划'，不需要解析群名或人名（全局搜索），结果按会话分组展示并包含上下文",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "搜索一下李四发给我的关于合同的私聊消息",
+      "expected_output": "应解析人名'李四'(popo_userinfo_search获取邮箱)，关键词为'合同'，使用contactList过滤，结果应展示单聊会话，接收方显示为对方姓名而非群名",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "帮我创建一个群，把张三和李四拉进来，群名叫项目攻坚组",
+      "expected_output": "应先通过popo_userinfo_search分别搜索'张三'和'李四'获取邮箱（可并行），然后调用popo_team_create(name=项目攻坚组, uidList=张三邮箱,李四邮箱, type=1)。最终告知用户群创建结果，包括群名、群ID、实际入群人数，以及是否有需审批人员",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "把王五加到项目讨论群里",
+      "expected_output": "应先通过popo_team_search('项目讨论群')获取tid，同时通过popo_userinfo_search('王五')获取邮箱（并行执行），然后调用popo_team_invite(tid=群ID, inviteList=王五邮箱)。最终告知用户邀请结果（直接入群还是需要审批）",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "把张三从项目讨论群里移除",
+      "expected_output": "应先通过popo_team_search('项目讨论群')获取tid，同时通过popo_userinfo_search('张三')获取邮箱（并行执行）。由于移除成员是破坏性操作，应先与用户确认后再调用popo_team_kick_member(tid=群ID, toUids=张三邮箱)",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "把项目讨论群改名为产品评审群",
+      "expected_output": "应先通过popo_team_search('项目讨论群')获取tid。由于修改群名是破坏性操作，应先与用户确认后再调用popo_team_update_team_name(tid=群ID, tname=产品评审群)",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "帮我建个群拉上赵六",
+      "expected_output": "应通过popo_userinfo_search('赵六')获取邮箱，然后调用popo_team_create(uidList=赵六邮箱, type=1)。注意用户未指定群名，不传name参数（系统自动生成）",
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "帮我给张三发条消息，告诉他明天下午3点开会",
+      "expected_output": "应先通过popo_userinfo_search('张三')获取邮箱，然后调用popo_message_send_p2p(message='明天下午3点开会', receiver=张三邮箱)。最终告知用户消息已发送",
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "在项目讨论群里发个消息，说本周五下午团建",
+      "expected_output": "应先通过popo_team_search('项目讨论群')获取tid，然后调用popo_message_send_team(message='本周五下午团建', receiver=群tid)。最终告知用户消息已发送到群",
+      "files": []
+    },
+    {
+      "id": 11,
+      "prompt": "帮我给 yuexichun@corp.netease.com 发条消息，说明天下午开会",
+      "expected_output": "应识别 yuexichun@corp.netease.com 为 POPO 账号（uid），直接作为 receiver 使用，无需调用 popo_userinfo_search。直接调用 popo_message_send_p2p(message='明天下午开会', receiver='yuexichun@corp.netease.com')",
+      "files": []
+    },
+    {
+      "id": 12,
+      "prompt": "帮我把这张图发送给 yuexichun@corp.netease.com",
+      "expected_output": "应识别 yuexichun@corp.netease.com 为 POPO 账号（uid），跳过 popo_userinfo_search，直接进入图片上传发送流程。执行 message-send-image-workflow（获取FP上传地址 → 上传图片 → 组装[img]标签 → popo_message_send_p2p 发送），receiver 直接使用 yuexichun@corp.netease.com",
+      "files": []
+    },
+    {
+      "id": 13,
+      "prompt": "帮我给 zhangsan@mesg.corp.netease.com 发个文件 ~/report.pdf",
+      "expected_output": "应识别 zhangsan@mesg.corp.netease.com 为 POPO 账号（uid），直接作为 receiver 使用，无需调用 popo_userinfo_search。直接进入文件上传发送流程：获取文件元信息 → 获取S3上传地址 → curl上传 → popo_message_s3_ufile_upload_complete上报换取ufid/ftype → popo_message_send_p2p(msgType=3) 发送，receiver 直接使用 zhangsan@mesg.corp.netease.com",
+      "files": []
+    },
+    {
+      "id": 14,
+      "prompt": "帮我发一条消息给文件传输助手，内容是明天记得开会",
+      "expected_output": "应识别用户意图为发送给文件传输助手，无需调用 popo_userinfo_search，直接调用 popo_message_send_filehelper(message='明天记得开会', source=AGENT)。告知用户消息已发送到文件传输助手",
+      "files": []
+    },
+    {
+      "id": 15,
+      "prompt": "发给自己一条备忘：下周一提交季度报告",
+      "expected_output": "应识别'发给自己'意图为发送给文件传输助手，无需调用 popo_userinfo_search，直接调用 popo_message_send_filehelper(message='下周一提交季度报告', source=AGENT)。告知用户消息已发送到文件传输助手",
+      "files": []
+    },
+    {
+      "id": 16,
+      "prompt": "把这张截图发给文件传输助手 ~/screenshot.png",
+      "expected_output": "应识别用户意图为发送图片给文件传输助手，无需调用 popo_userinfo_search，进入图片上传发送流程。执行 message-send-image-workflow（获取FP上传地址 → 上传图片 → 组装[img]标签 → popo_message_send_filehelper 发送），无需 receiver 参数",
+      "files": []
+    },
+    {
+      "id": 17,
+      "prompt": "看一下「POPO CLI 互助交流群」里都有哪些人，按部门分组列一下",
+      "expected_output": "应先通过 popo_team_search('POPO CLI 互助交流群') 获取 tid，然后调用 popo_team_info_query(type=2) 获取成员列表。按 departmentName 字段分组展示，同部门内按 name 排序，开头汇总总人数和部门数",
+      "files": []
+    },
+    {
+      "id": 18,
+      "prompt": "帮我看看项目讨论群的群公告写了什么",
+      "expected_output": "应先通过 popo_team_search('项目讨论群') 获取 tid，然后调用 popo_team_info_query(type=1) 获取群公告。展示 board 纯文本内容和发布时间（timeTag 转为可读时间）",
+      "files": []
+    },
+    {
+      "id": 19,
+      "prompt": "查一下「技术交流群」的公告和成员情况",
+      "expected_output": "应先通过 popo_team_search('技术交流群') 获取 tid，然后并行调用 popo_team_info_query(type=1) 和 popo_team_info_query(type=2)，合并展示公告内容和成员列表",
+      "files": []
+    },
+    {
+      "id": 20,
+      "prompt": "用 ycy06161931 机器人给刚才张三那条『项目进度已更新』的消息点个赞",
+      "expected_output": "应识别机器人名 ycy06161931（直接使用不搜索），先通过 popo_message_search 定位目标消息取 msg_id 和 session_id，将中文『赞』映射为枚举名 THUMBS_UP，然后调用 popo_message_sticker_quick_reply(robotName='ycy06161931', msgId=<msg_id>, sessionId=<session_id>, stickerId='THUMBS_UP')，opType 默认 1（添加表情回应）。sessionType 无需传，服务端自动推算。最终告知用户已用机器人对该消息回应了赞",
+      "files": []
+    },
+    {
+      "id": 21,
+      "prompt": "把机器人 ycy06161931 刚给那条消息回应的赞取消掉",
+      "expected_output": "应识别为取消表情回应操作，opType=2。复用同一目标消息的 msgId/sessionId，stickerId 仍为 THUMBS_UP，调用 popo_message_sticker_quick_reply(robotName='ycy06161931', msgId=<msg_id>, sessionId=<session_id>, stickerId='THUMBS_UP', opType=2)。告知用户已取消该表情回应",
+      "files": []
+    },
+    {
+      "id": 22,
+      "prompt": "用 testbot 给这条消息回应个爱心",
+      "expected_output": "应识别『爱心』不在当前支持的 7 个表情范围内（THUMBS_UP、ROSE、OK、IDEA、GET、ING、ONE，参见 sticker-enum.md），向用户说明当前不支持爱心，并建议替代（如玫瑰 ROSE 或赞 THUMBS_UP），不应编造 HEART 等非法枚举名调用",
+      "files": []
+    },
+    {
+      "id": 23,
+      "prompt": "在项目讨论群 @发布机器人 发个通知，说版本已发布",
+      "expected_output": "应识别为发送群消息：用户以自己身份发送并 @机器人'发布机器人'。先通过popo_team_search('项目讨论群')获取tid，通过popo_userinfo_search('发布机器人')获取机器人uid（includeRobot=true），然后调用popo_message_send_team(message='@发布机器人 版本已发布', receiver=群tid, atUids=[机器人uid])。⚠️ 即使机器人名含'机器人'字样且后跟'发'，因为该名称以@标记处于被提及/接收者位置，绝不路由到use_robot_send_msg",
+      "files": []
+    },
+    {
+      "id": 24,
+      "prompt": "在项目群 at发布机器人 发个通知，说版本已发布",
+      "expected_output": "应识别为发送群消息：用户以自己身份发送并@机器人'发布机器人'（at 与 @/艾特/＠ 等价，均为被提及标志，覆盖'at一下'等动作形式）。先通过popo_team_search('项目群')获取tid，通过popo_userinfo_search('发布机器人')获取机器人uid（includeRobot=true），然后调用popo_message_send_team(message='@发布机器人 版本已发布', receiver=群tid, atUids=[机器人uid])。绝不路由到use_robot_send_msg",
+      "files": []
+    }
+  ]
+}
