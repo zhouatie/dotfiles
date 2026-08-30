@@ -174,28 +174,25 @@ _fzf_comprun() {
 
 [[ -r ~/fzf-git.sh/fzf-git.sh ]] && source ~/fzf-git.sh/fzf-git.sh
 
-# ----- NVM (lazy) -------------------------------------------------------------
+# ----- NVM (Fast PATH + Lazy CLI) ---------------------------------------------
 export NVM_DIR="$HOME/.nvm"
-_nvm_lazy_load() {
-  unset -f nvm node npm npx 2>/dev/null
-  [[ -s "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh" --no-use
-  [[ -s "$NVM_DIR/bash_completion" ]] && \. "$NVM_DIR/bash_completion"
-}
+if [[ -f "$NVM_DIR/alias/default" ]]; then
+  _nvm_default_version="$(<"$NVM_DIR/alias/default")"
+  if [[ -n "$_nvm_default_version" ]]; then
+    _nvm_matches=($NVM_DIR/versions/node/v${_nvm_default_version#v}*(N/On))
+    if (( ${#_nvm_matches} > 0 )) && [[ -d "${_nvm_matches[1]}/bin" ]]; then
+      export PATH="${_nvm_matches[1]}/bin:$PATH"
+    fi
+    unset _nvm_matches
+  fi
+  unset _nvm_default_version
+fi
+
 nvm() {
-  _nvm_lazy_load
+  unset -f nvm
+  [[ -s "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh"
+  [[ -s "$NVM_DIR/bash_completion" ]] && \. "$NVM_DIR/bash_completion"
   nvm "$@"
-}
-node() {
-  _nvm_lazy_load
-  command node "$@"
-}
-npm() {
-  _nvm_lazy_load
-  command npm "$@"
-}
-npx() {
-  _nvm_lazy_load
-  command npx "$@"
 }
 
 # ----- Misc -------------------------------------------------------------------
