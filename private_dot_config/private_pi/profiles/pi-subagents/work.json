@@ -18,33 +18,36 @@
   "subagents": {
     "agentOverrides": {
       "scout": {
-        "model": "langbase/glm-5.3",
+        "model": "antigravity/gemini-3.7-flash",
         "thinking": "high"
       },
       "delegate": {
-        "model": "langbase/glm-5.3"
+        "model": "antigravity/gemini-3.7-flash",
+        "thinking": "high"
       },
       "researcher": {
-        "model": "langbase/glm-5.3",
+        "model": "antigravity/gemini-3.7-flash",
         "thinking": "high"
       },
       "context-builder": {
-        "model": "langbase/glm-5.3",
+        "model": "antigravity/gemini-3.7-flash",
         "thinking": "high"
       },
       "planner": {
-        "model": "langbase/glm-5.3"
+        "model": "antigravity/gemini-3.7-flash",
+        "thinking": "high"
       },
       "worker": {
-        "model": "langbase/glm-5.3",
-        "thinking": "max"
+        "model": "antigravity/gemini-3.7-flash",
+        "thinking": "high"
       },
       "reviewer": {
-        "model": "langbase/glm-5.3",
-        "thinking": "xhigh"
+        "model": "antigravity/gemini-3.7-flash",
+        "thinking": "high"
       },
       "oracle": {
-        "model": "langbase/glm-5.3"
+        "model": "antigravity/gemini-3.7-flash",
+        "thinking": "high"
       }
     }
   }

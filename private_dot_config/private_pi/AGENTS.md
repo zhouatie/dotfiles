@@ -3,7 +3,7 @@
 -   Unless explicitly requested, do not write compatibility code.
 -   Do not read the Figma selection or call Figma tools proactively. Only inspect Figma when the user explicitly asks to inspect the design.
 -   When the user asks to inspect Figma, do not hallucinate or draw the UI yourself.
-
+-   不要主动帮我提交代码，除非我要求你帮我提交代码。
 ## 子代理调度策略
 
 -   多文件实现任务：先派 scout 侦察（fresh context），再由 planner 出计划并与用户确认，最后派单个 worker 实现。

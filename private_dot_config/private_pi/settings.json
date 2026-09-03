@@ -1,97 +1,93 @@
 {
-  "lastChangelogVersion": "0.84.2",
-  "defaultProvider": "antigravity",
-  "defaultModel": "gemini-3.7-flash",
-  "defaultThinkingLevel": "high",
-  "enabledModels": [
-    "langbase/deepseek-v4-flash",
-    "langbase/gpt-5.5-2026-04-24",
-    "netease-codemaker/gpt-5.6-terra",
-    "netease-codemaker/gpt-5.6-luna",
-    "langbase/kimi-k3",
-    "langbase/claude-opus-4-8",
-    "netease-codemaker/claude-opus-5",
-    "netease-codemaker/claude-opus-4-8",
-    "langbase/glm-5.3",
-    "google/gemini-3.7-flash",
-    "antigravity/gemini-3.1-pro",
-    "antigravity/gemini-3.7-flash"
-  ],
-  "packages": [
-    {
-      "source": "../../My/pi-base",
-      "extensions": [
-        "-extensions/agent-duration/index.ts",
-        "-extensions/kitty-tab-status/index.ts"
-      ]
+    "lastChangelogVersion": "0.84.4",
+    "defaultProvider": "antigravity",
+    "defaultModel": "gemini-3.8-flash",
+    "defaultThinkingLevel": "high",
+    "enabledModels": [
+        "langbase/deepseek-v4-flash",
+        "antigravity/gemini-3.7-flash",
+        "antigravity/gemini-3.8-flash"
+    ],
+    "packages": [
+        "npm:pi-subagents@0.49.0",
+        "npm:pi-web-access",
+        "npm:pi-mcp-adapter",
+        {
+            "source": "npm:@diegopetrucci/pi-openai-fast@0.1.11",
+            "extensions": [
+                "-index.ts"
+            ]
+        },
+        "npm:pi-playwright",
+        "npm:pi-visualize-code-changes",
+        "npm:@tmustier/pi-usage-extension",
+        "npm:pi-vision-handoff",
+        "npm:pi-token-speed",
+        "npm:pi-extmgr",
+        "npm:pi-open-tui",
+        "npm:pi-side-chat",
+        {
+            "source": "npm:pi-prompt-template-model",
+            "extensions": [
+                "-index.ts"
+            ]
+        },
+        "npm:pi-antigravity",
+        "npm:@ff-labs/pi-fff",
+        "npm:pi-tool-repair",
+        "npm:@lucascardozo/pi-edit-guard",
+        "npm:pi-observational-memory"
+    ],
+    "defaultProjectTrust": "always",
+    "treeFilterMode": "no-tools",
+    "skills": [
+        "!/Users/zhoushitie/.agents/skills/**"
+    ],
+    "showCacheMissNotices": false,
+    "subagents": {
+        "agentOverrides": {
+            "scout": {
+                "model": "antigravity-manager/gemini-3.7-flash",
+                "thinking": "high"
+            },
+            "delegate": {
+                "model": "antigravity-manager/gemini-3.7-flash",
+                "thinking": "high"
+            },
+            "researcher": {
+                "model": "antigravity-manager/gemini-3.7-flash",
+                "thinking": "high"
+            },
+            "context-builder": {
+                "model": "antigravity-manager/gemini-3.7-flash",
+                "thinking": "high"
+            },
+            "planner": {
+                "model": "antigravity-manager/gemini-3.7-flash",
+                "thinking": "high"
+            },
+            "worker": {
+                "model": "antigravity-manager/gemini-3.7-flash",
+                "thinking": "high"
+            },
+            "reviewer": {
+                "model": "antigravity-manager/gemini-3.7-flash",
+                "thinking": "high"
+            },
+            "oracle": {
+                "model": "antigravity-manager/gemini-3.7-flash",
+                "thinking": "high"
+            }
+        }
     },
-    "npm:pi-subagents@0.49.0",
-    "npm:pi-web-access",
-    "npm:pi-mcp-adapter",
-    {
-      "source": "npm:@diegopetrucci/pi-openai-fast@0.1.11",
-      "extensions": [
-        "-index.ts"
-      ]
+    "terminal": {
+        "showTerminalProgress": false
     },
-    "npm:pi-playwright",
-    "npm:pi-visualize-code-changes",
-    "npm:@tmustier/pi-usage-extension",
-    "npm:pi-vision-handoff",
-    "npm:pi-token-speed",
-    "npm:pi-extmgr",
-    "npm:pi-open-tui",
-    "npm:pi-side-chat",
-    "npm:pi-prompt-template-model",
-    "npm:pi-antigravity"
-  ],
-  "defaultProjectTrust": "always",
-  "treeFilterMode": "no-tools",
-  "skills": [
-    "!/Users/zhoushitie/.agents/skills/**"
-  ],
-  "showCacheMissNotices": false,
-  "subagents": {
-    "agentOverrides": {
-      "scout": {
-        "model": "langbase/glm-5.3",
-        "thinking": "high"
-      },
-      "delegate": {
-        "model": "langbase/glm-5.3"
-      },
-      "researcher": {
-        "model": "langbase/glm-5.3",
-        "thinking": "high"
-      },
-      "context-builder": {
-        "model": "langbase/glm-5.3",
-        "thinking": "high"
-      },
-      "planner": {
-        "model": "langbase/glm-5.3"
-      },
-      "worker": {
-        "model": "langbase/glm-5.3",
-        "thinking": "max"
-      },
-      "reviewer": {
-        "model": "langbase/glm-5.3",
-        "thinking": "xhigh"
-      },
-      "oracle": {
-        "model": "langbase/glm-5.3"
-      }
-    }
-  },
-  "terminal": {
-    "showTerminalProgress": false
-  },
-  "transport": "auto",
-  "hideThinkingBlock": true,
-  "theme": "omp-titanium",
-  "doubleEscapeAction": "tree",
-  "showHardwareCursor": true,
-  "fullscreenScrollbar": "always",
-  "tuiMode": "fullscreen"
+    "transport": "auto",
+    "hideThinkingBlock": true,
+    "theme": "omp-titanium",
+    "doubleEscapeAction": "tree",
+    "showHardwareCursor": true,
+    "fullscreenScrollbar": "always",
+    "tuiMode": "fullscreen"
 }

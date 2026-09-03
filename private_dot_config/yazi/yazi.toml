@@ -30,19 +30,29 @@ ueberzug_offset = [0, 0, 0, 0]
 
 [opener]
 edit = [
-  { run = 'nvim %s', desc = "neovim", block = true, for = "macos" },
+  { run = 'nvim %s', desc = "Neovim", block = true, for = "macos" },
   { run = 'code %*', orphan = true, desc = "code", for = "windows" },
 ]
-arc = [
-  { run = 'open -a "Arc" %s', desc = "Arc", orphan = true, for = "macos" },
+code = [
+  { run = 'code %s', desc = "VS Code", orphan = true, for = "macos" },
+  { run = 'code %*', desc = "VS Code", orphan = true, for = "windows" },
+  { run = 'code %s', desc = "VS Code", orphan = true, for = "linux" },
 ]
+cursor = [
+  { run = 'cursor %s', desc = "Cursor", orphan = true, for = "macos" },
+  { run = 'cursor %*', desc = "Cursor", orphan = true, for = "windows" },
+  { run = 'cursor %s', desc = "Cursor", orphan = true, for = "linux" },
+]
+arc = [{ run = 'open -a "Arc" %s', desc = "Arc", orphan = true, for = "macos" }]
+zed = [{ run = 'open -a "Zed" %s', desc = "Zed", orphan = true, for = "macos" }]
+ghostty = [{ run = 'open -a "Ghostty" %s', desc = "Ghostty", orphan = true, for = "macos" }]
 editor = [
   { run = '${EDITOR:-vi} %s', desc = "$EDITOR", block = true, for = "unix" },
   { run = 'code -w %*', block = true, desc = "code (block)", for = "windows" },
 ]
 open = [
   { run = 'xdg-open %s1', desc = "Open", for = "linux" },
-  { run = 'open %s', desc = "Open", for = "macos" },
+  { run = 'open %s', desc = "Finder", for = "macos" },
   { run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
   { run = 'termux-open %s1', desc = "Open", for = "android" },
 ]
@@ -51,7 +61,7 @@ browser = [
 ]
 reveal = [
   { run = 'xdg-open %d1', desc = "Reveal", for = "linux" },
-  { run = 'open -R %s1', desc = "Reveal", for = "macos" },
+  { run = 'open -R %s1', desc = "Reveal in Finder", for = "macos" },
   { run = 'explorer /select,"%1"', orphan = true, desc = "Reveal", for = "windows" },
   { run = 'termux-open %d1', desc = "Reveal", for = "android" },
   { run = '''clear; exiftool %s1; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
@@ -69,15 +79,30 @@ play = [
 [open]
 rules = [
   # Folder
+  { mime = "folder/*", use = [
+    "edit",
+    "zed",
+    "code",
+    "cursor",
+    "ghostty",
+    "open",
+    "reveal",
+  ] },
   { url = "*/", use = [
     "edit",
-    "editor",
+    "zed",
+    "code",
+    "cursor",
+    "ghostty",
     "open",
     "reveal",
   ] },
   # Markdown
   { url = "*.md", use = [
     "edit",
+    "zed",
+    "code",
+    "cursor",
     "arc",
     "editor",
     "browser",
@@ -86,6 +111,9 @@ rules = [
   # Text
   { mime = "text/*", use = [
     "edit",
+    "zed",
+    "code",
+    "cursor",
     "editor",
     "reveal",
   ] },
@@ -107,11 +135,17 @@ rules = [
   # JSON
   { mime = "application/{json,ndjson}", use = [
     "edit",
+    "zed",
+    "code",
+    "cursor",
     "editor",
     "reveal",
   ] },
   { mime = "*/javascript", use = [
     "edit",
+    "zed",
+    "code",
+    "cursor",
     "editor",
     "reveal",
   ] },
@@ -145,22 +179,10 @@ prepend_previewers = [
   { url = "*.duckdb", run = "duckdb" },
 ]
 
-# 不需要预加载
-# prepend_preloaders = [
-#   { name = "*.csv", run = "duckdb", multi = false },
-#   { name = "*.tsv", run = "duckdb", multi = false },
-#   { name = "*.json", run = "duckdb", multi = false },
-#   { name = "*.parquet", run = "duckdb", multi = false },
-#   { name = "*.txt", run = "duckdb", multi = false },
-#   { name = "*.xlsx", run = "duckdb", multi = false },
-# ]
+# fetchers 保持默认即可（包含了针对目录的 mime.dir 和针对文件的 mime.local 等）
 
-
-fetchers = [
-  # Mimetype
-  { id = "mime", url = "*", run = "mime.local", prio = "high" },
-]
 spotters = [
+  { mime = "folder/*", run = "folder" },
   { url = "*/", run = "folder" },
   # Code
   { mime = "text/*", run = "code" },
@@ -188,6 +210,7 @@ preloaders = [
   { mime = "application/ms-opentype", run = "font" },
 ]
 previewers = [
+  { mime = "folder/*", run = "folder" },
   { url = "*/", run = "folder" },
   { url = "*.md", run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"' },
 

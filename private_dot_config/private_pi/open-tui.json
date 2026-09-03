@@ -10,13 +10,13 @@
   },
   "footerSegments": {
     "cwd": true,
-    "sessionName": false,
+    "sessionName": true,
     "gitBranch": true,
     "gitStatus": true,
     "gitCommit": true,
-    "runtime": false,
+    "runtime": true,
     "context": true,
-    "tokens": false,
+    "tokens": true,
     "cost": false,
     "extensionStatuses": true
   },

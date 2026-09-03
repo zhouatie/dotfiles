@@ -1,9 +1,12 @@
+onboarding = false
 [ui]
 agent_panel_sort = "priority"
+right_click_passthrough_modifier = "ctrl"
 
-show_agent_labels_on_pane_borders = true
+show_agent_labels_on_pane_borders = false
 [keys]
-prefix = "ctrl+a"
+prefix = "cmd+s"
+# prefix = "ctrl+a"
 
 # Switch tabs with Ctrl+[ (previous) and Ctrl+] (next)
 previous_tab = "ctrl+["
@@ -17,22 +20,24 @@ next_agent = "cmd+ctrl+]"
 previous_workspace = "cmd+shift+ctrl+["
 next_workspace = "cmd+shift+ctrl+]"
 
-# [[keys.command]] # lazygit：分屏打开
-# key = "prefix+g"
-# type = "plugin_action"
-# command = "herdr-lazygit.open"
-
-[[keys.command]] # lazygit：独立 tab 打开
-key = "prefix+g"
-type = "plugin_action"
-command = "herdr-lazygit.open-tab"
-
 # Optional: Focus Tabs/Panes/Agents when open navigator
 [[keys.command]]
 key = "cmd+i"
 type = "plugin_action"
 command = "beyondlex.herdr-recent-navigator.focus-tabs"
 description = "Open Navigator: Tab"
+
+[[keys.command]]
+key = "prefix+e"
+type = "plugin_action"
+command = "chmarax.herdr-nvim.toggle"
+description = "nvim sidebar"
+
+[[keys.command]]
+key = "prefix+o"
+type = "plugin_action"
+command = "chmarax.herdr-nvim.pick-file"
+description = "open file from agent output"
 
 [[keys.command]] # open in a split pane
 key = "prefix+y"
@@ -50,8 +55,29 @@ description = "open file explorer in a new tab"
 [theme]
 name = "catppuccin"
 
+auto_switch = false
 [ui.toast]
-delivery = "herdr"
+delivery = "system"
 
 [experimental]
 kitty_graphics = true
+
+# Worktree plugin bindings (added by config task)
+[[keys.command]]
+key = "prefix+shift+g"
+type = "plugin_action"
+command = "worktrunk.open"
+description = "Worktree: switch / create from default branch"
+
+#
+# [[keys.command]]
+# key = "prefix+shift+c"
+# type = "plugin_action"
+# command = "worktrunk.open-current"
+# description = "Worktree: switch / create from current branch"
+#
+# [[keys.command]]
+# key = "prefix+shift+d"
+# type = "plugin_action"
+# command = "worktrunk.remove"
+# description = "Worktree: remove"
