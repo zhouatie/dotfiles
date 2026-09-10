@@ -1,54 +1,17 @@
 {
   "main": {
-    "provider": "langbase",
-    "model": "kimi-k3",
+    "provider": "antigravity",
+    "model": "gemini-3.8-flash",
     "thinking": "high"
   },
   "enabledModels": [
     "langbase/deepseek-v4-flash",
-    "langbase/gpt-5.5-2026-04-24",
-    "netease-codemaker/gpt-5.6-terra",
-    "netease-codemaker/gpt-5.6-luna",
-    "langbase/kimi-k3",
-    "langbase/claude-opus-4-8",
-    "netease-codemaker/claude-opus-5",
-    "netease-codemaker/claude-opus-4-8",
-    "langbase/glm-5.3"
+    "antigravity/gemini-3.7-flash",
+    "antigravity/gemini-3.8-flash"
   ],
   "subagents": {
-    "agentOverrides": {
-      "scout": {
-        "model": "antigravity/gemini-3.7-flash",
-        "thinking": "high"
-      },
-      "delegate": {
-        "model": "antigravity/gemini-3.7-flash",
-        "thinking": "high"
-      },
-      "researcher": {
-        "model": "antigravity/gemini-3.7-flash",
-        "thinking": "high"
-      },
-      "context-builder": {
-        "model": "antigravity/gemini-3.7-flash",
-        "thinking": "high"
-      },
-      "planner": {
-        "model": "antigravity/gemini-3.7-flash",
-        "thinking": "high"
-      },
-      "worker": {
-        "model": "antigravity/gemini-3.7-flash",
-        "thinking": "high"
-      },
-      "reviewer": {
-        "model": "antigravity/gemini-3.7-flash",
-        "thinking": "high"
-      },
-      "oracle": {
-        "model": "antigravity/gemini-3.7-flash",
-        "thinking": "high"
-      }
-    }
+    "defaultModel": "antigravity/gemini-3.8-flash",
+    "defaultThinking": "high",
+    "agentOverrides": {}
   }
 }

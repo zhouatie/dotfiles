@@ -2,7 +2,36 @@
     "providers": {
         "deepseek": {
             "baseUrl": "https://api.deepseek.com",
+            "apiKey": "$DEEPSEEK_API_KEY",
             "models": [
+                {
+                    "id": "deepseek-v4.1-flash-expires-on-0910",
+                    "name": "DeepSeek V4.1 Flash (Preview)",
+                    "api": "openai-responses",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "minimal": null,
+                        "low": null,
+                        "medium": null,
+                        "high": "high",
+                        "max": "max"
+                    },
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "cost": {
+                        "input": 0.14,
+                        "output": 0.28,
+                        "cacheRead": 0.0028,
+                        "cacheWrite": 0
+                    },
+                    "contextWindow": 1000000,
+                    "maxTokens": 384000,
+                    "compat": {
+                        "supportsLongCacheRetention": false
+                    }
+                },
                 {
                     "id": "deepseek-v4-flash",
                     "name": "DeepSeek V4 Flash",
@@ -451,6 +480,23 @@
                 {
                     "id": "gemini-3.8-flash-high",
                     "name": "Gemini 3.8 Flash (High)",
+                    "reasoning": true,
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "cost": {
+                        "input": 0,
+                        "output": 0,
+                        "cacheRead": 0,
+                        "cacheWrite": 0
+                    },
+                    "contextWindow": 1048576,
+                    "maxTokens": 65536
+                },
+                {
+                    "id": "gemini-3.8-flash",
+                    "name": "Gemini 3.8 Flash",
                     "reasoning": true,
                     "input": [
                         "text",

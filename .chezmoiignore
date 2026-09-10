@@ -68,6 +68,10 @@ node_modules/**
 .config/pi/*.tmp
 .config/pi/missions/
 .config/pi/missions/**
+.config/pi/fff/
+.config/pi/fff/**
+.config/pi/web-search-cache/
+.config/pi/web-search-cache/**
 
 # Local-only shell/git overlays
 *.local

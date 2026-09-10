@@ -11,6 +11,8 @@ node_modules/
 dot_vscode/
 
 # Pi local-only secrets, state, generated packages, and company skill selectors
+private_dot_config/private_pi/fff/
+private_dot_config/private_pi/private_web-search-cache/
 dot_pi/agent/auth.json*
 dot_pi/agent/models.json*
 dot_pi/agent/trust.json*
