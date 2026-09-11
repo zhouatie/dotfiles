@@ -339,7 +339,7 @@ if [ "$DO_INSTALL_APP" = true ]; then
     if echo "$INSTALL_OUT" | grep -qi -E "\\[Fail\\]|error"; then
       log_err "安装失败，请检查手机屏幕是否弹出了“允许安装”确认框。"
     else
-      log_info "🎉 安装成功 (耗时: $(format_duration $(( $(date +%s) - STEP4_START )) ))！"
+      log_info "安装成功 (耗时: $(format_duration $(( $(date +%s) - STEP4_START )) ))！"
       log_info "正在尝试拉起应用..."
       if [ -n "$LOCAL_BUNDLE_NAME" ]; then
         hdc shell aa start -a EntryAbility -b "$LOCAL_BUNDLE_NAME" || true
