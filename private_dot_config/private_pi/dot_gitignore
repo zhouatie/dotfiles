@@ -5,6 +5,7 @@ trust.json
 APPEND_SYSTEM.md
 
 # Pi 运行状态、缓存与会话记录
+fff/
 .pi-hermes-locks.sqlite
 .pi-subagents/
 mcp-cache.json
@@ -17,6 +18,8 @@ tmp/
 missions/
 web-search-cache/
 mcp-npx-cache.json
+usage-extension-cache.json
+.master-mode-state.json
 
 # 本地备份与系统文件
 _bak/

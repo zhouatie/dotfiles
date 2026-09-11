@@ -62,6 +62,7 @@ node_modules/**
 .config/pi/pi-cache-optimizer-stats.json
 .config/pi/run-history.jsonl
 .config/pi/usage-extension-cache.json
+.config/pi/.master-mode-state.json
 .config/pi/logs/
 .config/pi/logs/**
 .config/pi/*.log
