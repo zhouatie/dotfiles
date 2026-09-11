@@ -242,6 +242,10 @@ EOF"
     --exclude='**/.hvigor' \
     --exclude='.cxx' \
     --exclude='**/.cxx' \
+    --exclude='BuildProfile.ets' \
+    --exclude='**/BuildProfile.ets' \
+    --exclude='.DS_Store' \
+    --exclude='**/.DS_Store' \
     --exclude='local.properties' \
     "$PROJECT_ROOT/" "$MAC_HOST:$REMOTE_WORK_DIR/"
   log_info "代码增量同步完成 (耗时: $(format_duration $(( $(date +%s) - STEP1_START )) ))。"
