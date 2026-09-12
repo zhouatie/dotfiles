@@ -1,0 +1,21 @@
+# 本地自定义混入配置 (Mixin)
+# 无论如何添加、切换或更新订阅，此处的代理、策略组和规则都会自动保留并注入。
+
+proxies:
+  - name: Phone-Corp-Proxy
+    type: http
+    server: 192.168.124.14
+    port: 8080
+
+proxy-groups:
+  - name: 🏢 网易内网
+    type: select
+    proxies:
+      - Phone-Corp-Proxy
+      - DIRECT
+
+rules:
+  - DOMAIN-SUFFIX,netease.com,🏢 网易内网
+  - DOMAIN-SUFFIX,163.com,🏢 网易内网
+  - DOMAIN-SUFFIX,126.net,🏢 网易内网
+  - DOMAIN-KEYWORD,popo,🏢 网易内网
