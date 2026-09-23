@@ -230,6 +230,24 @@
                     "api": "openai-responses"
                 },
                 {
+                    "id": "deepseek-flash",
+                    "name": "DeepSeek Flash via Langbase (sdd 白名单内)",
+                    "api": "openai-responses",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "minimal": null,
+                        "low": null,
+                        "medium": null,
+                        "high": "high",
+                        "max": "max"
+                    },
+                    "input": [
+                        "text"
+                    ],
+                    "contextWindow": 1000000,
+                    "maxTokens": 384000
+                },
+                {
                     "id": "deepseek-v4-flash",
                     "name": "DeepSeek V4 Flash via Langbase",
                     "api": "openai-responses",
@@ -293,6 +311,17 @@
                     "reasoning": true,
                     "input": [
                         "text"
+                    ],
+                    "contextWindow": 1000000,
+                    "maxTokens": 64000
+                },
+                {
+                    "id": "glm-flash",
+                    "name": "GLM Flash via Langbase",
+                    "reasoning": true,
+                    "input": [
+                        "text",
+                        "image"
                     ],
                     "contextWindow": 1000000,
                     "maxTokens": 64000

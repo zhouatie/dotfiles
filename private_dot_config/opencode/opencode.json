@@ -278,6 +278,9 @@
                 },
                 "kimi-k2.7-code": {
                     "name": "kimi-k2.7-code"
+                },
+                "deepseek-flash": {
+                    "name": "deepseek-flash"
                 }
             },
             "name": "Langbase Claude",

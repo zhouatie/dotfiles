@@ -1,3 +1,10 @@
+# RAVENSPEC:START
+# RavenSpec shell completions configuration
+fpath=("{{ .chezmoi.homeDir }}/.zsh/completions" $fpath)
+autoload -Uz compinit
+compinit
+# RAVENSPEC:END
+
 # ----- Prompt & Completion ----------------------------------------------------
 [[ -f ~/.zshrc.local.pre ]] && source ~/.zshrc.local.pre
 
@@ -246,3 +253,10 @@ export PATH="$HOME/.grok/bin:$PATH"
 fpath=(~/.grok/completions/zsh $fpath)
 autoload -Uz compinit && compinit -C
 # <<< grok installer <<<
+
+# codemaker
+export PATH={{ .chezmoi.homeDir }}/.codemaker/bin:$PATH
+
+# Added by git-ai installer
+export PATH="{{ .chezmoi.homeDir }}/.git-ai/bin:$PATH"
+

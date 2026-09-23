@@ -1,11 +1,11 @@
 {
-  "lastChangelogVersion": "0.85.1",
+  "lastChangelogVersion": "0.87.0",
   "defaultProvider": "antigravity",
   "defaultModel": "gemini-3.8-flash",
   "defaultThinkingLevel": "high",
   "enabledModels": [
     "deepseek/deepseek-v4.1-flash-expires-on-0910",
-    "langbase/deepseek-v4-flash",
+    "langbase/deepseek-flash",
     "antigravity/gemini-3.8-flash",
     "antigravity-manager/gemini-3.8-flash-high"
   ],
@@ -21,7 +21,6 @@
     },
     "npm:pi-playwright",
     "npm:pi-visualize-code-changes",
-    "npm:@tmustier/pi-usage-extension",
     {
       "source": "npm:pi-vision-handoff",
       "extensions": [
@@ -48,13 +47,12 @@
     "npm:pi-tool-repair",
     "npm:@lucascardozo/pi-edit-guard",
     "npm:pi-observational-memory",
-    "npm:@dietrichgebert/ponytail",
-    "npm:@henryqw/pi-herdr-rename"
+    "npm:@dietrichgebert/ponytail"
   ],
   "defaultProjectTrust": "always",
   "treeFilterMode": "no-tools",
   "skills": [
-    "!/Users/zhoushitie/.agents/skills/**"
+    "!{{ .chezmoi.homeDir }}/.agents/skills/**"
   ],
   "showCacheMissNotices": false,
   "subagents": {
@@ -76,7 +74,7 @@
   },
   "transport": "auto",
   "hideThinkingBlock": false,
-  "theme": "omp-titanium",
+  "theme": {{ if eq .chezmoi.os "linux" }}"omarchy-system"{{ else }}"omp-titanium"{{ end }},
   "doubleEscapeAction": "tree",
   "showHardwareCursor": true,
   "fullscreenScrollbar": "always",

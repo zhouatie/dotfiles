@@ -1,3 +1,7 @@
+# chezmoi:template:left-delimiter="[[" right-delimiter="]]"
+[[- if eq .chezmoi.os "linux" ]]
+shell /usr/bin/zsh
+[[ end ]]
 # vim:fileencoding=utf-8:foldmethod=marker
 
 #: Fonts {{{
@@ -3273,12 +3277,20 @@ map cmd+r no_op
 
 
 # BEGIN_KITTY_THEME
+[[ if eq .chezmoi.os "darwin" -]]
 # Default
 include current-theme.conf
 # END_KITTY_THEME
 
 # Slightly larger text for comfortable reading
 font_size 13.0
+[[- else -]]
+include ~/.local/state/omarchy/current/theme/kitty.conf
+# END_KITTY_THEME
+
+# Slightly larger text for comfortable reading
+font_size 9.0
+[[- end ]]
 
 # Hide the macOS title bar while keeping rounded window corners
 hide_window_decorations titlebar-only
@@ -3355,12 +3367,31 @@ map --mode kitty_leader x close_window_with_confirmation
 map --mode kitty_leader z toggle_layout stack
 map --mode kitty_leader t set_tab_title
 map --mode kitty_leader / search_scrollback
-map --mode kitty_leader f launch --type=overlay --cwd=current /Users/zhoushitie/.config/kitty/file-preview.zsh
-map --mode kitty_leader shift+f launch --type=overlay --cwd=current /Users/zhoushitie/.config/kitty/file-preview.zsh --project-docs
+map --mode kitty_leader f launch --type=overlay --cwd=current [[ .chezmoi.homeDir ]]/.config/kitty/file-preview.zsh
+map --mode kitty_leader shift+f launch --type=overlay --cwd=current [[ .chezmoi.homeDir ]]/.config/kitty/file-preview.zsh --project-docs
 map --mode kitty_leader esc pop_keyboard_mode
 
+[[ if eq .chezmoi.os "darwin" -]]
 # Restore the tabs, tab titles, layouts, and working directories from the
 # session saved by Command+Q. Command+Shift+S saves without quitting.
-startup_session /Users/zhoushitie/.config/kitty/sessions/last.kitty-session
-map cmd+shift+s save_as_session --save-only /Users/zhoushitie/.config/kitty/sessions/last.kitty-session
-map cmd+q combine : save_as_session --save-only /Users/zhoushitie/.config/kitty/sessions/last.kitty-session : quit
+startup_session [[ .chezmoi.homeDir ]]/.config/kitty/sessions/last.kitty-session
+map cmd+shift+s save_as_session --save-only [[ .chezmoi.homeDir ]]/.config/kitty/sessions/last.kitty-session
+map cmd+q combine : save_as_session --save-only [[ .chezmoi.homeDir ]]/.config/kitty/sessions/last.kitty-session : quit
+[[- else ]]
+# Clipboard integration: bridge Omarchy/Hyprland universal shortcuts to system clipboard
+map shift+insert paste_from_clipboard
+map ctrl+insert  copy_to_clipboard
+map cmd+c        copy_to_clipboard
+map cmd+v        paste_from_clipboard
+
+# Mac tab and window shortcuts
+map ctrl+shift+w close_window
+map ctrl+shift+t new_tab
+map cmd+w        close_window
+map cmd+t        new_tab
+
+# Discard Pause key (used by voice dictation via keyd) to prevent sending U+E012 to applications
+map pause discard_event
+
+include tode/keybinds.kitty.conf
+[[- end ]]

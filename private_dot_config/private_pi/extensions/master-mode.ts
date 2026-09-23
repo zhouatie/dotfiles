@@ -7,8 +7,6 @@
  *   Intercepts ctx.ui.setEditorComponent so it works seamlessly even when pi-open-tui
  *   or other custom editor packages are installed.
  * - Persistent Mode State: Saved to ~/.config/pi/.master-mode-state.json so mode survives restarts.
- * - Tab to toggle between Normal and Master modes when editor is empty.
- * - Shortcut: Shift+Tab to toggle mode anytime.
  * - Shortcut: Ctrl+Alt+M (or Ctrl+Alt+O) to toggle mode anytime.
  * - Slash command:
  *   - /mode [master|normal] with argument autocomplete
@@ -25,7 +23,7 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import { homedir } from "node:os";
 import { CustomEditor, type ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import { matchesKey, visibleWidth, type AutocompleteItem } from "@earendil-works/pi-tui";
+import { visibleWidth, type AutocompleteItem } from "@earendil-works/pi-tui";
 
 type AgentMode = "normal" | "master";
 
@@ -58,13 +56,6 @@ export default function (pi: ExtensionAPI) {
   let currentMode: AgentMode = loadPersistedMode();
   let activeTui: any = undefined;
   let activeTheme: any = undefined;
-
-  function isEditorEmpty(text?: string | null): boolean {
-    if (!text) return true;
-    // 宽松空值判定：排除掉首尾空白、换行、零宽空格 (Zero-width)、BOM 以及不可见控制字符
-    const cleaned = text.replace(/[\u200B-\u200D\uFEFF\u00A0\0]/g, "").trim();
-    return cleaned === "";
-  }
 
   function updateModeUI(ctx?: any) {
     savePersistedMode(currentMode);
@@ -156,43 +147,6 @@ export default function (pi: ExtensionAPI) {
             return new CustomEditor(tui, theme, keybindings);
           });
         }
-      }
-
-      // 终端按键监听
-      if (typeof ui.onTerminalInput === "function") {
-        ui.onTerminalInput((data: string) => {
-          const isTab =
-            matchesKey(data, "tab") ||
-            data === "\t" ||
-            data === "\x09" ||
-            data === "\x1b[9;1u" ||
-            data === "\x1b[9u";
-
-          const isShiftTab =
-            matchesKey(data, "shift+tab") ||
-            data === "\x1b[Z" ||
-            data === "\x1b[9;2u" ||
-            data === "\x1b[1;2Z";
-
-          // Shift+Tab：直接切换
-          if (isShiftTab) {
-            currentMode = currentMode === "normal" ? "master" : "normal";
-            updateModeUI(ctx);
-            return { consume: true };
-          }
-
-          // Tab：仅在输入框为空时切换；有文字输入时放行给补全系统
-          if (isTab) {
-            const currentText = ui.getEditorText?.() ?? "";
-            if (isEditorEmpty(currentText)) {
-              currentMode = currentMode === "normal" ? "master" : "normal";
-              updateModeUI(ctx);
-              return { consume: true };
-            }
-          }
-
-          return undefined;
-        });
       }
     }
 

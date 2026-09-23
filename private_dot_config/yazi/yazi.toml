@@ -1,6 +1,6 @@
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
-"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+#:schema https://yazi-rs.github.io/schemas/yazi.json
 
 [mgr]
 ratio = [2, 3, 5]
@@ -30,7 +30,7 @@ ueberzug_offset = [0, 0, 0, 0]
 
 [opener]
 edit = [
-  { run = 'nvim %s', desc = "Neovim", block = true, for = "macos" },
+  { run = 'nvim %s', desc = "Neovim", block = true, for = "unix" },
   { run = 'code %*', orphan = true, desc = "code", for = "windows" },
 ]
 code = [
@@ -44,7 +44,10 @@ cursor = [
   { run = 'cursor %s', desc = "Cursor", orphan = true, for = "linux" },
 ]
 arc = [{ run = 'open -a "Arc" %s', desc = "Arc", orphan = true, for = "macos" }]
-zed = [{ run = 'open -a "Zed" %s', desc = "Zed", orphan = true, for = "macos" }]
+zed = [
+  { run = 'open -a "Zed" %s', desc = "Zed", orphan = true, for = "macos" },
+  { run = 'zed %s', desc = "Zed", orphan = true, for = "linux" },
+]
 ghostty = [{ run = 'open -a "Ghostty" %s', desc = "Ghostty", orphan = true, for = "macos" }]
 editor = [
   { run = '${EDITOR:-vi} %s', desc = "$EDITOR", block = true, for = "unix" },
@@ -58,6 +61,7 @@ open = [
 ]
 browser = [
   { run = 'open -a "Google Chrome" %s', desc = "Google Chrome", orphan = true, for = "macos" },
+  { run = 'google-chrome-stable %s', desc = "Google Chrome", orphan = true, for = "linux" },
 ]
 reveal = [
   { run = 'xdg-open %d1', desc = "Reveal", for = "linux" },
@@ -212,7 +216,7 @@ preloaders = [
 previewers = [
   { mime = "folder/*", run = "folder" },
   { url = "*/", run = "folder" },
-  { url = "*.md", run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"' },
+  # { url = "*.md", run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"' },
 
   # { mime = "*.md", run = "code" },
   # Code

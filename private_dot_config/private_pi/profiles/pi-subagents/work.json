@@ -5,7 +5,7 @@
     "thinking": "high"
   },
   "enabledModels": [
-    "langbase/deepseek-v4-flash",
+    "langbase/deepseek-flash",
     "antigravity/gemini-3.7-flash",
     "antigravity/gemini-3.8-flash"
   ],

@@ -45,5 +45,5 @@
 	name = zhouatie
 	email = zhouatie@gmail.com
 [trace2]
-	eventTarget = af_unix:stream:/Users/zhoushitie/.git-ai/internal/daemon/trace2.sock
-	eventNesting = 10
+	eventTarget = af_unix:stream:{{ .chezmoi.homeDir }}/.git-ai/internal/daemon/trace2.sock
+	eventNesting = {{ if eq .chezmoi.os "darwin" }}10{{ else }}0{{ end }}

@@ -19,3 +19,5 @@ rules:
   - DOMAIN-SUFFIX,163.com,🏢 网易内网
   - DOMAIN-SUFFIX,126.net,🏢 网易内网
   - DOMAIN-KEYWORD,popo,🏢 网易内网
+  - IP-CIDR,10.0.0.0/8,🏢 网易内网,no-resolve
+  - IP-CIDR,172.16.0.0/12,🏢 网易内网,no-resolve

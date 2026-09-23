@@ -1,7 +1,7 @@
 ---
 description: 一键提交代码（commit [自定义 message]）
 argument-hint: "[commit message]"
-model: langbase/deepseek-v4-flash, deepseek/deepseek-v4-flash
+model: langbase/deepseek-flash, deepseek/deepseek-v4-flash
 ---
 提交当前工作区的代码改动。
 
