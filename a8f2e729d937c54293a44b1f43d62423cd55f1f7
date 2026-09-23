@@ -1,0 +1,35 @@
+.chezmoiignore
+  8857a1b37df1bd7b 2-25
+.gitignore
+  8857a1b37df1bd7b 7,9,11-21
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8-ntes.8",
+  "base_commit_sha": "a8f2e729d937c54293a44b1f43d62423cd55f1f7",
+  "prompts": {
+    "8857a1b37df1bd7b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019eb9d3-90c1-7663-b85b-83af1ad9f7ed",
+        "model": "gpt-5.5"
+      },
+      "human_author": "zhouatie",
+      "messages": [],
+      "total_additions": 37,
+      "total_deletions": 0,
+      "accepted_lines": 37,
+      "overriden_lines": 0,
+      "per_file_stats": {
+        ".gitignore": {
+          "additions": 13,
+          "accepted_lines": 13
+        },
+        ".chezmoiignore": {
+          "additions": 24,
+          "accepted_lines": 24
+        }
+      }
+    }
+  }
+}
