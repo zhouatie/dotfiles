@@ -1,5 +1,53 @@
 {
     "providers": {
+        "magpie": {
+            "api": "openai-completions",
+            "apiKey": "magpie",
+            "baseUrl": "http://127.0.0.1:3425/v1",
+            "models": [
+                {
+                    "contextWindow": 1048576,
+                    "id": "antigravity/gemini-3.8-flash",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 65536,
+                    "name": "Gemini 3.8 Flash · Antigravity",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": null,
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": null
+                    }
+                },
+                {
+                    "contextWindow": 250000,
+                    "id": "antigravity/claude-sonnet-4-6",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 64000,
+                    "name": "Claude Sonnet 4.6 (Thinking) · Antigravity",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": null
+                    }
+                }
+            ],
+            "name": "magpie"
+        },
         "deepseek": {
             "baseUrl": "https://api.deepseek.com",
             "apiKey": "$DEEPSEEK_API_KEY",
