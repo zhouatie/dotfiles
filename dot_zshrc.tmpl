@@ -260,3 +260,11 @@ export PATH={{ .chezmoi.homeDir }}/.codemaker/bin:$PATH
 # Added by git-ai installer
 export PATH="{{ .chezmoi.homeDir }}/.git-ai/bin:$PATH"
 
+{{- if eq .chezmoi.os "darwin" }}
+# HarmonyOS SDK and Tools
+export DEVECO_SDK_HOME="/Applications/DevEco-Studio.app/Contents/sdk"
+export PATH=$PATH:/Applications/DevEco-Studio.app/Contents/sdk/default/openharmony/toolchains
+export PATH="/Applications/DevEco-Studio.app/Contents/tools/ohpm/bin:$PATH"
+export PATH="/Applications/DevEco-Studio.app/Contents/tools/hvigor/bin:$PATH"
+{{- end }}
+
