@@ -6,6 +6,922 @@
             "baseUrl": "http://127.0.0.1:3425/v1",
             "models": [
                 {
+                    "contextWindow": 922000,
+                    "id": "group/auto-gpt-6-luna",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "GPT-6-Luna · routing group",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "contextWindow": 922000,
+                    "id": "group/auto-gpt-5-6-terra",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "GPT-5.6-Terra · routing group",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "contextWindow": 922000,
+                    "id": "group/auto-gpt-5-6-luna",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "GPT-5.6-Luna · routing group",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "contextWindow": 922000,
+                    "id": "group/auto-gpt-5-5",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "GPT-5.5 · routing group",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": null,
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "contextWindow": 1048576,
+                    "id": "group/auto-gemini-3-8-flash",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 65536,
+                    "name": "Gemini 3.8 Flash · routing group",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": null,
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": null
+                    }
+                },
+                {
+                    "contextWindow": 1000000,
+                    "id": "deepseek/deepseek-flash",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 393216,
+                    "name": "DeepSeek V4.1 Flash · DeepSeek",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": null,
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": null
+                    }
+                },
+                {
+                    "contextWindow": 1000000,
+                    "id": "deepseek/deepseek-v4-pro",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 393216,
+                    "name": "DeepSeek V4 Pro · DeepSeek",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": null,
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": null
+                    }
+                },
+                {
+                    "api": "openai-responses",
+                    "contextWindow": 272000,
+                    "id": "codex/gpt-6-luna",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "GPT-6-Luna · Codex",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "api": "openai-responses",
+                    "contextWindow": 272000,
+                    "id": "codex/gpt-5.6-terra",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "GPT-5.6-Terra · Codex",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "api": "openai-responses",
+                    "contextWindow": 272000,
+                    "id": "codex/gpt-5.6-luna",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "GPT-5.6-Luna · Codex",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "api": "openai-responses",
+                    "contextWindow": 272000,
+                    "id": "codex/gpt-5.5",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "GPT-5.5 · Codex",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": null,
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "contextWindow": 1000000,
+                    "id": "copilot/claude-fable-5.1",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "Claude Fable 5.1 · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "contextWindow": 1000000,
+                    "id": "copilot/claude-fable-5",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "Claude Fable 5 · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "contextWindow": 1000000,
+                    "id": "copilot/claude-opus-4.8-fast",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "Claude Opus 4.8 (fast mode) · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "contextWindow": 1000000,
+                    "id": "copilot/claude-opus-4.8",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "Claude Opus 4.8 · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "contextWindow": 1000000,
+                    "id": "copilot/claude-opus-5.5",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "Claude Opus 5.5 · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "contextWindow": 1000000,
+                    "id": "copilot/claude-opus-5",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "Claude Opus 5 · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "contextWindow": 1000000,
+                    "id": "copilot/claude-sonnet-5.5",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "Claude Sonnet 5.5 · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "contextWindow": 1000000,
+                    "id": "copilot/claude-sonnet-5",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "Claude Sonnet 5 · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "contextWindow": 1048576,
+                    "id": "copilot/gemini-3.7-flash",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 65536,
+                    "name": "Gemini 3.7 Flash · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": null,
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": null
+                    }
+                },
+                {
+                    "contextWindow": 1048576,
+                    "id": "copilot/gemini-3.8-flash",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 65536,
+                    "name": "Gemini 3.8 Flash · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": null,
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": null
+                    }
+                },
+                {
+                    "api": "openai-responses",
+                    "contextWindow": 272000,
+                    "id": "copilot/gpt-5.4-mini",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "GPT-5.4 mini · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": null,
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": "none",
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "api": "openai-responses",
+                    "contextWindow": 922000,
+                    "id": "copilot/gpt-5.4",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "GPT-5.4 · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": null,
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": "none",
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "api": "openai-responses",
+                    "contextWindow": 922000,
+                    "id": "copilot/gpt-5.5",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "GPT-5.5 · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": null,
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": "none",
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "api": "openai-responses",
+                    "contextWindow": 922000,
+                    "id": "copilot/gpt-5.6-luna",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "GPT-5.6 Luna · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": "none",
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "api": "openai-responses",
+                    "contextWindow": 922000,
+                    "id": "copilot/gpt-5.6-sol",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "GPT-5.6 Sol · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": "none",
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "api": "openai-responses",
+                    "contextWindow": 922000,
+                    "id": "copilot/gpt-5.6-terra",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "GPT-5.6 Terra · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": "none",
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "api": "openai-responses",
+                    "contextWindow": 922000,
+                    "id": "copilot/gpt-6.1-sol",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "GPT-6.1 Sol · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": "none",
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "api": "openai-responses",
+                    "contextWindow": 922000,
+                    "id": "copilot/gpt-6-astra",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "GPT-6 Astra · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "api": "openai-responses",
+                    "contextWindow": 922000,
+                    "id": "copilot/gpt-6-luna",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "GPT-6 Luna · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": "none",
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "api": "openai-responses",
+                    "contextWindow": 922000,
+                    "id": "copilot/gpt-6-sol",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "GPT-6 Sol · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": "none",
+                        "xhigh": "xhigh"
+                    }
+                },
+                {
+                    "contextWindow": 1048576,
+                    "id": "copilot/kimi-k3",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 131072,
+                    "name": "Kimi K3 · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": null,
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": null
+                    }
+                },
+                {
+                    "api": "openai-responses",
+                    "contextWindow": 128000,
+                    "id": "copilot/mai-code-1.1-flash",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "MAI-Code-1.1-Flash · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": null,
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": null
+                    }
+                },
+                {
+                    "api": "openai-responses",
+                    "contextWindow": 272000,
+                    "id": "copilot/gpt-5-mini",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 128000,
+                    "name": "GPT-5 mini · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": null,
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": null
+                    }
+                },
+                {
+                    "contextWindow": 200000,
+                    "id": "copilot/claude-haiku-4.5",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 64000,
+                    "name": "Claude Haiku 4.5 · Copilot",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": null,
+                        "max": null,
+                        "medium": null,
+                        "minimal": null,
+                        "off": "none",
+                        "xhigh": null
+                    }
+                },
+                {
+                    "contextWindow": 1048576,
+                    "id": "gemini/gemini-3.1-pro-preview",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 65536,
+                    "name": "Gemini 3.1 Pro Preview · Gemini CLI",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": null,
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": null
+                    }
+                },
+                {
+                    "contextWindow": 1048576,
+                    "id": "gemini/gemini-3-pro-preview",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 65536,
+                    "name": "Gemini 3 Pro Preview · Gemini CLI",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": null,
+                        "medium": null,
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": null
+                    }
+                },
+                {
+                    "contextWindow": 1048576,
+                    "id": "gemini/gemini-3-flash-preview",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 65536,
+                    "name": "Gemini 3 Flash Preview · Gemini CLI",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": null,
+                        "medium": "medium",
+                        "minimal": "minimal",
+                        "off": null,
+                        "xhigh": null
+                    }
+                },
+                {
+                    "contextWindow": 1048576,
+                    "id": "gemini/gemini-3.8-flash",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 65536,
+                    "name": "Gemini 3.8 Flash · Gemini CLI",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": null,
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": null
+                    }
+                },
+                {
+                    "contextWindow": 1048576,
+                    "id": "gemini/gemini-3.5-flash",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 65536,
+                    "name": "Gemini 3.5 Flash · Gemini CLI",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": null,
+                        "medium": "medium",
+                        "minimal": "minimal",
+                        "off": null,
+                        "xhigh": null
+                    }
+                },
+                {
+                    "contextWindow": 1048576,
+                    "id": "gemini/gemini-3.5-flash-lite",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 65536,
+                    "name": "Gemini 3.5 Flash Lite · Gemini CLI",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": null,
+                        "medium": "medium",
+                        "minimal": "minimal",
+                        "off": null,
+                        "xhigh": null
+                    }
+                },
+                {
+                    "contextWindow": 1048576,
+                    "id": "gemini/gemini-3.1-flash-lite",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 65536,
+                    "name": "Gemini 3.1 Flash Lite · Gemini CLI",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": null,
+                        "medium": "medium",
+                        "minimal": "minimal",
+                        "off": null,
+                        "xhigh": null
+                    }
+                },
+                {
+                    "contextWindow": 1048576,
+                    "id": "gemini/gemini-2.5-pro",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 65536,
+                    "name": "Gemini 2.5 Pro · Gemini CLI",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": null,
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": null
+                    }
+                },
+                {
+                    "contextWindow": 1048576,
+                    "id": "gemini/gemini-2.5-flash",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 65536,
+                    "name": "Gemini 2.5 Flash · Gemini CLI",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": null,
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": null
+                    }
+                },
+                {
+                    "contextWindow": 1048576,
+                    "id": "gemini/gemini-2.5-flash-lite",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 65536,
+                    "name": "Gemini 2.5 Flash Lite · Gemini CLI",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": null,
+                        "medium": "medium",
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": null
+                    }
+                },
+                {
                     "contextWindow": 1048576,
                     "id": "antigravity/gemini-3.8-flash",
                     "input": [
