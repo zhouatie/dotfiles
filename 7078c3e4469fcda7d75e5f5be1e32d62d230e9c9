@@ -1,0 +1,21 @@
+private_dot_config/private_pi/settings.json.tmpl
+  s_b72761f73af9d3::t_124aa8f15af732 2-4,10-12
+private_dot_config/private_pi/models.json
+  s_b72761f73af9d3::t_5637ea8378ce1e 3-50
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7078c3e4469fcda7d75e5f5be1e32d62d230e9c9",
+  "prompts": {},
+  "sessions": {
+    "s_b72761f73af9d3": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a10201-1303-727c-bf1b-600ad153f2de",
+        "model": "gemini-3.8-flash"
+      },
+      "human_author": "zhouatie <zhouatie@gmail.com>"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+private_dot_config/private_pi/extensions/auto-rename.ts
+  s_6e75ed086c0b70::t_84062a6e663e6b 1-265
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8454dc971251f218c713ed03c8d6345f3e0b642a",
+  "prompts": {},
+  "sessions": {
+    "s_6e75ed086c0b70": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "01a1075c-2815-72ca-aed3-0b2dc63c29bf",
+        "model": "deepseek-v4.1-flash-expires-on-0910"
+      },
+      "human_author": "zhouatie <zhouatie@gmail.com>"
+    }
+  }
+}
