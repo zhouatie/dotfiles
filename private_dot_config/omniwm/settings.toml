@@ -75,6 +75,7 @@ right = 0.0
 top = 0.0
 
 [general]
+animationSpeed = 1.0
 animationsEnabled = false
 defaultLayoutType = "niri"
 hotkeysEnabled = true
@@ -194,8 +195,10 @@ hideEmptyWorkspaces = true
 hideInNativeFullscreen = false
 hoverPreviewsEnabled = false
 notchActiveZoneWidth = 180.0
-notchMode = "splitActiveLeft"
-position = "overlappingMenuBar"
+notchMode = "fillLeftOfNotch"
+notificationBadgeRefreshIntervalSeconds = 5.0
+notificationBadges = "off"
+position = "belowMenuBar"
 reserveLayoutSpace = false
 revealHoldMilliseconds = 200.0
 revealModifier = "off"
