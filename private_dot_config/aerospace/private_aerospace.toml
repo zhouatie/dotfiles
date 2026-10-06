@@ -66,6 +66,21 @@ outer.right = 10
 
 alt-shift-backtick = 'mode passthrough'
 
+# 启动 herdr（终端工作区管理器），在新 kitty 窗口里 attach
+cmd-ctrl-enter = 'exec-and-forget /Applications/kitty.app/Contents/MacOS/kitty --title herdr /bin/zsh -lc "exec herdr"'
+
+# 启动 pi coding agent，在新 kitty 窗口里跑；换起始目录就改这里的 cd
+# 用 -lic（login + interactive）：非交互 shell 里 node 是 /usr/local/bin/node v20，pi 需要 >= 22，
+# 而 nvm 默认版本是在 .zshrc 里加进 PATH 的（交互式才加载）
+cmd-ctrl-shift-a = 'exec-and-forget /Applications/kitty.app/Contents/MacOS/kitty --title pi /bin/zsh -lic "cd ~; exec pi"'
+
+# 启动 yazi 文件管理器，在新 kitty 窗口里跑；换起始目录就改这里的 cd
+cmd-shift-f = 'exec-and-forget /Applications/kitty.app/Contents/MacOS/kitty --title yazi /bin/zsh -lc "cd ~; exec yazi"'
+
+# cmd+~ 切换 scratch 终端：一个浮窗盖在当前 workspace 上，再按一次收起来
+# （收起来 = 窗口挪到 workspace S，不切 workspace；窗口不存在时脚本会先启动）
+cmd-backtick = 'exec-and-forget /Users/zhoushitie/.local/bin/aerospace-scratch'
+
 # All possible keys:
 # - Letters.        a, b, c, ..., z
 # - Numbers.        0, 1, 2, ..., 9
@@ -189,6 +204,13 @@ alt-shift-backtick = 'mode main'
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
 run = ["move-node-to-workspace W"]
+
+[[on-window-detected]]
+# scratch 终端（cmd+~）：只给浮窗布局，不挪 workspace（藏在哪由脚本管）
+# ⚠️ 必须在下面 kitty -> W 那条之前，否则会被那条抢走
+if.app-id = 'net.kovidgoyal.kitty'
+if.window-title-regex-substring = 'scratch'
+run = ["layout floating"]
 
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
