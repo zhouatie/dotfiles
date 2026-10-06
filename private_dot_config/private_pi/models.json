@@ -7,6 +7,12 @@
             "models": [
                 {
                     "contextWindow": 922000,
+                    "cost": {
+                        "cacheRead": 0.01,
+                        "cacheWrite": 0.125,
+                        "input": 0.1,
+                        "output": 0.5
+                    },
                     "id": "group/auto-gpt-6-luna",
                     "input": [
                         "text",
@@ -27,6 +33,12 @@
                 },
                 {
                     "contextWindow": 922000,
+                    "cost": {
+                        "cacheRead": 0.2,
+                        "cacheWrite": 2.5,
+                        "input": 2,
+                        "output": 12
+                    },
                     "id": "group/auto-gpt-5-6-terra",
                     "input": [
                         "text",
@@ -47,6 +59,12 @@
                 },
                 {
                     "contextWindow": 922000,
+                    "cost": {
+                        "cacheRead": 0.02,
+                        "cacheWrite": 0.25,
+                        "input": 0.2,
+                        "output": 1.2
+                    },
                     "id": "group/auto-gpt-5-6-luna",
                     "input": [
                         "text",
@@ -67,6 +85,12 @@
                 },
                 {
                     "contextWindow": 922000,
+                    "cost": {
+                        "cacheRead": 0.5,
+                        "cacheWrite": 0,
+                        "input": 5,
+                        "output": 30
+                    },
                     "id": "group/auto-gpt-5-5",
                     "input": [
                         "text",
@@ -87,6 +111,12 @@
                 },
                 {
                     "contextWindow": 1048576,
+                    "cost": {
+                        "cacheRead": 0.075,
+                        "cacheWrite": 0,
+                        "input": 0.75,
+                        "output": 3.75
+                    },
                     "id": "group/auto-gemini-3-8-flash",
                     "input": [
                         "text",
@@ -107,6 +137,12 @@
                 },
                 {
                     "contextWindow": 1000000,
+                    "cost": {
+                        "cacheRead": 0.003,
+                        "cacheWrite": 0,
+                        "input": 0.15,
+                        "output": 0.6
+                    },
                     "id": "deepseek/deepseek-flash",
                     "input": [
                         "text",
@@ -127,6 +163,12 @@
                 },
                 {
                     "contextWindow": 1000000,
+                    "cost": {
+                        "cacheRead": 0.022,
+                        "cacheWrite": 0,
+                        "input": 0.66,
+                        "output": 1.98
+                    },
                     "id": "deepseek/deepseek-v4-pro",
                     "input": [
                         "text",
@@ -148,6 +190,12 @@
                 {
                     "api": "openai-responses",
                     "contextWindow": 272000,
+                    "cost": {
+                        "cacheRead": 0.01,
+                        "cacheWrite": 0.125,
+                        "input": 0.1,
+                        "output": 0.5
+                    },
                     "id": "codex/gpt-6-luna",
                     "input": [
                         "text",
@@ -155,6 +203,9 @@
                     ],
                     "maxTokens": 128000,
                     "name": "GPT-6-Luna · Codex",
+                    "promptCache": {
+                        "short": 300
+                    },
                     "reasoning": true,
                     "thinkingLevelMap": {
                         "high": "high",
@@ -169,6 +220,12 @@
                 {
                     "api": "openai-responses",
                     "contextWindow": 272000,
+                    "cost": {
+                        "cacheRead": 0.2,
+                        "cacheWrite": 2.5,
+                        "input": 2,
+                        "output": 12
+                    },
                     "id": "codex/gpt-5.6-terra",
                     "input": [
                         "text",
@@ -176,6 +233,9 @@
                     ],
                     "maxTokens": 128000,
                     "name": "GPT-5.6-Terra · Codex",
+                    "promptCache": {
+                        "short": 300
+                    },
                     "reasoning": true,
                     "thinkingLevelMap": {
                         "high": "high",
@@ -190,6 +250,12 @@
                 {
                     "api": "openai-responses",
                     "contextWindow": 272000,
+                    "cost": {
+                        "cacheRead": 0.02,
+                        "cacheWrite": 0.25,
+                        "input": 0.2,
+                        "output": 1.2
+                    },
                     "id": "codex/gpt-5.6-luna",
                     "input": [
                         "text",
@@ -197,6 +263,9 @@
                     ],
                     "maxTokens": 128000,
                     "name": "GPT-5.6-Luna · Codex",
+                    "promptCache": {
+                        "short": 300
+                    },
                     "reasoning": true,
                     "thinkingLevelMap": {
                         "high": "high",
@@ -211,6 +280,12 @@
                 {
                     "api": "openai-responses",
                     "contextWindow": 272000,
+                    "cost": {
+                        "cacheRead": 0.5,
+                        "cacheWrite": 0,
+                        "input": 5,
+                        "output": 30
+                    },
                     "id": "codex/gpt-5.5",
                     "input": [
                         "text",
@@ -218,6 +293,9 @@
                     ],
                     "maxTokens": 128000,
                     "name": "GPT-5.5 · Codex",
+                    "promptCache": {
+                        "short": 300
+                    },
                     "reasoning": true,
                     "thinkingLevelMap": {
                         "high": "high",
@@ -231,6 +309,12 @@
                 },
                 {
                     "contextWindow": 1000000,
+                    "cost": {
+                        "cacheRead": 0.25,
+                        "cacheWrite": 12.5,
+                        "input": 10,
+                        "output": 50
+                    },
                     "id": "copilot/claude-fable-5.1",
                     "input": [
                         "text",
@@ -251,6 +335,12 @@
                 },
                 {
                     "contextWindow": 1000000,
+                    "cost": {
+                        "cacheRead": 1,
+                        "cacheWrite": 12.5,
+                        "input": 10,
+                        "output": 50
+                    },
                     "id": "copilot/claude-fable-5",
                     "input": [
                         "text",
@@ -291,6 +381,12 @@
                 },
                 {
                     "contextWindow": 1000000,
+                    "cost": {
+                        "cacheRead": 0.5,
+                        "cacheWrite": 6.25,
+                        "input": 5,
+                        "output": 25
+                    },
                     "id": "copilot/claude-opus-4.8",
                     "input": [
                         "text",
@@ -311,6 +407,12 @@
                 },
                 {
                     "contextWindow": 1000000,
+                    "cost": {
+                        "cacheRead": 0.2,
+                        "cacheWrite": 5,
+                        "input": 4,
+                        "output": 20
+                    },
                     "id": "copilot/claude-opus-5.5",
                     "input": [
                         "text",
@@ -331,6 +433,12 @@
                 },
                 {
                     "contextWindow": 1000000,
+                    "cost": {
+                        "cacheRead": 0.5,
+                        "cacheWrite": 6.25,
+                        "input": 5,
+                        "output": 25
+                    },
                     "id": "copilot/claude-opus-5",
                     "input": [
                         "text",
@@ -351,6 +459,12 @@
                 },
                 {
                     "contextWindow": 1000000,
+                    "cost": {
+                        "cacheRead": 0.2,
+                        "cacheWrite": 2.5,
+                        "input": 2,
+                        "output": 10
+                    },
                     "id": "copilot/claude-sonnet-5.5",
                     "input": [
                         "text",
@@ -371,6 +485,12 @@
                 },
                 {
                     "contextWindow": 1000000,
+                    "cost": {
+                        "cacheRead": 0.2,
+                        "cacheWrite": 2.5,
+                        "input": 2,
+                        "output": 10
+                    },
                     "id": "copilot/claude-sonnet-5",
                     "input": [
                         "text",
@@ -391,6 +511,12 @@
                 },
                 {
                     "contextWindow": 1048576,
+                    "cost": {
+                        "cacheRead": 0.075,
+                        "cacheWrite": 0,
+                        "input": 0.75,
+                        "output": 3.75
+                    },
                     "id": "copilot/gemini-3.7-flash",
                     "input": [
                         "text",
@@ -411,6 +537,12 @@
                 },
                 {
                     "contextWindow": 1048576,
+                    "cost": {
+                        "cacheRead": 0.075,
+                        "cacheWrite": 0,
+                        "input": 0.75,
+                        "output": 3.75
+                    },
                     "id": "copilot/gemini-3.8-flash",
                     "input": [
                         "text",
@@ -432,6 +564,12 @@
                 {
                     "api": "openai-responses",
                     "contextWindow": 272000,
+                    "cost": {
+                        "cacheRead": 0.075,
+                        "cacheWrite": 0,
+                        "input": 0.75,
+                        "output": 4.5
+                    },
                     "id": "copilot/gpt-5.4-mini",
                     "input": [
                         "text",
@@ -439,6 +577,9 @@
                     ],
                     "maxTokens": 128000,
                     "name": "GPT-5.4 mini · Copilot",
+                    "promptCache": {
+                        "short": 300
+                    },
                     "reasoning": true,
                     "thinkingLevelMap": {
                         "high": "high",
@@ -453,6 +594,12 @@
                 {
                     "api": "openai-responses",
                     "contextWindow": 922000,
+                    "cost": {
+                        "cacheRead": 0.25,
+                        "cacheWrite": 0,
+                        "input": 2.5,
+                        "output": 15
+                    },
                     "id": "copilot/gpt-5.4",
                     "input": [
                         "text",
@@ -460,6 +607,9 @@
                     ],
                     "maxTokens": 128000,
                     "name": "GPT-5.4 · Copilot",
+                    "promptCache": {
+                        "short": 300
+                    },
                     "reasoning": true,
                     "thinkingLevelMap": {
                         "high": "high",
@@ -474,6 +624,12 @@
                 {
                     "api": "openai-responses",
                     "contextWindow": 922000,
+                    "cost": {
+                        "cacheRead": 0.5,
+                        "cacheWrite": 0,
+                        "input": 5,
+                        "output": 30
+                    },
                     "id": "copilot/gpt-5.5",
                     "input": [
                         "text",
@@ -481,6 +637,9 @@
                     ],
                     "maxTokens": 128000,
                     "name": "GPT-5.5 · Copilot",
+                    "promptCache": {
+                        "short": 300
+                    },
                     "reasoning": true,
                     "thinkingLevelMap": {
                         "high": "high",
@@ -495,6 +654,12 @@
                 {
                     "api": "openai-responses",
                     "contextWindow": 922000,
+                    "cost": {
+                        "cacheRead": 0.02,
+                        "cacheWrite": 0.25,
+                        "input": 0.2,
+                        "output": 1.2
+                    },
                     "id": "copilot/gpt-5.6-luna",
                     "input": [
                         "text",
@@ -502,6 +667,9 @@
                     ],
                     "maxTokens": 128000,
                     "name": "GPT-5.6 Luna · Copilot",
+                    "promptCache": {
+                        "short": 300
+                    },
                     "reasoning": true,
                     "thinkingLevelMap": {
                         "high": "high",
@@ -516,6 +684,12 @@
                 {
                     "api": "openai-responses",
                     "contextWindow": 922000,
+                    "cost": {
+                        "cacheRead": 0.4,
+                        "cacheWrite": 5,
+                        "input": 4,
+                        "output": 20
+                    },
                     "id": "copilot/gpt-5.6-sol",
                     "input": [
                         "text",
@@ -523,6 +697,9 @@
                     ],
                     "maxTokens": 128000,
                     "name": "GPT-5.6 Sol · Copilot",
+                    "promptCache": {
+                        "short": 300
+                    },
                     "reasoning": true,
                     "thinkingLevelMap": {
                         "high": "high",
@@ -537,6 +714,12 @@
                 {
                     "api": "openai-responses",
                     "contextWindow": 922000,
+                    "cost": {
+                        "cacheRead": 0.2,
+                        "cacheWrite": 2.5,
+                        "input": 2,
+                        "output": 12
+                    },
                     "id": "copilot/gpt-5.6-terra",
                     "input": [
                         "text",
@@ -544,6 +727,9 @@
                     ],
                     "maxTokens": 128000,
                     "name": "GPT-5.6 Terra · Copilot",
+                    "promptCache": {
+                        "short": 300
+                    },
                     "reasoning": true,
                     "thinkingLevelMap": {
                         "high": "high",
@@ -558,6 +744,12 @@
                 {
                     "api": "openai-responses",
                     "contextWindow": 922000,
+                    "cost": {
+                        "cacheRead": 0.1,
+                        "cacheWrite": 2.5,
+                        "input": 2,
+                        "output": 10
+                    },
                     "id": "copilot/gpt-6.1-sol",
                     "input": [
                         "text",
@@ -565,6 +757,9 @@
                     ],
                     "maxTokens": 128000,
                     "name": "GPT-6.1 Sol · Copilot",
+                    "promptCache": {
+                        "short": 300
+                    },
                     "reasoning": true,
                     "thinkingLevelMap": {
                         "high": "high",
@@ -579,6 +774,12 @@
                 {
                     "api": "openai-responses",
                     "contextWindow": 922000,
+                    "cost": {
+                        "cacheRead": 1,
+                        "cacheWrite": 12.5,
+                        "input": 10,
+                        "output": 50
+                    },
                     "id": "copilot/gpt-6-astra",
                     "input": [
                         "text",
@@ -586,6 +787,9 @@
                     ],
                     "maxTokens": 128000,
                     "name": "GPT-6 Astra · Copilot",
+                    "promptCache": {
+                        "short": 300
+                    },
                     "reasoning": true,
                     "thinkingLevelMap": {
                         "high": "high",
@@ -600,6 +804,12 @@
                 {
                     "api": "openai-responses",
                     "contextWindow": 922000,
+                    "cost": {
+                        "cacheRead": 0.01,
+                        "cacheWrite": 0.125,
+                        "input": 0.1,
+                        "output": 0.5
+                    },
                     "id": "copilot/gpt-6-luna",
                     "input": [
                         "text",
@@ -607,6 +817,9 @@
                     ],
                     "maxTokens": 128000,
                     "name": "GPT-6 Luna · Copilot",
+                    "promptCache": {
+                        "short": 300
+                    },
                     "reasoning": true,
                     "thinkingLevelMap": {
                         "high": "high",
@@ -621,6 +834,12 @@
                 {
                     "api": "openai-responses",
                     "contextWindow": 922000,
+                    "cost": {
+                        "cacheRead": 0.2,
+                        "cacheWrite": 2.5,
+                        "input": 2,
+                        "output": 10
+                    },
                     "id": "copilot/gpt-6-sol",
                     "input": [
                         "text",
@@ -628,6 +847,9 @@
                     ],
                     "maxTokens": 128000,
                     "name": "GPT-6 Sol · Copilot",
+                    "promptCache": {
+                        "short": 300
+                    },
                     "reasoning": true,
                     "thinkingLevelMap": {
                         "high": "high",
@@ -641,6 +863,12 @@
                 },
                 {
                     "contextWindow": 1048576,
+                    "cost": {
+                        "cacheRead": 0.3,
+                        "cacheWrite": 0,
+                        "input": 3,
+                        "output": 15
+                    },
                     "id": "copilot/kimi-k3",
                     "input": [
                         "text",
@@ -683,6 +911,12 @@
                 {
                     "api": "openai-responses",
                     "contextWindow": 272000,
+                    "cost": {
+                        "cacheRead": 0.025,
+                        "cacheWrite": 0,
+                        "input": 0.25,
+                        "output": 2
+                    },
                     "id": "copilot/gpt-5-mini",
                     "input": [
                         "text",
@@ -690,6 +924,9 @@
                     ],
                     "maxTokens": 128000,
                     "name": "GPT-5 mini · Copilot",
+                    "promptCache": {
+                        "short": 300
+                    },
                     "reasoning": true,
                     "thinkingLevelMap": {
                         "high": "high",
@@ -703,6 +940,12 @@
                 },
                 {
                     "contextWindow": 200000,
+                    "cost": {
+                        "cacheRead": 0.1,
+                        "cacheWrite": 1.25,
+                        "input": 1,
+                        "output": 5
+                    },
                     "id": "copilot/claude-haiku-4.5",
                     "input": [
                         "text",
@@ -723,6 +966,12 @@
                 },
                 {
                     "contextWindow": 1048576,
+                    "cost": {
+                        "cacheRead": 0.2,
+                        "cacheWrite": 0,
+                        "input": 2,
+                        "output": 12
+                    },
                     "id": "gemini/gemini-3.1-pro-preview",
                     "input": [
                         "text",
@@ -763,6 +1012,12 @@
                 },
                 {
                     "contextWindow": 1048576,
+                    "cost": {
+                        "cacheRead": 0.05,
+                        "cacheWrite": 0,
+                        "input": 0.5,
+                        "output": 3
+                    },
                     "id": "gemini/gemini-3-flash-preview",
                     "input": [
                         "text",
@@ -783,6 +1038,12 @@
                 },
                 {
                     "contextWindow": 1048576,
+                    "cost": {
+                        "cacheRead": 0.075,
+                        "cacheWrite": 0,
+                        "input": 0.75,
+                        "output": 3.75
+                    },
                     "id": "gemini/gemini-3.8-flash",
                     "input": [
                         "text",
@@ -803,6 +1064,12 @@
                 },
                 {
                     "contextWindow": 1048576,
+                    "cost": {
+                        "cacheRead": 0.15,
+                        "cacheWrite": 0,
+                        "input": 1.5,
+                        "output": 9
+                    },
                     "id": "gemini/gemini-3.5-flash",
                     "input": [
                         "text",
@@ -823,6 +1090,12 @@
                 },
                 {
                     "contextWindow": 1048576,
+                    "cost": {
+                        "cacheRead": 0.03,
+                        "cacheWrite": 0,
+                        "input": 0.3,
+                        "output": 2.5
+                    },
                     "id": "gemini/gemini-3.5-flash-lite",
                     "input": [
                         "text",
@@ -843,6 +1116,12 @@
                 },
                 {
                     "contextWindow": 1048576,
+                    "cost": {
+                        "cacheRead": 0.025,
+                        "cacheWrite": 0,
+                        "input": 0.25,
+                        "output": 1.5
+                    },
                     "id": "gemini/gemini-3.1-flash-lite",
                     "input": [
                         "text",
@@ -863,6 +1142,12 @@
                 },
                 {
                     "contextWindow": 1048576,
+                    "cost": {
+                        "cacheRead": 0.125,
+                        "cacheWrite": 0,
+                        "input": 1.25,
+                        "output": 10
+                    },
                     "id": "gemini/gemini-2.5-pro",
                     "input": [
                         "text",
@@ -883,6 +1168,12 @@
                 },
                 {
                     "contextWindow": 1048576,
+                    "cost": {
+                        "cacheRead": 0.03,
+                        "cacheWrite": 0,
+                        "input": 0.3,
+                        "output": 2.5
+                    },
                     "id": "gemini/gemini-2.5-flash",
                     "input": [
                         "text",
@@ -903,6 +1194,12 @@
                 },
                 {
                     "contextWindow": 1048576,
+                    "cost": {
+                        "cacheRead": 0.01,
+                        "cacheWrite": 0,
+                        "input": 0.1,
+                        "output": 0.4
+                    },
                     "id": "gemini/gemini-2.5-flash-lite",
                     "input": [
                         "text",
@@ -923,6 +1220,12 @@
                 },
                 {
                     "contextWindow": 1048576,
+                    "cost": {
+                        "cacheRead": 0.075,
+                        "cacheWrite": 0,
+                        "input": 0.75,
+                        "output": 3.75
+                    },
                     "id": "antigravity/gemini-3.8-flash",
                     "input": [
                         "text",
@@ -943,6 +1246,12 @@
                 },
                 {
                     "contextWindow": 250000,
+                    "cost": {
+                        "cacheRead": 0.3,
+                        "cacheWrite": 3.75,
+                        "input": 3,
+                        "output": 15
+                    },
                     "id": "antigravity/claude-sonnet-4-6",
                     "input": [
                         "text",

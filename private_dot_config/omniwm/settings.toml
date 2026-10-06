@@ -170,7 +170,7 @@ heightPercent = 80.0
 monitorMode = "focusedWindow"
 opacity = 1.0
 position = "center"
-widthPercent = 60.0
+widthPercent = 70.0
 
 [routing]
 arrangements = []
@@ -203,7 +203,7 @@ reserveLayoutSpace = false
 revealHoldMilliseconds = 200.0
 revealModifier = "off"
 showAccentHighlights = true
-showFloatingWindows = false
+showFloatingWindows = true
 showItemBackgrounds = true
 showLabels = true
 solidBlackBackground = false
@@ -298,6 +298,13 @@ axRole = "AXWindow"
 axSubrole = "AXDialog"
 bundleId = "com.netease.game.popo"
 id = "C0040D61-FB7F-4655-8AA6-B6062CA80D76"
+layout = "float"
+
+[[appRules]]
+axRole = "AXWindow"
+axSubrole = "AXStandardWindow"
+bundleId = "cn.toside.music.desktop"
+id = "01363BAC-84B0-4E49-8FC2-FBB9AEFEFE71"
 layout = "float"
 
 [[hotkeys]]
