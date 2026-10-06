@@ -77,10 +77,6 @@ cmd-ctrl-shift-a = 'exec-and-forget /Applications/kitty.app/Contents/MacOS/kitty
 # 启动 yazi 文件管理器，在新 kitty 窗口里跑；换起始目录就改这里的 cd
 cmd-shift-f = 'exec-and-forget /Applications/kitty.app/Contents/MacOS/kitty --title yazi /bin/zsh -lc "cd ~; exec yazi"'
 
-# cmd+~ 切换 scratch 终端：一个浮窗盖在当前 workspace 上，再按一次收起来
-# （收起来 = 窗口挪到 workspace S，不切 workspace；窗口不存在时脚本会先启动）
-cmd-backtick = 'exec-and-forget /Users/zhoushitie/.local/bin/aerospace-scratch'
-
 # All possible keys:
 # - Letters.        a, b, c, ..., z
 # - Numbers.        0, 1, 2, ..., 9
@@ -204,13 +200,6 @@ alt-shift-backtick = 'mode main'
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
 run = ["move-node-to-workspace W"]
-
-[[on-window-detected]]
-# scratch 终端（cmd+~）：只给浮窗布局，不挪 workspace（藏在哪由脚本管）
-# ⚠️ 必须在下面 kitty -> W 那条之前，否则会被那条抢走
-if.app-id = 'net.kovidgoyal.kitty'
-if.window-title-regex-substring = 'scratch'
-run = ["layout floating"]
 
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
