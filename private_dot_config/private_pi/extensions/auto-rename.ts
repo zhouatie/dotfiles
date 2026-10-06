@@ -80,19 +80,6 @@ async function generateTitle(text: string, ctx: ExtensionContext): Promise<strin
   const model = ctx.model;
   if (!model) return undefined;
 
-  let auth: any;
-  try {
-    auth = await ctx.modelRegistry.getApiKeyAndHeaders(model);
-  } catch {
-    return undefined;
-  }
-  if (!auth || !auth.ok) return undefined;
-
-  const provider = ctx.modelRegistry.getProvider(model.provider);
-  if (!provider) return undefined;
-
-  const targetModel = auth.baseUrl ? { ...model, baseUrl: auth.baseUrl } : model;
-
   const systemPrompt =
     "你是一个会话标题提炼助手。根据用户的提问或任务，提炼一个简短、凝练的中文标题。\n" +
     "要求：\n" +
@@ -100,32 +87,28 @@ async function generateTitle(text: string, ctx: ExtensionContext): Promise<strin
     "2. 长度控制在4到10个字之间。\n" +
     "3. 仅输出提炼后的标题本身，严禁输出任何标点符号（无书名号、无引号、无句号等）、解释、前缀或多余内容。";
 
+  // 注意：TranscriptContext 只认 messages 里的 system 消息。直接调用 provider.streamSimple
+  // 会静默丢弃 systemPrompt，模型就会把用户原话当对话继续回答。走 modelRegistry.streamSimple
+  // 才会把 Context.systemPrompt 规范化成首条 system 消息，同时自动注入鉴权信息。
   const completionContext = {
     systemPrompt,
     messages: [{ role: "user", content: text.slice(0, 1500), timestamp: Date.now() }],
   };
 
-  const baseOptions = {
-    apiKey: auth.apiKey,
-    headers: auth.headers,
-    env: auth.env,
-    maxRetries: 0,
-  };
-
   let response: any;
   try {
     // 优先尝试 reasoning: "off" 以极速返回
-    response = await provider
-      .streamSimple(targetModel, completionContext, { ...baseOptions, reasoning: "off" })
+    response = await ctx.modelRegistry
+      .streamSimple(model, completionContext as any, { reasoning: "off", maxRetries: 0 })
       .result();
   } catch {
     try {
       // 针对强制开启思考的模型，回退到当前 thinkingLevel 或默认参数
-      const opts: any = { ...baseOptions };
+      const opts: any = { maxRetries: 0 };
       if (ctx.thinkingLevel && ctx.thinkingLevel !== "off") {
         opts.reasoning = ctx.thinkingLevel;
       }
-      response = await provider.streamSimple(targetModel, completionContext, opts).result();
+      response = await ctx.modelRegistry.streamSimple(model, completionContext as any, opts).result();
     } catch {
       return undefined;
     }
