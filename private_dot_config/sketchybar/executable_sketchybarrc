@@ -68,7 +68,7 @@ sketchybar --add bracket workspace_island "${SPACE_NAMES[@]}" \
     background.height=26 \
     background.drawing=on
 
-# 关键：工作区切换监听器绑定到单个调度器（不再被 12 个 item 重复执行 12 次！）
+# 关键：工作区切换监听器绑定到单个调度器
 sketchybar --add item aerospace_watcher left \
   --set aerospace_watcher \
     drawing=off \
@@ -96,14 +96,43 @@ sketchybar --add item front_app center \
   --subscribe front_app front_app_switched aerospace_workspace_change
 
 # ========================================================
-# 🏝️ 岛屿 3：右岛（系统状态控制中心：音量 + 电池 + 时钟）
+# 🏝️ 岛屿 3：右岛（系统状态控制中心：未读消息 + 音量 + 电池 + 时钟）
 # ========================================================
+# 未读消息组件（点击可直接唤起对应应用并切到对应工作区！）
+sketchybar --add item messages.popo right \
+  --set messages.popo \
+    drawing=off \
+    icon="󰭹" \
+    icon.font="Hack Nerd Font:Bold:13.0" \
+    icon.color="$PEACH" \
+    icon.padding_left=6 \
+    icon.padding_right=2 \
+    label.font="Hack Nerd Font:Bold:12.0" \
+    label.color="$RED" \
+    label.padding_right=6 \
+    click_script="aerospace focus --app-id com.netease.popo 2>/dev/null || open -a '网易POPO'" \
+    update_freq=5 \
+    script="$PLUGIN_DIR/unread_messages.sh"
+
+sketchybar --add item messages.wechat right \
+  --set messages.wechat \
+    drawing=off \
+    icon="󰘑" \
+    icon.font="Hack Nerd Font:Bold:13.0" \
+    icon.color="$GREEN" \
+    icon.padding_left=6 \
+    icon.padding_right=2 \
+    label.font="Hack Nerd Font:Bold:12.0" \
+    label.color="$RED" \
+    label.padding_right=6 \
+    click_script="aerospace focus --app-id com.tencent.xinWeChat 2>/dev/null || open -a '微信'"
+
 # 音量
 sketchybar --add item volume right \
   --set volume \
     icon.font="Hack Nerd Font:Bold:13.0" \
-    icon.padding_left=8 \
-    icon.padding_right=4 \
+    icon.padding_left=6 \
+    icon.padding_right=3 \
     label.font="Hack Nerd Font:Medium:12.0" \
     label.padding_right=6 \
     script="$PLUGIN_DIR/volume.sh" \
@@ -115,7 +144,7 @@ sketchybar --add item battery right \
     update_freq=60 \
     icon.font="Hack Nerd Font:Bold:13.0" \
     icon.padding_left=4 \
-    icon.padding_right=4 \
+    icon.padding_right=3 \
     label.font="Hack Nerd Font:Medium:12.0" \
     label.padding_right=6 \
     script="$PLUGIN_DIR/battery.sh" \
@@ -132,8 +161,8 @@ sketchybar --add item clock right \
     label.padding_right=8 \
     script="$PLUGIN_DIR/clock.sh"
 
-# 右岛容器
-sketchybar --add bracket status_island volume battery clock \
+# 右岛容器：将未读消息也优雅包裹在系统控制岛内
+sketchybar --add bracket status_island messages.popo messages.wechat volume battery clock \
   --set status_island \
     background.color="$ISLAND_BG" \
     background.border_color="$ISLAND_BORDER" \
