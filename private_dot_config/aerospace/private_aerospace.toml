@@ -13,7 +13,8 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-  'exec-and-forget /opt/homebrew/bin/sketchybar --trigger aerospace_workspace_change'
+  'exec-and-forget /opt/homebrew/bin/sketchybar --trigger aerospace_workspace_change',
+  'exec-and-forget /Users/zhoushitie/.config/borders/bordersrc'
 ]
 
 # Notify SketchyBar whenever workspace changes
