@@ -1,0 +1,147 @@
+#!/bin/sh
+
+source "$CONFIG_DIR/colors.sh"
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+# 1. 彻底清空所有旧组件
+sketchybar --remove '/.*/'
+
+# 2. 全局 Bar 属性：透明底层基座
+sketchybar --bar \
+  height=34 \
+  color=0x00000000 \
+  border_color=0x00000000 \
+  position=top \
+  sticky=on \
+  padding_left=12 \
+  padding_right=12 \
+  y_offset=4
+
+# 3. 全局默认样式
+default=(
+  background.drawing=off
+  icon.color="$TEXT"
+  icon.font="Hack Nerd Font:Bold:13.0"
+  icon.padding_left=4
+  icon.padding_right=4
+  label.color="$TEXT"
+  label.font="Hack Nerd Font:Medium:12.0"
+  label.padding_left=2
+  label.padding_right=4
+  padding_left=3
+  padding_right=3
+)
+sketchybar --default "${default[@]}"
+
+# 4. 注册 AeroSpace 工作区切换事件
+sketchybar --add event aerospace_workspace_change
+
+# ========================================================
+# 🏝️ 岛屿 1：左岛（AeroSpace 工作区容器）
+# ========================================================
+ALL_SPACES=("0" "1" "2" "3" "4" "5" "6" "E" "M" "Q" "R" "W")
+
+SPACE_NAMES=()
+for sid in "${ALL_SPACES[@]}"; do
+  sname="space.$sid"
+  SPACE_NAMES+=("$sname")
+  sketchybar --add item "$sname" left \
+    --set "$sname" \
+      icon="$sid" \
+      icon.font="Hack Nerd Font:Bold:12.0" \
+      icon.padding_left=8 \
+      icon.padding_right=4 \
+      label="" \
+      label.font="sketchybar-app-font:Regular:13.0" \
+      label.padding_left=0 \
+      label.padding_right=8 \
+      click_script="aerospace workspace $sid"
+done
+
+# 使用 Bracket 将所有工作区包裹为一个优雅的左侧浮岛
+sketchybar --add bracket workspace_island "${SPACE_NAMES[@]}" \
+  --set workspace_island \
+    background.color="$ISLAND_BG" \
+    background.border_color="$ISLAND_BORDER" \
+    background.border_width=1 \
+    background.corner_radius=8 \
+    background.height=26 \
+    background.drawing=on
+
+# 关键：工作区切换监听器绑定到单个调度器（不再被 12 个 item 重复执行 12 次！）
+sketchybar --add item aerospace_watcher left \
+  --set aerospace_watcher \
+    drawing=off \
+    script="$PLUGIN_DIR/aerospace_listener.sh" \
+  --subscribe aerospace_watcher aerospace_workspace_change front_app_switched
+
+# ========================================================
+# 🏝️ 岛屿 2：中岛（聚焦应用与窗口标题）
+# ========================================================
+sketchybar --add item front_app center \
+  --set front_app \
+    icon.font="sketchybar-app-font:Regular:14.0" \
+    icon.padding_left=10 \
+    icon.padding_right=6 \
+    label.font="Hack Nerd Font:Medium:12.0" \
+    label.padding_left=0 \
+    label.padding_right=10 \
+    background.color="$ISLAND_BG" \
+    background.border_color="$ISLAND_BORDER" \
+    background.border_width=1 \
+    background.corner_radius=8 \
+    background.height=26 \
+    background.drawing=on \
+    script="$PLUGIN_DIR/front_app.sh" \
+  --subscribe front_app front_app_switched aerospace_workspace_change
+
+# ========================================================
+# 🏝️ 岛屿 3：右岛（系统状态控制中心：音量 + 电池 + 时钟）
+# ========================================================
+# 音量
+sketchybar --add item volume right \
+  --set volume \
+    icon.font="Hack Nerd Font:Bold:13.0" \
+    icon.padding_left=8 \
+    icon.padding_right=4 \
+    label.font="Hack Nerd Font:Medium:12.0" \
+    label.padding_right=6 \
+    script="$PLUGIN_DIR/volume.sh" \
+  --subscribe volume volume_change
+
+# 电池
+sketchybar --add item battery right \
+  --set battery \
+    update_freq=60 \
+    icon.font="Hack Nerd Font:Bold:13.0" \
+    icon.padding_left=4 \
+    icon.padding_right=4 \
+    label.font="Hack Nerd Font:Medium:12.0" \
+    label.padding_right=6 \
+    script="$PLUGIN_DIR/battery.sh" \
+  --subscribe battery system_woke power_source_change
+
+# 时钟
+sketchybar --add item clock right \
+  --set clock \
+    update_freq=10 \
+    icon.font="Hack Nerd Font:Bold:13.0" \
+    icon.padding_left=4 \
+    icon.padding_right=4 \
+    label.font="Hack Nerd Font:Medium:12.0" \
+    label.padding_right=8 \
+    script="$PLUGIN_DIR/clock.sh"
+
+# 右岛容器
+sketchybar --add bracket status_island volume battery clock \
+  --set status_island \
+    background.color="$ISLAND_BG" \
+    background.border_color="$ISLAND_BORDER" \
+    background.border_width=1 \
+    background.corner_radius=8 \
+    background.height=26 \
+    background.drawing=on
+
+# 触发全量初始化
+sketchybar --update
+sketchybar --trigger aerospace_workspace_change
