@@ -4,8 +4,38 @@
             "api": "openai-completions",
             "apiKey": "magpie",
             "baseUrl": "http://127.0.0.1:3425/v1",
+            "compat": {
+                "sendSessionAffinityHeaders": true
+            },
             "models": [
                 {
+                    "contextWindow": 1000000,
+                    "cost": {
+                        "cacheRead": 0.003,
+                        "cacheWrite": 0,
+                        "input": 0.15,
+                        "output": 0.6
+                    },
+                    "id": "group/auto-deepseek-flash",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 393216,
+                    "name": "DeepSeek V4.1 Flash · routing group",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": null,
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": null
+                    }
+                },
+                {
+                    "api": "openai-responses",
                     "contextWindow": 922000,
                     "cost": {
                         "cacheRead": 0.01,
@@ -32,6 +62,7 @@
                     }
                 },
                 {
+                    "api": "openai-responses",
                     "contextWindow": 922000,
                     "cost": {
                         "cacheRead": 0.2,
@@ -58,6 +89,7 @@
                     }
                 },
                 {
+                    "api": "openai-responses",
                     "contextWindow": 922000,
                     "cost": {
                         "cacheRead": 0.02,
@@ -77,32 +109,6 @@
                         "high": "high",
                         "low": "low",
                         "max": "max",
-                        "medium": "medium",
-                        "minimal": null,
-                        "off": null,
-                        "xhigh": "xhigh"
-                    }
-                },
-                {
-                    "contextWindow": 922000,
-                    "cost": {
-                        "cacheRead": 0.5,
-                        "cacheWrite": 0,
-                        "input": 5,
-                        "output": 30
-                    },
-                    "id": "group/auto-gpt-5-5",
-                    "input": [
-                        "text",
-                        "image"
-                    ],
-                    "maxTokens": 128000,
-                    "name": "GPT-5.5 · routing group",
-                    "reasoning": true,
-                    "thinkingLevelMap": {
-                        "high": "high",
-                        "low": "low",
-                        "max": null,
                         "medium": "medium",
                         "minimal": null,
                         "off": null,
@@ -176,6 +182,32 @@
                     ],
                     "maxTokens": 393216,
                     "name": "DeepSeek V4 Pro · DeepSeek",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": "low",
+                        "max": "max",
+                        "medium": null,
+                        "minimal": null,
+                        "off": null,
+                        "xhigh": null
+                    }
+                },
+                {
+                    "contextWindow": 1000000,
+                    "cost": {
+                        "cacheRead": 0.003,
+                        "cacheWrite": 0,
+                        "input": 0.15,
+                        "output": 0.6
+                    },
+                    "id": "langbase/deepseek-flash",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 384000,
+                    "name": "DeepSeek V4.1 Flash · Langbase",
                     "reasoning": true,
                     "thinkingLevelMap": {
                         "high": "high",
@@ -266,238 +298,6 @@
                     "promptCache": {
                         "short": 300
                     },
-                    "reasoning": true,
-                    "thinkingLevelMap": {
-                        "high": "high",
-                        "low": "low",
-                        "max": "max",
-                        "medium": "medium",
-                        "minimal": null,
-                        "off": null,
-                        "xhigh": "xhigh"
-                    }
-                },
-                {
-                    "api": "openai-responses",
-                    "contextWindow": 272000,
-                    "cost": {
-                        "cacheRead": 0.5,
-                        "cacheWrite": 0,
-                        "input": 5,
-                        "output": 30
-                    },
-                    "id": "codex/gpt-5.5",
-                    "input": [
-                        "text",
-                        "image"
-                    ],
-                    "maxTokens": 128000,
-                    "name": "GPT-5.5 · Codex",
-                    "promptCache": {
-                        "short": 300
-                    },
-                    "reasoning": true,
-                    "thinkingLevelMap": {
-                        "high": "high",
-                        "low": "low",
-                        "max": null,
-                        "medium": "medium",
-                        "minimal": null,
-                        "off": null,
-                        "xhigh": "xhigh"
-                    }
-                },
-                {
-                    "contextWindow": 1000000,
-                    "cost": {
-                        "cacheRead": 0.25,
-                        "cacheWrite": 12.5,
-                        "input": 10,
-                        "output": 50
-                    },
-                    "id": "copilot/claude-fable-5.1",
-                    "input": [
-                        "text",
-                        "image"
-                    ],
-                    "maxTokens": 128000,
-                    "name": "Claude Fable 5.1 · Copilot",
-                    "reasoning": true,
-                    "thinkingLevelMap": {
-                        "high": "high",
-                        "low": "low",
-                        "max": "max",
-                        "medium": "medium",
-                        "minimal": null,
-                        "off": null,
-                        "xhigh": "xhigh"
-                    }
-                },
-                {
-                    "contextWindow": 1000000,
-                    "cost": {
-                        "cacheRead": 1,
-                        "cacheWrite": 12.5,
-                        "input": 10,
-                        "output": 50
-                    },
-                    "id": "copilot/claude-fable-5",
-                    "input": [
-                        "text",
-                        "image"
-                    ],
-                    "maxTokens": 128000,
-                    "name": "Claude Fable 5 · Copilot",
-                    "reasoning": true,
-                    "thinkingLevelMap": {
-                        "high": "high",
-                        "low": "low",
-                        "max": "max",
-                        "medium": "medium",
-                        "minimal": null,
-                        "off": null,
-                        "xhigh": "xhigh"
-                    }
-                },
-                {
-                    "contextWindow": 1000000,
-                    "id": "copilot/claude-opus-4.8-fast",
-                    "input": [
-                        "text",
-                        "image"
-                    ],
-                    "maxTokens": 128000,
-                    "name": "Claude Opus 4.8 (fast mode) · Copilot",
-                    "reasoning": true,
-                    "thinkingLevelMap": {
-                        "high": "high",
-                        "low": "low",
-                        "max": "max",
-                        "medium": "medium",
-                        "minimal": null,
-                        "off": null,
-                        "xhigh": "xhigh"
-                    }
-                },
-                {
-                    "contextWindow": 1000000,
-                    "cost": {
-                        "cacheRead": 0.5,
-                        "cacheWrite": 6.25,
-                        "input": 5,
-                        "output": 25
-                    },
-                    "id": "copilot/claude-opus-4.8",
-                    "input": [
-                        "text",
-                        "image"
-                    ],
-                    "maxTokens": 128000,
-                    "name": "Claude Opus 4.8 · Copilot",
-                    "reasoning": true,
-                    "thinkingLevelMap": {
-                        "high": "high",
-                        "low": "low",
-                        "max": "max",
-                        "medium": "medium",
-                        "minimal": null,
-                        "off": null,
-                        "xhigh": "xhigh"
-                    }
-                },
-                {
-                    "contextWindow": 1000000,
-                    "cost": {
-                        "cacheRead": 0.2,
-                        "cacheWrite": 5,
-                        "input": 4,
-                        "output": 20
-                    },
-                    "id": "copilot/claude-opus-5.5",
-                    "input": [
-                        "text",
-                        "image"
-                    ],
-                    "maxTokens": 128000,
-                    "name": "Claude Opus 5.5 · Copilot",
-                    "reasoning": true,
-                    "thinkingLevelMap": {
-                        "high": "high",
-                        "low": "low",
-                        "max": "max",
-                        "medium": "medium",
-                        "minimal": null,
-                        "off": null,
-                        "xhigh": "xhigh"
-                    }
-                },
-                {
-                    "contextWindow": 1000000,
-                    "cost": {
-                        "cacheRead": 0.5,
-                        "cacheWrite": 6.25,
-                        "input": 5,
-                        "output": 25
-                    },
-                    "id": "copilot/claude-opus-5",
-                    "input": [
-                        "text",
-                        "image"
-                    ],
-                    "maxTokens": 128000,
-                    "name": "Claude Opus 5 · Copilot",
-                    "reasoning": true,
-                    "thinkingLevelMap": {
-                        "high": "high",
-                        "low": "low",
-                        "max": "max",
-                        "medium": "medium",
-                        "minimal": null,
-                        "off": null,
-                        "xhigh": "xhigh"
-                    }
-                },
-                {
-                    "contextWindow": 1000000,
-                    "cost": {
-                        "cacheRead": 0.2,
-                        "cacheWrite": 2.5,
-                        "input": 2,
-                        "output": 10
-                    },
-                    "id": "copilot/claude-sonnet-5.5",
-                    "input": [
-                        "text",
-                        "image"
-                    ],
-                    "maxTokens": 128000,
-                    "name": "Claude Sonnet 5.5 · Copilot",
-                    "reasoning": true,
-                    "thinkingLevelMap": {
-                        "high": "high",
-                        "low": "low",
-                        "max": "max",
-                        "medium": "medium",
-                        "minimal": null,
-                        "off": null,
-                        "xhigh": "xhigh"
-                    }
-                },
-                {
-                    "contextWindow": 1000000,
-                    "cost": {
-                        "cacheRead": 0.2,
-                        "cacheWrite": 2.5,
-                        "input": 2,
-                        "output": 10
-                    },
-                    "id": "copilot/claude-sonnet-5",
-                    "input": [
-                        "text",
-                        "image"
-                    ],
-                    "maxTokens": 128000,
-                    "name": "Claude Sonnet 5 · Copilot",
                     "reasoning": true,
                     "thinkingLevelMap": {
                         "high": "high",
@@ -865,7 +665,7 @@
                     "contextWindow": 1048576,
                     "cost": {
                         "cacheRead": 0.3,
-                        "cacheWrite": 0,
+                        "cacheWrite": 3,
                         "input": 3,
                         "output": 15
                     },
@@ -939,26 +739,37 @@
                     }
                 },
                 {
-                    "contextWindow": 200000,
+                    "contextWindow": 1047576,
                     "cost": {
-                        "cacheRead": 0.1,
-                        "cacheWrite": 1.25,
-                        "input": 1,
-                        "output": 5
+                        "cacheRead": 0.5,
+                        "cacheWrite": 0,
+                        "input": 2,
+                        "output": 8
                     },
-                    "id": "copilot/claude-haiku-4.5",
+                    "id": "copilot/gpt-4.1",
                     "input": [
                         "text",
                         "image"
                     ],
-                    "maxTokens": 64000,
-                    "name": "Claude Haiku 4.5 · Copilot",
+                    "maxTokens": 32768,
+                    "name": "GPT-4.1 · Copilot",
+                    "reasoning": false
+                },
+                {
+                    "contextWindow": 128000,
+                    "id": "copilot/auto",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 16384,
+                    "name": "Auto · Copilot",
                     "reasoning": true,
                     "thinkingLevelMap": {
                         "high": "high",
-                        "low": null,
+                        "low": "low",
                         "max": null,
-                        "medium": null,
+                        "medium": "medium",
                         "minimal": null,
                         "off": "none",
                         "xhigh": null
@@ -1266,6 +1077,32 @@
                         "max": "max",
                         "medium": "medium",
                         "minimal": null,
+                        "off": null,
+                        "xhigh": null
+                    }
+                },
+                {
+                    "contextWindow": 131072,
+                    "cost": {
+                        "cacheRead": 0,
+                        "cacheWrite": 0,
+                        "input": 0.5,
+                        "output": 60
+                    },
+                    "id": "antigravity/gemini-3.1-flash-image",
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "maxTokens": 32768,
+                    "name": "Gemini 3.1 Flash Image · Antigravity",
+                    "reasoning": true,
+                    "thinkingLevelMap": {
+                        "high": "high",
+                        "low": null,
+                        "max": null,
+                        "medium": null,
+                        "minimal": "minimal",
                         "off": null,
                         "xhigh": null
                     }

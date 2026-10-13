@@ -74,6 +74,35 @@ node_modules/**
 .config/pi/web-search-cache/
 .config/pi/web-search-cache/**
 
+# Pi-Bots credentials, runtime state, caches, and dependencies
+.config/pi-bots/**/.git/**
+.config/pi-bots/**/npm/
+.config/pi-bots/**/npm/**
+.config/pi-bots/**/sessions/
+.config/pi-bots/**/sessions/**
+.config/pi-bots/**/projects-memory/
+.config/pi-bots/**/projects-memory/**
+.config/pi-bots/**/*-memory/
+.config/pi-bots/**/*-memory/**
+.config/pi-bots/**/fff/
+.config/pi-bots/**/fff/**
+.config/pi-bots/**/tmp/
+.config/pi-bots/**/tmp/**
+.config/pi-bots/**/logs/
+.config/pi-bots/**/logs/**
+.config/pi-bots/**/*.log
+.config/pi-bots/**/*.tmp
+.config/pi-bots/**/*.sqlite*
+.config/pi-bots/**/*.db*
+.config/pi-bots/**/auth.json
+.config/pi-bots/**/antigravity-accounts.json
+.config/pi-bots/**/models-store.json
+.config/pi-bots/**/mcp-onboarding.json
+.config/pi-bots/**/mcp-cache.json
+.config/pi-bots/**/.pi-*-locks.sqlite
+.config/pi-bots/hermes/
+.config/pi-bots/hermes/**
+
 # Local-only shell/git overlays
 *.local
 *.local.*

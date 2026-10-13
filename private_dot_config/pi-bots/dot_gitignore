@@ -1,0 +1,22 @@
+# 凭据与敏感信息
+auth.json
+antigravity-accounts.json
+mcp.json
+trust.json
+
+# 运行时依赖、缓存、状态与会话
+npm/
+sessions/
+projects-memory/
+*-memory/
+fff/
+.pi-*-locks.sqlite
+*.sqlite
+*.db
+*.log
+mcp-onboarding.json
+mcp-cache.json
+models-store.json
+
+# 系统文件
+.DS_Store
