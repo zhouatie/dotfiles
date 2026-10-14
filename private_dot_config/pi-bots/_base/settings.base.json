@@ -19,7 +19,8 @@
     "npm:pi-mcp-adapter",
     "npm:pi-open-tui",
     "npm:pi-side-chat",
-    "npm:pi-extmgr"
+    "npm:pi-extmgr",
+    "npm:pi-hermes-memory"
   ],
   "defaultProjectTrust": "always",
   "treeFilterMode": "no-tools",

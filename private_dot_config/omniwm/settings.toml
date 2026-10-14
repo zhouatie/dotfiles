@@ -182,10 +182,14 @@ mode = "macOS"
 
 [statusBar]
 showAppNames = false
+showIcon = true
 showWorkspaceName = false
 useWorkspaceId = false
 
 [workspaceBar]
+autoHide = false
+autoHideHideDelayMilliseconds = 0.0
+autoHideRevealDelayMilliseconds = 0.0
 backgroundOpacity = 0.1
 deduplicateAppIcons = false
 enabled = true
@@ -195,11 +199,11 @@ hideEmptyWorkspaces = true
 hideInNativeFullscreen = false
 hoverPreviewsEnabled = false
 notchActiveZoneWidth = 180.0
-notchMode = "fillLeftOfNotch"
+notchMode = "rightOfNotch"
 notificationBadgeRefreshIntervalSeconds = 5.0
 notificationBadges = "off"
-position = "belowMenuBar"
-reserveLayoutSpace = false
+position = "overlappingMenuBar"
+reserveLayoutSpace = true
 revealHoldMilliseconds = 200.0
 revealModifier = "off"
 showAccentHighlights = true
@@ -1018,6 +1022,10 @@ id = "openCommandPalette"
 [[hotkeys]]
 binding = "Option+Shift+R"
 id = "raiseAllFloatingWindows"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "toggleFloatingFocus"
 
 [[hotkeys]]
 binding = "Unassigned"

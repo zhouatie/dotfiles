@@ -22,6 +22,8 @@ if command -v starship >/dev/null 2>&1; then
 fi
 
 # ----- Path Helpers -----------------------------------------------------------
+typeset -U path PATH
+
 path_prepend() {
   local dir="${1/#\~/$HOME}"
   [[ -z "$dir" ]] && return
@@ -127,13 +129,6 @@ fi
 export BAT_THEME=tokyonight_night
 
 # ----- Tools & Plugins --------------------------------------------------------
-if command -v thefuck >/dev/null 2>&1; then
-  fuck() {
-    unset -f fuck 2>/dev/null
-    eval "$(thefuck --alias)"
-    fuck "$@"
-  }
-fi
 
 if command -v fzf >/dev/null 2>&1; then
   [[ -r /opt/homebrew/opt/fzf/shell/completion.zsh ]] && source /opt/homebrew/opt/fzf/shell/completion.zsh
@@ -268,3 +263,9 @@ export PATH="/Applications/DevEco-Studio.app/Contents/tools/ohpm/bin:$PATH"
 export PATH="/Applications/DevEco-Studio.app/Contents/tools/hvigor/bin:$PATH"
 {{- end }}
 
+alias pi-raven="PI_CODING_AGENT_DIR={{ .chezmoi.homeDir }}/.config/pi-bots/raven pi"
+alias pi-qa="PI_CODING_AGENT_DIR={{ .chezmoi.homeDir }}/.config/pi-bots/qa pi"
+alias pi-popo="PI_CODING_AGENT_DIR={{ .chezmoi.homeDir }}/.config/pi-bots/popo pi"
+alias pi-ops="PI_CODING_AGENT_DIR={{ .chezmoi.homeDir }}/.config/pi-bots/ops pi"
+alias pi-pm="PI_CODING_AGENT_DIR={{ .chezmoi.homeDir }}/.config/pi-bots/pm pi"
+alias call-bot="~/.config/pi-bots/call-bot.sh"

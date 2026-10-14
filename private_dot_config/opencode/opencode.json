@@ -1,4 +1,6 @@
 {
+    "small_model": "magpie/antigravity/gemini-3.8-flash",
+    "model": "magpie/antigravity/gemini-3.8-flash",
     "$schema": "https://opencode.ai/config.json",
     "mcp": {
         "cocos-mcp": {
@@ -113,6 +115,1334 @@
         "opencode-antigravity-auth@latest"
     ],
     "provider": {
+        "magpie": {
+            "models": {
+                "antigravity/claude-sonnet-4-6": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 250000,
+                        "output": 64000
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "Claude Sonnet 4.6 (Thinking) · Antigravity",
+                    "reasoning": true,
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        },
+                        "max": {
+                            "reasoningEffort": "max"
+                        }
+                    }
+                },
+                "antigravity/gemini-3.1-flash-image": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 131072,
+                        "output": 32768
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "Gemini 3.1 Flash Image · Antigravity",
+                    "variants": {
+                        "minimal": {
+                            "reasoningEffort": "minimal"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        }
+                    }
+                },
+                "antigravity/gemini-3.8-flash": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 1048576,
+                        "output": 65536
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "Gemini 3.8 Flash · Antigravity",
+                    "reasoning": true,
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        }
+                    }
+                },
+                "codex/gpt-5.6-luna": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 272000,
+                        "output": 128000
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "GPT-5.6-Luna · Codex",
+                    "reasoning": true,
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        },
+                        "xhigh": {
+                            "reasoningEffort": "xhigh"
+                        },
+                        "max": {
+                            "reasoningEffort": "max"
+                        }
+                    }
+                },
+                "codex/gpt-5.6-terra": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 272000,
+                        "output": 128000
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "GPT-5.6-Terra · Codex",
+                    "reasoning": true,
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        },
+                        "xhigh": {
+                            "reasoningEffort": "xhigh"
+                        },
+                        "max": {
+                            "reasoningEffort": "max"
+                        },
+                        "ultra": {
+                            "reasoningEffort": "ultra"
+                        }
+                    }
+                },
+                "codex/gpt-6-luna": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 272000,
+                        "output": 128000
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "GPT-6-Luna · Codex",
+                    "reasoning": true,
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        },
+                        "xhigh": {
+                            "reasoningEffort": "xhigh"
+                        },
+                        "max": {
+                            "reasoningEffort": "max"
+                        }
+                    }
+                },
+                "copilot/auto": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 128000,
+                        "output": 16384
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "Auto · Copilot",
+                    "reasoning": true,
+                    "variants": {
+                        "none": {
+                            "reasoningEffort": "none"
+                        },
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        }
+                    }
+                },
+                "copilot/gemini-3.7-flash": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 1048576,
+                        "output": 65536
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "Gemini 3.7 Flash · Copilot",
+                    "reasoning": true,
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        }
+                    }
+                },
+                "copilot/gemini-3.8-flash": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 1048576,
+                        "output": 65536
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "Gemini 3.8 Flash · Copilot",
+                    "reasoning": true,
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        }
+                    }
+                },
+                "copilot/gpt-4.1": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 1047576,
+                        "output": 32768
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "GPT-4.1 · Copilot",
+                    "variants": {}
+                },
+                "copilot/gpt-5-mini": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 272000,
+                        "output": 128000
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "GPT-5 mini · Copilot",
+                    "reasoning": true,
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        }
+                    }
+                },
+                "copilot/gpt-5.4": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 922000,
+                        "output": 128000
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "GPT-5.4 · Copilot",
+                    "reasoning": true,
+                    "variants": {
+                        "none": {
+                            "reasoningEffort": "none"
+                        },
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        },
+                        "xhigh": {
+                            "reasoningEffort": "xhigh"
+                        }
+                    }
+                },
+                "copilot/gpt-5.4-mini": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 272000,
+                        "output": 128000
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "GPT-5.4 mini · Copilot",
+                    "reasoning": true,
+                    "variants": {
+                        "none": {
+                            "reasoningEffort": "none"
+                        },
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        },
+                        "xhigh": {
+                            "reasoningEffort": "xhigh"
+                        }
+                    }
+                },
+                "copilot/gpt-5.5": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 922000,
+                        "output": 128000
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "GPT-5.5 · Copilot",
+                    "reasoning": true,
+                    "variants": {
+                        "none": {
+                            "reasoningEffort": "none"
+                        },
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        },
+                        "xhigh": {
+                            "reasoningEffort": "xhigh"
+                        }
+                    }
+                },
+                "copilot/gpt-5.6-luna": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 922000,
+                        "output": 128000
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "GPT-5.6 Luna · Copilot",
+                    "reasoning": true,
+                    "variants": {
+                        "none": {
+                            "reasoningEffort": "none"
+                        },
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        },
+                        "xhigh": {
+                            "reasoningEffort": "xhigh"
+                        },
+                        "max": {
+                            "reasoningEffort": "max"
+                        }
+                    }
+                },
+                "copilot/gpt-5.6-sol": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 922000,
+                        "output": 128000
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "GPT-5.6 Sol · Copilot",
+                    "reasoning": true,
+                    "variants": {
+                        "none": {
+                            "reasoningEffort": "none"
+                        },
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        },
+                        "xhigh": {
+                            "reasoningEffort": "xhigh"
+                        },
+                        "max": {
+                            "reasoningEffort": "max"
+                        },
+                        "ultra": {
+                            "reasoningEffort": "ultra"
+                        }
+                    }
+                },
+                "copilot/gpt-5.6-terra": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 922000,
+                        "output": 128000
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "GPT-5.6 Terra · Copilot",
+                    "reasoning": true,
+                    "variants": {
+                        "none": {
+                            "reasoningEffort": "none"
+                        },
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        },
+                        "xhigh": {
+                            "reasoningEffort": "xhigh"
+                        },
+                        "max": {
+                            "reasoningEffort": "max"
+                        },
+                        "ultra": {
+                            "reasoningEffort": "ultra"
+                        }
+                    }
+                },
+                "copilot/gpt-6-astra": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 922000,
+                        "output": 128000
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "GPT-6 Astra · Copilot",
+                    "reasoning": true,
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        },
+                        "xhigh": {
+                            "reasoningEffort": "xhigh"
+                        },
+                        "max": {
+                            "reasoningEffort": "max"
+                        },
+                        "ultra": {
+                            "reasoningEffort": "ultra"
+                        }
+                    }
+                },
+                "copilot/gpt-6-luna": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 922000,
+                        "output": 128000
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "GPT-6 Luna · Copilot",
+                    "reasoning": true,
+                    "variants": {
+                        "none": {
+                            "reasoningEffort": "none"
+                        },
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        },
+                        "xhigh": {
+                            "reasoningEffort": "xhigh"
+                        },
+                        "max": {
+                            "reasoningEffort": "max"
+                        }
+                    }
+                },
+                "copilot/gpt-6-sol": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 922000,
+                        "output": 128000
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "GPT-6 Sol · Copilot",
+                    "reasoning": true,
+                    "variants": {
+                        "none": {
+                            "reasoningEffort": "none"
+                        },
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        },
+                        "xhigh": {
+                            "reasoningEffort": "xhigh"
+                        },
+                        "max": {
+                            "reasoningEffort": "max"
+                        },
+                        "ultra": {
+                            "reasoningEffort": "ultra"
+                        }
+                    }
+                },
+                "copilot/gpt-6.1-sol": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 922000,
+                        "output": 128000
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "GPT-6.1 Sol · Copilot",
+                    "reasoning": true,
+                    "variants": {
+                        "none": {
+                            "reasoningEffort": "none"
+                        },
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        },
+                        "xhigh": {
+                            "reasoningEffort": "xhigh"
+                        },
+                        "max": {
+                            "reasoningEffort": "max"
+                        },
+                        "ultra": {
+                            "reasoningEffort": "ultra"
+                        }
+                    }
+                },
+                "copilot/kimi-k3": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 1048576,
+                        "output": 131072
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "Kimi K3 · Copilot",
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        },
+                        "max": {
+                            "reasoningEffort": "max"
+                        }
+                    }
+                },
+                "copilot/mai-code-1.1-flash": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 128000,
+                        "output": 128000
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "MAI-Code-1.1-Flash · Copilot",
+                    "reasoning": true,
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        }
+                    }
+                },
+                "deepseek/deepseek-flash": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 1000000,
+                        "output": 393216
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "DeepSeek V4.1 Flash · DeepSeek",
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        },
+                        "max": {
+                            "reasoningEffort": "max"
+                        }
+                    }
+                },
+                "deepseek/deepseek-v4-pro": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 1000000,
+                        "output": 393216
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "DeepSeek V4 Pro · DeepSeek",
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        },
+                        "max": {
+                            "reasoningEffort": "max"
+                        }
+                    }
+                },
+                "gemini/gemini-2.5-flash": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 1048576,
+                        "output": 65536
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "Gemini 2.5 Flash · Gemini CLI",
+                    "reasoning": true,
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        }
+                    }
+                },
+                "gemini/gemini-2.5-flash-lite": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 1048576,
+                        "output": 65536
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "Gemini 2.5 Flash Lite · Gemini CLI",
+                    "reasoning": true,
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        }
+                    }
+                },
+                "gemini/gemini-2.5-pro": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 1048576,
+                        "output": 65536
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "Gemini 2.5 Pro · Gemini CLI",
+                    "reasoning": true,
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        }
+                    }
+                },
+                "gemini/gemini-3-flash-preview": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 1048576,
+                        "output": 65536
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "Gemini 3 Flash Preview · Gemini CLI",
+                    "reasoning": true,
+                    "variants": {
+                        "minimal": {
+                            "reasoningEffort": "minimal"
+                        },
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        }
+                    }
+                },
+                "gemini/gemini-3-pro-preview": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 1048576,
+                        "output": 65536
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "Gemini 3 Pro Preview · Gemini CLI",
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        }
+                    }
+                },
+                "gemini/gemini-3.1-flash-lite": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 1048576,
+                        "output": 65536
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "Gemini 3.1 Flash Lite · Gemini CLI",
+                    "reasoning": true,
+                    "variants": {
+                        "minimal": {
+                            "reasoningEffort": "minimal"
+                        },
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        }
+                    }
+                },
+                "gemini/gemini-3.1-pro-preview": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 1048576,
+                        "output": 65536
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "Gemini 3.1 Pro Preview · Gemini CLI",
+                    "reasoning": true,
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        }
+                    }
+                },
+                "gemini/gemini-3.5-flash": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 1048576,
+                        "output": 65536
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "Gemini 3.5 Flash · Gemini CLI",
+                    "reasoning": true,
+                    "variants": {
+                        "minimal": {
+                            "reasoningEffort": "minimal"
+                        },
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        }
+                    }
+                },
+                "gemini/gemini-3.5-flash-lite": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 1048576,
+                        "output": 65536
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "Gemini 3.5 Flash Lite · Gemini CLI",
+                    "reasoning": true,
+                    "variants": {
+                        "minimal": {
+                            "reasoningEffort": "minimal"
+                        },
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        }
+                    }
+                },
+                "gemini/gemini-3.8-flash": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 1048576,
+                        "output": 65536
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "Gemini 3.8 Flash · Gemini CLI",
+                    "reasoning": true,
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        }
+                    }
+                },
+                "group/auto-deepseek-flash": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 1000000,
+                        "output": 393216
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "DeepSeek V4.1 Flash · routing group",
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        },
+                        "max": {
+                            "reasoningEffort": "max"
+                        }
+                    }
+                },
+                "group/auto-gemini-3-8-flash": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 1048576,
+                        "output": 65536
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "Gemini 3.8 Flash · routing group",
+                    "reasoning": true,
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        }
+                    }
+                },
+                "group/auto-gpt-5-6-luna": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 922000,
+                        "output": 128000
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "GPT-5.6-Luna · routing group",
+                    "reasoning": true,
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        },
+                        "xhigh": {
+                            "reasoningEffort": "xhigh"
+                        },
+                        "max": {
+                            "reasoningEffort": "max"
+                        }
+                    }
+                },
+                "group/auto-gpt-5-6-terra": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 922000,
+                        "output": 128000
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "GPT-5.6-Terra · routing group",
+                    "reasoning": true,
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        },
+                        "xhigh": {
+                            "reasoningEffort": "xhigh"
+                        },
+                        "max": {
+                            "reasoningEffort": "max"
+                        },
+                        "ultra": {
+                            "reasoningEffort": "ultra"
+                        }
+                    }
+                },
+                "group/auto-gpt-6-luna": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 922000,
+                        "output": 128000
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "GPT-6-Luna · routing group",
+                    "reasoning": true,
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "medium": {
+                            "reasoningEffort": "medium"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        },
+                        "xhigh": {
+                            "reasoningEffort": "xhigh"
+                        },
+                        "max": {
+                            "reasoningEffort": "max"
+                        }
+                    }
+                },
+                "langbase/deepseek-flash": {
+                    "attachment": true,
+                    "limit": {
+                        "context": 1000000,
+                        "output": 384000
+                    },
+                    "modalities": {
+                        "input": [
+                            "text",
+                            "image"
+                        ],
+                        "output": [
+                            "text"
+                        ]
+                    },
+                    "name": "DeepSeek V4.1 Flash · Langbase",
+                    "variants": {
+                        "low": {
+                            "reasoningEffort": "low"
+                        },
+                        "high": {
+                            "reasoningEffort": "high"
+                        },
+                        "max": {
+                            "reasoningEffort": "max"
+                        }
+                    }
+                }
+            },
+            "name": "magpie",
+            "npm": "@ai-sdk/openai-compatible",
+            "options": {
+                "apiKey": "magpie",
+                "baseURL": "http://127.0.0.1:3425/v1"
+            }
+        },
         "google": {
             "models": {
                 "antigravity-claude-opus-4-6-thinking": {

@@ -17,7 +17,8 @@
 - ❌ **严禁**给非协调类子 Bot 引入 `npm:pi-subagents`（避免无限嵌套递归派发）。
 
 ## 4. 记忆与会话严格局部化
-- 严禁将子 Bot 的 `sessions/` 或专有记忆/状态目录软链接至 `_base/`。
+- 子 Bot 统一使用 `npm:pi-hermes-memory` 提供独立记忆能力。
+- 严禁将子 Bot 的 `sessions/`、`pi-hermes-memory/`、`projects-memory/` 或专有状态软链接至 `_base/`。
 - 会话和记忆必须留在该 Bot 自己的目录下，保证各角色间绝对隔离。
 
 ## 5. 人设与灵魂规范

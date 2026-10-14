@@ -19,12 +19,16 @@
     "npm:pi-mcp-adapter",
     "npm:pi-open-tui",
     "npm:pi-side-chat",
-    "npm:pi-extmgr"
+    "npm:pi-extmgr",
+    "npm:pi-hermes-memory"
   ],
   "defaultProjectTrust": "always",
   "treeFilterMode": "no-tools",
   "showHardwareCursor": true,
   "fullscreenScrollbar": "always",
   "tuiMode": "fullscreen",
-  "theme": "omp-titanium"
+  "theme": "omp-titanium",
+  "extensions": [
+    "-builtin:mcp"
+  ]
 }

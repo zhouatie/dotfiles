@@ -72,6 +72,12 @@ outer.right = 10
 # 'main' binding mode must be always presented
 [mode.main.binding]
 
+# 模拟 Omarchy: Super + Escape 打开系统菜单 (Apple Menu)
+cmd-esc = 'exec-and-forget osascript -e "tell application \"System Events\" to tell (first process whose frontmost is true) to tell menu bar 1 to tell menu bar item 1 to click"'
+
+# 模拟 Omarchy: Super + Shift + E 打开文本/Markdown编辑器 (MarkText)
+cmd-shift-e = 'exec-and-forget open -a MarkText'
+
 alt-shift-backtick = 'mode passthrough'
 
 # 启动 herdr（终端工作区管理器），在新 kitty 窗口里 attach

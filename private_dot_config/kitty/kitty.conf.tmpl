@@ -3318,6 +3318,16 @@ tab_bar_style custom
 # Keep Kitty's bell, activity, and progress indicators
 tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{index}: {tab.last_focused_progress_percent}{title}"
 
+# 关窗口 / 关标签 / 退出 kitty 时不再弹二次确认
+# 默认是 -1：只要窗口里有命令在跑就会问一次（空闲 shell 不算）
+# 想恢复确认，把这行注释掉或改成 -1
+confirm_os_window_close 0
+
+# 关掉最后一个窗口时整个 kitty 进程退出
+# 默认 no：macOS 上关完窗口进程会一直留着（快捷键每次都是新起一个 kitty，久了会堆一堆空壳进程）
+# 想改回留进程，把这行注释掉或改成 no
+macos_quit_when_last_window_closed yes
+
 # Switch directly to tabs 1-9 with Command+number
 map cmd+1 goto_tab 1
 map cmd+2 goto_tab 2
