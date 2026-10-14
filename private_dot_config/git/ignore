@@ -21,3 +21,4 @@ codemaker.json
 **/.claude/settings.local.json
 
 .pi-subagents/
+.run.log
