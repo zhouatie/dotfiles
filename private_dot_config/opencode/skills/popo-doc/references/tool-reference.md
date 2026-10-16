@@ -39,3 +39,14 @@
 - `popo_doc_get_s3_upload_url`：获取文件类节点上传地址
 - `popo_doc_create_file_node`：PUT 上传完成后创建 docType=3 文件类节点
 - `popo_doc_get_file_download_url(type=fileNode)`：获取文件类节点临时下载地址
+
+## 文件版本
+
+读取 [doc-version-reference.md](./doc-version-reference.md)：
+
+- `popo_doc_get_version_upload_url`：给已有文件类文档上传新版本——第一步，取版本上传地址
+- `popo_doc_update_file_version`：上传新版本——第二步，确认提交并切换为当前版本
+
+> 上传新版本**不可**用 `popo_doc_upload_local_file`（那是不产生版本的文档内资源）或 `popo_doc_create_file_node`（那是创建新节点）。
+>
+> ⚠️ **上传新版本前必须先过"强制前置自检门"**：`fileName` 扩展名 == 本地源文件真实扩展名 == 目标文档当前扩展名，不一致立即终止。禁止改 `fileName`、禁止改名/复制源文件换后缀、禁止改 `mimeType` 绕过 `6044`。详见 [doc-version-reference.md 强制前置自检门](./doc-version-reference.md#强制前置自检门执行前必做不得跳过)。

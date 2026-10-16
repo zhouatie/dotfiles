@@ -163,7 +163,7 @@
                         "max": "max",
                         "medium": null,
                         "minimal": null,
-                        "off": null,
+                        "off": "none",
                         "xhigh": null
                     }
                 },
@@ -189,7 +189,7 @@
                         "max": "max",
                         "medium": null,
                         "minimal": null,
-                        "off": null,
+                        "off": "none",
                         "xhigh": null
                     }
                 },

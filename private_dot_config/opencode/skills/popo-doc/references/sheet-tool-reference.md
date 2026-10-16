@@ -338,6 +338,34 @@ popo-cli popo doc_execute_table docId=<DOC_ID> command='{"type": "sheet.batchSet
 
 ---
 
+## format 显示格式对象
+
+`sheet.setCell` 和 `sheet.batchSetCells` 的每个 cell 均支持可选 `format` 字段，用于设置单元格的显示格式。`format` 支持直接传 SpreadJS formatter 字符串，或传结构化对象：
+
+```json
+{ "type": "percentage", "decimalPlaces": 2 }
+```
+
+`format.type` 支持：`general`、`plainText`、`number`、`decimalNumber`、`percentage`、`decimalPercentage`、`currency`、`decimalCurrency`、`accounting`、`decimalAccounting`、`date`、`dateDash`、`time`、`dateTime`、`custom`。`format.decimalPlaces` 用于设置小数位数；`format.formatter` 可传自定义 formatter，优先级高于 `type`。
+
+---
+
+## 下拉选项 dropdown
+
+`dropdown` 支持直接传选项，或从单元格范围读取选项：
+
+```json
+{ "items": ["待处理", { "value": "已完成", "text": "已完成", "color": "#40b870" }], "multiple": false }
+```
+
+```json
+{ "source": { "sheetId": "<SHEET_ID>", "row": 0, "col": 0, "rowCount": 3, "colCount": 1 } }
+```
+
+> 选项未指定 `color` 时会自动补默认背景色；未指定 `textColor` 时会根据背景色自动补黑色或白色文字。
+
+---
+
 ## 富文本 richText
 
 `sheet.setCell` 和 `sheet.batchSetCells` 的每个 cell 均支持可选 `richText` 字段，用于在单个单元格内写入多段不同样式的文本片段。

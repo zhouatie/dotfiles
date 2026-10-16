@@ -118,7 +118,6 @@
         "magpie": {
             "models": {
                 "antigravity/claude-sonnet-4-6": {
-                    "attachment": true,
                     "limit": {
                         "context": 250000,
                         "output": 64000
@@ -150,7 +149,6 @@
                     }
                 },
                 "antigravity/gemini-3.1-flash-image": {
-                    "attachment": true,
                     "limit": {
                         "context": 131072,
                         "output": 32768
@@ -175,7 +173,6 @@
                     }
                 },
                 "antigravity/gemini-3.8-flash": {
-                    "attachment": true,
                     "limit": {
                         "context": 1048576,
                         "output": 65536
@@ -204,7 +201,6 @@
                     }
                 },
                 "codex/gpt-5.6-luna": {
-                    "attachment": true,
                     "limit": {
                         "context": 272000,
                         "output": 128000
@@ -235,11 +231,45 @@
                         },
                         "max": {
                             "reasoningEffort": "max"
+                        },
+                        "low-fast": {
+                            "extraBody": {
+                                "service_tier": "priority"
+                            },
+                            "reasoningEffort": "low",
+                            "service_tier": "priority"
+                        },
+                        "medium-fast": {
+                            "extraBody": {
+                                "service_tier": "priority"
+                            },
+                            "reasoningEffort": "medium",
+                            "service_tier": "priority"
+                        },
+                        "high-fast": {
+                            "extraBody": {
+                                "service_tier": "priority"
+                            },
+                            "reasoningEffort": "high",
+                            "service_tier": "priority"
+                        },
+                        "xhigh-fast": {
+                            "extraBody": {
+                                "service_tier": "priority"
+                            },
+                            "reasoningEffort": "xhigh",
+                            "service_tier": "priority"
+                        },
+                        "max-fast": {
+                            "extraBody": {
+                                "service_tier": "priority"
+                            },
+                            "reasoningEffort": "max",
+                            "service_tier": "priority"
                         }
                     }
                 },
                 "codex/gpt-5.6-terra": {
-                    "attachment": true,
                     "limit": {
                         "context": 272000,
                         "output": 128000
@@ -273,11 +303,52 @@
                         },
                         "ultra": {
                             "reasoningEffort": "ultra"
+                        },
+                        "low-fast": {
+                            "extraBody": {
+                                "service_tier": "priority"
+                            },
+                            "reasoningEffort": "low",
+                            "service_tier": "priority"
+                        },
+                        "medium-fast": {
+                            "extraBody": {
+                                "service_tier": "priority"
+                            },
+                            "reasoningEffort": "medium",
+                            "service_tier": "priority"
+                        },
+                        "high-fast": {
+                            "extraBody": {
+                                "service_tier": "priority"
+                            },
+                            "reasoningEffort": "high",
+                            "service_tier": "priority"
+                        },
+                        "xhigh-fast": {
+                            "extraBody": {
+                                "service_tier": "priority"
+                            },
+                            "reasoningEffort": "xhigh",
+                            "service_tier": "priority"
+                        },
+                        "max-fast": {
+                            "extraBody": {
+                                "service_tier": "priority"
+                            },
+                            "reasoningEffort": "max",
+                            "service_tier": "priority"
+                        },
+                        "ultra-fast": {
+                            "extraBody": {
+                                "service_tier": "priority"
+                            },
+                            "reasoningEffort": "ultra",
+                            "service_tier": "priority"
                         }
                     }
                 },
                 "codex/gpt-6-luna": {
-                    "attachment": true,
                     "limit": {
                         "context": 272000,
                         "output": 128000
@@ -308,11 +379,45 @@
                         },
                         "max": {
                             "reasoningEffort": "max"
+                        },
+                        "low-fast": {
+                            "extraBody": {
+                                "service_tier": "priority"
+                            },
+                            "reasoningEffort": "low",
+                            "service_tier": "priority"
+                        },
+                        "medium-fast": {
+                            "extraBody": {
+                                "service_tier": "priority"
+                            },
+                            "reasoningEffort": "medium",
+                            "service_tier": "priority"
+                        },
+                        "high-fast": {
+                            "extraBody": {
+                                "service_tier": "priority"
+                            },
+                            "reasoningEffort": "high",
+                            "service_tier": "priority"
+                        },
+                        "xhigh-fast": {
+                            "extraBody": {
+                                "service_tier": "priority"
+                            },
+                            "reasoningEffort": "xhigh",
+                            "service_tier": "priority"
+                        },
+                        "max-fast": {
+                            "extraBody": {
+                                "service_tier": "priority"
+                            },
+                            "reasoningEffort": "max",
+                            "service_tier": "priority"
                         }
                     }
                 },
                 "copilot/auto": {
-                    "attachment": true,
                     "limit": {
                         "context": 128000,
                         "output": 16384
@@ -344,7 +449,6 @@
                     }
                 },
                 "copilot/gemini-3.7-flash": {
-                    "attachment": true,
                     "limit": {
                         "context": 1048576,
                         "output": 65536
@@ -373,7 +477,6 @@
                     }
                 },
                 "copilot/gemini-3.8-flash": {
-                    "attachment": true,
                     "limit": {
                         "context": 1048576,
                         "output": 65536
@@ -402,7 +505,6 @@
                     }
                 },
                 "copilot/gpt-4.1": {
-                    "attachment": true,
                     "limit": {
                         "context": 1047576,
                         "output": 32768
@@ -420,7 +522,6 @@
                     "variants": {}
                 },
                 "copilot/gpt-5-mini": {
-                    "attachment": true,
                     "limit": {
                         "context": 272000,
                         "output": 128000
@@ -449,7 +550,6 @@
                     }
                 },
                 "copilot/gpt-5.4": {
-                    "attachment": true,
                     "limit": {
                         "context": 922000,
                         "output": 128000
@@ -484,7 +584,6 @@
                     }
                 },
                 "copilot/gpt-5.4-mini": {
-                    "attachment": true,
                     "limit": {
                         "context": 272000,
                         "output": 128000
@@ -519,7 +618,6 @@
                     }
                 },
                 "copilot/gpt-5.5": {
-                    "attachment": true,
                     "limit": {
                         "context": 922000,
                         "output": 128000
@@ -554,7 +652,6 @@
                     }
                 },
                 "copilot/gpt-5.6-luna": {
-                    "attachment": true,
                     "limit": {
                         "context": 922000,
                         "output": 128000
@@ -592,7 +689,6 @@
                     }
                 },
                 "copilot/gpt-5.6-sol": {
-                    "attachment": true,
                     "limit": {
                         "context": 922000,
                         "output": 128000
@@ -633,7 +729,6 @@
                     }
                 },
                 "copilot/gpt-5.6-terra": {
-                    "attachment": true,
                     "limit": {
                         "context": 922000,
                         "output": 128000
@@ -674,7 +769,6 @@
                     }
                 },
                 "copilot/gpt-6-astra": {
-                    "attachment": true,
                     "limit": {
                         "context": 922000,
                         "output": 128000
@@ -712,7 +806,6 @@
                     }
                 },
                 "copilot/gpt-6-luna": {
-                    "attachment": true,
                     "limit": {
                         "context": 922000,
                         "output": 128000
@@ -750,7 +843,6 @@
                     }
                 },
                 "copilot/gpt-6-sol": {
-                    "attachment": true,
                     "limit": {
                         "context": 922000,
                         "output": 128000
@@ -791,7 +883,6 @@
                     }
                 },
                 "copilot/gpt-6.1-sol": {
-                    "attachment": true,
                     "limit": {
                         "context": 922000,
                         "output": 128000
@@ -832,7 +923,6 @@
                     }
                 },
                 "copilot/kimi-k3": {
-                    "attachment": true,
                     "limit": {
                         "context": 1048576,
                         "output": 131072
@@ -860,7 +950,6 @@
                     }
                 },
                 "copilot/mai-code-1.1-flash": {
-                    "attachment": true,
                     "limit": {
                         "context": 128000,
                         "output": 128000
@@ -889,7 +978,6 @@
                     }
                 },
                 "deepseek/deepseek-flash": {
-                    "attachment": true,
                     "limit": {
                         "context": 1000000,
                         "output": 393216
@@ -905,6 +993,9 @@
                     },
                     "name": "DeepSeek V4.1 Flash · DeepSeek",
                     "variants": {
+                        "none": {
+                            "reasoningEffort": "none"
+                        },
                         "low": {
                             "reasoningEffort": "low"
                         },
@@ -917,7 +1008,6 @@
                     }
                 },
                 "deepseek/deepseek-v4-pro": {
-                    "attachment": true,
                     "limit": {
                         "context": 1000000,
                         "output": 393216
@@ -933,6 +1023,9 @@
                     },
                     "name": "DeepSeek V4 Pro · DeepSeek",
                     "variants": {
+                        "none": {
+                            "reasoningEffort": "none"
+                        },
                         "low": {
                             "reasoningEffort": "low"
                         },
@@ -945,7 +1038,6 @@
                     }
                 },
                 "gemini/gemini-2.5-flash": {
-                    "attachment": true,
                     "limit": {
                         "context": 1048576,
                         "output": 65536
@@ -974,7 +1066,6 @@
                     }
                 },
                 "gemini/gemini-2.5-flash-lite": {
-                    "attachment": true,
                     "limit": {
                         "context": 1048576,
                         "output": 65536
@@ -1003,7 +1094,6 @@
                     }
                 },
                 "gemini/gemini-2.5-pro": {
-                    "attachment": true,
                     "limit": {
                         "context": 1048576,
                         "output": 65536
@@ -1032,7 +1122,6 @@
                     }
                 },
                 "gemini/gemini-3-flash-preview": {
-                    "attachment": true,
                     "limit": {
                         "context": 1048576,
                         "output": 65536
@@ -1064,7 +1153,6 @@
                     }
                 },
                 "gemini/gemini-3-pro-preview": {
-                    "attachment": true,
                     "limit": {
                         "context": 1048576,
                         "output": 65536
@@ -1089,7 +1177,6 @@
                     }
                 },
                 "gemini/gemini-3.1-flash-lite": {
-                    "attachment": true,
                     "limit": {
                         "context": 1048576,
                         "output": 65536
@@ -1121,7 +1208,6 @@
                     }
                 },
                 "gemini/gemini-3.1-pro-preview": {
-                    "attachment": true,
                     "limit": {
                         "context": 1048576,
                         "output": 65536
@@ -1150,7 +1236,6 @@
                     }
                 },
                 "gemini/gemini-3.5-flash": {
-                    "attachment": true,
                     "limit": {
                         "context": 1048576,
                         "output": 65536
@@ -1182,7 +1267,6 @@
                     }
                 },
                 "gemini/gemini-3.5-flash-lite": {
-                    "attachment": true,
                     "limit": {
                         "context": 1048576,
                         "output": 65536
@@ -1214,7 +1298,6 @@
                     }
                 },
                 "gemini/gemini-3.8-flash": {
-                    "attachment": true,
                     "limit": {
                         "context": 1048576,
                         "output": 65536
@@ -1243,7 +1326,6 @@
                     }
                 },
                 "group/auto-deepseek-flash": {
-                    "attachment": true,
                     "limit": {
                         "context": 1000000,
                         "output": 393216
@@ -1271,7 +1353,6 @@
                     }
                 },
                 "group/auto-gemini-3-8-flash": {
-                    "attachment": true,
                     "limit": {
                         "context": 1048576,
                         "output": 65536
@@ -1300,7 +1381,6 @@
                     }
                 },
                 "group/auto-gpt-5-6-luna": {
-                    "attachment": true,
                     "limit": {
                         "context": 922000,
                         "output": 128000
@@ -1335,7 +1415,6 @@
                     }
                 },
                 "group/auto-gpt-5-6-terra": {
-                    "attachment": true,
                     "limit": {
                         "context": 922000,
                         "output": 128000
@@ -1373,7 +1452,6 @@
                     }
                 },
                 "group/auto-gpt-6-luna": {
-                    "attachment": true,
                     "limit": {
                         "context": 922000,
                         "output": 128000
@@ -1408,7 +1486,6 @@
                     }
                 },
                 "langbase/deepseek-flash": {
-                    "attachment": true,
                     "limit": {
                         "context": 1000000,
                         "output": 384000

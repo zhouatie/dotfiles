@@ -4,19 +4,19 @@
     {
       "id": 1,
       "prompt": "帮我查下张三在项目讨论群里说过的关于进度更新的消息",
-      "expected_output": "应同时解析群名'项目讨论群'(popo_team_search)和人名'张三'(popo_userinfo_search)，然后用popo_message_search搜索'进度更新'，获取上下文，最终按会话分组、时间倒序展示，发送方/接收方显示为人名而非邮箱",
+      "expected_output": "应同时解析群名'项目讨论群'(popo_team_search)和人名'张三'(popo_userinfo_search)，然后并行双来源搜索'进度更新'：服务端 popo_message_search + PC 本地 popo-cli search messages（覆盖 GRP 等特殊会话），归一化后按消息时间合并去重，获取上下文，最终按会话分组、时间倒序展示，发送方/接收方显示为人名而非邮箱",
       "files": []
     },
     {
       "id": 2,
       "prompt": "最近一周有没有人在群里讨论过发布计划？",
-      "expected_output": "应解析时间范围为'最近一周'(当前时间往前7天的毫秒时间戳)，搜索关键词为'发布计划'，不需要解析群名或人名（全局搜索），结果按会话分组展示并包含上下文",
+      "expected_output": "应解析时间范围为'最近一周'(当前时间往前7天的毫秒时间戳)，搜索关键词为'发布计划'，不需要解析群名或人名（全局搜索）；并行执行服务端 popo_message_search 与 PC 本地 popo-cli search messages（本地失败则回退为仅服务端），按消息时间合并去重，结果按会话分组展示并包含上下文",
       "files": []
     },
     {
       "id": 3,
       "prompt": "搜索一下李四发给我的关于合同的私聊消息",
-      "expected_output": "应解析人名'李四'(popo_userinfo_search获取邮箱)，关键词为'合同'，使用contactList过滤，结果应展示单聊会话，接收方显示为对方姓名而非群名",
+      "expected_output": "应解析人名'李四'(popo_userinfo_search获取邮箱)，关键词为'合同'，服务端用contactList过滤、PC本地用--sender过滤，双来源并行搜索并按消息时间合并去重，结果应展示单聊会话，接收方显示为对方姓名而非群名",
       "files": []
     },
     {
@@ -118,7 +118,7 @@
     {
       "id": 20,
       "prompt": "用 ycy06161931 机器人给刚才张三那条『项目进度已更新』的消息点个赞",
-      "expected_output": "应识别机器人名 ycy06161931（直接使用不搜索），先通过 popo_message_search 定位目标消息取 msg_id 和 session_id，将中文『赞』映射为枚举名 THUMBS_UP，然后调用 popo_message_sticker_quick_reply(robotName='ycy06161931', msgId=<msg_id>, sessionId=<session_id>, stickerId='THUMBS_UP')，opType 默认 1（添加表情回应）。sessionType 无需传，服务端自动推算。最终告知用户已用机器人对该消息回应了赞",
+      "expected_output": "应识别机器人名 ycy06161931（直接使用不搜索），先通过双来源搜索（服务端 popo_message_search + PC 本地 popo-cli search messages，覆盖 GRP 等特殊会话）定位目标消息取 msg_id 和 session_id，将中文『赞』映射为枚举名 THUMBS_UP，然后调用 popo_message_sticker_quick_reply(robotName='ycy06161931', msgId=<msg_id>, sessionId=<session_id>, stickerId='THUMBS_UP')，opType 默认 1（添加表情回应）。sessionType 无需传，服务端自动推算。最终告知用户已用机器人对该消息回应了赞",
       "files": []
     },
     {
@@ -143,6 +143,60 @@
       "id": 24,
       "prompt": "在项目群 at发布机器人 发个通知，说版本已发布",
       "expected_output": "应识别为发送群消息：用户以自己身份发送并@机器人'发布机器人'（at 与 @/艾特/＠ 等价，均为被提及标志，覆盖'at一下'等动作形式）。先通过popo_team_search('项目群')获取tid，通过popo_userinfo_search('发布机器人')获取机器人uid（includeRobot=true），然后调用popo_message_send_team(message='@发布机器人 版本已发布', receiver=群tid, atUids=[机器人uid])。绝不路由到use_robot_send_msg",
+      "files": []
+    },
+    {
+      "id": 25,
+      "prompt": "把项目讨论群的群公告改成『本周五下午3点开全员会议』，并在群里通知一下",
+      "expected_output": "应先通过 popo_team_search('项目讨论群') 获取 tid。由于编辑群公告是破坏性群操作，应先与用户确认新的公告内容后再执行。用户明确要求『在群里通知一下』，故 type=2（发送到群聊）。确认后调用 popo_team_board_update(tid=群ID, board='本周五下午3点开全员会议', type=2)。最终告知用户公告已修改且本次变更已发送到群聊",
+      "files": []
+    },
+    {
+      "id": 26,
+      "prompt": "看一下技术交流群的群公告，在末尾加上『请及时更新周报』，不要发到群里",
+      "expected_output": "应先通过 popo_team_search('技术交流群') 获取 tid，再调用 popo_team_info_query(tid=群ID, type=1) 读取原公告 board 原文；在原公告末尾追加『请及时更新周报』得到完整公告内容（该接口整体覆盖原公告，不是追加，因此必须传入拼接后的完整文本）。用户明确说『不要发到群里』，故 type=1（不发送到群聊）。与用户确认后调用 popo_team_board_update(tid=群ID, board='<原公告内容+请及时更新周报>', type=1)",
+      "files": []
+    },
+    {
+      "id": 27,
+      "prompt": "把项目讨论群的群公告清空",
+      "expected_output": "应先通过 popo_team_search('项目讨论群') 获取 tid。清空公告属于破坏性群操作，应先与用户确认。确认后调用 popo_team_board_update(tid=群ID, board='', type=3)。⚠️ 清空公告必须 board 为空字符串且 type=3，不能用 type=1/2",
+      "files": []
+    },
+    {
+      "id": 28,
+      "prompt": "把技术交流群的群公告改成『每周五下午同步周报』",
+      "expected_output": "应先通过 popo_team_search('技术交流群') 获取 tid，与用户确认新公告内容后调用 popo_team_board_update(tid=群ID, board='每周五下午同步周报', type=1)。用户未说明是否发送到群聊，type 直接取默认值 1（不发送到群聊），无需追问用户",
+      "files": []
+    },
+    {
+      "id": 29,
+      "prompt": "把 POPO iOS日志分析机器人加到群 8809300",
+      "expected_output": "应识别为添加应用机器人入群。群号 8809300 为纯数字，直接作为 tid。通过 popo_userinfo_search('POPO iOS日志分析机器人', type=2, includeRobot=true) 得到 uid 1613afd5@app.robot.popo.com；因 uid 以 @app.robot.popo.com 结尾（应用机器人），调用 popo_team_add_robot(tid='8809300', robotUids='[\"1613afd5@app.robot.popo.com\"]')。⚠️ 绝不能调用 popo_team_invite（对应用机器人会返回「机器人账户不能加入群组」）。最终告知用户机器人已加入群",
+      "files": []
+    },
+    {
+      "id": 30,
+      "prompt": "把打包机上的CodeMaker助手拉进 iOS小群",
+      "expected_output": "应识别为把机器人加入群组。先 popo_team_search('iOS小群') 获取 tid；再 popo_userinfo_search('打包机上的CodeMaker助手', type=2, includeRobot=true) 得到 uid 83b5e58e@agent.robot.popo.com。因 uid 以 @agent.robot.popo.com 结尾（智能体账号，非应用机器人），应调用 popo_team_invite(tid=<群ID>, inviteList='[\"83b5e58e@agent.robot.popo.com\"]')，而不是 popo_team_add_robot。判定必须以 uid 域名（仅 @app.robot.popo.com 才用 team_add_robot）为依据，不能只看名称含「助手/机器人」",
+      "files": []
+    },
+    {
+      "id": 31,
+      "prompt": "把 POPO iOS日志分析机器人从群 8809300 里移除",
+      "expected_output": "应识别为移除机器人出群。群号 8809300 为纯数字，直接作为 tid。通过 popo_userinfo_search('POPO iOS日志分析机器人', type=2, includeRobot=true) 得到 uid 1613afd5@app.robot.popo.com；因 uid 以 @app.robot.popo.com 结尾（应用机器人）→ type=1。移除机器人属于破坏性操作，应先与用户确认，确认后调用 popo_team_remove_robot(tid='8809300', robotUid='1613afd5@app.robot.popo.com', type=1, optType=0)。⚠️ 绝不能调用 popo_team_kick_member 移除机器人。最终告知用户机器人已移出群",
+      "files": []
+    },
+    {
+      "id": 32,
+      "prompt": "我刚把打包机器人拉进 iOS小群了，撤掉它",
+      "expected_output": "应识别为撤销自己刚邀请入群的机器人（optType=2）。先 popo_team_search('iOS小群') 获取 tid；再 popo_userinfo_search('打包机器人', type=2, includeRobot=true) 得到 uid（以 @app.robot.popo.com 结尾 → type=1）。因为是当前上下文中自己刚邀请入群的机器人，optType 传 2 撤销，调用 popo_team_remove_robot(tid=<群ID>, robotUid=<机器人uid>, type=1, optType=2)。不得调用 popo_team_kick_member",
+      "files": []
+    },
+    {
+      "id": 33,
+      "prompt": "把监控机器人从项目讨论群里删掉",
+      "expected_output": "应识别为移除机器人出群。先 popo_team_search('项目讨论群') 获取 tid；再 popo_userinfo_search('监控机器人', type=2, includeRobot=true) 获取 uid。若 uid 以 @cus.robot.popo.com 结尾（自定义机器人）→ type=2；若以 @app.robot.popo.com 结尾（应用机器人）→ type=1。type 必须与 uid 域名一致。与用户确认后调用 popo_team_remove_robot(tid=<群ID>, robotUid=<机器人uid>, type=<1或2>, optType=0)。⚠️ 机器人不能用 popo_team_kick_member 移除",
       "files": []
     }
   ]

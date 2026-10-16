@@ -48,9 +48,16 @@ popo-cli popo userinfo_search query=张三 type=2 page=0 pageSize=10 searchRange
 - **命中 > 3 个时取前 3 个**
 - 存入 `contactList` 供 Step 3 使用
 
-## Step 3: 搜索消息
+## Step 3: 搜索消息（双来源合并）
 
-使用 `popo_message_search`（详见 `references/message-search.md`）：
+消息搜索必须**同时**查询两个来源，再按消息时间合并：
+
+- **服务端大搜** `popo_message_search`：覆盖当前用户参与的服务端会话，字段最全（含 `sessionName` / `memberName`）。
+- **PC 客户端本地搜索** `popo-cli search messages`：**唯一能覆盖 GRP 等特殊账号会话**以及客户端本地缓存消息。
+
+两个来源**并行执行**（可让两条命令同时后台运行后一起等待）。
+
+### Step 3a: 服务端大搜
 
 ```bash
 popo-cli popo message_search query=搜索关键词 type=1 page=0 pageSize=20 msgType=0 contactList='["zhangsan@example.com"]' sessionList='["group_123"]' timeStart=1709000000000 timeEnd=1710000000000
@@ -58,15 +65,51 @@ popo-cli popo message_search query=搜索关键词 type=1 page=0 pageSize=20 msg
 
 > 多个联系人或会话用 JSON 数组格式：`contactList='["a@example.com","b@example.com"]'`
 
-**数据裁剪**（必须执行）：返回结果通过 `jq` 过滤冗余字段：
+**数据裁剪**（必须执行）：返回结果通过 `jq` 过滤冗余字段并归一化为数组：
 
 ```bash
-popo-cli popo message_search query=关键词 type=1 page=0 pageSize=20 | jq '.data.data.data.data | {sid, page, has_more, result_list: [.result_list[]? | {nfrom, nto, content, t_msg, msg_id, session_id, sessionType, sessionName, memberName}]}'
+popo-cli popo message_search query=关键词 type=1 page=0 pageSize=20 \
+  | jq -c '.data.data.data.data | [.result_list[]? | {msg_id, session_id, sessionType, nfrom, nto, content, t_msg, sessionName, memberName, source:"gateway"}]'
 ```
 
 裁剪后保留字段见 `references/message-search.md`。
 
 - 记录 `sid`，若 `has_more` 为 true，可继续翻页（最多取 3 页共 60 条）
+
+### Step 3b: PC 客户端本地搜索
+
+```bash
+popo-cli search messages 搜索关键词 --count 20
+```
+
+> 时间参数用**秒**：`--from` / `--to`；会话过滤用 `--session`；发送者过滤用 `--sender`。完整参数与错误码见 `references/pc-message-search.md`。
+
+**归一化**（必须执行，统一为与服务端一致的字段名与毫秒时间）：
+
+```bash
+popo-cli search messages 关键词 --count 20 \
+  | jq -c '[.messages[]? | {msg_id: .msgId, session_id: .sessionId, sessionType, nfrom: .senderId, nto: "", content, t_msg: .timestamp, sessionName: null, memberName: null, source:"pc"}]'
+```
+
+- 若命令以非零退出（daemon 未运行 / 无客户端连入 / 多开未指定账号 / 超时等），**不要中断搜索**：把本地结果视为空数组 `[]`，继续用服务端结果，并在回复中说明"本地搜索不可用，仅展示服务端结果"。
+- 结果超过体积上限时客户端会截断并置 `truncated=true`；可用更小的 `--count` 或收窄时间范围重试。
+- **GRP 等特殊账号会话只有本地来源能命中**：当用户搜索发送者/会话为 `grp.*` 形式的账号时，重点依赖本步骤的结果。
+
+### Step 3c: 合并、去重、排序
+
+```bash
+# GW / PC 分别为 Step 3a / 3b 裁剪后的 JSON 数组（本地来源失败时 PC=[]）
+jq -n --argjson gw "$GW" --argjson pc "$PC" '
+  ($gw + $pc)
+  | unique_by(.session_id + "|" + (.t_msg|tostring) + "|" + .nfrom)
+  | sort_by(.t_msg) | reverse
+  | .[:60]'
+```
+
+- **去重键**：`session_id + 消息时间(ms) + 发送者`（避免两端 `msg_id` 格式差异导致漏去重）
+- **排序**：按消息时间 `t_msg`（毫秒）**倒序**，最新的在前
+- **上限**：合并后最多 60 条（服务端 3 页 × 20）
+- 归一化后统一使用 `msg_id` / `session_id` / `sessionType` / `nfrom` / `nto` / `content` / `t_msg`，后续 Step 4、Step 5 无需感知来源
 
 ## Step 4: 获取消息上下文
 
@@ -88,6 +131,8 @@ popo-cli popo message_context sessionMsg='[...]' | jq '.data.data.data.data | {m
 
 - `contextInfo` 是二维列表 — 每个内层列表是一条搜索消息的前后上下文
 - `contextIndices` 将每条原始消息映射到 `contextInfo` 中的索引位置
+
+> **PC 本地来源（`source:"pc"`，尤其 GRP 等特殊账号会话）的消息可能无法通过服务端 `popo_message_context` 取到上下文**（服务端同样搜索不到这类会话）。此类消息直接展示命中内容、不附上下文即可，不要因为上下文缺失而丢弃该消息或报错。
 
 ## Step 5: 格式化输出
 
@@ -146,9 +191,10 @@ popo-cli popo message_context sessionMsg='[...]' | jq '.data.data.data.data | {m
 
 | 操作 | 从返回中提取 | 用于 |
 |------|-------------|------|
-| `popo_team_search` | `content.tid`（群 ID） | `popo_message_search` 的 `sessionList` |
-| `popo_userinfo_search` | `content.uid`（邮箱） | `popo_message_search` 的 `contactList` |
-| `popo_message_search` | `msg_id`, `t_msg`, `session_id`, `sessionType` | `popo_message_context` 的 `sessionMsg` |
+| `popo_team_search` | `content.tid`（群 ID） | `popo_message_search` 的 `sessionList` / `popo-cli search messages` 的 `--session` |
+| `popo_userinfo_search` | `content.uid`（邮箱） | `popo_message_search` 的 `contactList` / `popo-cli search messages` 的 `--sender` |
+| `popo_message_search` | `msg_id`, `t_msg`, `session_id`, `sessionType` | 合并去重后用于 `popo_message_context` 的 `sessionMsg` |
+| `popo-cli search messages` | `msgId`, `timestamp`, `sessionId`, `sessionType`, `senderId`, `content` | 归一化合并（`msgId→msg_id`、`timestamp→t_msg`、`senderId→nfrom`）后用于 `popo_message_context` 的 `sessionMsg` |
 
 ## 流程决策图
 
@@ -164,9 +210,13 @@ popo-cli popo message_context sessionMsg='[...]' | jq '.data.data.data.data | {m
     │   ├─ popo_team_search("项目群") → 取 top 3 群 ID → sessionList
     │   └─ popo_userinfo_search("张三") → 取 top 3 邮箱 → contactList
     │
-    ├─ 搜索消息：popo_message_search(query="进度", sessionList=[...], contactList=[...])
-    │   ├─ 有结果 → 继续
-    │   └─ 无结果 → 告知用户，建议调整关键词或时间范围
+    ├─ 并行搜索（双来源）：
+    │   ├─ popo_message_search(query="进度", sessionList=[...], contactList=[...])   → 服务端结果
+    │   └─ popo-cli search messages 进度 --session ... （本地来源，覆盖 GRP；失败则记为空）
+    │   │
+    │   └─ 归一化 → 去重 → 按 t_msg 倒序合并（≤60 条）
+    │       ├─ 有结果 → 继续
+    │       └─ 无结果 → 告知用户，建议调整关键词或时间范围
     │
     ├─ 获取上下文：popo_message_context(按 session 分组的消息 ID 和时间戳)
     │

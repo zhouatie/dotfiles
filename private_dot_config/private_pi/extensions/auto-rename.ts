@@ -180,6 +180,9 @@ export default function autoRenameExtension(pi: ExtensionAPI): void {
 
   // 在新会话的首条用户消息到达时后台自动重命名
   pi.on("before_agent_start", async (event, ctx) => {
+    // 无交互终端环境（如批处理脚本 pi -p / call-bot.sh --sync）跳过自动提炼
+    if (!ctx.hasUI) return;
+
     const currentName = pi.getSessionName();
     if (currentName) {
       hasNamed = true;

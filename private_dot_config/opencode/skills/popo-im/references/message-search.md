@@ -1,6 +1,8 @@
-# popo_message_search
+# popo_message_search（服务端大搜）
 
 根据关键词和筛选条件搜索聊天消息。
+
+> ⚠️ 本命令是**服务端**搜索结果，**无法覆盖 GRP 等特殊账号会话**。消息搜索必须同时调用 PC 客户端本地搜索 [pc-message-search.md](pc-message-search.md)，并把两种结果按消息时间合并，详见 [workflow.md](workflow.md) Step 3。
 
 ## 命令
 

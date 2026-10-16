@@ -1,6 +1,14 @@
 # Place a copy of this config to ~/.aerospace.toml
 # After that, you can edit ~/.aerospace.toml to your liking
 
+# Config version for compatibility and deprecations
+# See: https://nikitabobko.github.io/AeroSpace/guide#config-version
+config-version = 2
+
+# List of workspaces that should stay alive even when they contain no windows
+# (Kept in sync with SketchyBar workspace island)
+persistent-workspaces = ["0", "1", "2", "3", "4", "5", "6", "E", "M", "Q", "R", "W"]
+
 # It's not necessary to copy all keys to your config.
 # If the key is missing in your config, "default-config.toml" will serve as a fallback
 
@@ -18,8 +26,9 @@ after-startup-command = [
 
 # Notify SketchyBar whenever workspace changes
 exec-on-workspace-change = [
-  '/bin/bash', '-c',
-  '/opt/homebrew/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+  '/bin/bash',
+  '-c',
+  '/opt/homebrew/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
 ]
 
 # Start AeroSpace at login
@@ -81,7 +90,7 @@ cmd-shift-e = 'exec-and-forget open -a MarkText'
 alt-shift-backtick = 'mode passthrough'
 
 # 启动 herdr（终端工作区管理器），在新 kitty 窗口里 attach
-cmd-ctrl-enter = 'exec-and-forget /Applications/kitty.app/Contents/MacOS/kitty --title herdr /bin/zsh -lc "exec herdr"'
+# cmd-ctrl-enter = 'exec-and-forget /Applications/kitty.app/Contents/MacOS/kitty --title herdr /bin/zsh -lc "exec herdr"'
 
 # 启动 pi coding agent，在新 kitty 窗口里跑；换起始目录就改这里的 cd
 # 用 -lic（login + interactive）：非交互 shell 里 node 是 /usr/local/bin/node v20，pi 需要 >= 22，

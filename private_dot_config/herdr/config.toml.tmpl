@@ -75,6 +75,19 @@ type = "plugin_action"
 command = "worktrunk.open"
 description = "Worktree: switch / create from default branch"
 
+# Herdr Board kanban overlay
+[[keys.command]]
+key = "prefix+shift+k"
+type = "shell"
+command = "herdr plugin action invoke open-board --plugin herdr-board"
+description = "open herdr-board kanban (overlay)"
+
+[[keys.command]]
+key = "cmd+shift+k"
+type = "shell"
+command = "herdr plugin action invoke open-board --plugin herdr-board"
+description = "open herdr-board kanban (overlay, direct)"
+
 #
 # [[keys.command]]
 # key = "prefix+shift+c"

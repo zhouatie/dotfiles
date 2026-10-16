@@ -20,7 +20,8 @@
     "npm:pi-open-tui",
     "npm:pi-side-chat",
     "npm:pi-extmgr",
-    "npm:pi-hermes-memory"
+    "npm:pi-hermes-memory",
+    "npm:@davidroman/pi-loop"
   ],
   "defaultProjectTrust": "always",
   "treeFilterMode": "no-tools",

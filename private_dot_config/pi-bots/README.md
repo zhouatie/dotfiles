@@ -17,12 +17,13 @@
 
 ## 二、当前子 Bot 角色矩阵
 
-当前体系中已配置 5 位覆盖全研发生命周期（SDLC）与日常办公协作的专业角色，各司其职、协同闭环：
+当前体系中已配置 1 位全局总调度官与 5 位覆盖全研发生命周期（SDLC）及日常办公协作的专业角色，各司其职、协同闭环：
 
 ### 角色总览速查表
 
 | Bot 标识 | 角色名称 | 核心定位与专长 | 关键技能 (Skills) | 启动快捷命令 |
 | :--- | :--- | :--- | :--- | :--- |
+| **`master`** | 全局总指挥与调度主管 | 意图识别、跨角色任务拆解、同步阻塞调度与成果闭环汇报 | `dispatch-bot` | `pi-master` |
 | **`pm`** | 资深产品经理 | 需求解读、前置依赖审查（视觉稿阻断门禁）、AC 验收把控 | `popo-doc`, `popo-doc-read` | `pi-pm` |
 | **`raven`** | SDD 前端研发专家 | Spec-Driven 标准规范、Figma 转原型、设计评审门禁、编码自测与归档 | `sdd-*` 系列, `raven-figma-to-design`, `sdd-mws-cli` | `pi-raven` |
 | **`qa`** | 资深测试开发与质量保障 | 需求分析用例同步、白盒自动化验证、黑盒验收 Checklist、缺陷报告 | `qa-testing`, `overmind-testcase-sync`, `playwright-browser` | `pi-qa` |
@@ -141,6 +142,7 @@
 │
 ├── _base/                      # 🧱【共享基础底座】
 │   ├── npm/                    # ⚡ 共享插件依赖库（已预装所有基础工具）
+│   ├── extensions/             # ⚡ 共享原生扩展（如 auto-rename 会话自动重命名）
 │   ├── settings.base.json      # ⚡ 共享标准配置模版
 │   ├── auth.json -> ../../pi/auth.json
 │   ├── models.json -> ../../pi/models.json
@@ -149,30 +151,35 @@
 │
 ├── pm/                         # 📋【PM 实例：产品经理 · 需求与交付把控】
 │   ├── npm -> ../_base/npm     # ⚡ 零拷贝复用基础依赖
+│   ├── extensions -> ...       # ⚡ 零拷贝复用共享扩展
 │   ├── settings.json           # 专属配置
 │   ├── AGENTS.md               # PM 人设准则（Readiness Gate 视觉门禁）
 │   └── skills/                 # 专属技能（popo-doc, popo-doc-read 等）
 │
 ├── raven/                      # 🏗️【Raven 实例：SDD 前端研发与架构专家】
 │   ├── npm -> ../_base/npm     # ⚡ 零拷贝复用基础依赖
+│   ├── extensions -> ...       # ⚡ 零拷贝复用共享扩展
 │   ├── settings.json           # 专属配置
 │   ├── AGENTS.md               # Raven 专属工程师灵魂（SDD 流程与规范先行）
 │   └── skills/                 # 专属技能（sdd-*, raven-figma-to-design 等）
 │
 ├── qa/                         # 🛡️【QA 实例：测试开发与质量保障专家】
 │   ├── npm -> ../_base/npm     # ⚡ 零拷贝复用基础依赖
+│   ├── extensions -> ...       # ⚡ 零拷贝复用共享扩展
 │   ├── settings.json           # 专属配置
 │   ├── AGENTS.md               # QA 质量准则（用例矩阵、提测验证、验收闭环）
 │   └── skills/                 # 专属技能（qa-testing, overmind-testcase-sync, playwright 等）
 │
 ├── ops/                        # ⚡【Ops 实例：资深运维工程师 · 打包与环境】
 │   ├── npm -> ../_base/npm     # ⚡ 零拷贝复用基础依赖
+│   ├── extensions -> ...       # ⚡ 零拷贝复用共享扩展
 │   ├── settings.json           # 专属配置
 │   ├── AGENTS.md               # Ops 运维准则（Febase 流水线实操与构建诊断）
 │   └── skills/                 # 专属技能（febase-build-deploy 等）
 │
 └── popo/                       # 💬【Popo 实例：POPO 协同办公与 IM 专家】
     ├── npm -> ../_base/npm     # ⚡ 零拷贝复用基础依赖
+    ├── extensions -> ...       # ⚡ 零拷贝复用共享扩展
     ├── settings.json           # 专属配置
     ├── AGENTS.md               # Popo 协同准则（消息双端检索、群聊管理、破坏操作二次确认）
     └── skills/                 # 专属技能（popo-im, popo-doc, popo-doc-read 等）
@@ -195,7 +202,7 @@
 
 该脚本会自动执行：
 1. 创建 `~/.config/pi-bots/<bot-name>/` 目录；
-2. 建立 `npm`、`auth.json`、`models.json` 等到 `../_base/` 的软链接；
+2. 建立 `npm`、`extensions`、`auth.json`、`models.json` 等到 `../_base/` 的软链接；
 3. 从 `_base/settings.base.json` 复制生成 `settings.json`；
 4. 生成 `AGENTS.md` 人设模板；
 5. 在 `~/.zshrc` 中注册专属终端快捷别名 `alias pi-<bot-name>=...`。
@@ -208,7 +215,7 @@
 
 | 分类 | 包含插件 | 说明 |
 | :--- | :--- | :--- |
-| **基础底座（已预装在 base）** | `tool-repair`, `edit-guard`, `web-access`, `fff`, `antigravity`, `mcp-adapter`, `pi-hermes-memory` | 自动参数纠错、代码防毁、联网查资料、极速检索、局部独立持久化记忆。所有 Bot 默认享有。 |
+| **基础底座（已预装在 base）** | `tool-repair`, `edit-guard`, `web-access`, `fff`, `antigravity`, `mcp-adapter`, `pi-hermes-memory`, `pi-loop` | 自动参数纠错、代码防毁、联网查资料、极速检索、局部独立持久化记忆、定时循环任务。所有 Bot 默认享有。 |
 | **交互增强（已预装在 base）** | `open-tui`, `side-chat`, `extmgr`, `omp-titanium` 主题 | 提升单聊结对编程时的终端体验。 |
 | **专精选配（按需装入各 Bot）** | `ponytail` (极简架构), `visualize-code-changes` (流程图), `playwright` (端到端测试) | 仅当 Bot 明确需要对应专长时，写入该 Bot 的 `settings.json`。 |
 | **❌ 绝对禁选黑名单** | `pi-observational-memory`, `pi-subagents` | 严禁装入子 Bot，防止双重记忆打架与多层递归调度失控。 |

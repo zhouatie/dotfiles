@@ -2,7 +2,7 @@
 name: popo-doc
 description: "POPO 文档全生命周期管理：创建/搜索/编辑文档、管理文件夹、操作在线表格、操作多维表。触发场景：(1) 文档管理 —\"帮我创建一个周报文档\"、\"建一个项目进度表格\"、\"新建一个多维表\"、\"搜索季度总结报告\"、\"找一下项目资料文档\"、\"改一下这个文档的标题\"、\"删除这个文档\"，以及任何涉及创建/搜索/编辑/删除POPO文档、表格、多维表的请求；(2) 文档内容操作 —\"在文档里写入项目概述\"、\"看看这个文档里写了什么\"、\"帮我下载文档里的图片\"、\"获取这个文档的评论\"；(3) 表格操作 —\"在表格A1写入100\"、\"看看表格里有什么数据\"、\"在表格里加个柱状图\"、\"新建一个Sheet\"；(4) 多维表操作 —\"在多维表里加一条记录\"、\"查找状态为已完成的任务\"、\"建个仪表盘加个饼图\"、\"创建一个收集表\"。当用户输入内容包含 docs.popo.netease.com 域名时，也一定要唤起此skill。即使用户没有明确提到\"文档\"或\"表格\"，只要意图涉及POPO文档产品的任何操作，都应使用此skill。"
 metadata:
-  version: "1.4.5"
+  version: "1.4.6"
 ---
 
 # POPO 文档 Skill
@@ -97,6 +97,7 @@ metadata:
 9. **删除操作前必须与用户二次确认** — 唯一例外：工作流 6 中清理新建多维表自带的默认数据表和默认仪表盘，无需确认
 10. **插入资源前必须先上传** — 图片、附件等资源必须先调用 `popo_doc_upload_local_file`（本地文件）或 `popo_doc_upload_file_from_url`（远程 URL）获取 URL，再写入 `<img>` / `<video>` / `<audio>` / `<attachment>` 等内容标签
     - **文件类节点上传必须走 `popo_doc_get_s3_upload_url` → PUT 上传 → `popo_doc_create_file_node`，不要用 `popo_doc_upload_local_file`**
+    - **给已有文件类文档上传新版本必须走 `popo_doc_get_version_upload_url` → PUT 上传 → `popo_doc_update_file_version`，不要用 `popo_doc_upload_local_file`（不产生版本）或 `popo_doc_create_file_node`（创建新节点）**
     - **PUT 上传时不要修改 `content-type: binary/octet-stream` 和 `x-amz-acl: private`**
 11. **Windows 上 `command` 参数禁止直接内联** — `doc_update_doc` / `doc_execute_table` 的 `command` 参数包含 HTML 标签（`<>`、`"`），PowerShell 直接传参**必然失败**。必须将 JSON 写入 UTF-8 无 BOM 临时文件，用 `command="@file:$tmpFile"`（**路径必须用双引号包裹**）传参后删除临时文件。详见 [popo-doc-content-format.md](./references/popo-doc-content-format.md#command-传参方式必读) 和上方"Windows 平台复杂参数传递"说明
     - **`content` 参数不支持 `=@file:`** — `doc_create_doc` 的 `content` 是普通字符串参数，误用 `content="@file:..."` 会把路径当字面内容写入文档。多行/含特殊字符的 `content`（尤其 Windows）改走两步法：先 `doc_create_doc` 建空文档，再用 `doc_update_doc` 的 `md.replace_page`/`doc.replace_page` + `=@file:` 写入。详见 [workflows.md 工作流 1b](./references/workflows.md)
@@ -108,6 +109,15 @@ metadata:
     - **样式符对照**：`**` 粗体 · `*` 斜体（合写 `***`）· `~~` 删除线 · `++` 下划线 · `==` 高亮
     - **设置样式用 `md.replace_content`**：`oldStr` 必须能在文档中**唯一匹配一次**，重复文本需扩大上下文（带上前后行）使其唯一，否则返回 `oldStr must match exactly once, actual count: N`。示例见 [doc-update-reference.md 行内样式叠加](./references/doc-update-reference.md#行内样式叠加语法doctype4)
     - **POPO 在线 Markdown 渲染依赖扩展语法**：`++`/`==` 需渲染器开启对应扩展，未开启时不渲染下划线/高亮，属正常现象，非语法错误
+13. **禁止绕过平台校验（扩展名/格式/同内容等）** — 接口返回的校验拦截（文件版本扩展名不一致 `6044`、同内容阻断 `6045`、格式不符等）是**硬约束**，必须**停止并如实上报给用户**，由用户决定后续动作。**严禁任何形式规避**，包括但不限于：
+    - **不变量（先证明再动手）**：覆盖/更新文件类节点时，`fileName` 扩展名 == 本地源文件**真实**扩展名 == 目标文档**当前**扩展名，三者必须一致；不一致 → 立即终止，不得执行上传
+    - **强制前置自检门**：上传新版本前必须先在回复中输出「本地源文件 / `fileName` / 目标文档当前名」三元组及扩展名比对结论，比对不通过不得进入第一步；禁止"先上传、失败再说"，禁止"失败后改名重试"
+    - ❌ 把新版本 `fileName` 改成与原文件一致的扩展名，然后再上传其他格式的文件内容（实测：只改 `fileName` 就能让 `6044` 通过，`.md` 内容会覆盖 `.html` 文件节点）
+    - ❌ 对源文件做 `copy` / `Copy-Item` / `cp` / `ren` / `Rename-Item` / `mv` 等改名、换后缀、或生成"后缀与实际内容不符"的临时副本后再 PUT 上传
+    - ❌ 通过改 `mimeType`、改 PUT 的 `content-type`、换用 `doc_create_file_node` 等旁路方式绕开同一条校验
+    - ❌ 以"用户说了覆盖更新"为由自行降低约束；用户意图不能覆盖平台校验
+    - ✅ 正确做法：被校验拦住时终止操作，向用户说明"按规则不允许该更新"，并给出合规选项（换同格式文件、另建独立节点、放弃更新）
+    - 完整规则与自检门见 [doc-version-reference.md](./references/doc-version-reference.md)
 
 ---
 
@@ -166,6 +176,13 @@ metadata:
 - `popo_doc_get_s3_upload_url`：获取文件类节点上传地址和对象信息
 - `popo_doc_create_file_node`：PUT 上传完成后创建文件类文档节点
 - `popo_doc_get_file_download_url(type=fileNode)`：获取文件类节点临时下载地址
+
+### 文件版本操作（给已有文件类文档上传新版本）→ [doc-version-reference.md](./references/doc-version-reference.md)
+
+- 三步式：`popo_doc_get_version_upload_url`（取版本上传地址）→ PUT 上传文件字节 → `popo_doc_update_file_version`（确认提交并切换为当前版本）
+- 团队空间文件**必须传 `teamSpaceId`**（`docId` 传 pageId），否则会被当作云空间文件处理
+- `fileHash` 必填（同内容阻断与幂等）；云空间传 **base64**、团队空间传 **hex**；`fileName` 为新版本展示名，会替换文档名
+- **不可**用 `popo_doc_upload_local_file`（不产生版本）或 `popo_doc_create_file_node`（创建新节点）代替本流程
 
 ### 在线popo文档和markdown内容操作（docType=1、4）→ [doc-update-reference.md](./references/doc-update-reference.md)
 
@@ -228,6 +245,7 @@ metadata:
 | "改文档标题" | `popo_doc_update_doc`(title) | `popo_doc_create_doc` |
 | "上传本地图片/附件到文档" | `popo_doc_upload_local_file` → `popo_doc_update_doc` 插入 `<img>`/`<attachment>` | 直接把本地路径写入 content |
 | "上传本地文件成为独立文件节点" | `popo_doc_get_s3_upload_url` → PUT 上传 → `popo_doc_create_file_node` | `popo_doc_upload_local_file` |
+| "给已有文件类文档上传新版本" | `popo_doc_get_version_upload_url` → PUT 上传 → `popo_doc_update_file_version` | `popo_doc_upload_local_file`（不产生版本）/ `popo_doc_create_file_node`（创建新节点） |
 | "把网页/CDN上的图片或附件插入文档" | `popo_doc_upload_file_from_url` → `popo_doc_update_doc` 插入 `<img>`/`<attachment>` | 直接把远程 URL 写入 content |
 | "下载文档里的图片/附件"（docType=1） | 先 `popo_doc_get_doc_detail` 提取 content URL → 再 `popo_doc_get_file_download_url` | `popo_doc_file_batch_get` |
 | "下载云空间多维表链接里的图片/附件"（URL 含 `/pages/` + `nodeId=`） | 从 URL 提取 `documentId=<pages路径段>`、`datasheetId=<nodeId>`，用 `locationType=cloudspace` → `popo_doc_field_list` 找附件 fieldId → `popo_doc_record_page` 或 `popo_doc_record_filter` 取 recordId 和 fileId → `popo_doc_file_batch_get`（不是 `popo_doc_file_batch_get`） | `popo_doc_get_folder_path` / `popo_doc_get_file_download_url` / `popo_doc_file_batch_get` |
@@ -322,6 +340,8 @@ popo_doc_create_doc调用成功时（status==1）,返回值会包含url、type�
 | `popo_doc_get_s3_upload_url` | `bucketName`, `objectKey`, `uploadId`, `uploadUrl` | `popo_doc_create_file_node` |
 | `popo_doc_create_file_node` | `docId`, `docUrl`, `teamSpaceId` | `save_artifact` / 下载 |
 | `popo_doc_get_file_download_url(type=fileNode)` | `downloadUrls` (key=docId/pageId) | 文件下载 |
+| `popo_doc_get_version_upload_url` | `bucketName`, `objectKey`, `uploadId`, `endpoint`, `uploadUrl` | PUT 上传文件字节，再把 `bucketName/objectKey/endpoint` 传给 `popo_doc_update_file_version` |
+| `popo_doc_update_file_version` | `docId`, `versionNo`, `status` | 版本上传结果确认；`status=SUCCESS` 表示新版本已生效 |
 | `popo_doc_execute_table`(getFullData) | `sheetId` | 后续所有 execute_table 操作 |
 | `popo_doc_execute_table`(createSheet) | `sheetId` | 后续所有需 sheetId 的操作 |
 | `popo_doc_execute_table`(addChart) | `chartId` | updateChart / removeChart |
@@ -342,6 +362,9 @@ popo_doc_create_doc调用成功时（status==1）,返回值会包含url、type�
 |----------------------|---------|
 | 500 服务端错误            | 根据错误信息调整参数后重试（最多 2 次） |
 | 4xx 客户端错误（认证失败/权限不足） | **禁止重试**，告知用户检查权限 |
+| `FABRIC_TOOL_NOT_FOUND`（未找到工具路由） | 工具名写错，核对 `popo-cli popo <工具名>`；调用一律走 `popo-cli popo`，不要用 `popo-cli doc ...` / `fabric doc ...` |
+| `FABRIC_EXPIRED` / `FABRIC_PENDING`（授权过期/待确认） | 先执行 `fabric auth refresh`；若仍返回 `FABRIC_PENDING`，说明授权卡片已下发到 POPO，**禁止自动重试**，须告知用户在 POPO 确认授权卡片后再继续 |
+| `FABRIC_DOWNSTREAM_ERROR` / `FABRIC_DOWNSTREAM_UNAVAILABLE`（下游 500/503） | 路由正常但服务端不可用，稍后重试，不要改参数硬试 |
 | 文档/记录不存在             | 确认 ID 是否正确，必要时重新搜索 |
 | 字段类型不匹配              | 调用 `popo_doc_field_list` 确认字段类型后重新构造值 |
 | batch 操作部分失败         | 检查返回的 `fail` 计数，根据错误信息修正后重试失败项 |
@@ -350,6 +373,8 @@ popo_doc_create_doc调用成功时（status==1）,返回值会包含url、type�
 | `popo_doc_get_file_download_url` 失败且目标是多维表/附件字段/docType=9 | **禁止继续重试同一工具**；立即切换到 `doc_file_batch_get`（不是 `popo_doc_file_batch_get`）：先取 datasheetId、附件 fieldId、recordId、fileId，再按 `{fieldId:{recordId:[fileId]}}` 构造 `fileRequests`；参数必须查 `mtable-tool-reference.md` 的 `doc_file_batch_get` 章节 |
 | 团队空间详情/评论/下载/更新因只传 `docId` 报错 | **禁止继续用单独 `docId` 重试**；回到原始 `/team/pc/.../pageDetail/...` URL，先 `popo_doc_get_folder_path url=<原始URL>` 取 `teamSpaceId`，再用 `docId=<pageDetail最后一段> teamSpaceId=<TEAM_SPACE_ID>` 调目标工具 |
 | 云空间 `/pages/{documentId}?nodeId=...` 多维表链接被误走 `doc_get_folder_path` | **立即停止解析 teamSpaceId**；按云空间多维表处理：`documentId=<pages路径段>`、`datasheetId=<nodeId>`、`locationType=cloudspace`，继续 `popo_doc_field_list` / `popo_doc_record_page` 或 `popo_doc_record_filter` / `doc_file_batch_get` |
+| 上传新版本返回 MCP 码 `6045`（同内容阻断） | 新版本与当前版本内容相同，属**正常阻断**，**不要反复重试**；确认是否确实要更新内容后再决定是否换文件 |
+| 上传新版本返回 MCP 码 `6044`（扩展名不一致） | **终止并向用户上报**，禁止绕过（不得只改 `fileName`、不得把源文件改名/复制成原扩展名、不得改 `mimeType`）；合规选项：换同扩展名文件 / 另建独立节点（需用户确认）/ 放弃更新。详见 [doc-version-reference.md 强制前置自检门](./references/doc-version-reference.md) |
 
 ---
 
@@ -361,6 +386,7 @@ popo_doc_create_doc调用成功时（status==1）,返回值会包含url、type�
 | [doc-update-reference.md](./references/doc-update-reference.md) | 文档内容更新 API（含 Markdown 命令） | 更新文档内容时 |
 | [doc-resource-reference.md](./references/doc-resource-reference.md) | 文档内资源上传/下载 API | 上传/下载文档内资源时 |
 | [file-node-reference.md](./references/file-node-reference.md) | 文件类节点 API | 创建/下载文件类节点时 |
+| [doc-version-reference.md](./references/doc-version-reference.md) | 文件版本 API（给已有文件类文档上传新版本） | 给已有文件类文档上传新版本时 |
 | [sheet-tool-reference.md](./references/sheet-tool-reference.md) | 在线表格 API 参数与返回值 | 操作表格内容时 |
 | [popo-doc-content-format.md](./references/popo-doc-content-format.md) | 文档 HTML 内容格式规范 | 读写文档内容时 |
 | [mtable-tool-reference.md](./references/mtable-tool-reference.md) | 多维表 API 参数与返回值；含 `doc_file_batch_get` 文件操作参数和 `fileRequests` 格式 | 操作多维表时，尤其是下载附件字段文件前必须读 |

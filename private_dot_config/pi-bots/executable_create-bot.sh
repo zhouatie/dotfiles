@@ -43,6 +43,7 @@ cd "$TARGET_DIR"
 
 # 1. 建立共享软链接（复用鉴权、模型端点和已安装的 200+ npm 依赖包）
 ln -sf ../_base/npm npm
+ln -sf ../_base/extensions extensions
 ln -sf ../_base/auth.json auth.json
 ln -sf ../_base/models.json models.json
 ln -sf ../_base/antigravity-accounts.json antigravity-accounts.json

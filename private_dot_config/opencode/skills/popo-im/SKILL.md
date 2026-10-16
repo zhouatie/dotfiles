@@ -1,6 +1,6 @@
 ---
 name: popo-im
-description: "POPO IM 消息与群组管理：搜索聊天消息、发送消息（文本/图片/文件）、使用机器人发消息、发送消息给文件传输助手（发给自己）、搜索员工/用户信息、搜索群组、创建群聊、管理群成员、修改群名、查询群详情（公告/成员列表）。触发场景：(1) 消息搜索 —\"帮我找关于X的消息\"、\"张三说过什么关于Y的内容\"、\"在某某群里搜索Z\"、\"最近关于项目进度的讨论\"，以及任何涉及搜索/查找/回顾POPO聊天记录、IM消息、群聊内容的请求；(2) 发送消息 —\"帮我给张三发条消息\"、\"在项目群里发个通知\"、\"告诉李四明天开会\"、\"给XX群发消息说YY\"、\"帮我给张三发张图片\"、\"在群里发个截图\"、\"帮我给李四发个文件\"、\"在群里发个附件\"、\"发给文件传输助手\"、\"发给自己一条备忘\"，以及任何涉及通过POPO发送/传达消息、图片、文件的请求；(2b) 机器人发消息 —\"用ycy给张三发条消息\"、\"让testbot通知李四明天开会\"、\"ycy06161931给张三发条消息\"、\"用XX机器人给张三发张图片\"、\"用XX机器人给张三发个文件\"，以及任何涉及「用/让/通过/叫 + 非接收者名称 + 发送类动词」模式的请求。不需要出现\"机器人\"三个字，只要有「指定发送者身份」的意图就触发；(3) 用户查询 —\"张三的邮箱是什么\"、\"帮我查下李四的部门\"、\"搜索叫王五的同事\"、查看个人信息、查找联系方式、按姓名搜索员工；(4) 群组搜索 —\"帮我找项目讨论群\"、\"搜索XXX相关的群\"；(5) 群组管理 —\"帮我创建一个群\"、\"把张三拉到XX群\"、\"把李四从XX群移除\"、\"把XX群改名为YY\"；(6) 群详情查询 —\"看看群里都有谁\"、\"按部门分组列一下群成员\"、\"查一下群公告写了什么\"、\"这个群有哪些人\"；(7) 消息表情回应 —\"用XX机器人给那条消息点个赞\"、\"给这条消息回应个爱心\"、\"把机器人回应的表情取消掉\"，即对已有消息添加/取消系统表情回应（reaction）。即使用户没有明确说\"搜索\"或\"发送\"，只要意图涉及查找POPO中的消息、人员、群组，发送POPO消息（文本、图片、文件），使用机器人发送消息，发送消息给文件传输助手/自己，管理群组（创建、成员变更、改名），查询群详情（公告/成员），或对已有消息做表情回应，都应使用此skill。"
+description: "POPO IM 消息与群组管理：搜索聊天消息、发送消息（文本/图片/文件）、使用机器人发消息、发送消息给文件传输助手（发给自己）、搜索员工/用户信息、搜索群组、创建群聊、管理群成员、修改群名、编辑群公告、查询群详情（公告/成员列表）。触发场景：(1) 消息搜索 —\"帮我找关于X的消息\"、\"张三说过什么关于Y的内容\"、\"在某某群里搜索Z\"、\"最近关于项目进度的讨论\"，以及任何涉及搜索/查找/回顾POPO聊天记录、IM消息、群聊内容（含 GRP 等特殊账号会话）的请求；(2) 发送消息 —\"帮我给张三发条消息\"、\"在项目群里发个通知\"、\"告诉李四明天开会\"、\"给XX群发消息说YY\"、\"帮我给张三发张图片\"、\"在群里发个截图\"、\"帮我给李四发个文件\"、\"在群里发个附件\"、\"发给文件传输助手\"、\"发给自己一条备忘\"，以及任何涉及通过POPO发送/传达消息、图片、文件的请求；(2b) 机器人发消息 —\"用ycy给张三发条消息\"、\"让testbot通知李四明天开会\"、\"ycy06161931给张三发条消息\"、\"用XX机器人给张三发张图片\"、\"用XX机器人给张三发个文件\"，以及任何涉及「用/让/通过/叫 + 非接收者名称 + 发送类动词」模式的请求。不需要出现\"机器人\"三个字，只要有「指定发送者身份」的意图就触发；(3) 用户查询 —\"张三的邮箱是什么\"、\"帮我查下李四的部门\"、\"搜索叫王五的同事\"、查看个人信息、查找联系方式、按姓名搜索员工；(4) 群组搜索 —\"帮我找项目讨论群\"、\"搜索XXX相关的群\"；(5) 群组管理 —\"帮我创建一个群\"、\"把张三拉到XX群\"、\"把李四从XX群移除\"、\"把XX群改名为YY\"；(5b) 添加机器人入群 —\"把XX机器人加到XX群\"、\"把POPO iOS日志分析机器人拉进群\"、\"邀请应用机器人入群\"，即把**应用机器人**（uid 形如 `xxx@app.robot.popo.com`）添加进群聊；(5c) 移除机器人出群 —\"把XX机器人从XX群移除\"、\"撤掉刚拉进群的机器人\"、\"把应用机器人踢出群\"，即把**机器人**（应用机器人 uid 形如 `xxx@app.robot.popo.com`、自定义机器人 uid 形如 `xxx@cus.robot.popo.com`）移出群聊，注意机器人不能用 team_kick_member 移除；(6) 群详情查询 —\"看看群里都有谁\"、\"按部门分组列一下群成员\"、\"查一下群公告写了什么\"、\"这个群有哪些人\"；(7) 消息表情回应 —\"用XX机器人给那条消息点个赞\"、\"给这条消息回应个爱心\"、\"把机器人回应的表情取消掉\"，即对已有消息添加/取消系统表情回应（reaction）；(8) 编辑群公告 —\"帮我修改XX群的群公告\"、\"把XX群的公告改成YY\"、\"更新群公告并通知群成员\"、\"把XX群的群公告清空\"，即修改或清空已有群组的公告内容。即使用户没有明确说\"搜索\"或\"发送\"，只要意图涉及查找POPO中的消息、人员、群组，发送POPO消息（文本、图片、文件），使用机器人发送消息，发送消息给文件传输助手/自己，管理群组（创建、成员变更、改名、编辑群公告、机器人入群/出群），查询群详情（公告/成员），或对已有消息做表情回应，都应使用此skill。"
 ---
 
 # POPO IM 消息与群组管理
@@ -175,13 +175,16 @@ description: "POPO IM 消息与群组管理：搜索聊天消息、发送消息�
 
 | 查询类型 | 典型意图 | 流程 |
 |----------|---------|------|
-| **消息搜索** | 查找聊天记录、搜索某人说过的话、回顾讨论历史 | 读取 [workflow.md](references/workflow.md) 执行完整流程 |
+| **消息搜索** | 查找聊天记录、搜索某人说过的话、回顾讨论历史 | 读取 [workflow.md](references/workflow.md) 执行完整流程（**双来源**：服务端 `popo_message_search` + PC 本地 `popo-cli search messages`，按时间合并） |
 | **用户查询** | 查找同事邮箱/部门/联系方式、按姓名搜索员工 | 读取 [userinfo-search.md](references/userinfo-search.md)，直接回复 |
 | **群组搜索** | 查找群聊、搜索群名 | 读取 [team-search.md](references/team-search.md)，直接回复 |
 | **创建群组** | 创建群聊、建群拉人 | 先调用 `popo-cli popo team_current_user_info` 获取当前用户 uid，再读取 [team-create.md](references/team-create.md)，执行创建流程 |
-| **邀请群成员** | 把某人拉到群里、添加群成员 | 读取 [team-invite.md](references/team-invite.md)，执行邀请流程 |
+| **邀请群成员** | 把某人/智能体拉到群里、添加群成员 | 读取 [team-invite.md](references/team-invite.md)，执行邀请流程。**仅限普通用户与智能体账号（`@agent.robot.popo.com`）；应用机器人见下一行** |
+| **添加机器人入群** | 把**应用机器人**（uid 形如 `xxx@app.robot.popo.com`）加入群聊 | 读取 [team-add-robot.md](references/team-add-robot.md)，执行添加流程（`popo_team_add_robot`，参数 `tid` + `robotUids`）。**应用机器人不能用 `popo_team_invite`，会返回「机器人账户不能加入群组」** |
+| **移除机器人出群** | 把**机器人**从群里移除/撤掉（应用机器人 `xxx@app.robot.popo.com`、自定义机器人 `xxx@cus.robot.popo.com`） | 读取 [team-remove-robot.md](references/team-remove-robot.md)，执行移除流程（`popo_team_remove_robot`，参数 `tid` + `robotUid` + `type` + `optType`）。**机器人不能用 `popo_team_kick_member` 移除**；智能体账号 `@agent.robot.popo.com` 与普通用户仍走 `popo_team_kick_member` |
 | **移除群成员** | 把某人从群里移除/踢出 | 读取 [team-kick-member.md](references/team-kick-member.md)，执行移除流程 |
 | **修改群名** | 改群名、重命名群 | 读取 [team-update-name.md](references/team-update-name.md)，执行修改流程 |
+| **编辑群公告** | 修改/更新/清空群公告、编辑群公告并通知群成员 | 读取 [team-board-update.md](references/team-board-update.md)，执行修改流程 |
 | **群详情查询** | 查看群公告、查看群成员列表 | 读取 [team-info-query.md](references/team-info-query.md)，直接回复 |
 | **发送单聊消息** | 给某人发消息、私聊发通知 | 读取 [message-send-p2p.md](references/message-send-p2p.md)，执行发送流程 |
 | **发送群消息** | 在群里发消息、群发通知、@人、@所有人 | 读取 [message-send-team.md](references/message-send-team.md)，执行发送流程 |
@@ -219,24 +222,30 @@ description: "POPO IM 消息与群组管理：搜索聊天消息、发送消息�
 - 不要使用 curl 或自己写 python 等方法直接调用 POPO API（**文件上传除外**：上传文件到 FP/S3 地址时使用 curl；**Windows 平台必须使用 `curl.exe`** 而非 `curl`，因为 PowerShell 中 `curl` 是 `Invoke-WebRequest` 的别名）
 - 所有时间参数使用**毫秒级 Unix 时间戳**（如 `1709000000000`），不要传 ISO-8601 格式
 - 实体搜索（群名/人名）命中数量大于 3 个时，**取 top 3**（结果列表前 3 个）
-- 执行**破坏性群操作**（移除成员、修改群名）前，必须**先与用户确认**再执行
+- 执行**破坏性群操作**（移除成员、移除机器人、修改群名、编辑群公告）前，必须**先与用户确认**再执行
 - 群组管理操作失败时，不要自行重试或尝试替代方案，将错误信息报告给用户
 - **群消息 @ 人时，`message` 中 `@` 后面必须使用 `popo_userinfo_search` 返回的 `content.name` 字段值，禁止直接使用用户输入的名字，禁止跟邮箱**。即使用户说的名字看起来和搜索结果一致，也必须从接口返回的 `content.name` 中提取，不得跳过取值步骤直接复用用户输入。`@邮箱` 不会被客户端解析，对方收不到 @ 提醒
 - **群消息 @ 人时，禁止自动邀请不在群内的用户入群**。如果被 @ 的人不在群里，应告知用户该成员不在群中，由用户决定是否邀请，不得自行调用 `popo_team_invite`
+- **应用机器人（uid 形如 `xxx@app.robot.popo.com`）不能用 `popo_team_invite` 入群**（会返回「机器人账户不能加入群组」），必须使用 `popo_team_add_robot`（参数 `tid` + `robotUids`）。普通用户与智能体账号（uid 形如 `xxx@agent.robot.popo.com`）仍走 `popo_team_invite`；不要仅凭名称含「机器人/助手」判断，必须以 uid 域名区分
+- **机器人不能用 `popo_team_kick_member` 移除**：应用机器人（`@app.robot.popo.com`）与自定义机器人（`@cus.robot.popo.com`）必须使用 `popo_team_remove_robot`，且 `type` 必须与 `robotUid` 域名一致（`@app.robot.popo.com` → `type=1`，`@cus.robot.popo.com` → `type=2`）。智能体账号（`@agent.robot.popo.com`）与普通用户仍走 `popo_team_kick_member`；撤销自己刚邀请入群的机器人用 `optType=2`，其余常规删除用 `optType=0`
 
 ## 能力总览
 
 | 操作 | 命令 | 独立使用 | 说明 | 参考 |
 |------|------|:--------:|------|------|
-| 消息搜索 | `popo-cli popo message_search` | — | 根据关键词和筛选条件搜索聊天消息 | [message-search.md](references/message-search.md) |
+| 消息搜索（服务端） | `popo-cli popo message_search` | — | 服务端大搜，覆盖当前用户参与的服务端会话 | [message-search.md](references/message-search.md) |
+| 消息搜索（PC 本地） | `popo-cli search messages` | — | PC 客户端本地搜索（经 daemon IPC），**唯一覆盖 GRP 等特殊账号会话**；与服务端结果按时间合并 | [pc-message-search.md](references/pc-message-search.md) |
 | 消息上下文 | `popo-cli popo message_context` | — | 根据消息 ID 查询前后上下文消息 | [message-context.md](references/message-context.md) |
 | 搜索用户 | `popo-cli popo userinfo_search` | ✅ | 按姓名/昵称搜索员工，查看组织架构 | [userinfo-search.md](references/userinfo-search.md) |
 | 获取当前用户 | `popo-cli popo team_current_user_info` | ✅ | 获取当前登录用户信息（uid 等），创建群组前必须调用 | — |
 | 搜索群组 | `popo-cli popo team_search` | ✅ | 按群名关键词搜索群组 | [team-search.md](references/team-search.md) |
 | 创建群组 | `popo-cli popo team_create` | ✅ | 创建新群组并拉入成员（需先获取当前用户 uid） | [team-create.md](references/team-create.md) |
-| 邀请群成员 | `popo-cli popo team_invite` | ✅ | 邀请新成员加入已有群组 | [team-invite.md](references/team-invite.md) |
+| 邀请群成员 | `popo-cli popo team_invite` | ✅ | 邀请新成员加入已有群组（普通用户 / 智能体账号 `@agent.robot.popo.com`） | [team-invite.md](references/team-invite.md) |
+| 添加机器人入群 | `popo-cli popo team_add_robot` | ✅ | 将**应用机器人**（`@app.robot.popo.com`）加入群组 | [team-add-robot.md](references/team-add-robot.md) |
+| 移除机器人出群 | `popo-cli popo team_remove_robot` | ✅ | 将**机器人**（`@app.robot.popo.com` / `@cus.robot.popo.com`）移出群组；`optType=2` 可撤销自己邀请的机器人 | [team-remove-robot.md](references/team-remove-robot.md) |
 | 移除群成员 | `popo-cli popo team_kick_member` | ✅ | 从群组中移除成员 | [team-kick-member.md](references/team-kick-member.md) |
 | 修改群名 | `popo-cli popo team_update_team_name` | ✅ | 修改群组名称 | [team-update-name.md](references/team-update-name.md) |
+| 编辑群公告 | `popo-cli popo team_board_update` | ✅ | 修改或清空群组公告内容（可选是否发送到群聊；清空用 `type=3`） | [team-board-update.md](references/team-board-update.md) |
 | 查询群详情 | `popo-cli popo team_info_query` | ✅ | 查询群公告内容或群成员列表（姓名、邮箱、组织） | [team-info-query.md](references/team-info-query.md) |
 | 发送单聊消息 | `popo-cli popo message_send_p2p` | ✅ | 向指定用户发送单聊消息（支持文本、图片、文件） | [message-send-p2p.md](references/message-send-p2p.md) |
 | 发送群消息 | `popo-cli popo message_send_team` | ✅ | 向指定群组发送消息（支持文本、图片、文件、@人、@所有人） | [message-send-team.md](references/message-send-team.md) |
@@ -247,6 +256,19 @@ description: "POPO IM 消息与群组管理：搜索聊天消息、发送消息�
 | 获取文件上传地址 | `popo-cli popo message_s3_ufile_upload` | — | 获取 S3 上传地址，用于文件上传 | [message-send-file-workflow.md](references/message-send-file-workflow.md) |
 | 上报文件上传完成 | `popo-cli popo message_s3_ufile_upload_complete` | — | 文件上传 S3 后上报，换取 ufid 和 ftype | [message-send-file-workflow.md](references/message-send-file-workflow.md) |
 | 响应数据裁剪 | `jq` 管道 | — | 过滤消息搜索冗余字段（内联 jq 命令，无外部脚本依赖） | — |
+
+## 消息搜索来源（双来源合并）
+
+一次消息搜索**必须同时查询两个来源**，再按消息时间合并去重（完整步骤见 [workflow.md](references/workflow.md) Step 3）：
+
+| 来源 | 命令 | 覆盖范围 | 依赖 |
+|------|------|---------|------|
+| 服务端大搜 | `popo-cli popo message_search` | 当前用户参与的服务端会话，字段最全 | 服务端 API |
+| PC 本地搜索 | `popo-cli search messages` | **GRP 等特殊账号会话** + 客户端本地缓存消息 | popo-cli daemon + 已登录的 POPO PC 客户端 |
+
+- **只有 PC 本地来源能搜到 GRP 等特殊账号会话**，因此不能省略本地来源。
+- 本地来源不可用时（daemon 未运行 / 无客户端连入 / 超时等），**回退为仅服务端结果**，不得整体失败。
+- 合并规则：字段归一化 → 按 `session_id + 消息时间(ms) + 发送者` 去重 → 按消息时间倒序 → 最多 60 条。
 
 ## 消息搜索权限边界
 
@@ -272,7 +294,7 @@ description: "POPO IM 消息与群组管理：搜索聊天消息、发送消息�
 
 ## 群组管理通用流程
 
-群组管理操作（创建、邀请、移除、改名）共享以下通用模式：
+群组管理操作（创建、邀请、移除、改名、编辑群公告）共享以下通用模式：
 
 ### 实体解析
 
@@ -282,6 +304,7 @@ description: "POPO IM 消息与群组管理：搜索聊天消息、发送消息�
 |----------|---------|---------|----------|
 | 群名 | 群 ID（tid） | `popo_team_search` | `content.tid` |
 | 人名 | 用户邮箱（uid） | `popo_userinfo_search` | `content.uid` |
+| 机器人名 | 机器人 uid | `popo_userinfo_search`（固定 `includeRobot=true`） | `content.uid`（入群：`@app.robot.popo.com` → 应用机器人用 `popo_team_add_robot`，否则用 `popo_team_invite`；出群：`@app.robot.popo.com` → `type=1`、`@cus.robot.popo.com` → `type=2`，用 `popo_team_remove_robot`） |
 | POPO 账号（uid） | **无需解析** | — | 直接使用 |
 
 > **POPO 账号（uid）识别规则**
@@ -309,7 +332,7 @@ popo-cli popo team_search query=项目讨论群 type=3 page=0 pageSize=10
 ### 操作确认
 
 - **创建群组**、**邀请成员**：可直接执行，无需额外确认
-- **移除成员**、**修改群名**：属于破坏性操作，执行前**必须与用户确认**
+- **移除成员**、**移除机器人**、**修改群名**、**编辑群公告**：属于破坏性操作，执行前**必须与用户确认**
 
 ### 结果反馈
 

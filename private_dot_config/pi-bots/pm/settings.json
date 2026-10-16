@@ -20,12 +20,17 @@
     "npm:pi-open-tui",
     "npm:pi-side-chat",
     "npm:pi-extmgr",
-    "npm:pi-hermes-memory"
+    "npm:pi-hermes-memory",
+    "npm:@davidroman/pi-loop"
   ],
   "defaultProjectTrust": "always",
   "treeFilterMode": "no-tools",
   "showHardwareCursor": true,
   "fullscreenScrollbar": "always",
   "tuiMode": "fullscreen",
-  "theme": "omp-titanium"
+  "theme": "omp-titanium",
+  "lastChangelogVersion": "1.1.0",
+  "extensions": [
+    "-builtin:mcp"
+  ]
 }

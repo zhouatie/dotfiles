@@ -3,9 +3,6 @@
   "inlineFooter": false,
   "settingsLanguage": "zh",
   "cursorStyle": "bar",
-  "fullscreen": {
-    "wheelScrollLines": 5
-  },
   "icons": {
     "mode": "auto"
   },
@@ -34,5 +31,8 @@
   },
   "thinkingPeek": {
     "lines": 2
+  },
+  "fullscreen": {
+    "wheelScrollLines": 5
   }
 }
