@@ -1,0 +1,64 @@
+{
+  "lastChangelogVersion": "1.3.0",
+  "defaultProvider": "magpie",
+  "defaultModel": "antigravity/gemini-3.8-flash",
+  "defaultThinkingLevel": "high",
+  "enabledModels": [
+    "deepseek/deepseek-v4.1-flash-expires-on-0910",
+    "langbase/deepseek-flash",
+    "antigravity/gemini-3.8-flash",
+    "antigravity-manager/gemini-3.8-flash-high",
+    "magpie/antigravity/gemini-3.8-flash",
+    "magpie/antigravity/claude-sonnet-4-6"
+  ],
+  "packages": [
+    "npm:pi-subagents@latest",
+    "npm:pi-web-access",
+    "npm:pi-mcp-adapter",
+    "npm:pi-playwright",
+    "npm:pi-visualize-code-changes",
+    "npm:pi-extmgr",
+    "npm:pi-open-tui",
+    "npm:pi-antigravity",
+    "npm:@ff-labs/pi-fff",
+    "npm:pi-tool-repair",
+    "npm:@lucascardozo/pi-edit-guard",
+    "npm:pi-observational-memory",
+    "npm:@dietrichgebert/ponytail",
+    "npm:@davidroman/pi-loop",
+    "https://github.com/dbachelder/pi-btw"
+  ],
+  "defaultProjectTrust": "always",
+  "treeFilterMode": "no-tools",
+  "skills": [
+    "!{{ .chezmoi.homeDir }}/.agents/skills/**"
+  ],
+  "showCacheMissNotices": false,
+  "subagents": {
+    "defaultModel": "antigravity/gemini-3.8-flash",
+    "defaultThinking": "high",
+    "agentOverrides": {
+      "scout": {
+        "tools": [
+          "read",
+          "grep",
+          "find",
+          "ls"
+        ]
+      }
+    }
+  },
+  "terminal": {
+    "showTerminalProgress": false
+  },
+  "transport": "auto",
+  "hideThinkingBlock": false,
+  "theme": {{ if eq .chezmoi.os "linux" }}"omarchy-system"{{ else }}"omp-titanium"{{ end }},
+  "doubleEscapeAction": "tree",
+  "showHardwareCursor": true,
+  "fullscreenScrollbar": "always",
+  "tuiMode": "fullscreen",
+  "extensions": [
+    "-builtin:mcp"
+  ]
+}

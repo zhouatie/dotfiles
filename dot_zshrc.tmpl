@@ -92,7 +92,7 @@ export API_TIMEOUT_MS="30000"
 [[ -f ~/.api_keys ]] && source ~/.api_keys
 
 export XDG_CONFIG_HOME="$HOME/.config"
-export PI_CODING_AGENT_DIR="$XDG_CONFIG_HOME/pi"
+# export PI_CODING_AGENT_DIR="$XDG_CONFIG_HOME/pi"  # removed: Pi default is ~/.pi/agent
 
 # ----- Aliases ----------------------------------------------------------------
 alias v='nvim'
@@ -264,7 +264,7 @@ export PATH="/Applications/DevEco-Studio.app/Contents/tools/hvigor/bin:$PATH"
 {{- end }}
 
 alias pi-raven="PI_CODING_AGENT_DIR={{ .chezmoi.homeDir }}/.config/pi-bots/raven pi"
-alias pi-qa="PI_CODING_AGENT_DIR={{ .chezmoi.homeDir }}/.config/pi-bots/qa pi"
+alias pi-qa="MIDSCENE_MODEL_BASE_URL='http://127.0.0.1:3425/v1' MIDSCENE_MODEL_API_KEY='magpie' MIDSCENE_MODEL_NAME='antigravity/gemini-3.8-flash' MIDSCENE_MODEL_FAMILY='gemini' PI_CODING_AGENT_DIR={{ .chezmoi.homeDir }}/.config/pi-bots/qa pi"
 alias pi-popo="PI_CODING_AGENT_DIR={{ .chezmoi.homeDir }}/.config/pi-bots/popo pi"
 alias pi-ops="PI_CODING_AGENT_DIR={{ .chezmoi.homeDir }}/.config/pi-bots/ops pi"
 alias pi-pm="PI_CODING_AGENT_DIR={{ .chezmoi.homeDir }}/.config/pi-bots/pm pi"
