@@ -15,8 +15,6 @@ else
   compinit
 fi
 
-plugins=(git zsh-autosuggestions)
-
 if command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
 fi
@@ -43,36 +41,49 @@ path_append() {
 }
 
 # ----- Core Environment -------------------------------------------------------
+{{ if eq .chezmoi.os "darwin" -}}
 export WORK="$HOME/Desktop/work"
 export DESKTOP="$HOME/Desktop"
+{{- else -}}
+export WORK="$HOME/Work"
+export DESKTOP="$HOME/Work"
+{{- end }}
 export EDITOR="nvim"
 
-export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export ANDROID_SDK_ROOT=$ANDROID_HOME
-for dir in \
-  "$ANDROID_HOME/emulator" \
-  "$ANDROID_HOME/tools" \
-  "$ANDROID_HOME/tools/bin" \
-  "$ANDROID_HOME/platform-tools"
-do
-  path_append "$dir"
-done
+{{ if eq .chezmoi.os "darwin" -}}
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+{{- else -}}
+export ANDROID_HOME="$HOME/Android/Sdk"
+{{- end }}
+if [[ -d "$ANDROID_HOME" ]]; then
+  export ANDROID_SDK_ROOT="$ANDROID_HOME"
+  for dir in \
+    "$ANDROID_HOME/emulator" \
+    "$ANDROID_HOME/tools" \
+    "$ANDROID_HOME/tools/bin" \
+    "$ANDROID_HOME/platform-tools"
+  do
+    path_append "$dir"
+  done
+fi
 path_append "$HOME/.fzf/bin"
 
+{{ if eq .chezmoi.os "darwin" -}}
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home
 export JRE_HOME=$JAVA_HOME/jre
 export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib:$CLASSPATH
 path_append "$JAVA_HOME/bin"
-
 path_prepend "/usr/local/mysql/bin"
+path_prepend "/Applications/WezTerm.app/Contents/MacOS"
+export PNPM_HOME="$HOME/Library/pnpm"
+{{- else -}}
+[[ -d /usr/lib/jvm/default ]] && export JAVA_HOME=/usr/lib/jvm/default && path_append "$JAVA_HOME/bin"
+export PNPM_HOME="$HOME/.local/share/pnpm"
+{{- end }}
 path_append "$HOME/.cargo/bin"
 path_append "$HOME/.local/bin"
 path_append "$HOME/.npm-global/bin"
-path_prepend "/Applications/WezTerm.app/Contents/MacOS"
 
-export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) PATH="$PNPM_HOME:$PATH" ;;
@@ -97,19 +108,23 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # ----- Aliases ----------------------------------------------------------------
 alias v='nvim'
 alias cat='bat'
-alias cdd='cd "$HOME/Desktop"'
-alias cdw='cd "$HOME/Desktop/work"'
-alias cdp='cd "$HOME/Desktop/projects"'
+alias cdw='cd "$WORK"'
+alias cdp='cd "$HOME/Projects"'
+{{- if eq .chezmoi.os "darwin" }}
+alias cdd='cd "$DESKTOP"'
 alias cdnote='cd "$HOME/vaults/personal"'
 alias cdorg='cd "$HOME/org"'
+{{- end }}
 alias tma='tmux attach'
 alias tmk='tmux kill-session -t '
 alias ls="eza --icons=always"
 # prettier 格式化
 alias formatFile="prettier --write \"src/**/*.{js,jsx,ts,tsx,less,json,md}\""
 alias format="prettier --write src"
+{{- if eq .chezmoi.os "darwin" }}
 # 快捷用模拟器打开页面链接 iosopen 'xxx'
 alias iosopen="ios-elf open --last-device "
+{{- end }}
 
 # ----- Navigation -------------------------------------------------------------
 y() {
@@ -131,8 +146,13 @@ export BAT_THEME=tokyonight_night
 # ----- Tools & Plugins --------------------------------------------------------
 
 if command -v fzf >/dev/null 2>&1; then
+{{- if eq .chezmoi.os "darwin" }}
   [[ -r /opt/homebrew/opt/fzf/shell/completion.zsh ]] && source /opt/homebrew/opt/fzf/shell/completion.zsh
   [[ -r /opt/homebrew/opt/fzf/shell/key-bindings.zsh ]] && source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+{{- else }}
+  [[ -r /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
+  [[ -r /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
+{{- end }}
 fi
 
 fg="#CBE0F0"
@@ -199,13 +219,22 @@ nvm() {
 
 # ----- Misc -------------------------------------------------------------------
 
-if [[ -r /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
-  source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+{{ if eq .chezmoi.os "darwin" -}}
+_zsh_autosuggestions=/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+_zsh_syntax_highlighting=/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+{{- else -}}
+_zsh_autosuggestions=/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+_zsh_syntax_highlighting=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+{{- end }}
+
+if [[ -r $_zsh_autosuggestions ]]; then
+  source $_zsh_autosuggestions
 fi
 
-if [[ -r /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [[ -r $_zsh_syntax_highlighting ]]; then
+  source $_zsh_syntax_highlighting
 fi
+unset _zsh_autosuggestions _zsh_syntax_highlighting
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"

@@ -5,27 +5,17 @@ right_click_passthrough_modifier = "ctrl"
 
 show_agent_labels_on_pane_borders = false
 [keys]
-prefix = "cmd+s"
-# prefix = "ctrl+a"
+prefix = "ctrl+a"
+# macOS 上原来用 cmd+s，但在 Hyprland（Omarchy）里 SUPER+S 被合成器占用（Toggle scratchpad），
+# 按键到不了 herdr，所以 Linux 统一用 ctrl+a；macOS 需要时在 ~/.zshrc.local 一类的地方单独设。
 
 # Switch tabs with Ctrl+[ (previous) and Ctrl+] (next)
 previous_tab = "ctrl+["
 next_tab = "ctrl+]"
 
-# Switch agents with cmd+ctrl+[ / ]
-previous_agent = "cmd+ctrl+["
-next_agent = "cmd+ctrl+]"
-
-# Switch workspaces with cmd+shift+ctrl+[ / ]
-previous_workspace = "cmd+shift+ctrl+["
-next_workspace = "cmd+shift+ctrl+]"
-
-# Optional: Focus Tabs/Panes/Agents when open navigator
-[[keys.command]]
-key = "cmd+i"
-type = "plugin_action"
-command = "beyondlex.herdr-recent-navigator.focus-tabs"
-description = "Open Navigator: Tab"
+# 原来的 previous_agent/next_agent（cmd+ctrl+[ / ]）与 previous_workspace/next_workspace
+# （cmd+shift+ctrl+[ / ]）是 macOS 专用 Super 组合，在 Hyprland 上会被合成器拦下，已移除。
+# 需要的话改成 ctrl+alt+[ / ctrl+shift+[ 这类组合。
 
 [[keys.command]]
 key = "prefix+e"
@@ -82,11 +72,7 @@ type = "shell"
 command = "herdr plugin action invoke open-board --plugin herdr-board"
 description = "open herdr-board kanban (overlay)"
 
-[[keys.command]]
-key = "cmd+shift+k"
-type = "shell"
-command = "herdr plugin action invoke open-board --plugin herdr-board"
-description = "open herdr-board kanban (overlay, direct)"
+# 原来的 cmd+shift+k（直接开 board）在 Hyprland 上不生效，已移除；用上面的 prefix+shift+k。
 
 #
 # [[keys.command]]

@@ -181,3 +181,20 @@ node_modules/**
 .config/tmux/plugins/**
 .tmux/plugins/
 .tmux/plugins/**
+
+# Company-only skill selectors. Their targets live in the work Mac's
+# ~/.agents/skills, which is not installed on other machines, so keep them out
+# of the way there. NOTE: these are destination paths; the `symlink_` prefix is
+# a source-only attribute and must never appear in .chezmoiignore.
+{{ if ne .chezmoi.os "darwin" }}
+.pi/agent/skills/ddd-update-change
+.pi/agent/skills/febase-update-code-review-status
+.pi/agent/skills/km-ask
+.pi/agent/skills/openspec-update-change
+.pi/agent/skills/popo-doc
+.pi/agent/skills/popo-doc-read
+.pi/agent/skills/raven-explore-knowledge
+.pi/agent/skills/raven-instinct-evolve
+.pi/agent/skills/ste
+.pi/agent/skills/xiaoer-knowledge
+{{ end }}
