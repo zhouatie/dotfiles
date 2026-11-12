@@ -46,7 +46,6 @@ export WORK="$HOME/Desktop/work"
 export DESKTOP="$HOME/Desktop"
 {{- else -}}
 export WORK="$HOME/Work"
-export DESKTOP="$HOME/Work"
 {{- end }}
 export EDITOR="nvim"
 
@@ -141,7 +140,12 @@ if command -v zoxide >/dev/null 2>&1; then
 fi
 
 # ----- Prompt & Visuals -------------------------------------------------------
+{{ if eq .chezmoi.os "darwin" -}}
 export BAT_THEME=tokyonight_night
+{{- else -}}
+# Arch 的 bat 不带 tokyonight 主题；用 ansi 跟随终端配色（Omarchy 会动态改终端调色板）
+export BAT_THEME=ansi
+{{- end }}
 
 # ----- Tools & Plugins --------------------------------------------------------
 
@@ -189,7 +193,7 @@ _fzf_comprun() {
   case "$command" in
     cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
     export|unset) fzf --preview "eval 'echo \${}'" "$@" ;;
-    ssh)          fzf --preview 'dig {}' "$@" ;;
+    ssh)          fzf --preview 'command -v dig >/dev/null 2>&1 && dig {} || getent hosts {}' "$@" ;;
     *)            fzf --preview "$show_file_or_dir_preview" "$@" ;;
   esac
 }
