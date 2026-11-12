@@ -198,3 +198,10 @@ node_modules/**
 .pi/agent/skills/ste
 .pi/agent/skills/xiaoer-knowledge
 {{ end }}
+
+# Pi runtime-owned files: pi (and magpie) rewrite these while running, so
+# chezmoi would fight them on every apply. They are per-machine state, not
+# dotfiles (README: models.json / extension state stay local).
+.pi/agent/models.json
+.pi/agent/.gitignore
+.pi/agent/extensions/master-mode.ts
