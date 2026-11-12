@@ -205,3 +205,4 @@ node_modules/**
 .pi/agent/models.json
 .pi/agent/.gitignore
 .pi/agent/extensions/master-mode.ts
+.pi/agent/settings.json
