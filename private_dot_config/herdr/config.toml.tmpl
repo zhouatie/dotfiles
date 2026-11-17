@@ -13,9 +13,11 @@ prefix = "ctrl+a"
 previous_tab = "ctrl+["
 next_tab = "ctrl+]"
 
-# 原来的 previous_agent/next_agent（cmd+ctrl+[ / ]）与 previous_workspace/next_workspace
-# （cmd+shift+ctrl+[ / ]）是 macOS 专用 Super 组合，在 Hyprland 上会被合成器拦下，已移除。
-# 需要的话改成 ctrl+alt+[ / ctrl+shift+[ 这类组合。
+# 原来的 previous_agent/next_agent（cmd+ctrl+[ / ]）是 macOS 专用组合，已移除。
+# 切换 workspace 沿用 cmd+shift+ctrl+[ / ]（Linux 上 cmd 写作 super）；
+# Hyprland 未占用 SUPER+CTRL+SHIFT+[ / ]，按键可到达 herdr。
+previous_workspace = "ctrl+super+shift+["
+next_workspace = "ctrl+super+shift+]"
 
 [[keys.command]]
 key = "prefix+e"
