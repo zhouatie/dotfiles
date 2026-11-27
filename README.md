@@ -15,13 +15,13 @@
 - Shell 基础配置：`~/.zshrc`
 - Git 通用配置：`~/.gitconfig`、`~/.config/git/config`、`~/.config/git/ignore`
 - Neovim 通用配置：`~/.config/nvim`
-- 终端与工具配置：Kitty、tmux、Yazi、herdr、starship 等
+- 终端与工具配置：Kitty、Yazi、herdr、starship 等
 - Pi 通用配置：模型/UI 偏好、包清单、自定义主题、通用扩展与通用 skills
 
 不管理：
 
 - `.git`、`node_modules`、`.vscode`
-- tmux/Neovim 等插件或依赖产物
+- tmux（保留 Omarchy 自带的 `~/.config/tmux/tmux.conf`，不入库）/Neovim 等插件或依赖产物
 - legacy tmux 路径：`~/.tmux`、`~/.tmux.conf`、`~/.config/.tmux.conf`
 - Claude/Codex/OpenCode/Cursor/Raven/Git-AI 的会话、hooks、日志、监控状态
 - Pi 的 auth、provider 私密配置、项目 trust、session/history、memory、日志、缓存和数据库
@@ -117,7 +117,7 @@ Pi 会根据同步后的 `~/.pi/agent/settings.json` 自动安装缺失 packages
 
 ## 修改规则
 
-通用配置可以同步到远程，例如 shell 通用 alias、Neovim 普通插件配置、Kitty/Yazi/tmux 通用偏好。
+通用配置可以同步到远程，例如 shell 通用 alias、Neovim 普通插件配置、Kitty/Yazi 通用偏好。
 
 本机绑定内容不要同步到远程，包括：
 
