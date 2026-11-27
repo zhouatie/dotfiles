@@ -17,14 +17,12 @@
 - Neovim 通用配置：`~/.config/nvim`
 - 终端与工具配置：Kitty、tmux、Yazi、herdr、starship 等
 - Pi 通用配置：模型/UI 偏好、包清单、自定义主题、通用扩展与通用 skills
-- 部分静态文件：`proxy.pac`、`tvbox.json`
 
 不管理：
 
 - `.git`、`node_modules`、`.vscode`
-- tmux/Neovim/opencode 等插件或依赖产物
+- tmux/Neovim 等插件或依赖产物
 - legacy tmux 路径：`~/.tmux`、`~/.tmux.conf`、`~/.config/.tmux.conf`
-- OpenCode 本机目录：`~/.config/opencode/**`
 - Claude/Codex/OpenCode/Cursor/Raven/Git-AI 的会话、hooks、日志、监控状态
 - Pi 的 auth、provider 私密配置、项目 trust、session/history、memory、日志、缓存和数据库
 - Pi 自动生成的 `npm/`、`git/` 包安装目录，以及公司环境专用 skill selectors
@@ -39,7 +37,6 @@
 - `~/.config/chezmoi/chezmoi.toml` 中的机器专用 data
 - `~/.config/git/config.netease.local`
 - 所有 `*.local`、`*.local.*`
-- `~/.config/opencode/**`
 - `~/.config/nvim/lua/plugins/local/**`
 - `~/.config/nvim/lua/codemaker.lua`
 - `~/.config/nvim/lua/plugins/minuet/codemaker.lua`
@@ -58,8 +55,6 @@ Neovim 的 AI provider、公司 endpoint、token 获取逻辑应放到 ignored l
 ~/.config/nvim/lua/plugins/local/minuet.lua
 ```
 
-OpenCode 的 provider、API key、本机 MCP 命令路径、插件依赖和运行缓存都放在 `~/.config/opencode/**`，不进入 chezmoi。
-
 Pi 只同步 `~/.pi/agent/settings.json` 中不含密钥的通用偏好和包清单，以及通用扩展、skills、主题和相关测试。`settings.json` 通过 chezmoi 模板把 HOME 路径渲染为当前机器的目录。跨机器默认使用安全策略 `defaultProjectTrust: "ask"` 和 `yoloMode: false`；当前机器如需覆盖，只写入本机 `~/.config/chezmoi/chezmoi.toml` 的 `[data]`，不提交远程。`auth.json`、`models.json`、`trust.json`、会话、memory、日志、数据库和自动安装的包目录始终留在本机；公司环境专用的 skill selectors 也不进入远程。
 
 ## 隐私边界
@@ -74,7 +69,6 @@ Pi 只同步 `~/.pi/agent/settings.json` 中不含密钥的通用偏好和包清
 - `~/.raven-privacy-trash/**`
 - `~/.github/hooks/**`
 - `~/.cursor/hooks.json`
-- `~/.config/opencode/**`
 - `~/.config/chezmoi/chezmoi.toml`
 - `~/.pi/agent/auth.json`、`~/.pi/agent/models.json`、`~/.pi/agent/trust.json`
 - `~/.pi/agent/{sessions,npm,git,tmp,pi-hermes-memory,projects-memory}/**`
@@ -184,12 +178,3 @@ git status --short
 git diff --cached --name-status
 ```
 
-## 静态文件访问
-
-`proxy.pac`、`tvbox.json` 放在这里主要是利用 GitHub raw 文件作为远程静态访问地址。
-
-示例：
-
-```text
-https://raw.githubusercontent.com/zhouatie/dotfiles/main/proxy.pac
-```

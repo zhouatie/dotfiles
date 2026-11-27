@@ -1,9 +1,9 @@
-# RAVENSPEC:START
-# RavenSpec shell completions configuration
-fpath=("{{ .chezmoi.homeDir }}/.zsh/completions" $fpath)
-autoload -Uz compinit
-compinit
-# RAVENSPEC:END
+# ----- Shell options ----------------------------------------------------------
+# 对齐 Omarchy 的 bash 历史设置（HISTSIZE/HISTFILESIZE = 32768）
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=32768
+SAVEHIST=32768
+setopt hist_ignore_dups share_history append_history extended_history
 
 # ----- Prompt & Completion ----------------------------------------------------
 [[ -f ~/.zshrc.local.pre ]] && source ~/.zshrc.local.pre
@@ -17,6 +17,11 @@ fi
 
 if command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
+fi
+
+# mise 是 Omarchy 的工具链管理器（node/python/ruby 等），取代 nvm/rbenv
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
 fi
 
 # ----- Path Helpers -----------------------------------------------------------
@@ -82,9 +87,6 @@ export API_TIMEOUT_MS="30000"
 
 [[ -f ~/.api_keys ]] && source ~/.api_keys
 
-export XDG_CONFIG_HOME="$HOME/.config"
-# export PI_CODING_AGENT_DIR="$XDG_CONFIG_HOME/pi"  # removed: Pi default is ~/.pi/agent
-
 # ----- Aliases ----------------------------------------------------------------
 alias v='nvim'
 alias cat='bat'
@@ -147,8 +149,6 @@ _fzf_compgen_dir() {
   fd --type=d --hidden --exclude .git . "$1"
 }
 
-show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
-
 _fzf_comprun() {
   local command=$1
   shift
@@ -162,27 +162,6 @@ _fzf_comprun() {
 }
 
 [[ -r ~/fzf-git.sh/fzf-git.sh ]] && source ~/fzf-git.sh/fzf-git.sh
-
-# ----- NVM (Fast PATH + Lazy CLI) ---------------------------------------------
-export NVM_DIR="$HOME/.nvm"
-if [[ -f "$NVM_DIR/alias/default" ]]; then
-  _nvm_default_version="$(<"$NVM_DIR/alias/default")"
-  if [[ -n "$_nvm_default_version" ]]; then
-    _nvm_matches=($NVM_DIR/versions/node/v${_nvm_default_version#v}*(N/On))
-    if (( ${#_nvm_matches} > 0 )) && [[ -d "${_nvm_matches[1]}/bin" ]]; then
-      export PATH="${_nvm_matches[1]}/bin:$PATH"
-    fi
-    unset _nvm_matches
-  fi
-  unset _nvm_default_version
-fi
-
-nvm() {
-  unset -f nvm
-  [[ -s "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh"
-  [[ -s "$NVM_DIR/bash_completion" ]] && \. "$NVM_DIR/bash_completion"
-  nvm "$@"
-}
 
 # ----- Misc -------------------------------------------------------------------
 
@@ -221,30 +200,8 @@ fi
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
-# OpenSpec init with Chinese spec config
-specinit() {
-  local target="${1:-.}"
-
-  openspec init "$target"
-  mkdir -p "$target/openspec"
-  cp "$HOME/.config/openspec/config.yaml" "$target/openspec/config.yaml"
-}
-
-# Hermes Agent — ensure ~/.local/bin is on PATH
-export PATH="$HOME/.local/bin:$PATH"
+# 本机脚本目录（hm-build 等；~/.local/bin 已在上面的 path_append 中）
 export PATH="$HOME/.config/scripts:$PATH"
-
-# >>> grok installer >>>
-export PATH="$HOME/.grok/bin:$PATH"
-fpath=(~/.grok/completions/zsh $fpath)
-autoload -Uz compinit && compinit -C
-# <<< grok installer <<<
-
-# codemaker
-export PATH={{ .chezmoi.homeDir }}/.codemaker/bin:$PATH
-
-# Added by git-ai installer
-export PATH="{{ .chezmoi.homeDir }}/.git-ai/bin:$PATH"
 
 alias pi-raven="PI_CODING_AGENT_DIR={{ .chezmoi.homeDir }}/.config/pi-bots/raven pi"
 alias pi-qa="MIDSCENE_MODEL_BASE_URL='http://127.0.0.1:3425/v1' MIDSCENE_MODEL_API_KEY='magpie' MIDSCENE_MODEL_NAME='antigravity/gemini-3.8-flash' MIDSCENE_MODEL_FAMILY='gemini' PI_CODING_AGENT_DIR={{ .chezmoi.homeDir }}/.config/pi-bots/qa pi"
