@@ -154,6 +154,11 @@ node_modules/**
 .pi/pi-bots/hermes/
 .pi/pi-bots/hermes/**
 
+# 公司 bot 配置（pi-bots）：目标机通常不安装，需要时在该机器手动 apply
+.pi/pi-bots
+.pi/pi-bots/**
+.config/pi-bots
+
 # Local-only shell/git overlays
 *.local
 *.local.*

@@ -15,13 +15,14 @@
 - Shell 基础配置：`~/.zshrc`
 - Git 通用配置：`~/.gitconfig`、`~/.config/git/config`、`~/.config/git/ignore`
 - Neovim 通用配置：`~/.config/nvim`
-- 终端与工具配置：Kitty、Yazi、herdr、starship 等
+- 终端与工具配置：Kitty、Yazi、starship 等
 - Pi 通用配置：模型/UI 偏好、包清单、自定义主题、通用扩展与通用 skills
 
 不管理：
 
 - `.git`、`node_modules`、`.vscode`
 - tmux（保留 Omarchy 自带的 `~/.config/tmux/tmux.conf`，不入库）/Neovim 等插件或依赖产物
+- herdr（保留 Omarchy 自带的 `~/.config/herdr/config.toml`，不入库）
 - legacy tmux 路径：`~/.tmux`、`~/.tmux.conf`、`~/.config/.tmux.conf`
 - Claude/Codex/OpenCode/Cursor/Raven/Git-AI 的会话、hooks、日志、监控状态
 - Pi 的 auth、provider 私密配置、项目 trust、session/history、memory、日志、缓存和数据库
