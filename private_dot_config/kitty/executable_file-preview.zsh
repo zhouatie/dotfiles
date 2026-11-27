@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 render_file() {
   local mode="$1" file="$2"
@@ -8,22 +8,22 @@ render_file() {
     export CLICOLOR_FORCE=1
 
     if [[ "$mode" == preview ]]; then
-      exec /opt/homebrew/bin/glow \
-        --style=/Users/zhoushitie/.config/kitty/markdown-style.json \
+      exec glow \
+        --style=$HOME/.config/kitty/markdown-style.json \
         --width="$FZF_PREVIEW_COLUMNS" \
         "$file"
     fi
-    /opt/homebrew/bin/glow \
-      --style=/Users/zhoushitie/.config/kitty/markdown-style.json \
+    glow \
+      --style=$HOME/.config/kitty/markdown-style.json \
       --width="$COLUMNS" \
-      "$file" | /usr/bin/less -R
+      "$file" | less -R
     return
   fi
 
   if [[ "$mode" == preview ]]; then
-    exec /opt/homebrew/bin/bat --color=always --style=numbers --line-range=:500 -- "$file"
+    exec bat --color=always --style=numbers --line-range=:500 -- "$file"
   fi
-  exec /opt/homebrew/bin/bat --paging=always --style=numbers -- "$file"
+  exec bat --paging=always --style=numbers -- "$file"
 }
 
 if [[ "$1" == --render-preview ]]; then
@@ -46,7 +46,7 @@ list_active_change_files() {
 
     for change_dir in "$changes_dir"/*(/N); do
       [[ "${change_dir:t}" == archive ]] && continue
-      /opt/homebrew/bin/fd --type f --hidden --exclude .git . "$change_dir"
+      fd --type f --hidden --exclude .git . "$change_dir"
     done
   done
 }
@@ -54,8 +54,8 @@ list_active_change_files() {
 list_project_documents() {
   {
     list_active_change_files
-    /opt/homebrew/bin/fd --type f --hidden --exclude .git --extension md .
-  } | /usr/bin/sort -u
+    fd --type f --hidden --exclude .git --extension md .
+  } | sort -u
 }
 
 prompt='File> '
@@ -82,16 +82,16 @@ if [[ "$1" == --project-docs ]]; then
   prompt='Project docs> '
   file_source=list_project_documents
 else
-  file_source=(/opt/homebrew/bin/fd --type f --hidden --exclude .git)
+  file_source=(fd --type f --hidden --exclude .git)
 fi
 
 selected_file=$(
   $file_source |
-    /opt/homebrew/bin/fzf \
+    fzf \
       --prompt="$prompt" \
       --scheme=path \
       --keep-right \
-      --preview='/Users/zhoushitie/.config/kitty/file-preview.zsh --render-preview {}' \
+      --preview='$HOME/.config/kitty/file-preview.zsh --render-preview {}' \
       --preview-window='right:60%'
 ) || exit
 

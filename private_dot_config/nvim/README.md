@@ -23,11 +23,8 @@ python3 -m venv ~/.config/nvim/venv
 3. Install other dependencies
 
 ```bash
-# For macOS
-brew install wget ripgrep fd lazygit fzf
-
-# For Ubuntu/Debian
-sudo apt install wget ripgrep fd-find lazygit fzf
+# For Arch Linux / Omarchy
+sudo pacman -S wget ripgrep fd lazygit fzf
 ```
 
 ## Features

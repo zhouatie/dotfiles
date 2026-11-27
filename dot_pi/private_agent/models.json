@@ -1496,7 +1496,7 @@
             "name": "CodeMaker",
             "baseUrl": "https://api-code-maker.nie.netease.com/openai/v1",
             "api": "openai-completions",
-            "apiKey": "!node /Users/zhoushitie/.config/pi/scripts/cm-token.js",
+            "apiKey": "!node ${HOME}/.config/pi/scripts/cm-token.js",
             "headers": {
                 "client": "codemaker-cli",
                 "ide": "cli",

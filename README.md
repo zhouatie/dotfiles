@@ -2,6 +2,10 @@
 
 这是个人 dotfiles 仓库，使用 `chezmoi` 管理跨机器通用配置。
 
+> 当前分支 `omarchy` 只面向 Linux + Omarchy（Hyprland）。macOS 专属配置
+> （AeroSpace、sketchybar、Karabiner-Elements、OmniWM、WezTerm、iTerm2 等）
+> 以及模板里的 `darwin` 分支都已移除，不在本分支维护。
+
 仓库只应该保存可公开同步的个人通用配置。机器私有配置、公司环境配置、AI 工具 token/hook/监控相关配置必须放在本机 local 文件中，不提交到远程；Git 身份按 remote 条件加载，不设置 local 兜底身份。
 
 ## 管理范围
@@ -11,7 +15,7 @@
 - Shell 基础配置：`~/.zshrc`
 - Git 通用配置：`~/.gitconfig`、`~/.config/git/config`、`~/.config/git/ignore`
 - Neovim 通用配置：`~/.config/nvim`
-- 终端与工具配置：WezTerm、tmux、Yazi、AeroSpace、Karabiner 等
+- 终端与工具配置：Kitty、tmux、Yazi、herdr、starship 等
 - Pi 通用配置：模型/UI 偏好、包清单、自定义主题、通用扩展与通用 skills
 - 部分静态文件：`proxy.pac`、`tvbox.json`
 
@@ -92,7 +96,13 @@ chezmoi apply
 如果设备还没有 chezmoi，先安装：
 
 ```bash
-brew install chezmoi
+sudo pacman -S chezmoi
+```
+
+初始化本机（只克隆 `omarchy` 分支，不应用）：
+
+```bash
+chezmoi init --branch omarchy git@github.com:zhouatie/dotfiles.git
 ```
 
 应用前或应用后，按需创建本机 local 配置。这些文件不会从远程同步：
@@ -113,11 +123,11 @@ Pi 会根据同步后的 `~/.pi/agent/settings.json` 自动安装缺失 packages
 
 ## 修改规则
 
-通用配置可以同步到远程，例如 shell 通用 alias、Neovim 普通插件配置、WezTerm/Yazi/tmux 通用偏好。
+通用配置可以同步到远程，例如 shell 通用 alias、Neovim 普通插件配置、Kitty/Yazi/tmux 通用偏好。
 
 本机绑定内容不要同步到远程，包括：
 
-- 绝对 HOME 路径，例如 `/Users/zhoushitie/...`
+- 绝对 HOME 路径，例如 `/home/<user>/...`
 - 公司邮箱、工号、token、API key、auth key
 - 公司 endpoint、内网 npm registry、代理地址
 - AI 工具 hooks、session、log、monitor、trace2、checkpoint 配置
@@ -128,7 +138,6 @@ Pi 会根据同步后的 `~/.pi/agent/settings.json` 自动安装缺失 packages
 - zsh 使用 `$HOME`
 - Git 使用 `~/.config/...`
 - Neovim Lua 使用 `vim.fn.expand("~/...")`
-- WezTerm 使用 `wezterm.home_dir`
 - Yazi 配置中使用 `~`
 - Pi JSON 中的 HOME 路径使用 chezmoi 的 `{{ .chezmoi.homeDir }}` 模板
 

@@ -43,15 +43,9 @@ type = "plugin_action"
 command = "ray.file-explorer.open-tab"
 description = "open file explorer in a new tab"
 
-{{- if eq .chezmoi.os "linux" }}
 # 使用终端调色板（跟随底层终端 Kitty / Omarchy 配色）
 [theme]
 name = "terminal"
-{{- else }}
-# 显式声明深色主题
-[theme]
-name = "catppuccin"
-{{- end }}
 
 auto_switch = false
 [ui.toast]
@@ -88,8 +82,3 @@ description = "open herdr-board kanban (overlay)"
 # type = "plugin_action"
 # command = "worktrunk.remove"
 # description = "Worktree: remove"
-
-{{- if eq .chezmoi.os "linux" }}
-[terminal]
-default_shell = "/usr/bin/zsh"
-{{- end }}

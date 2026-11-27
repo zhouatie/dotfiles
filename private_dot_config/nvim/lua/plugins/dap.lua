@@ -152,9 +152,9 @@ return {
           sourceMaps = true,
           -- userDataDir = false,
           userDataDir = function()
-            return vim.fn.expand("~/Desktop/work/.chrome-debug-userData")
+            return vim.fn.expand("~/Work/.chrome-debug-userData")
           end,
-          runtimeExecutable = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+          runtimeExecutable = "/usr/bin/google-chrome-stable",
           -- runtimeArgs = { "--incognito" }, -- 启动无痕模式
           sourceMapPathOverrides = {
             -- 适用于大多数构建工具

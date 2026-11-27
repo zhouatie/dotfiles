@@ -1,7 +1,4 @@
 # chezmoi:template:left-delimiter="[[" right-delimiter="]]"
-[[- if eq .chezmoi.os "linux" ]]
-shell /usr/bin/zsh
-[[ end ]]
 # vim:fileencoding=utf-8:foldmethod=marker
 
 #: Fonts {{{
@@ -2770,7 +2767,7 @@ shell /usr/bin/zsh
 # map --allow-fallback=shifted,ascii cmd+r start_resizing_window
 # kitty 0.47 默认就把 cmd+r 绑到 start_resizing_window，注释不会取消默认绑定；
 # no_op 解除它并把按键穿透给终端内程序（herdr 用它 toggle reviewr）
-map cmd+r no_op
+map ctrl+shift+r no_op
 
 #: First window
 
@@ -3277,24 +3274,13 @@ map cmd+r no_op
 
 
 # BEGIN_KITTY_THEME
-[[ if eq .chezmoi.os "darwin" -]]
-# Default
-include current-theme.conf
-# END_KITTY_THEME
-
-# Slightly larger text for comfortable reading
-font_size 13.0
-[[- else -]]
 include ~/.local/state/omarchy/current/theme/kitty.conf
 # END_KITTY_THEME
 
 # Slightly larger text for comfortable reading
 font_size 9.0
-[[- end ]]
 
-# Hide the macOS title bar while keeping rounded window corners
-hide_window_decorations titlebar-only
-macos_show_window_title_in none
+# 窗口装饰由 Hyprland 负责
 
 # Notify when a command runs for at least five seconds and finishes unfocused
 notify_on_cmd_finish unfocused 5.0 notify
@@ -3323,29 +3309,24 @@ tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{index
 # 想恢复确认，把这行注释掉或改成 -1
 confirm_os_window_close 0
 
-# 关掉最后一个窗口时整个 kitty 进程退出
-# 默认 no：macOS 上关完窗口进程会一直留着（快捷键每次都是新起一个 kitty，久了会堆一堆空壳进程）
-# 想改回留进程，把这行注释掉或改成 no
-macos_quit_when_last_window_closed yes
-
-# Switch directly to tabs 1-9 with Command+number
-map cmd+1 goto_tab 1
-map cmd+2 goto_tab 2
-map cmd+3 goto_tab 3
-map cmd+4 goto_tab 4
-map cmd+5 goto_tab 5
-map cmd+6 goto_tab 6
-map cmd+7 goto_tab 7
-map cmd+8 goto_tab 8
-map cmd+9 goto_tab 9
+# Switch directly to tabs 1-9 from the tab bar
+map ctrl+shift+1 goto_tab 1
+map ctrl+shift+2 goto_tab 2
+map ctrl+shift+3 goto_tab 3
+map ctrl+shift+4 goto_tab 4
+map ctrl+shift+5 goto_tab 5
+map ctrl+shift+6 goto_tab 6
+map ctrl+shift+7 goto_tab 7
+map ctrl+shift+8 goto_tab 8
+map ctrl+shift+9 goto_tab 9
+map ctrl+shift+p goto_tab -1
 
 # Kitty leader keybindings
-map --new-mode kitty_leader --on-action end --on-unknown end --timeout 1.0 cmd+a
+map --new-mode kitty_leader --on-action end --on-unknown end --timeout 1.0 ctrl+shift+a
 map --mode kitty_leader --allow-fallback none - combine : goto_layout splits : launch --cwd=current --location=vsplit
 map --mode kitty_leader --allow-fallback none shift+- combine : goto_layout splits : launch --cwd=current --location=hsplit
 map --mode kitty_leader left previous_tab
 map --mode kitty_leader right next_tab
-map cmd+shift+p goto_tab -1
 
 # Select a visible window or jump directly by window number
 map --mode kitty_leader w combine : pop_keyboard_mode : focus_visible_window
@@ -3381,27 +3362,15 @@ map --mode kitty_leader f launch --type=overlay --cwd=current [[ .chezmoi.homeDi
 map --mode kitty_leader shift+f launch --type=overlay --cwd=current [[ .chezmoi.homeDir ]]/.config/kitty/file-preview.zsh --project-docs
 map --mode kitty_leader esc pop_keyboard_mode
 
-[[ if eq .chezmoi.os "darwin" -]]
-# Restore the tabs, tab titles, layouts, and working directories from the
-# session saved by Command+Q. Command+Shift+S saves without quitting.
-startup_session [[ .chezmoi.homeDir ]]/.config/kitty/sessions/last.kitty-session
-map cmd+shift+s save_as_session --save-only [[ .chezmoi.homeDir ]]/.config/kitty/sessions/last.kitty-session
-map cmd+q combine : save_as_session --save-only [[ .chezmoi.homeDir ]]/.config/kitty/sessions/last.kitty-session : quit
-[[- else ]]
 # Clipboard integration: bridge Omarchy/Hyprland universal shortcuts to system clipboard
 map shift+insert paste_from_clipboard
 map ctrl+insert  copy_to_clipboard
-map cmd+c        copy_to_clipboard
-map cmd+v        paste_from_clipboard
+map ctrl+shift+c  copy_to_clipboard
+map ctrl+shift+v  paste_from_clipboard
 
-# Mac tab and window shortcuts
+# Tab and window shortcuts
 map ctrl+shift+w close_window
 map ctrl+shift+t new_tab
-map cmd+w        close_window
-map cmd+t        new_tab
 
 # Discard Pause key (used by voice dictation via keyd) to prevent sending U+E012 to applications
 map pause discard_event
-
-include tode/keybinds.kitty.conf
-[[- end ]]
